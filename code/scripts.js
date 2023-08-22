@@ -133,14 +133,20 @@ function getNextDay(day) {
     }
 }
 
-function getAdjacentColumnClass(currentDay, direction) {
-    if (direction === 'prev') {
-        return `doctor-dropdown-${getPrevDay(currentDay)}`;
-    } else if (direction === 'next') {
-        return `doctor-dropdown-${getNextDay(currentDay)}`;
-    }
-    return '';
-}
+// Pre-Call / Post-Call / Pre-Late / Post-Late Dropdowns are only editable via the Call and Late rows
+document.addEventListener('DOMContentLoaded', function() {
+    const preCallDropdowns = document.querySelectorAll('tr[role-name="Pre Call"] .doctor-dropdown');
+    const postCallDropdowns = document.querySelectorAll('tr[role-name="Post Call"] .doctor-dropdown');
+
+    const preLateDropdowns = document.querySelectorAll('tr[role-name="Pre Late"] .doctor-dropdown');
+    const postLateDropdowns = document.querySelectorAll('tr[role-name="Post Late"] .doctor-dropdown');
+
+    preCallDropdowns.forEach(dropdown => dropdown.disabled = true);
+    postCallDropdowns.forEach(dropdown => dropdown.disabled = true);
+
+    preLateDropdowns.forEach(dropdown => dropdown.disabled = true);
+    postLateDropdowns.forEach(dropdown => dropdown.disabled = true);
+});
 
 function handleDropdownChange(dropdown) {
     let prevValue = dropdown.value;
