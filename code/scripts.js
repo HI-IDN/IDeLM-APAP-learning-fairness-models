@@ -147,18 +147,20 @@ function handleDropdownChange(dropdown) {
 
     dropdown.addEventListener('change', function(event, isRecursive = false) {
         const currentValue = this.value;
-        const currentColIndex = Array.from(this.parentElement.parentElement.children).indexOf(this.parentElement);
-        const rowName = this.closest('tr').querySelector('td').textContent.trim();
-        const tableBody = document.querySelector("#scheduleTable tbody");
         const currentDay = this.getAttribute('data-day');
         const prevDay = getPrevDay(currentDay);
         const nextDay = getNextDay(currentDay);
+        const rowName = this.closest('tr').querySelector('td').textContent.trim();
+        const tableBody = document.querySelector("#scheduleTable tbody");
 
-        if (currentValue) {
-            if (rowName === "Call") {
-                const prevRowDropdown = tableBody.querySelector(`tr[role-name="Pre Call"] .doctor-dropdown-${prevDay}`);
-                const nextRowDropdown = tableBody.querySelector(`tr[role-name="Post Call"] .doctor-dropdown-${nextDay}`);
+        if (rowName === "Call" || rowName === "Late") {
+            const prevRole = rowName === "Call" ? "Pre Call" : "Pre Late";
+            const nextRole = rowName === "Call" ? "Post Call" : "Post Late";
 
+            const prevRowDropdown = tableBody.querySelector(`tr[role-name="${prevRole}"] .doctor-dropdown-${prevDay}`);
+            const nextRowDropdown = tableBody.querySelector(`tr[role-name="${nextRole}"] .doctor-dropdown-${nextDay}`);
+
+            if (currentValue) {
                 if (prevRowDropdown) {
                     prevRowDropdown.value = currentValue;
                     if(!isRecursive) {
@@ -171,19 +173,16 @@ function handleDropdownChange(dropdown) {
                         nextRowDropdown.dispatchEvent(new CustomEvent('change', { detail: { isRecursive: true }}));
                     }
                 }
-
-            } else if (rowName === "Late") {
-                const prevRowDropdown = tableBody.querySelector(`tr[role-name="Pre Late"] .doctor-dropdown-${prevDay}`);
-                const nextRowDropdown = tableBody.querySelector(`tr[role-name="Post Late"] .doctor-dropdown-${nextDay}`);
-
+            } else {
+                // Reset the values if current dropdown is set to default
                 if (prevRowDropdown) {
-                    prevRowDropdown.value = currentValue;
+                    prevRowDropdown.value = "";
                     if(!isRecursive) {
                         prevRowDropdown.dispatchEvent(new CustomEvent('change', { detail: { isRecursive: true }}));
                     }
                 }
                 if (nextRowDropdown) {
-                    nextRowDropdown.value = currentValue;
+                    nextRowDropdown.value = "";
                     if(!isRecursive) {
                         nextRowDropdown.dispatchEvent(new CustomEvent('change', { detail: { isRecursive: true }}));
                     }
@@ -200,6 +199,7 @@ function handleDropdownChange(dropdown) {
         prevValue = currentValue;
     });
 }
+
 
 function getColumnClass(element) {
     const suffixes = ['mon', 'tue', 'wed', 'thu', 'fri'];
