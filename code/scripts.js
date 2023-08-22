@@ -91,18 +91,111 @@ function createOption(value, textContent) {
     return option;
 }
 
+function getPrevDay(day) {
+    switch (day) {
+        case 'mon':
+            return 'sun';
+        case 'tue':
+            return 'mon';
+        case 'wed':
+            return 'tue';
+        case 'thu':
+            return 'wed';
+        case 'fri':
+            return 'thu';
+        case 'sat':
+            return 'fri';
+        case 'sun':
+            return 'sat';
+        default:
+            return '';
+    }
+}
+
+function getNextDay(day) {
+    switch (day) {
+        case 'mon':
+            return 'tue';
+        case 'tue':
+            return 'wed';
+        case 'wed':
+            return 'thu';
+        case 'thu':
+            return 'fri';
+        case 'fri':
+            return 'sat';
+        case 'sat':
+            return 'sun';
+        case 'sun':
+            return 'mon';
+        default:
+            return '';
+    }
+}
+
+function getAdjacentColumnClass(currentDay, direction) {
+    if (direction === 'prev') {
+        return `doctor-dropdown-${getPrevDay(currentDay)}`;
+    } else if (direction === 'next') {
+        return `doctor-dropdown-${getNextDay(currentDay)}`;
+    }
+    return '';
+}
+
 function handleDropdownChange(dropdown) {
     let prevValue = dropdown.value;
 
-    dropdown.addEventListener('change', function () {
+    dropdown.addEventListener('change', function(event, isRecursive = false) {
         const currentValue = this.value;
-        const columnClass = getColumnClass(this);
+        const currentColIndex = Array.from(this.parentElement.parentElement.children).indexOf(this.parentElement);
+        const rowName = this.closest('tr').querySelector('td').textContent.trim();
+        const tableBody = document.querySelector("#scheduleTable tbody");
+        const currentDay = this.getAttribute('data-day');
+        const prevDay = getPrevDay(currentDay);
+        const nextDay = getNextDay(currentDay);
+
+        if (currentValue) {
+            if (rowName === "Call") {
+                const prevRowDropdown = tableBody.querySelector(`tr[role-name="Pre Call"] .doctor-dropdown-${prevDay}`);
+                const nextRowDropdown = tableBody.querySelector(`tr[role-name="Post Call"] .doctor-dropdown-${nextDay}`);
+
+                if (prevRowDropdown) {
+                    prevRowDropdown.value = currentValue;
+                    if(!isRecursive) {
+                        prevRowDropdown.dispatchEvent(new CustomEvent('change', { detail: { isRecursive: true }}));
+                    }
+                }
+                if (nextRowDropdown) {
+                    nextRowDropdown.value = currentValue;
+                    if(!isRecursive) {
+                        nextRowDropdown.dispatchEvent(new CustomEvent('change', { detail: { isRecursive: true }}));
+                    }
+                }
+
+            } else if (rowName === "Late") {
+                const prevRowDropdown = tableBody.querySelector(`tr[role-name="Pre Late"] .doctor-dropdown-${prevDay}`);
+                const nextRowDropdown = tableBody.querySelector(`tr[role-name="Post Late"] .doctor-dropdown-${nextDay}`);
+
+                if (prevRowDropdown) {
+                    prevRowDropdown.value = currentValue;
+                    if(!isRecursive) {
+                        prevRowDropdown.dispatchEvent(new CustomEvent('change', { detail: { isRecursive: true }}));
+                    }
+                }
+                if (nextRowDropdown) {
+                    nextRowDropdown.value = currentValue;
+                    if(!isRecursive) {
+                        nextRowDropdown.dispatchEvent(new CustomEvent('change', { detail: { isRecursive: true }}));
+                    }
+                }
+            }
+        }
 
         // Re-enable the previous value for other dropdowns in the same column
-        if (prevValue) enableDropdownOption(columnClass, prevValue);
+        if (prevValue) enableDropdownOption(`doctor-dropdown-${currentDay}`, prevValue);
 
         // Disable the current value for other dropdowns in the same column
-        if (currentValue) disableDropdownOption(columnClass, currentValue, this);
+        if (currentValue) disableDropdownOption(`doctor-dropdown-${currentDay}`, currentValue, this);
 
         prevValue = currentValue;
     });
@@ -155,10 +248,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Create a Function to Generate CSV from Table
 function generateCSVFromTable() {
-     // Create the CSV content from the table
+    // Create the CSV content from the table
     const csvContent = [];
 
-     // Add column names (days) to the first row
+    // Add column names (days) to the first row
     const daysRow = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
     csvContent.push(daysRow.join(','));
 
@@ -176,7 +269,7 @@ function generateCSVFromTable() {
 
 // Create a Function to Trigger Download
 function downloadCSV(filename, csvContent) {
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const blob = new Blob([csvContent], {type: 'text/csv;charset=utf-8;'});
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
