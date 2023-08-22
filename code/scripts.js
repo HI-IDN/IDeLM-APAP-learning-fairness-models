@@ -155,12 +155,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Create a Function to Generate CSV from Table
 function generateCSVFromTable() {
+     // Create the CSV content from the table
+    const csvContent = [];
+
+     // Add column names (days) to the first row
+    const daysRow = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+    csvContent.push(daysRow.join(','));
+
     const rows = Array.from(document.querySelectorAll('.group-content'));
     const csvRows = rows.map(row => {
         const columns = Array.from(row.querySelectorAll('.doctor-dropdown'));
         return columns.map(column => column.value).join(',');
     });
-    return csvRows.join('\n');
+
+    // Add the CSV rows to the content
+    csvContent.push(csvRows.join('\n'));
+
+    return csvContent.join('\n');
 }
 
 // Create a Function to Trigger Download
