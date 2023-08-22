@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.schedule {
+    width: 50%;
+}
+
+.staff-name, .staff-role, .staff-number {
+    margin-right: 10px;
+}
+
+/* Styles */
+.fixed-width-names {
+    width: 25%; /* There are 5 columns of 15% width, so the row name takes up 25% of the width */
+    text-align: left; /* Optional: to center the text */
+}
+.fixed-width {
+    width: 15%; /* There are 5 columns and a header, so each column takes up 15% of the width */
+    text-align: center; /* Optional: to center the text */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: right;
+}
+
+.group-header td {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.optimized {
+    display: block;
+    background-color: #e0e0e0;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.overwrite {
+    width: 100%;
+}
+
+/* Muted text for "No" */
+.muted {
+    color: #aaa;  /* light gray color */
+}
+
+.cardiac {
+    background-color: #f44336;  /* This will be a red background, feel free to change the color */
+    color: white;  /* White text color */
+    font-weight: bold;  /* Bold text */
+}
+
+.charge {
+    background-color: #2196F3;  /* This will be a blue background, feel free to change the color */
+    color: white;  /* White text color */
+    font-weight: bold;  /* Bold text */
+}
+
+/* Bold text for names */
+.bold {
+    font-weight: bold;
+}
+
+#staffTable thead {
+    background-color: #4CAF50;  /* This will be a green background, feel free to change the color */
+    color: white;  /* White text color */
+    font-weight: bold;  /* Bold text */
+}
+#staffTable tfoot {
+    background-color: #FFC107;  /* This will be a yellow background, feel free to change the color */
+    color: black;  /* Black text color */
+    font-weight: bold;  /* Bold text */
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between; /* This will space the two divs apart */
+    align-items: center; /* This will vertically align the content in the middle */
+}
+
+.doctor-container, .optimized-container {
+    flex: 1; /* This will make each div take up half of the container's width */
+    padding: 5px; /* Optional padding for visual space between them */
+}

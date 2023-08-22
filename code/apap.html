@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anesthesiologist's Peel Assignment Problem</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="staff-data">
+    <h2>Staff Information</h2>
+    <table id="staffTable">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">Name</th>
+            <th onclick="sortTable(1)">Cardiac</th>
+            <th onclick="sortTable(2)">In Charge</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- This will be populated dynamically -->
+        </tbody>
+        <tfoot>
+        <tr>
+            <td id="nameCount">0</td>
+            <td id="cardiacCount">0</td>
+            <td id="chargeCount">0</td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+<div class="schedule">
+    <h2>Schedule</h2>
+    <table>
+        <thead>
+        <tr>
+            <th class=".fixed-width-names"></th>
+            <th class="fixed-width">Monday</th>
+            <th class="fixed-width">Tuesday</th>
+            <th class="fixed-width">Wednesday</th>
+            <th class="fixed-width">Thursday</th>
+            <th class="fixed-width">Friday</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Group Header for the Shift Roles -->
+        <tr class="group-header">
+            <td colspan="6">Pre/Post Shift Roles</td>
+        </tr>
+
+        <!-- Rows for Shift Roles -->
+        <tr>
+            <td>Post Gill</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>Post CVCC</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>Post Call</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>Post Weekend / Holiday</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>Post Late</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>Pre Call</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+
+        <!-- Next group header (for other roles or groups) -->
+        <tr class="group-header">
+            <td colspan="6">Whine Zone</td>
+        </tr>
+        <tr>
+            <td>Peel 1</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select><span
+                    class="cell-content optimized-value"></span></td>
+        </tr>
+        <tr>
+            <td>Peel 2</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select><span
+                    class="cell-content optimized-value"></span></td>
+        </tr>
+        <tr>
+            <td>Peel 3</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select><span
+                    class="cell-content optimized-value"></span></td>
+        </tr>
+        <tr>
+            <td>Peel 4</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select><span
+                    class="cell-content optimized-value"></span></td>
+        </tr>
+        <tr>
+            <td>Peel 5</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select><span
+                    class="cell-content optimized-value"></span></td>
+        </tr>
+        <tr>
+            <td>Peel 6</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select><span
+                    class="cell-content optimized-value"></span></td>
+        </tr>
+        <tr>
+            <td>Peel 7</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select><span
+                    class="cell-content optimized-value"></span></td>
+        </tr>
+        <tr>
+            <td>Peel 8</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select><span
+                    class="cell-content optimized-value"></span></td>
+        </tr>
+        <tr>
+            <td>Peel 9</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select><span
+                    class="cell-content optimized-value"></span></td>
+        </tr>
+        <tr>
+            <td>Peel 10</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select><span
+                    class="cell-content optimized-value"></span></td>
+        </tr>
+        <tr>
+            <td>Peel 11</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select><span
+                    class="cell-content optimized-value"></span></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select><span
+                    class="cell-content optimized-value"></span></td>
+        </tr>
+        <!-- Rows for the Next Group... -->
+        <tr class="group-header">
+            <td colspan="6">Shift Roles</td>
+        </tr>
+        <tr>
+            <td>Late</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>Call</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <!-- Rows for the Next Group... -->
+        <tr class="group-header">
+            <td colspan="6">Admin Roles</td>
+        </tr>
+        <tr>
+            <td>Admin 1</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>Admin 2</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr class="group-header">
+            <td colspan="6">Other Hospitals</td>
+        </tr>
+        <tr>
+            <td>West</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>Gill</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>Gill</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>Gill</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>Gill</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr class="group-header">
+            <td colspan="6">Vacation</td>
+        </tr>
+        <tr>
+            <td>VAC</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>VAC</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>VAC</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>VAC</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>VAC</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <tr>
+            <td>VAC</td>
+            <td><select class="doctor-dropdown doctor-dropdown-mon"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-tue"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-wed"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-thu"></select></td>
+            <td><select class="doctor-dropdown doctor-dropdown-fri"></select></td>
+        </tr>
+        <!-- ... repeat similar structure for other groups (Late, Call, Admin, etc.) -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Here you can link to any JavaScript files for functionality -->
+<script src="scripts.js"></script>
+</body>
+</html>
