@@ -152,3 +152,32 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.text())
         .then(data => populateDropdowns(data.split('\n').slice(1).map(line => line.split(',')[0])));
 });
+
+// Create a Function to Generate CSV from Table
+function generateCSVFromTable() {
+    const rows = Array.from(document.querySelectorAll('.group-content'));
+    const csvRows = rows.map(row => {
+        const columns = Array.from(row.querySelectorAll('.doctor-dropdown'));
+        return columns.map(column => column.value).join(',');
+    });
+    return csvRows.join('\n');
+}
+
+// Create a Function to Trigger Download
+function downloadCSV(filename, csvContent) {
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
+}
+
+// Add Event Listener to Save Button
+const saveButton = document.getElementById('saveButton'); // Replace with the actual ID of your save button
+
+saveButton.addEventListener('click', () => {
+    const csvContent = generateCSVFromTable();
+    downloadCSV('schedule.csv', csvContent);
+});

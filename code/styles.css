@@ -98,3 +98,23 @@ th, td {
 .schedule {
     width: 50%;
 }
+
+/* Add padding and left-align to the save button */
+.save-button {
+    padding: 10px;
+    text-align: left;
+    margin-top: 20px; /* Add some space between the table and the button */
+}
+
+/* Additional styling for the button */
+.save-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.save-button:hover {
+    background-color: #45a049;
+}
