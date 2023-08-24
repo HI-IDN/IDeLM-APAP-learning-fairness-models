@@ -1,13 +1,16 @@
 // Constants for frequently accessed elements
 const STAFF_TABLE = document.getElementById('staffTable');
+let nameCount = 0;
+const WEEKDAYS = ["mon", "tue", "wed", "thu", "fri"]
 
 // CSV Fetching and Table Populating
 function fetchCSVAndPopulate() {
-    fetch('../data/staff.csv')
+    fetch('data/staff.csv')
         .then(response => response.text())
         .then(data => {
             populateTable(data.split('\n').slice(1)); // Skip header row
-            updateCounts();
+            setStaffCounts();
+            updateFooterCounts();
         });
 }
 
@@ -15,27 +18,32 @@ function populateTable(rows) {
     const tableBody = STAFF_TABLE.tBodies[0];
     rows.forEach(row => {
         const columns = row.split(',');
+        const name = columns[0].trim();
         const tr = document.createElement('tr');
-        tr.appendChild(createTableCell(columns[0], 'bold'));
+
+        tr.setAttribute('staff-name', name); // Set data-name attribute
+        tr.appendChild(createTableCell(name, 'bold'));
         tr.appendChild(createBooleanTableCell(columns[1], 'cardiac'));
         tr.appendChild(createBooleanTableCell(columns[2], 'charge'));
+        tr.appendChild(createTableCell("0", 'assg0'));
+        tr.appendChild(createTableCell("0", 'pnts0'));
         tableBody.appendChild(tr);
     });
 }
 
 function createTableCell(content, className) {
     const td = document.createElement('td');
-    td.textContent = content;
+    td.innerHTML = content;
     td.classList.add(className);
     return td;
 }
 
 function createBooleanTableCell(value, trueClass) {
-    const td = createTableCell(value.trim() === "TRUE" ? "Yes" : "No");
-    if (td.textContent === "Yes") {
+    const isSet = value.trim() === "TRUE";
+    const icon = trueClass == 'cardiac' ? "fa-heart" : trueClass == 'charge' ? "fa-users" : "fa-check-square";
+    const td = createTableCell(isSet ? "<i class='fa " + icon + "'></i>" : "");
+    if (isSet) {
         td.classList.add(trueClass);
-    } else {
-        td.classList.add('muted');
     }
     return td;
 }
@@ -60,14 +68,16 @@ function sortTable(columnIndex) {
 }
 
 // Count Update
-function updateCounts() {
-    const nameCount = STAFF_TABLE.tBodies[0].rows.length;
-    const cardiacYesCount = Array.from(STAFF_TABLE.tBodies[0].rows).filter(row => row.cells[1].textContent.trim() === "Yes").length;
-    const chargeYesCount = Array.from(STAFF_TABLE.tBodies[0].rows).filter(row => row.cells[2].textContent.trim() === "Yes").length;
+function setStaffCounts() {
+    nameCount = STAFF_TABLE.tBodies[0].rows.length;
+    const cardiacYesCount = Array.from(STAFF_TABLE.tBodies[0].rows).filter(row => row.cells[1].innerHTML.trim() !== "").length;
+    const chargeYesCount = Array.from(STAFF_TABLE.tBodies[0].rows).filter(row => row.cells[2].innerHTML.trim() !== "").length;
 
-    document.getElementById("nameCount").textContent = nameCount;
-    document.getElementById("cardiacCount").textContent = cardiacYesCount;
-    document.getElementById("chargeCount").textContent = chargeYesCount;
+    document.getElementById("nameCount").textContent = nameCount.toString();
+    document.getElementById("cardiacCount").textContent = cardiacYesCount.toString();
+    document.getElementById("chargeCount").textContent = chargeYesCount.toString();
+    document.getElementById("assg0Count").textContent = "0";
+    document.getElementById("pnts0Count").textContent = "0";
 }
 
 // Dropdown Handling
@@ -134,7 +144,7 @@ function getNextDay(day) {
 }
 
 // Pre-Call / Post-Call / Pre-Late / Post-Late Dropdowns are only editable via the Call and Late rows
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const preCallDropdowns = document.querySelectorAll('tr[role-name="Pre Call"] .doctor-dropdown');
     const postCallDropdowns = document.querySelectorAll('tr[role-name="Post Call"] .doctor-dropdown');
 
@@ -151,12 +161,14 @@ document.addEventListener('DOMContentLoaded', function() {
 function handleDropdownChange(dropdown) {
     let prevValue = dropdown.value;
 
-    dropdown.addEventListener('change', function(event, isRecursive = false) {
+    dropdown.addEventListener('change', function (event, isRecursive = false) {
         const currentValue = this.value;
         const currentDay = this.getAttribute('data-day');
         const prevDay = getPrevDay(currentDay);
         const nextDay = getNextDay(currentDay);
-        const rowName = this.closest('tr').querySelector('td').textContent.trim();
+        const currentRow = this.closest('tr');
+        const rowName = currentRow.querySelector('td').textContent.trim();
+        const roleName = currentRow.getAttribute('role-name');
         const tableBody = document.querySelector("#scheduleTable tbody");
 
         if (rowName === "Call" || rowName === "Late") {
@@ -169,30 +181,48 @@ function handleDropdownChange(dropdown) {
             if (currentValue) {
                 if (prevRowDropdown) {
                     prevRowDropdown.value = currentValue;
-                    if(!isRecursive) {
-                        prevRowDropdown.dispatchEvent(new CustomEvent('change', { detail: { isRecursive: true }}));
+                    if (!isRecursive) {
+                        prevRowDropdown.dispatchEvent(new CustomEvent('change', {detail: {isRecursive: true}}));
                     }
                 }
                 if (nextRowDropdown) {
                     nextRowDropdown.value = currentValue;
-                    if(!isRecursive) {
-                        nextRowDropdown.dispatchEvent(new CustomEvent('change', { detail: { isRecursive: true }}));
+                    if (!isRecursive) {
+                        nextRowDropdown.dispatchEvent(new CustomEvent('change', {detail: {isRecursive: true}}));
                     }
                 }
             } else {
                 // Reset the values if current dropdown is set to default
                 if (prevRowDropdown) {
                     prevRowDropdown.value = "";
-                    if(!isRecursive) {
-                        prevRowDropdown.dispatchEvent(new CustomEvent('change', { detail: { isRecursive: true }}));
+                    if (!isRecursive) {
+                        prevRowDropdown.dispatchEvent(new CustomEvent('change', {detail: {isRecursive: true}}));
                     }
                 }
                 if (nextRowDropdown) {
                     nextRowDropdown.value = "";
-                    if(!isRecursive) {
-                        nextRowDropdown.dispatchEvent(new CustomEvent('change', { detail: { isRecursive: true }}));
+                    if (!isRecursive) {
+                        nextRowDropdown.dispatchEvent(new CustomEvent('change', {detail: {isRecursive: true}}));
                     }
                 }
+            }
+        }
+
+        // Handle Vacation and Gill progressive enabling
+        if (rowName === "Vacation" || rowName === "Gill") {
+            // Extracting the number from the roleName
+            const currentNumber = parseInt(roleName.match(/\d+/)[0]);
+            const nextRow = tableBody.querySelector(`tr[role-name="${rowName} ${currentNumber + 1}"]`);
+
+            // If the current dropdown value is set, enable the next row dropdown for the same day
+            if (nextRow && currentValue) {
+                const nextDropdown = nextRow.querySelector(`.doctor-dropdown-${currentDay}`);
+                if (nextDropdown) nextDropdown.removeAttribute('disabled');
+            }
+            // If the current dropdown value is set to default, and it's not the first row, disable its dropdown
+            else if (nextRow && !currentValue) {
+                const nextDropdown = nextRow.querySelector(`.doctor-dropdown-${currentDay}`);
+                if (nextDropdown && !nextDropdown.value) nextDropdown.setAttribute('disabled', 'true');
             }
         }
 
@@ -202,18 +232,11 @@ function handleDropdownChange(dropdown) {
         // Disable the current value for other dropdowns in the same column
         if (currentValue) disableDropdownOption(`doctor-dropdown-${currentDay}`, currentValue, this);
 
+        // Update the counts every time a dropdown changes
+        updateFooterCounts(currentDay, currentValue, prevValue, rowName);
+
         prevValue = currentValue;
     });
-}
-
-
-function getColumnClass(element) {
-    const suffixes = ['mon', 'tue', 'wed', 'thu', 'fri'];
-    for (const suffix of suffixes) {
-        if (element.classList.contains(`doctor-dropdown-${suffix}`)) {
-            return `doctor-dropdown-${suffix}`;
-        }
-    }
 }
 
 function enableDropdownOption(columnClass, value) {
@@ -244,6 +267,55 @@ document.querySelectorAll('.group-header').forEach(header => {
     });
 });
 
+// Count all pre-set values
+function calculateRequestedCounts(day) {
+    return Array.from(document.querySelectorAll(`.admin-group .doctor-dropdown-${day}, .content-whine-zone .doctor-dropdown-${day}`))
+        .filter(dropdown => dropdown.value).length;
+}
+
+function calculateAssignedCounts(day) {
+    return Array.from(document.querySelectorAll(`.doctor-dropdown-${day}:not(.admin-group .doctor-dropdown, .content-whine-zone .doctor-dropdown)`))
+        .filter(dropdown => dropdown.value).length;
+}
+
+function updateFooterCounts(day = null, currentValue = null, prevValue = null, roleName = null) {
+    const days = day ? [day] : ["mon", "tue", "wed", "thu", "fri"];
+
+    days.forEach(day => {
+        const preassigned = calculateAssignedCounts(day);
+        document.querySelector(`.set-values-count[data-day-total="${day}"]`).textContent = preassigned.toString();
+
+        const requested = calculateRequestedCounts(day);
+        document.querySelector(`.requested-values-count[data-day-total="${day}"]`).textContent = requested.toString();
+
+        const unassigned = nameCount - preassigned;
+        document.querySelector(`.unset-values-count[data-day-total="${day}"]`).textContent = unassigned.toString();
+    });
+
+    // Update the Points column if current or previous value is set
+    if (currentValue || prevValue) {
+        let grandTotalPointsElem = document.getElementById('assg0Count');
+        let grandTotalPoints = parseInt(grandTotalPointsElem.textContent);
+
+        console.log(grandTotalPoints)
+        // Increase the points for currentValue row in the Points column of the Staff table
+        if (currentValue) {
+            const currentRow = document.querySelector(`tr[staff-name="${currentValue}"]`);
+            const currentPoints = currentRow.querySelector('.assg0');
+            currentPoints.textContent = (parseInt(currentPoints.textContent) + 1).toString();
+            grandTotalPoints = grandTotalPoints + 1;
+        }
+        // Decrease the points for prevValue row in the Points column of the Staff table
+        if (prevValue) {
+            const prevRow = document.querySelector(`tr[staff-name="${prevValue}"]`);
+            const prevPoints = prevRow.querySelector('.assg0');
+            prevPoints.textContent = (parseInt(prevPoints.textContent) - 1).toString();
+            grandTotalPoints = grandTotalPoints - 1;
+        }
+        grandTotalPointsElem.textContent = grandTotalPoints.toString();  // Update the grand total in the table
+    }
+}
+
 // Initial Calls
 document.addEventListener('DOMContentLoaded', () => {
     fetchCSVAndPopulate();
@@ -258,13 +330,16 @@ function generateCSVFromTable() {
     const csvContent = [];
 
     // Add column names (days) to the first row
-    const daysRow = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-    csvContent.push(daysRow.join(','));
+    const columnNames = ['role'];
+    WEEKDAYS.forEach(day => columnNames.push(day));
+    csvContent.push(columnNames.join(','));
 
     const rows = Array.from(document.querySelectorAll('.group-content'));
     const csvRows = rows.map(row => {
+        const role = row.getAttribute('role-name'); // Get the 'role-name' attribute
         const columns = Array.from(row.querySelectorAll('.doctor-dropdown'));
-        return columns.map(column => column.value).join(',');
+        const roleAndColumns = [role, ...columns.map(column => column.value)]; // Prepend the role value
+        return roleAndColumns.join(',');
     });
 
     // Add the CSV rows to the content
@@ -290,4 +365,17 @@ const saveButton = document.getElementById('saveButton'); // Replace with the ac
 saveButton.addEventListener('click', () => {
     const csvContent = generateCSVFromTable();
     downloadCSV('schedule.csv', csvContent);
+});
+
+// Initially disable all dropdowns for "gill" and "vacation" groups
+document.querySelectorAll('.group-gill .doctor-dropdown, .group-vacation .doctor-dropdown').forEach(dropdown => {
+    dropdown.disabled = true;
+});
+
+// Enable only the first role's dropdowns for each group
+document.querySelector('tr[role-name="Gill 1"]').querySelectorAll('.doctor-dropdown').forEach(dropdown => {
+    dropdown.removeAttribute('disabled');
+});
+document.querySelector('tr[role-name="Vacation 1"]').querySelectorAll('.doctor-dropdown').forEach(dropdown => {
+    dropdown.removeAttribute('disabled');
 });

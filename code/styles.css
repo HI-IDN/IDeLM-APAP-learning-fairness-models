@@ -22,13 +22,12 @@ th, td {
     text-align: right;
 }
 
-#staffTable thead {
+#scheduleTable thead, #staffTable thead {
     background-color: var(--color-green);
     color: white;
     font-weight: bold;
 }
-
-#staffTable tfoot {
+#scheduleTable tfoot, #staffTable tfoot {
     background-color: var(--color-yellow);
     color: black;
     font-weight: bold;

@@ -5,388 +5,421 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anesthesiologist's Peel Assignment Problem</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
+<div class="main-container">
+    <div class="staff-data">
+        <h2>Staff Information</h2>
+        <table id="staffTable">
+            <thead>
+            <tr>
+                <th onclick="sortTable(0)">Name</th>
+                <th title="Cardiac" onclick="sortTable(1)">Diac</th>
+                <th title="In Charge" onclick="sortTable(2)">Chrg</th>
+                <th title="Pre Allocated Assignments" onclick="sortTable(3)">Assg0</th>
+                <th title="Pre Allocated Peel-Off Points (TODO)" onclick="sortTable(3)">Pnts0</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- This will be populated dynamically -->
+            </tbody>
+            <tfoot>
+            <tr>
+                <td id="nameCount">0</td>
+                <td id="cardiacCount">0</td>
+                <td id="chargeCount">0</td>
+                <td id="assg0Count">0</td>
+                <td id="pnts0Count">0</td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
 
-<div class="staff-data">
-    <h2>Staff Information</h2>
-    <table id="staffTable">
-        <thead>
-        <tr>
-            <th onclick="sortTable(0)">Name</th>
-            <th onclick="sortTable(1)">Cardiac</th>
-            <th onclick="sortTable(2)">In Charge</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- This will be populated dynamically -->
-        </tbody>
-        <tfoot>
-        <tr>
-            <td id="nameCount">0</td>
-            <td id="cardiacCount">0</td>
-            <td id="chargeCount">0</td>
-        </tr>
-        </tfoot>
-    </table>
+    <div class="schedule">
+        <h2>Schedule</h2>
+        <table id="scheduleTable">
+            <thead>
+            <tr>
+                <th class="fixed-width-names"></th>
+                <th class="fixed-width">Monday</th>
+                <th class="fixed-width">Tuesday</th>
+                <th class="fixed-width">Wednesday</th>
+                <th class="fixed-width">Thursday</th>
+                <th class="fixed-width">Friday</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Group Header for the Shift Roles -->
+            <tr class="group-header">
+                <td colspan="6">Transition Shift Roles</td>
+            </tr>
+            <tr role-name="Post CVCC" class="content-transition-shift-roles group-content">
+                <td>Post CVCC</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Post Call" class="content-transition-shift-roles group-content"
+                title="This role is automatically set based on the 'Call' role selection.">
+                <td>Post Call</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Post Holiday" class="content-transition-shift-roles group-content">
+                <td title="This includes weekends">Post Holiday</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Post Late" class="content-transition-shift-roles group-content"
+                title="This role is automatically set based on the 'Late' role selection.">
+                <td>Post Late</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Pre Call" class="content-transition-shift-roles group-content"
+                title="This role is automatically set based on the 'Call' role selection.">
+                <td>Pre Call</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <!-- Group Header for the Whine Zone -->
+            <tr class="group-header">
+                <td colspan="6">Whine Zone</td>
+            </tr>
+            <tr role-name="Peel 1" class="content-whine-zone group-content">
+                <td></td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
+                        class="cell-content optimized-value"></span></td>
+            </tr>
+            <tr role-name="Peel 2" class="content-whine-zone group-content">
+                <td></td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
+                        class="cell-content optimized-value"></span></td>
+            </tr>
+            <tr role-name="Peel 3" class="content-whine-zone group-content">
+                <td></td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
+                        class="cell-content optimized-value"></span></td>
+            </tr>
+            <tr role-name="Peel 4" class="content-whine-zone group-content">
+                <td></td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
+                        class="cell-content optimized-value"></span></td>
+            </tr>
+            <tr role-name="Peel 5" class="content-whine-zone group-content">
+                <td></td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
+                        class="cell-content optimized-value"></span></td>
+            </tr>
+            <tr role-name="Peel 6" class="content-whine-zone group-content">
+                <td></td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
+                        class="cell-content optimized-value"></span></td>
+            </tr>
+            <tr role-name="Peel 7" class="content-whine-zone group-content">
+                <td></td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
+                        class="cell-content optimized-value"></span></td>
+            </tr>
+            <tr role-name="Peel 8" class="content-whine-zone group-content">
+                <td></td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
+                        class="cell-content optimized-value"></span></td>
+            </tr>
+            <tr role-name="Peel 9" class="content-whine-zone group-content">
+                <td></td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
+                        class="cell-content optimized-value"></span></td>
+            </tr>
+            <tr role-name="Peel 10" class="content-whine-zone group-content">
+                <td></td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
+                        class="cell-content optimized-value"></span></td>
+            </tr>
+            <tr role-name="Peel 11" class="content-whine-zone group-content">
+                <td></td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
+                        class="cell-content optimized-value"></span></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
+                        class="cell-content optimized-value"></span></td>
+            </tr>
+            <!-- Group Header for the Shift Roles -->
+            <tr class="group-header">
+                <td colspan="6">Shift Roles</td>
+            </tr>
+            <tr role-name="Late" class="content-shift-roles group-content">
+                <td>Late</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Call" class="content-shift-roles group-content">
+                <td>Call</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="CVCC" class="content-transition-shift-roles group-content">
+                <td title="Cardiovascular Critical Care">CVCC</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <!-- Group Header for the Admin Roles -->
+            <tr class="group-header">
+                <td colspan="6">Admin Roles</td>
+            </tr>
+            <tr role-name="Admin 1" class="content-admin-roles group-content admin-group">
+                <td>Admin</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Admin 2" class="content-admin-roles group-content admin-group">
+                <td>Admin</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <!-- Group Header for the Other Hospitals -->
+            <tr class="group-header">
+                <td colspan="6">Other Hospitals</td>
+            </tr>
+            <tr role-name="West" class="content-other-hospitals group-content">
+                <td>West</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Gill 1" class="content-other-hospitals group-content group-gill">
+                <td>Gill</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Gill 2" class="content-other-hospitals group-content group-gill">
+                <td>Gill</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Gill 3" class="content-other-hospitals group-content group-gill">
+                <td>Gill</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Gill 4" class="content-other-hospitals group-content group-gill">
+                <td>Gill</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <!-- Group Header for the those on Vacation -->
+            <tr class="group-header">
+                <td colspan="6">Vacation</td>
+            </tr>
+            <tr role-name="Vacation 1" class="content-on-vacation group-content group-vacation">
+                <td>Vacation</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Vacation 2" class="content-on-vacation group-content group-vacation">
+                <td>Vacation</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Vacation 3" class="content-on-vacation group-content group-vacation">
+                <td>Vacation</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Vacation 4" class="content-on-vacation group-content group-vacation">
+                <td>Vacation</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Vacation 5" class="content-on-vacation group-content group-vacation">
+                <td>Vacation</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            <tr role-name="Vacation 6" class="content-on-vacation group-content group-vacation">
+                <td>Vacation</td>
+                <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
+                <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td>Preassigned</td>
+                <td><span class="set-values-count" data-day-total="mon">0</span></td>
+                <td><span class="set-values-count" data-day-total="tue">0</span></td>
+                <td><span class="set-values-count" data-day-total="wed">0</span></td>
+                <td><span class="set-values-count" data-day-total="thu">0</span></td>
+                <td><span class="set-values-count" data-day-total="fri">0</span></td>
+            </tr>
+            <tr>
+                <td>Requested</td>
+                <td><span class="requested-values-count" data-day-total="mon">0</span></td>
+                <td><span class="requested-values-count" data-day-total="tue">0</span></td>
+                <td><span class="requested-values-count" data-day-total="wed">0</span></td>
+                <td><span class="requested-values-count" data-day-total="thu">0</span></td>
+                <td><span class="requested-values-count" data-day-total="fri">0</span></td>
+            </tr>
+            <tr>
+                <td>Unassigned</td>
+                <td><span class="unset-values-count" data-day-total="mon">0</span></td>
+                <td><span class="unset-values-count" data-day-total="tue">0</span></td>
+                <td><span class="unset-values-count" data-day-total="wed">0</span></td>
+                <td><span class="unset-values-count" data-day-total="thu">0</span></td>
+                <td><span class="unset-values-count" data-day-total="fri">0</span></td>
+            </tr>
+            </tfoot>
+        </table>
+        <button id="saveButton" class="save-button">Save Schedule as CSV</button>
+    </div>
 </div>
-
-<div class="schedule">
-    <h2>Schedule</h2>
-    <table id="scheduleTable">
-        <thead>
-        <tr>
-            <th class="fixed-width-names"></th>
-            <th class="fixed-width">Monday</th>
-            <th class="fixed-width">Tuesday</th>
-            <th class="fixed-width">Wednesday</th>
-            <th class="fixed-width">Thursday</th>
-            <th class="fixed-width">Friday</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Group Header for the Shift Roles -->
-        <tr class="group-header">
-            <td colspan="6">Transition Shift Roles</td>
-        </tr>
-        <tr role-name="Post Gill" class="content-transition-shift-roles group-content">
-            <td>Post Gill</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Post CVCC" class="content-transition-shift-roles group-content">
-            <td>Post CVCC</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Post Call" class="content-transition-shift-roles group-content"
-            title="This role is automatically set based on the 'Call' role selection.">
-            <td>Post Call</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Post Holiday" class="content-transition-shift-roles group-content">
-            <td title="This includes weekends">Post Holiday</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Post Late" class="content-transition-shift-roles group-content"
-            title="This role is automatically set based on the 'Late' role selection.">
-            <td>Post Late</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Pre Call" class="content-transition-shift-roles group-content"
-            title="This role is automatically set based on the 'Call' role selection.">
-            <td>Pre Call</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-
-        <!-- Next group header (for other roles or groups) -->
-        <tr class="group-header">
-            <td colspan="6">Whine Zone</td>
-        </tr>
-        <tr role-name="Peel 1" class="content-whine-zone group-content">
-            <td></td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
-                    class="cell-content optimized-value"></span></td>
-        </tr>
-        <tr role-name="Peel 2" class="content-whine-zone group-content">
-            <td></td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
-                    class="cell-content optimized-value"></span></td>
-        </tr>
-        <tr role-name="Peel 3" class="content-whine-zone group-content">
-            <td></td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
-                    class="cell-content optimized-value"></span></td>
-        </tr>
-        <tr role-name="Peel 4" class="content-whine-zone group-content">
-            <td></td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
-                    class="cell-content optimized-value"></span></td>
-        </tr>
-        <tr role-name="Peel 5" class="content-whine-zone group-content">
-            <td></td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
-                    class="cell-content optimized-value"></span></td>
-        </tr>
-        <tr role-name="Peel 6" class="content-whine-zone group-content">
-            <td></td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
-                    class="cell-content optimized-value"></span></td>
-        </tr>
-        <tr role-name="Peel 7" class="content-whine-zone group-content">
-            <td></td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
-                    class="cell-content optimized-value"></span></td>
-        </tr>
-        <tr role-name="Peel 8" class="content-whine-zone group-content">
-            <td></td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
-                    class="cell-content optimized-value"></span></td>
-        </tr>
-        <tr role-name="Peel 9" class="content-whine-zone group-content">
-            <td></td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
-                    class="cell-content optimized-value"></span></td>
-        </tr>
-        <tr role-name="Peel 10" class="content-whine-zone group-content">
-            <td></td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
-                    class="cell-content optimized-value"></span></td>
-        </tr>
-        <tr role-name="Peel 11" class="content-whine-zone group-content">
-            <td></td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select><span
-                    class="cell-content optimized-value"></span></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select><span
-                    class="cell-content optimized-value"></span></td>
-        </tr>
-        <!-- Rows for the Next Group... -->
-        <tr class="group-header">
-            <td colspan="6">Shift Roles</td>
-        </tr>
-        <tr role-name="Late" class="content-shift-roles group-content">
-            <td>Late</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Call" class="content-shift-roles group-content">
-            <td>Call</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <!-- Rows for the Next Group... -->
-        <tr class="group-header">
-            <td colspan="6">Admin Roles</td>
-        </tr>
-        <tr role-name="Admin 1" class="content-admin-roles group-content">
-            <td>Admin</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Admin 2" class="content-admin-roles group-content">
-            <td>Admin</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr class="group-header">
-            <td colspan="6">Other Hospitals</td>
-        </tr>
-        <tr role-name="West" class="content-other-hospitals group-content">
-            <td>West</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Gill 1" class="content-other-hospitals group-content">
-            <td>Gill</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Gill 2" class="content-other-hospitals group-content">
-            <td>Gill</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Gill 3" class="content-other-hospitals group-content">
-            <td>Gill</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Gill 4" class="content-other-hospitals group-content">
-            <td>Gill</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr class="group-header">
-            <td colspan="6">Vacation</td>
-        </tr>
-        <tr role-name="Vacation 1" class="content-on-vacation group-content">
-            <td>Vacation</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Vacation 2" class="content-on-vacation group-content">
-            <td>Vacation</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Vacation 3" class="content-on-vacation group-content">
-            <td>Vacation</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Vacation 4" class="content-on-vacation group-content">
-            <td>Vacation</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Vacation 5" class="content-on-vacation group-content">
-            <td>Vacation</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        <tr role-name="Vacation 6" class="content-on-vacation group-content">
-            <td>Vacation</td>
-            <td><select class="doctor-dropdown doctor-dropdown-mon" data-day="mon"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-tue" data-day="tue"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-wed" data-day="wed"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-thu" data-day="thu"></select></td>
-            <td><select class="doctor-dropdown doctor-dropdown-fri" data-day="fri"></select></td>
-        </tr>
-        </tbody>
-    </table>
-    <button id="saveButton" class="save-button">Save Schedule as CSV</button>
-</div>
-
 <!-- Here you can link to any JavaScript files for functionality -->
 <script src="scripts.js"></script>
 </body>
