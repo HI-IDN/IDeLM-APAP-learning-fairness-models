@@ -2,8 +2,6 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
-    display: flex;
-    justify-content: space-between;
 }
 
 ul {
@@ -19,6 +17,11 @@ table {
 th, td {
     border: 1px solid #ddd;
     padding: 8px;
+    text-align: center;
+}
+
+#scheduleTable tbody tr:not(.group-header) td:first-child,
+#scheduleTable tfoot tr td:first-child {
     text-align: right;
 }
 
@@ -31,6 +34,12 @@ th, td {
     background-color: var(--color-yellow);
     color: black;
     font-weight: bold;
+}
+
+.main-container{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
 }
 
 /* Headers */
@@ -67,19 +76,13 @@ th, td {
     --color-yellow: #FFC107;
 }
 
-.muted {
-    color: var(--color-gray-text);
-}
-
 .cardiac {
-    background-color: var(--color-red);
-    color: white;
+    color: var(--color-red);
     font-weight: bold;
 }
 
 .charge {
-    background-color: var(--color-blue);
-    color: white;
+    color: var(--color-blue);
     font-weight: bold;
 }
 
@@ -93,27 +96,33 @@ th, td {
     padding: 5px;
     margin-bottom: 5px;
 }
-
+/*
 .schedule {
     width: 50%;
-}
+}*/
 
-/* Add padding and left-align to the save button */
-.save-button {
+/* Shared styles for the button and dropdown */
+.save-button, #formatSelect {
     padding: 10px;
-    text-align: left;
     margin-top: 20px; /* Add some space between the table and the button */
-}
-
-/* Additional styling for the button */
-.save-button {
     background-color: #4CAF50;
     color: white;
     border: none;
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
+    outline: none; /* Removes the default focus outline */
 }
 
-.save-button:hover {
+#formatSelect {
+    appearance: none; /* This removes the default browser dropdown arrow in some browsers */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path d="M5 8l5 5 5-5z" fill="white"/></svg>'); /* Arrow Icon */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Position the icon on the right */
+    padding-right: 30px; /* Add some padding so text doesn't overlap the icon */
+}
+
+.save-button:hover, #formatSelect:hover {
     background-color: #45a049;
 }

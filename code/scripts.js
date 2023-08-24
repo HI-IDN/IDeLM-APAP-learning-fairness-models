@@ -175,8 +175,8 @@ function handleDropdownChange(dropdown) {
             const prevRole = rowName === "Call" ? "Pre Call" : "Pre Late";
             const nextRole = rowName === "Call" ? "Post Call" : "Post Late";
 
-            const prevRowDropdown = tableBody.querySelector(`tr[role-name="${prevRole}"] .doctor-dropdown-${prevDay}`);
-            const nextRowDropdown = tableBody.querySelector(`tr[role-name="${nextRole}"] .doctor-dropdown-${nextDay}`);
+            const prevRowDropdown = tableBody.querySelector(`tr[role-name="${prevRole}"] [data-day="${prevDay}"]`);
+            const nextRowDropdown = tableBody.querySelector(`tr[role-name="${nextRole}"] [data-day="${nextDay}"]`);
 
             if (currentValue) {
                 if (prevRowDropdown) {
@@ -208,29 +208,29 @@ function handleDropdownChange(dropdown) {
             }
         }
 
-        // Handle Vacation and Gill progressive enabling
-        if (rowName === "Vacation" || rowName === "Gill") {
+        // Use progressive numbering for offsite groups (e.g. Vacation and Gill)
+        if (currentRow.classList.contains('group-offsite')) {
             // Extracting the number from the roleName
             const currentNumber = parseInt(roleName.match(/\d+/)[0]);
             const nextRow = tableBody.querySelector(`tr[role-name="${rowName} ${currentNumber + 1}"]`);
 
             // If the current dropdown value is set, enable the next row dropdown for the same day
             if (nextRow && currentValue) {
-                const nextDropdown = nextRow.querySelector(`.doctor-dropdown-${currentDay}`);
+                const nextDropdown = nextRow.querySelector(`.doctor-dropdown[data-day="${currentDay}"]`);
                 if (nextDropdown) nextDropdown.removeAttribute('disabled');
             }
             // If the current dropdown value is set to default, and it's not the first row, disable its dropdown
             else if (nextRow && !currentValue) {
-                const nextDropdown = nextRow.querySelector(`.doctor-dropdown-${currentDay}`);
+                const nextDropdown = nextRow.querySelector(`.doctor-dropdown[data-day="${currentDay}"]`);
                 if (nextDropdown && !nextDropdown.value) nextDropdown.setAttribute('disabled', 'true');
             }
         }
 
         // Re-enable the previous value for other dropdowns in the same column
-        if (prevValue) enableDropdownOption(`doctor-dropdown-${currentDay}`, prevValue);
+        if (prevValue) enableDropdownOption(`doctor-dropdown[data-day="${currentDay}"]`, prevValue);
 
         // Disable the current value for other dropdowns in the same column
-        if (currentValue) disableDropdownOption(`doctor-dropdown-${currentDay}`, currentValue, this);
+        if (currentValue) disableDropdownOption(`doctor-dropdown[data-day="${currentDay}"]`, currentValue, this);
 
         // Update the counts every time a dropdown changes
         updateFooterCounts(currentDay, currentValue, prevValue, rowName);
@@ -269,13 +269,14 @@ document.querySelectorAll('.group-header').forEach(header => {
 
 // Count all pre-set values
 function calculateRequestedCounts(day) {
-    return Array.from(document.querySelectorAll(`.admin-group .doctor-dropdown-${day}, .content-whine-zone .doctor-dropdown-${day}`))
-        .filter(dropdown => dropdown.value).length;
+    return Array.from(document.querySelectorAll(`.group-admin .doctor-dropdown[data-day="${day}"], .group-whine-zone .doctor-dropdown[data-day="${day}"]`)).filter(dropdown => dropdown.value).length;
 }
 
 function calculateAssignedCounts(day) {
-    return Array.from(document.querySelectorAll(`.doctor-dropdown-${day}:not(.admin-group .doctor-dropdown, .content-whine-zone .doctor-dropdown)`))
-        .filter(dropdown => dropdown.value).length;
+    return Array.from(document.querySelectorAll(`.doctor-dropdown[data-day="${day}"]`))
+        .filter(dropdown => {
+            return dropdown.value && !dropdown.closest('.group-admin') && !dropdown.closest('.group-whine-zone');
+        }).length;
 }
 
 function updateFooterCounts(day = null, currentValue = null, prevValue = null, roleName = null) {
@@ -297,7 +298,6 @@ function updateFooterCounts(day = null, currentValue = null, prevValue = null, r
         let grandTotalPointsElem = document.getElementById('assg0Count');
         let grandTotalPoints = parseInt(grandTotalPointsElem.textContent);
 
-        console.log(grandTotalPoints)
         // Increase the points for currentValue row in the Points column of the Staff table
         if (currentValue) {
             const currentRow = document.querySelector(`tr[staff-name="${currentValue}"]`);
@@ -324,6 +324,73 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => populateDropdowns(data.split('\n').slice(1).map(line => line.split(',')[0])));
 });
 
+function generateJSONFromTable() {
+    // Create the JSON content for pre-allocated schedule and off-site schedule
+    const preAllocatedData = [];
+    const requestedData = [];
+    const offsite = [];
+
+    // Create a JSON structure for unassigned names
+    const unassignedName = {};
+
+    WEEKDAYS.forEach(day => {
+        unassignedName[day] = [];  // Initializing the unassigned count for each day to an empty array
+    });
+
+    const rows = Array.from(document.querySelectorAll('.group-content'));
+    rows.forEach(row => {
+        const rowObj = {};
+        const role = row.getAttribute('role-name'); // Get the 'role-name' attribute
+
+        rowObj["role"] = role;
+        const columns = Array.from(row.querySelectorAll('.doctor-dropdown'));
+        WEEKDAYS.forEach((day, index) => {
+            rowObj[day] = columns[index].value;
+        });
+
+        // if roles starts with vacation or offsite, add to offsite array
+        if (row.classList.contains('group-offsite')) {
+            offsite.push(rowObj);
+
+        } else if (row.classList.contains('group-requested')) {
+            requestedData.push(rowObj);
+        } else {
+            preAllocatedData.push(rowObj);
+        }
+
+        if (row.classList.contains('group-whine-zone')) {
+            const columns = Array.from(row.querySelectorAll('.doctor-dropdown'));
+            columns.forEach((column, index) => {
+                // if the column is not empty, add the name to the list for that day
+                if (column.value) {
+                    unassignedName[WEEKDAYS[index]].push(column.value);
+                } else {
+                    // get all enabled values in that dropdown and add those to the list
+                    const enabledValues = Array.from(column.querySelectorAll('option:not([disabled])'))
+                        .map(option => option.value)
+                        .filter(val => val !== ''); // Filtering out empty strings
+
+                    // Convert the existing array to a Set
+                    let uniqueValuesSet = new Set(unassignedName[WEEKDAYS[index]]);
+
+                    // Add the new values to the Set
+                    enabledValues.forEach(val => uniqueValuesSet.add(val));
+
+                    // Convert the Set back to an array
+                    unassignedName[WEEKDAYS[index]] = [...uniqueValuesSet];
+                }
+            });
+        }
+    });
+    return {
+        unassignedPerDay: unassignedName,
+        preAllocated: preAllocatedData,
+        requested: requestedData,
+        offsite: offsite
+    };
+}
+
+
 // Create a Function to Generate CSV from Table
 function generateCSVFromTable() {
     // Create the CSV content from the table
@@ -349,8 +416,16 @@ function generateCSVFromTable() {
 }
 
 // Create a Function to Trigger Download
-function downloadCSV(filename, csvContent) {
-    const blob = new Blob([csvContent], {type: 'text/csv;charset=utf-8;'});
+function downloadFile(filename, content) {
+    // Determine the MIME type based on the file extension
+    let mimeType = 'text/plain;charset=utf-8;'; // default
+    if (filename.endsWith('.csv')) {
+        mimeType = 'text/csv;charset=utf-8;';
+    } else if (filename.endsWith('.json')) {
+        mimeType = 'application/json;charset=utf-8;';
+    }
+
+    const blob = new Blob([content], {type: mimeType});
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
@@ -359,23 +434,29 @@ function downloadCSV(filename, csvContent) {
     URL.revokeObjectURL(url);
 }
 
-// Add Event Listener to Save Button
-const saveButton = document.getElementById('saveButton'); // Replace with the actual ID of your save button
 
+// Download Button Click Handler
+// Reference to the dropdown and button
+const formatSelect = document.getElementById('formatSelect');
+const saveButton = document.getElementById('saveButton');
+
+// Add event listener to the save button
 saveButton.addEventListener('click', () => {
-    const csvContent = generateCSVFromTable();
-    downloadCSV('schedule.csv', csvContent);
+    const selectedFormat = formatSelect.value;
+
+    if (selectedFormat === 'csv') {
+        const csvContent = generateCSVFromTable();
+        downloadFile('schedule.csv', csvContent);
+    } else if (selectedFormat === 'json') {
+        const jsonData = generateJSONFromTable();
+        const jsonContent = JSON.stringify(jsonData, null, 2);  // This will format the JSON with 2 spaces indentation
+        downloadFile('schedule.json', jsonContent);
+    } else {
+        console.error('Unsupported format selected.');
+    }
 });
 
-// Initially disable all dropdowns for "gill" and "vacation" groups
-document.querySelectorAll('.group-gill .doctor-dropdown, .group-vacation .doctor-dropdown').forEach(dropdown => {
+// Initially disable all dropdowns for "Gill" and "Vacation" groups
+document.querySelectorAll('.group-offsite:not(.group-offsite-first) .doctor-dropdown').forEach(dropdown => {
     dropdown.disabled = true;
-});
-
-// Enable only the first role's dropdowns for each group
-document.querySelector('tr[role-name="Gill 1"]').querySelectorAll('.doctor-dropdown').forEach(dropdown => {
-    dropdown.removeAttribute('disabled');
-});
-document.querySelector('tr[role-name="Vacation 1"]').querySelectorAll('.doctor-dropdown').forEach(dropdown => {
-    dropdown.removeAttribute('disabled');
 });
