@@ -164,3 +164,4 @@ config.ini
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .idea/
 code/font-awesome-4.7.0/
+code/data
