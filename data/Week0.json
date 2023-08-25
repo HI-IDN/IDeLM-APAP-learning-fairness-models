@@ -1,0 +1,312 @@
+{
+  "unassignedPerDay": {
+    "MON": [
+      "CA",
+      "CC",
+      "JJ",
+      "KC",
+      "KK",
+      "SL"
+    ],
+    "TUE": [
+      "BK",
+      "CA",
+      "CC",
+      "ES",
+      "JJ",
+      "KK",
+      "MC"
+    ],
+    "WED": [
+      "BK",
+      "CC",
+      "JJ",
+      "KK",
+      "MC",
+      "RR",
+      "TT"
+    ],
+    "THU": [
+      "AY",
+      "BK",
+      "CC",
+      "KK",
+      "MC",
+      "RR",
+      "TT"
+    ],
+    "FRI": [
+      "BK",
+      "CA",
+      "CC",
+      "KC",
+      "KK",
+      "MC",
+      "TT"
+    ]
+  },
+  "transition-shift-roles": [
+    {
+      "role": "Post CVCC",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Post Call",
+      "MON": "JM",
+      "TUE": "TT",
+      "WED": "AY",
+      "THU": "KC",
+      "FRI": "ES"
+    },
+    {
+      "role": "Post Holiday",
+      "MON": "BK",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Post Late",
+      "MON": "ES",
+      "TUE": "RR",
+      "WED": "SL",
+      "THU": "CA",
+      "FRI": "JJ"
+    },
+    {
+      "role": "Pre Call",
+      "MON": "AY",
+      "TUE": "KC",
+      "WED": "ES",
+      "THU": "SL",
+      "FRI": "AY"
+    }
+    ],
+  "shift-roles": [
+    {
+      "role": "Late",
+      "MON": "RR",
+      "TUE": "SL",
+      "WED": "CA",
+      "THU": "JJ",
+      "FRI": "RR"
+    },
+    {
+      "role": "Call",
+      "MON": "TT",
+      "TUE": "AY",
+      "WED": "KC",
+      "THU": "ES",
+      "FRI": "SL"
+    },
+    {
+      "role": "CVCC",
+      "MON": "DD",
+      "TUE": "DD",
+      "WED": "DD",
+      "THU": "DD",
+      "FRI": "DD"
+    }
+  ],
+  "requested": [
+    {
+      "role": "Peel 1",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 2",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 3",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 4",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 5",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 6",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 7",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 8",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 9",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 10",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 11",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Admin 1",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Admin 2",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    }
+  ],
+  "offsite": [
+    {
+      "role": "West",
+      "MON": "MC",
+      "TUE": "JM",
+      "WED": "JM",
+      "THU": "JM",
+      "FRI": "JM"
+    },
+    {
+      "role": "Gill 1",
+      "MON": "TI",
+      "TUE": "TI",
+      "WED": "TI",
+      "THU": "TI",
+      "FRI": "TI"
+    },
+    {
+      "role": "Gill 2",
+      "MON": "MI",
+      "TUE": "MI",
+      "WED": "MI",
+      "THU": "MI",
+      "FRI": "MI"
+    },
+    {
+      "role": "Gill 3",
+      "MON": "MA",
+      "TUE": "MA",
+      "WED": "MA",
+      "THU": "MA",
+      "FRI": "MA"
+    },
+    {
+      "role": "Gill 4",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Vacation 1",
+      "MON": "CM",
+      "TUE": "CM",
+      "WED": "CM",
+      "THU": "CM",
+      "FRI": "CM"
+    },
+    {
+      "role": "Vacation 2",
+      "MON": "FM",
+      "TUE": "FM",
+      "WED": "FM",
+      "THU": "FM",
+      "FRI": "FM"
+    },
+    {
+      "role": "Vacation 3",
+      "MON": "SK",
+      "TUE": "SK",
+      "WED": "SK",
+      "THU": "SK",
+      "FRI": "SK"
+    },
+    {
+      "role": "Vacation 4",
+      "MON": "JT",
+      "TUE": "JT",
+      "WED": "JT",
+      "THU": "JT",
+      "FRI": "JT"
+    },
+    {
+      "role": "Vacation 5",
+      "MON": "DN",
+      "TUE": "DN",
+      "WED": "DN",
+      "THU": "DN",
+      "FRI": "DN"
+    },
+    {
+      "role": "Vacation 6",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    }
+  ]
+}
