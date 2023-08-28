@@ -16,6 +16,7 @@ TBD = 'TBD'
 CHARGE = 'CHARGE'
 CARDIAC = 'CARDIAC'
 ADMIN_POINTS = 8
+BigM = 100000
 
 
 class Anesthetist:
@@ -94,14 +95,14 @@ class Schedule:
             data = json.load(file)
 
         # For 'unassignedPerDay'
-        self.unassigned_per_day = data['unassignedPerDay']
+        self.unassigned_per_day = {d: sorted(values) for d, values in data['unassignedPerDay'].items()}
         assert list(self.unassigned_per_day.keys()) == self.Wday
 
         points = defaultdict(int, {day: 1 for day in self.Wday})
         peeled = defaultdict(int, {day: 1 for day in self.Wday})
 
         # For 'transition-shift-roles'
-        for entry in data["transition-shift-roles"]:
+        for entry in data["preAllocated"]["transitionShiftRoles"]:
             role = entry.pop('role')
             self.transition_shift_roles[role] = {}
             for day, anst in entry.items():
@@ -130,8 +131,7 @@ class Schedule:
                             peeled[day] += 1
 
         # For 'shift-roles'
-        for day in self.Wday: points[day] += 1  # TODO remove ?
-        for entry in data["shift-roles"]:
+        for entry in data["preAllocated"]["shiftRoles"]:
             role = entry.pop('role')
             self.shift_roles[role] = {}
             for day, anst in entry.items():
@@ -155,7 +155,9 @@ class Schedule:
 
     def update_points_based_on_roles(self):
         # Combine both dictionaries for simplicity
-        all_roles = {**self.transition_shift_roles, **self.shift_roles}
+        admin_roles = {key: value for key, value in self.requested.items() if key.startswith('Admin')}
+        all_roles = {**self.transition_shift_roles, **self.shift_roles, **admin_roles}
+
         for role, assignments in all_roles.items():
             for day, person in assignments.items():
                 # Ensure value is not "TBD" or empty
@@ -248,7 +250,7 @@ class Gurobi:
         self.Whine = schedule.unassigned_per_day
         """Dictionary of unassigned doctors for the day, e.g. {'MON': ['CA', 'CC'], 'TUE': ['BK']}"""
 
-        self.Peel = list(range(4, 15))  # TODO - remove ?
+        self.Peel = list(range(4, 18))  # TODO - why is this 4 to 18 ?
 
         self.Anst = sorted([name for name in schedule.anst])
         """List of all doctors """
@@ -266,42 +268,58 @@ class Gurobi:
         """Dictionary with the on late doctor, e.g. {'MON': 'RR', 'TUE': 'SL', 'WED': 'CA', 'THU': 'JJ', 'FRI': 'RR'}"""
 
         self.Pnts0 = {name: anst.pnts0 for name, anst in schedule.anst.items()}
-        """Dictionary with the total preallocated points per doctor, e.g. {'AY': 20, 'BK': 2}"""
+        """Dictionary with the total pre-allocated points per doctor, e.g. {'AY': 20, 'BK': 2}"""
+        self.Pnts0['BK'] = 16  # TODO remove
+        self.Pnts0['FM'] = 14  # TODO remove
+        self.Pnts0['KC'] = 28  # TODO remove
+        self.Pnts0['SK'] = 13  # TODO remove
 
         self.Assg0 = {name: anst.assg0 for name, anst in schedule.anst.items()}
         """Dictionary with total number of transitional shifts per doctor, e.g. {'AY': 3, 'BK': 1}"""
 
-        self.Prep0 = {}  # TODO
+        self.Prep0 = {day: 0 for day in self.Wday}  # TODO - update to what exactly?
 
         self.mCardio = {
             day: not schedule.shift_roles['Call'][day].cardiac and not schedule.shift_roles['Late'][day].cardiac
             for day in self.Wday}
-        """Dictonary per day if there is a cardio doctor missing in the shift-role """
+        """Dictionary per day if there is a cardio doctor missing in the shift-role """
 
         self.mCharge = {
             day: not schedule.shift_roles['Call'][day].charge and not schedule.shift_roles['Late'][day].charge
             for day in self.Wday}
-        """Dictonary per day if there is a charge doctor missing in the shift-role """
+        """Dictionary per day if there is a charge doctor missing in the shift-role """
 
-        self.SpPeel = {}  # TODO
-        """Dictionary with special peel positions for each anesthetist, day, and position."""
+        self.SpPeel = {(scheduledAnst.name, d, scheduledAnst.points): True
+                       for role, days in schedule.requested.items() for d, scheduledAnst in days.items()
+                       if scheduledAnst.name != TBD and not scheduledAnst.role.startswith('Admin')
+                       }
+        """Dictionary with special peel positions for each anesthetist, day, and position, 
+        e.g. {('MI', 'TUE', 7): True, ('ES', 'THU', 11): True, ('ES', 'FRI', 7): True}"""
 
         # Filtered sets for compactness
-        self.AWP = [(a, d, p) for d in self.Wday for a in self.Whine[d] for p in self.Peel[:(1 + len(self.Whine[d]))]]
+        self.AWP = [(a, d, p) for d in self.Wday for a in self.Whine[d] for p in self.Peel[:len(self.Whine[d])]]
         """ AWP all possible assignments, e.g. [('CA', 'MON', 4), ('CA', 'MON', 5), ('TT', 'FRI', 11)] """
 
-        self.AdW = [(a, d) for d in self.Wday for a in self.Whine[d] + [self.onCall[d]] + [self.onLate[d]]
-                    if a in self.Diac]
-        """ AdW all possible cardio assignments, [('CA', 'MON'), ('CC', 'MON'), ('RR', 'FRI')]"""
+        self.AdW = [(a, d) for d in self.Wday for a in [self.onCall[d]] + [self.onLate[d]] if a in self.Diac]
+        """ AdW all possible cardio assignments, note cardiac must be onCall or onLate
+        e.g. [('CA', 'MON'), ('CC', 'MON'), ('RR', 'FRI')]"""
+
         self.AcW = [(a, d) for d in self.Wday for a in self.Whine[d] + [self.onCall[d]] + [self.onLate[d]]
                     if a in self.Chrg]
         """ AcW all possible charge assignments, [('BK', 'MON'), ('CC', 'MON'), ('JJ', 'FRI')]"""
+
+        self.AsP = list(set([a for d in self.Wday for a in self.Whine[d] if self.Assg0[a] <= 1]))
+        """ AsP all possible assignments with less than 2 transitional shifts, e.g. ['SK', 'CA', 'MI', 'CM', 'FM', 'DD', 'JJ', 'AY', 'SL']"""
 
         self.x = self.m.addVars(self.AWP, vtype="B")
         """ Assigned position """
 
         # Compute sum of points
         self.y = self.m.addVars(self.Anst, vtype="C")
+        self.y_same = self.m.addVar()
+        """" y_same is to target the same peel value for all anesthetists """
+        self.y_b_same = self.m.addVars(self.Anst, vtype="B")
+
         # Maximum points per any individual
         self.z1 = self.m.addVar()
         self.z2 = self.m.addVar()
@@ -320,37 +338,46 @@ class Gurobi:
     def set_hard_constraints(self):
         # Those that have not been assigned to a slot yet must be assigned:
         self.m.addConstrs(
-            gp.quicksum(
-                self.x[a, d, p] for p in self.Peel[:(1 + len(self.Whine[d]))]
-            ) == 1 for d in self.Wday for a in self.Whine[d])
+            gp.quicksum(self.x[a, d, p] for p in self.Peel[:len(self.Whine[d])]) == 1
+            for d in self.Wday for a in self.Whine[d]
+        )
 
         # Can only assign one per peel per wday
         self.m.addConstrs(
-            gp.quicksum(
-                self.x[a, d, p] for a in self.Whine[d]
-            ) <= 1 for d in self.Wday for p in self.Peel[:(1 + len(self.Whine[d]))]
+            gp.quicksum(self.x[a, d, p] for a in self.Whine[d]) <= 1
+            for d in self.Wday for p in self.Peel[:len(self.Whine[d])]
         )
 
         # The approximate amount of points assigned to each Anesthetist
-        if False:  # TODO
-            self.m.addConstrs(
-                gp.quicksum(self.x[a, d, p] * (p + self.Prep0[d])
-                            for d in self.Wday for p in self.Peel
-                            if (a, d, p) in self.AWP) + self.Pnts0[a] == self.y[a] for a in self.Anst
-            )
+        self.m.addConstrs(
+            gp.quicksum(
+                self.x[a, d, p] * (p + self.Prep0[d]) for d in self.Wday for p in self.Peel if (a, d, p) in self.AWP
+            ) + self.Pnts0[a] == self.y[a] for a in self.Anst)
 
-        # now for the special conditions:
+        # The maximum number (two layered press!)
+        self.m.addConstrs(self.y[a] <= self.z1 for a in self.Anst if self.Assg0[a] < 4)
+        self.m.addConstrs(self.y[a] <= self.z2 for a in self.Anst)
+        self.m.addConstrs(self.y[a] >= self.z3 for a in self.Anst if self.Assg0[a] < 4)
+        self.m.addConstrs(self.y[a] >= self.z4 for a in self.Anst)
+
+    def set_special_condition(self):
         # If we have a Cardio or Charge missing from any given day, then we should force them to be late out
-        self.m.addConstrs(
-            gp.quicksum(
-                self.x[a, d, p] for a in self.Diac for p in self.Peel[(len(self.Whine[d]) - 1):(1 + len(self.Whine[d]))]
-                if (a, d) in self.AdW
-            ) >= 1 for d in self.Wday if self.mCardio[d]
-        )
+
+        if False:
+            """ This is not needed, because cardio is always either on call or on late """
+            self.m.addConstrs(
+                gp.quicksum(
+                    self.x[a, d, p] for a in self.Diac for p in
+                    self.Peel[(len(self.Whine[d]) - 1):(1 + len(self.Whine[d]))]
+                    if (a, d) in self.AdW
+                ) >= 1 for d in self.Wday if self.mCardio[d]
+            )
+        else:
+            assert self.mCardio == {day: False for day in self.Wday}, f'Cardio is not always either on call or on late'
 
         self.m.addConstrs(
             gp.quicksum(
-                self.x[a, d, p] for a in self.Chrg for p in self.Peel[(len(self.Whine[d]) - 1):(1 + len(self.Whine[d]))]
+                self.x[a, d, p] for a in self.Chrg for p in self.Peel[(len(self.Whine[d]) - 1):(len(self.Whine[d]))]
                 if (a, d) in self.AcW
             ) >= 1 for d in self.Wday if self.mCharge[d]
         )
@@ -363,7 +390,7 @@ class Gurobi:
         )
         self.m.addConstrs(
             gp.quicksum(
-                self.h[a, d] for a in self.Whine[d] + [self.onCall[d]] + [self.onLate[d]] if a in self.Diac
+                self.h[a, d] for a in [self.onCall[d]] + [self.onLate[d]] if a in self.Diac
             ) == 1 for d in self.Wday
         )
 
@@ -376,30 +403,20 @@ class Gurobi:
         # Now if we have decided the role then they must either be late or on call
         self.m.addConstrs(
             gp.quicksum(
-                self.x[a, d, p] for p in self.Peel[(len(self.Whine[d]) - 1):(1 + len(self.Whine[d]))]
-            ) >= self.h[a, d] for (a, d) in self.AdW if (a != self.onCall[d]) and (a != self.onLate[d])
-        )
-        self.m.addConstrs(
-            gp.quicksum(
-                self.x[a, d, p] for p in self.Peel[(len(self.Whine[d]) - 1):(1 + len(self.Whine[d]))]
+                self.x[a, d, p] for p in self.Peel[(len(self.Whine[d]) - 1):(len(self.Whine[d]))]
             ) >= self.c[a, d] for (a, d) in self.AcW if (a != self.onCall[d]) and (a != self.onLate[d])
         )
+
         # now calculate the maximum number on Cardio or Charge
         self.m.addConstrs(
-            gp.quicksum(
-                self.h[a, d] for d in self.Wday if (a, d) in self.AdW
-            ) +
-            gp.quicksum(
-                self.c[a, d] for d in self.Wday if (a, d) in self.AcW
-            ) <= self.zch[a] for a in self.Chrg if a in self.Diac
-        )
-
-        self.m.addConstrs(
-            gp.quicksum(self.c[a, d] for d in self.Wday if (a, d) in self.AcW) <= self.zch[a] for a in self.Chrg
+            gp.quicksum(self.h[a, d] for d in self.Wday if (a, d) in self.AdW) +
+            gp.quicksum(self.c[a, d] for d in self.Wday if (a, d) in self.AcW) <=
+            self.zch[a] for a in self.Chrg if a in self.Diac
         )
         self.m.addConstrs(
-            gp.quicksum(self.h[a, d] for d in self.Wday if (a, d) in self.AdW) <= self.zch[a] for a in self.Diac
-        )
+            gp.quicksum(self.c[a, d] for d in self.Wday if (a, d) in self.AcW) <= self.zch[a] for a in self.Chrg)
+        self.m.addConstrs(
+            gp.quicksum(self.h[a, d] for d in self.Wday if (a, d) in self.AdW) <= self.zch[a] for a in self.Diac)
         self.m.addConstrs(self.zch[a] <= self.zcha for a in self.Diac)
 
         # Only once in the end peel
@@ -407,32 +424,33 @@ class Gurobi:
             gp.quicksum(
                 self.x[a, d, p] for d in self.Wday for p in self.Peel[len(self.Whine[d]) - 1:len(self.Whine[d])]
                 if (a, d, p) in self.AWP
-            ) <= 1 for a in self.Anst)
-
-        # Special requests, fixed for Whine[d]
-        self.m.addConstrs(
-            self.x[a, d, p] == 1 for (a, d, p) in self.SpPeel.keys() if (a, d, p) in self.AWP
+            ) <= 1 for a in
+            self.Anst
         )
 
-    def set_soft_constraints(self):
-        # The maximum number (two layered press!)
-        self.m.addConstrs(self.y[a] <= self.z1 for a in self.Anst if self.Assg0[a] < 4)
-        self.m.addConstrs(self.y[a] <= self.z2 for a in self.Anst)
-        self.m.addConstrs(self.y[a] >= self.z3 for a in self.Anst if self.Assg0[a] < 4)
-        self.m.addConstrs(self.y[a] >= self.z4 for a in self.Anst)
+        # Special requests, fixed for Whine[d]
+        self.m.addConstrs(self.x[a, d, p] == 1 for (a, d, p) in self.SpPeel.keys() if (a, d, p) in self.AWP)
+
+    def set_same_peel_points(self, same_peel_points=35):
+        # Now indicate if the doctor has the same value!
+
+        self.m.addConstrs(-self.y_b_same[a] * BigM + self.y_same - 1 <= self.y[a] for a in self.Anst)
+        self.m.addConstrs(self.y[a] <= self.y_same + 1 + self.y_b_same[a] * BigM for a in self.Anst)
+        self.m.addConstr(self.y_same == same_peel_points)
+        self.m.addConstrs(self.y[a] <= self.y_same + 1 for a in self.Anst)
 
     def set_objective_function(self):
         # minimize the maximum (worst case)
+        # m.setObjective(100000000*gp.quicksum(y_b_same[a] for a in AsP) + 1000000*y_same + gp.quicksum(y[a] for a in Anst) + gp.quicksum(zch[a] for a in Anst) + 10000*z1 + 10000*z2 - 1*z3 - 1*z4 + 100*zcha, GRB.MINIMIZE)
+        # m.setObjective(gp.quicksum(y[a] for a in Anst) + 1000*z2 + gp.quicksum(zch[a] for a in Anst), GRB.MINIMIZE)
         self.m.setObjective(
-            gp.quicksum(self.y[a] for a in self.Anst) +
-            gp.quicksum(self.zch[a] for a in self.Anst) + 10000 * self.z1 +
-            10000 * self.z2 - 1 * self.z3 - 1 * self.z4 + 100 * self.zcha
-            , GRB.MINIMIZE
+            1000 * gp.quicksum(self.y_b_same[a] for a in self.AsP)
+            + gp.quicksum(self.y[a] for a in self.Anst),
+            GRB.MINIMIZE
         )
-        # self.m.setObjective(gp.quicksum(y[a] for a in Anst) + 1000*z2 + gp.quicksum(zch[a] for a in Anst), GRB.MINIMIZE)
 
     def solve(self):
-        """ Optimize model and print solution"""
+        """ Optimize model and return solution"""
         self.m.optimize()
 
         header = "{:<15}" + "{:<12}" * 5
@@ -479,24 +497,33 @@ class Gurobi:
 
         # display the points per person:
         print("Points per person:")
+        header = "{:<6}" + "{:<6}" * 3
+        row_format = "{:<6}" + "{:<6}" * 3
+        row_data = ['Pnts0', 'Peel', 'Total']
+        print(header.format("Name", *row_data))
         ppp = {}
         for a in self.Anst:
             if int(self.y[a].X) > 0:
-                print(int(self.y[a].X) + 0 * self.Pnts0[a], ":", a)
-                ppp[a] = int(self.y[a].X + 0 * self.Pnts0[a])
+                peel_points = int(self.y[a].X)
+                total_points = peel_points + self.Pnts0[a]
+                row_data = [self.Pnts0[a], peel_points, total_points]
+                print(row_format.format(a, *row_data))
+                ppp[a] = peel_points
 
         print("max number of cardio+charge=", self.zcha.X)
-
         return sol, ppp
 
 
 def main():
-    schedule = Schedule('../data/Week0.json')
-    schedule.print('../data/Week0.init.txt')
+    schedule = Schedule('../data/Week5.json')
+    schedule.print('../data/Week5.init.txt')
     opt = Gurobi(schedule)
     opt.set_hard_constraints()
-    # opt.set_soft_constraints()
+    opt.set_special_condition()
     opt.set_objective_function()
+    desired_points = 35
+    opt.set_same_peel_points(desired_points)
     sol, ppp = opt.solve()
+
 
 main()

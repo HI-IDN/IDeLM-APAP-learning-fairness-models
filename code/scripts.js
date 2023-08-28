@@ -170,14 +170,13 @@ function handleDropdownChange(dropdown) {
     dropdown.addEventListener('change', function (event, isRecursive = false) {
         const currentValue = this.value;
         const currentDay = this.getAttribute('data-day');
-
         const prevDay = getPrevDay(currentDay);
         const nextDay = getNextDay(currentDay);
         const currentRow = this.closest('tr');
         const rowName = currentRow.querySelector('td').textContent.trim();
         const roleName = currentRow.getAttribute('role-name');
         const tableBody = document.querySelector("#scheduleTable tbody");
-        console.log(rowName, roleName)
+
         if (rowName === "Call" || rowName === "Late") {
             const prevRole = rowName === "Call" ? "Pre Call" : "Pre Late";
             const nextRole = rowName === "Call" ? "Post Call" : "Post Late";
@@ -333,7 +332,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function generateJSONFromTable() {
     // Create the JSON content for pre-allocated schedule and off-site schedule
-    const preAllocatedData = [];
+    const shiftRolesData = [];
+    const transitionShiftRolesData = []
     const requestedData = [];
     const offsite = {};
 
@@ -373,8 +373,13 @@ function generateJSONFromTable() {
 
         } else if (row.classList.contains('group-requested')) {
             requestedData.push(rowObj);
-        } else {
-            preAllocatedData.push(rowObj);
+        } else if (row.classList.contains('group-transition-shift-roles')) {
+            transitionShiftRolesData.push(rowObj);
+        } else if (row.classList.contains('group-shift-roles')) {
+            shiftRolesData.push(rowObj);
+        } else  {
+            /* throw error */
+            console.log("Error: " + role + " unknown what data set to add to.");
         }
 
         if (row.classList.contains('group-whine-zone')) {
@@ -403,7 +408,10 @@ function generateJSONFromTable() {
     });
     return {
         unassignedPerDay: unassignedName,
-        preAllocated: preAllocatedData,
+        preAllocated:{
+            transitionShiftRoles: transitionShiftRolesData,
+            shiftRoles: shiftRolesData
+        },
         requested: requestedData,
         offsite: offsite
     };

@@ -1,0 +1,306 @@
+{
+  "unassignedPerDay": {
+    "MON": [
+      "BK",
+      "CA",
+      "CM",
+      "DD",
+      "JJ",
+      "MI",
+      "RR",
+      "SK"
+    ],
+    "TUE": [
+      "AY",
+      "CM",
+      "DD",
+      "MI",
+      "RR",
+      "SK",
+      "SL"
+    ],
+    "WED": [
+      "AY",
+      "CM",
+      "DD",
+      "FM",
+      "KC",
+      "MI",
+      "SL"
+    ],
+    "THU": [
+      "AY",
+      "CA",
+      "DD",
+      "FM",
+      "JJ",
+      "MI",
+      "SL",
+      "ES"
+    ],
+    "FRI": [
+      "AY",
+      "BK",
+      "DD",
+      "FM",
+      "JJ",
+      "SK",
+      "SL",
+      "ES"
+    ]
+  },
+  "preAllocated": {
+    "transitionShiftRoles": [
+      {
+        "role": "Post CVCC",
+        "MON": "",
+        "TUE": "",
+        "WED": "",
+        "THU": "",
+        "FRI": ""
+      },
+      {
+        "role": "Post Call",
+        "MON": "SL",
+        "TUE": "FM",
+        "WED": "ES",
+        "THU": "BK",
+        "FRI": "RR"
+      },
+      {
+        "role": "Post Holiday",
+        "MON": "",
+        "TUE": "",
+        "WED": "",
+        "THU": "",
+        "FRI": ""
+      },
+      {
+        "role": "Post Late",
+        "MON": "AY",
+        "TUE": "KC",
+        "WED": "JJ",
+        "THU": "SK",
+        "FRI": "KC"
+      },
+      {
+        "role": "Pre Call",
+        "MON": "ES",
+        "TUE": "BK",
+        "WED": "RR",
+        "THU": "CM",
+        "FRI": "MI"
+      }
+    ],
+    "shiftRoles": [
+      {
+        "role": "Late",
+        "MON": "KC",
+        "TUE": "JJ",
+        "WED": "SK",
+        "THU": "KC",
+        "FRI": "CA"
+      },
+      {
+        "role": "Call",
+        "MON": "FM",
+        "TUE": "ES",
+        "WED": "BK",
+        "THU": "RR",
+        "FRI": "CM"
+      },
+      {
+        "role": "CVCC",
+        "MON": "",
+        "TUE": "",
+        "WED": "",
+        "THU": "",
+        "FRI": ""
+      }
+    ]
+  },
+  "requested": [
+    {
+      "role": "Peel 1",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 2",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 3",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 4",
+      "MON": "",
+      "TUE": "MI",
+      "WED": "",
+      "THU": "",
+      "FRI": "ES"
+    },
+    {
+      "role": "Peel 5",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 6",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 7",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 8",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "ES",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 9",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 10",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Peel 11",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    },
+    {
+      "role": "Admin 1",
+      "MON": "JM",
+      "TUE": "CA",
+      "WED": "CA",
+      "THU": "JM",
+      "FRI": "MA"
+    },
+    {
+      "role": "Admin 2",
+      "MON": "",
+      "TUE": "",
+      "WED": "",
+      "THU": "",
+      "FRI": ""
+    }
+  ],
+  "offsite": {
+    "West": {
+      "MON": [],
+      "TUE": [
+        "JM"
+      ],
+      "WED": [
+        "JM"
+      ],
+      "THU": [],
+      "FRI": [
+        "JM"
+      ]
+    },
+    "Gill": {
+      "MON": [
+        "TI",
+        "CC",
+        "MA"
+      ],
+      "TUE": [
+        "TI",
+        "CC",
+        "MA"
+      ],
+      "WED": [
+        "TI",
+        "CC",
+        "MA"
+      ],
+      "THU": [
+        "TI",
+        "CC",
+        "MA"
+      ],
+      "FRI": [
+        "TI",
+        "CC"
+      ]
+    },
+    "Vacation": {
+      "MON": [
+        "MC",
+        "TT",
+        "DN",
+        "JT",
+        "KK"
+      ],
+      "TUE": [
+        "MC",
+        "TT",
+        "DN",
+        "JT",
+        "KK"
+      ],
+      "WED": [
+        "MC",
+        "TT",
+        "DN",
+        "JT",
+        "KK"
+      ],
+      "THU": [
+        "MC",
+        "TT",
+        "DN",
+        "JT",
+        "KK"
+      ],
+      "FRI": [
+        "MC",
+        "TT",
+        "DN",
+        "JT",
+        "KK"
+      ]
+    }
+  }
+}
