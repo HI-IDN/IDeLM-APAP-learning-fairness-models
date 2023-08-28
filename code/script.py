@@ -18,6 +18,9 @@ CARDIAC = 'CARDIAC'
 ADMIN_POINTS = 8
 BigM = 100000
 
+ICON_CHRG = "\u2699"  # add a little gear ⚙ for charge
+ICON_DIAC = "\u2665"  # add a little heart ♥ for cardiac
+
 
 class Anesthetist:
     def __init__(self, name, charge, cardiac):
@@ -175,9 +178,9 @@ class Schedule:
 
         def format_person(person):
             if person.additional_role == CARDIAC:
-                name = f"\033[91m{person.name}\033[0m"  # Red
+                name = person.name + ICON_DIAC
             elif person.additional_role == CHARGE:
-                name = f"\033[94m{person.name}\033[0m"  # Blue
+                name = person.name + ICON_CHRG
             else:
                 name = person.name
             return f"{name} ({person.points})"
@@ -212,8 +215,8 @@ class Schedule:
 
             for name, anst in self.anst.items():
                 row_data = [
-                    '*' if anst.charge else '',
-                    '*' if anst.cardiac else '',
+                    'YES' if anst.charge else '',
+                    'YES' if anst.cardiac else '',
                     anst.pnts0,
                     anst.assg0
                 ]
@@ -269,10 +272,6 @@ class Gurobi:
 
         self.Pnts0 = {name: anst.pnts0 for name, anst in schedule.anst.items()}
         """Dictionary with the total pre-allocated points per doctor, e.g. {'AY': 20, 'BK': 2}"""
-        self.Pnts0['BK'] = 16  # TODO remove
-        self.Pnts0['FM'] = 14  # TODO remove
-        self.Pnts0['KC'] = 28  # TODO remove
-        self.Pnts0['SK'] = 13  # TODO remove
 
         self.Assg0 = {name: anst.assg0 for name, anst in schedule.anst.items()}
         """Dictionary with total number of transitional shifts per doctor, e.g. {'AY': 3, 'BK': 1}"""
@@ -333,6 +332,8 @@ class Gurobi:
         """ c is the Charge of the day """
 
         self.zcha = self.m.addVar()  # max combined per a in Anst
+        """ Max number of cardio+charge per anesthetist"""
+
         self.zch = self.m.addVars(self.Anst)
 
     def set_hard_constraints(self):
@@ -453,77 +454,114 @@ class Gurobi:
         """ Optimize model and return solution"""
         self.m.optimize()
 
-        header = "{:<15}" + "{:<12}" * 5
-        row_format = "{:<15}" + "{:<12}" * 5
-        print(header.format("Peel", *self.Wday))
-        print('-' * 75)  # Print a separator line
+        if self.m.status == GRB.INFEASIBLE:
+            print("The model is infeasible.")
+            return None, None, None, None
 
-        sol = {}
-        for p in self.Peel:
-            row_data = []
-            for d in self.Wday:
-                value_assigned = False
-                for a in self.Anst:  # Assuming A is the set/list for 'a' values
-                    if (a, d, p) in self.x and self.x[a, d, p].X > 0.5:
-                        name = a
-                        if (a, d) in self.h and int(self.h[a, d].X) > 0:
-                            name += '\u2665'  # add a little heart ♥ for cardiac
-                        if (a, d) in self.c and int(self.c[a, d].X) > 0:
-                            name += '\u2699'  # add a little gear ⚙ for charge
+        def get_assigned_anst(d, p):
+            matching_ansts = [a for a in self.Anst if (a, d, p) in self.x and self.x[a, d, p].X > 0.5]
 
-                        row_data.append(name)
-                        value_assigned = True
-                        break  # if one 'a' satisfies the condition, we break,
-                        # because only one 'a' can be > 0.5 for a given [d,p]
+            if len(matching_ansts) > 1:
+                raise ValueError(f"Multiple ansts meet the criteria for day {d} and peel {p}")
 
-                if not value_assigned:
-                    row_data.append('')
-            sol[p] = {d: a for (a, d, p) in self.AWP if self.x[a, d, p].X > 0.5}
-            print(row_format.format(p, *row_data))
+            return matching_ansts[0] if matching_ansts else ''
+
+        sol = {
+            p: {
+                d: get_assigned_anst(d, p)
+                for d in self.Wday
+            }
+            for p in self.Peel
+        }
 
         charge = {day: [] for day in self.Wday}
         for (a, d) in self.AcW:
             if int(self.c[a, d].X) > 0:
                 charge[d].append(a)
-        row_data = [",".join(charge[d]) for d in self.Wday]
-        print(row_format.format('charge', *row_data))
 
         cardio = {day: [] for day in self.Wday}
         for (a, d) in self.AdW:
             if int(self.h[a, d].X) > 0:
                 cardio[d].append(a)
+
+        # display the points per person:
+        ppp = {a: int(self.y[a].X) for a in self.Anst if int(self.y[a].X) > 0}
+
+        print("max number of cardio+charge=", self.zcha.X)
+        return sol, ppp, charge, cardio
+
+    def print_table(self, sol, charge, cardio):
+        header = "{:<15}" + "{:<12}" * 5
+        row_format = "{:<15}" + "{:<12}" * 5
+        print(header.format("Peel", *self.Wday))
+        print('-' * 75)  # Print a separator line
+
+        for p, week in sol.items():
+            row_data = [
+                name + (ICON_CHRG if name in charge[d] else '') + (ICON_DIAC if name in cardio[d] else '')
+                for d, name in week.items()
+            ]
+            print(row_format.format(p, *row_data))
+
+        row_data = [",".join(charge[d]) for d in self.Wday]
+        print(row_format.format('charge', *row_data))
+
         row_data = [",".join(cardio[d]) for d in self.Wday]
         print(row_format.format('cardio', *row_data))
 
+    def print_points(self, ppp, desired_points):
         # display the points per person:
-        print("Points per person:")
-        header = "{:<6}" + "{:<6}" * 3
-        row_format = "{:<6}" + "{:<6}" * 3
-        row_data = ['Pnts0', 'Peel', 'Total']
-        print(header.format("Name", *row_data))
-        ppp = {}
-        for a in self.Anst:
-            if int(self.y[a].X) > 0:
-                peel_points = int(self.y[a].X)
-                total_points = peel_points + self.Pnts0[a]
-                row_data = [self.Pnts0[a], peel_points, total_points]
-                print(row_format.format(a, *row_data))
-                ppp[a] = peel_points
+        print("\nPoints per person:")
+        print('-' * 75)  # Print a separator line
 
-        print("max number of cardio+charge=", self.zcha.X)
-        return sol, ppp
+        header = "{:<6}" + "{:<6}" * 2
+        row_format = "{:<6}" + "{:<6}" * 2
+        row_data = ['Pnts0', 'Pnts']
+        print(header.format("Name", *row_data))
+
+        for a, peel_pnts in ppp.items():
+            color = None
+            if peel_pnts == desired_points:
+                color = "\033[92m{}\033[0m"  # Green
+            elif abs(peel_pnts - desired_points) <= 1:
+                color = "\033[93m{}\033[0m"  # Yellow
+            else:
+                color = "\033[91m{}\033[0m"  # Red
+
+            formatted_peel = "{:<6}".format(peel_pnts)
+            colored_peel = color.format(formatted_peel)
+
+            row_data = [self.Pnts0[a], colored_peel]
+            print(row_format.format(a, *row_data))
 
 
 def main():
     schedule = Schedule('../data/Week5.json')
     schedule.print('../data/Week5.init.txt')
+    outside_range = {}
+    for desired_points in range(33, 39):
+        outside_range[desired_points] = try_desired_points(schedule, desired_points, simple=True)
+
+    most_same_value = min(filter(lambda kv: kv[1] is not None, outside_range.items()), key=lambda kv: kv[1])[0]
+    sol, ppp, charge, cardio, opt = try_desired_points(schedule, most_same_value )
+    opt.print_table(sol, charge, cardio)
+    opt.print_points(ppp, most_same_value)
+
+    print(f'Best same y_same={most_same_value} ({outside_range}')
+
+def try_desired_points(schedule, desired_points, simple=False):
     opt = Gurobi(schedule)
     opt.set_hard_constraints()
     opt.set_special_condition()
     opt.set_objective_function()
-    desired_points = 35
     opt.set_same_peel_points(desired_points)
-    sol, ppp = opt.solve()
+    sol, ppp, charge, cardio = opt.solve()
+    if opt.m.status == GRB.INFEASIBLE:
+        return None
 
+    if simple:
+        return sum([ abs(points-desired_points) for name, points in ppp.items()]), sum([ abs(points-desired_points)<=1 for name, points in ppp.items()])
+    else :
+        return sol, ppp, charge, cardio, opt
 
 main()
