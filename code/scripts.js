@@ -1,7 +1,7 @@
 // Constants for frequently accessed elements
 const STAFF_TABLE = document.getElementById('staffTable');
 let nameCount = 0;
-const WEEKDAYS = ["mon", "tue", "wed", "thu", "fri"]
+const WEEKDAYS = ["MON", "TUE", "WED", "THU", "FRI"]
 
 // CSV Fetching and Table Populating
 function fetchCSVAndPopulate() {
@@ -103,20 +103,20 @@ function createOption(value, textContent) {
 
 function getPrevDay(day) {
     switch (day) {
-        case 'mon':
-            return 'sun';
-        case 'tue':
-            return 'mon';
-        case 'wed':
-            return 'tue';
-        case 'thu':
-            return 'wed';
-        case 'fri':
-            return 'thu';
-        case 'sat':
-            return 'fri';
-        case 'sun':
-            return 'sat';
+        case 'MON':
+            return 'SUN';
+        case 'TUE':
+            return 'MON';
+        case 'WED':
+            return 'TUE';
+        case 'THU':
+            return 'WED';
+        case 'FRI':
+            return 'THU';
+        case 'SAT':
+            return 'FRI';
+        case 'SUN':
+            return 'SAT';
         default:
             return '';
     }
@@ -124,20 +124,20 @@ function getPrevDay(day) {
 
 function getNextDay(day) {
     switch (day) {
-        case 'mon':
-            return 'tue';
-        case 'tue':
-            return 'wed';
-        case 'wed':
-            return 'thu';
-        case 'thu':
-            return 'fri';
-        case 'fri':
-            return 'sat';
-        case 'sat':
-            return 'sun';
-        case 'sun':
-            return 'mon';
+        case 'MON':
+            return 'TUE';
+        case 'TUE':
+            return 'WED';
+        case 'WED':
+            return 'THU';
+        case 'THU':
+            return 'FRI';
+        case 'FRI':
+            return 'SAT';
+        case 'SAT':
+            return 'SUN';
+        case 'SUN':
+            return 'MON';
         default:
             return '';
     }
@@ -145,11 +145,17 @@ function getNextDay(day) {
 
 // Pre-Call / Post-Call / Pre-Late / Post-Late Dropdowns are only editable via the Call and Late rows
 document.addEventListener('DOMContentLoaded', function () {
-    const preCallDropdowns = document.querySelectorAll('tr[role-name="Pre Call"] .doctor-dropdown');
-    const postCallDropdowns = document.querySelectorAll('tr[role-name="Post Call"] .doctor-dropdown');
+    // For Pre Call dropdowns, excluding ones with the pre-role-weekend attribute
+    const preCallDropdowns = document.querySelectorAll('tr[role-name="Pre Call"] .doctor-dropdown:not([pre-role-weekend])');
 
-    const preLateDropdowns = document.querySelectorAll('tr[role-name="Pre Late"] .doctor-dropdown');
-    const postLateDropdowns = document.querySelectorAll('tr[role-name="Post Late"] .doctor-dropdown');
+    // For Post Call dropdowns, excluding ones with the post-role-weekend attribute
+    const postCallDropdowns = document.querySelectorAll('tr[role-name="Post Call"] .doctor-dropdown:not([post-role-weekend])');
+
+    // For Pre Late dropdowns, excluding ones with the pre-role-weekend attribute
+    const preLateDropdowns = document.querySelectorAll('tr[role-name="Pre Late"] .doctor-dropdown:not([pre-role-weekend])');
+
+    // For Post Late dropdowns, excluding ones with the post-role-weekend attribute
+    const postLateDropdowns = document.querySelectorAll('tr[role-name="Post Late"] .doctor-dropdown:not([post-role-weekend])');
 
     preCallDropdowns.forEach(dropdown => dropdown.disabled = true);
     postCallDropdowns.forEach(dropdown => dropdown.disabled = true);
@@ -164,13 +170,14 @@ function handleDropdownChange(dropdown) {
     dropdown.addEventListener('change', function (event, isRecursive = false) {
         const currentValue = this.value;
         const currentDay = this.getAttribute('data-day');
+
         const prevDay = getPrevDay(currentDay);
         const nextDay = getNextDay(currentDay);
         const currentRow = this.closest('tr');
         const rowName = currentRow.querySelector('td').textContent.trim();
         const roleName = currentRow.getAttribute('role-name');
         const tableBody = document.querySelector("#scheduleTable tbody");
-
+        console.log(rowName, roleName)
         if (rowName === "Call" || rowName === "Late") {
             const prevRole = rowName === "Call" ? "Pre Call" : "Pre Late";
             const nextRole = rowName === "Call" ? "Post Call" : "Post Late";
@@ -280,7 +287,7 @@ function calculateAssignedCounts(day) {
 }
 
 function updateFooterCounts(day = null, currentValue = null, prevValue = null, roleName = null) {
-    const days = day ? [day] : ["mon", "tue", "wed", "thu", "fri"];
+    const days = day ? [day] : ["MON", "TUE", "WED", "THU", "FRI"];
 
     days.forEach(day => {
         const preassigned = calculateAssignedCounts(day);
@@ -328,7 +335,7 @@ function generateJSONFromTable() {
     // Create the JSON content for pre-allocated schedule and off-site schedule
     const preAllocatedData = [];
     const requestedData = [];
-    const offsite = [];
+    const offsite = {};
 
     // Create a JSON structure for unassigned names
     const unassignedName = {};
@@ -350,7 +357,19 @@ function generateJSONFromTable() {
 
         // if roles starts with vacation or offsite, add to offsite array
         if (row.classList.contains('group-offsite')) {
-            offsite.push(rowObj);
+            const group = row.getAttribute('group'); // Get the 'group' attribute
+            if (!offsite[group]) {
+                offsite[group] = {};
+                WEEKDAYS.forEach(day => {
+                    offsite[group][day] = [];
+                });
+            }
+            const columns = Array.from(row.querySelectorAll('.doctor-dropdown'));
+            WEEKDAYS.forEach((day, index) => {
+                if (columns[index].value) {
+                    offsite[group][day].push(columns[index].value);
+                }
+            });
 
         } else if (row.classList.contains('group-requested')) {
             requestedData.push(rowObj);
@@ -457,6 +476,6 @@ saveButton.addEventListener('click', () => {
 });
 
 // Initially disable all dropdowns for "Gill" and "Vacation" groups
-document.querySelectorAll('.group-offsite:not(.group-offsite-first) .doctor-dropdown').forEach(dropdown => {
+document.querySelectorAll('.group-offsite:not(.first-in-group) .doctor-dropdown').forEach(dropdown => {
     dropdown.disabled = true;
 });

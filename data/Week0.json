@@ -45,7 +45,7 @@
       "TT"
     ]
   },
-  "transition-shift-roles": [
+  "preAllocated": [
     {
       "role": "Post CVCC",
       "MON": "",
@@ -85,9 +85,7 @@
       "WED": "ES",
       "THU": "SL",
       "FRI": "AY"
-    }
-    ],
-  "shift-roles": [
+    },
     {
       "role": "Late",
       "MON": "RR",
@@ -219,94 +217,87 @@
       "FRI": ""
     }
   ],
-  "offsite": [
-    {
-      "role": "West",
-      "MON": "MC",
-      "TUE": "JM",
-      "WED": "JM",
-      "THU": "JM",
-      "FRI": "JM"
+  "offsite": {
+    "West": {
+      "MON": [
+        "MC"
+      ],
+      "TUE": [
+        "JM"
+      ],
+      "WED": [
+        "JM"
+      ],
+      "THU": [
+        "JM"
+      ],
+      "FRI": [
+        "JM"
+      ]
     },
-    {
-      "role": "Gill 1",
-      "MON": "TI",
-      "TUE": "TI",
-      "WED": "TI",
-      "THU": "TI",
-      "FRI": "TI"
+    "Gill": {
+      "MON": [
+        "TI",
+        "MI",
+        "MA"
+      ],
+      "TUE": [
+        "TI",
+        "MI",
+        "MA"
+      ],
+      "WED": [
+        "TI",
+        "MI",
+        "MA"
+      ],
+      "THU": [
+        "TI",
+        "MI",
+        "MA"
+      ],
+      "FRI": [
+        "TI",
+        "MI",
+        "MA"
+      ]
     },
-    {
-      "role": "Gill 2",
-      "MON": "MI",
-      "TUE": "MI",
-      "WED": "MI",
-      "THU": "MI",
-      "FRI": "MI"
-    },
-    {
-      "role": "Gill 3",
-      "MON": "MA",
-      "TUE": "MA",
-      "WED": "MA",
-      "THU": "MA",
-      "FRI": "MA"
-    },
-    {
-      "role": "Gill 4",
-      "MON": "",
-      "TUE": "",
-      "WED": "",
-      "THU": "",
-      "FRI": ""
-    },
-    {
-      "role": "Vacation 1",
-      "MON": "CM",
-      "TUE": "CM",
-      "WED": "CM",
-      "THU": "CM",
-      "FRI": "CM"
-    },
-    {
-      "role": "Vacation 2",
-      "MON": "FM",
-      "TUE": "FM",
-      "WED": "FM",
-      "THU": "FM",
-      "FRI": "FM"
-    },
-    {
-      "role": "Vacation 3",
-      "MON": "SK",
-      "TUE": "SK",
-      "WED": "SK",
-      "THU": "SK",
-      "FRI": "SK"
-    },
-    {
-      "role": "Vacation 4",
-      "MON": "JT",
-      "TUE": "JT",
-      "WED": "JT",
-      "THU": "JT",
-      "FRI": "JT"
-    },
-    {
-      "role": "Vacation 5",
-      "MON": "DN",
-      "TUE": "DN",
-      "WED": "DN",
-      "THU": "DN",
-      "FRI": "DN"
-    },
-    {
-      "role": "Vacation 6",
-      "MON": "",
-      "TUE": "",
-      "WED": "",
-      "THU": "",
-      "FRI": ""
+    "Vacation": {
+      "MON": [
+        "CM",
+        "FM",
+        "SK",
+        "JT",
+        "DN"
+      ],
+      "TUE": [
+        "CM",
+        "FM",
+        "SK",
+        "JT",
+        "DN"
+      ],
+      "WED": [
+        "CM",
+        "FM",
+        "SK",
+        "JT",
+        "DN"
+      ],
+      "THU": [
+        "CM",
+        "FM",
+        "SK",
+        "JT",
+        "DN"
+      ],
+      "FRI": [
+        "CM",
+        "FM",
+        "SK",
+        "JT",
+        "DN"
+      ]
     }
-  ]
+  }
 }
