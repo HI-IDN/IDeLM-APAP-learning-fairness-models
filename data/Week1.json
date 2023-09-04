@@ -4,70 +4,70 @@
       "AY",
       "BK",
       "CC",
+      "CM",
       "DN",
       "ES",
-      "JM",
+      "FM",
       "KC",
-      "MC",
-      "RR",
-      "SL",
-      "TI",
+      "MI",
+      "SK",
       "TT"
     ],
     "TUE": [
       "AY",
-      "BK",
+      "CA",
       "CC",
+      "CM",
       "DN",
       "ES",
       "FM",
-      "KC",
+      "JT",
       "MC",
-      "RR",
-      "SL",
-      "TI",
+      "MI",
+      "SK",
       "TT"
     ],
     "WED": [
-      "AY",
       "BK",
       "CA",
       "CC",
+      "CM",
       "DN",
       "ES",
       "FM",
-      "KC",
+      "JT",
       "MC",
+      "MI",
       "RR",
-      "SL",
-      "TI"
+      "SK",
+      "TT"
     ],
     "THU": [
-      "AY",
+      "BK",
       "CA",
       "CC",
+      "CM",
       "DN",
       "ES",
       "FM",
-      "JM",
-      "KC",
-      "MC",
-      "RR",
-      "SL",
-      "TI"
+      "JT",
+      "MI",
+      "SK",
+      "TT"
     ],
     "FRI": [
       "AY",
       "CA",
       "CC",
+      "CM",
       "DN",
       "ES",
       "FM",
-      "JM",
+      "JT",
       "KC",
+      "MI",
       "RR",
-      "SL",
-      "TI"
+      "SK"
     ]
   },
   "preAllocated": {
@@ -80,48 +80,48 @@
         "FRI": ""
       },
       "Post Call": {
-        "MON": "SL",
-        "TUE": "CA",
-        "WED": "AY",
+        "MON": "CA",
+        "TUE": "BK",
+        "WED": "FM",
         "THU": "KC",
-        "FRI": "TT"
+        "FRI": "AY"
       },
       "Post Holiday": {
-        "MON": "FM",
+        "MON": "ES",
         "TUE": "",
         "WED": "",
         "THU": "",
         "FRI": ""
       },
       "Post Late": {
-        "MON": "SK",
+        "MON": "JT",
         "TUE": "RR",
-        "WED": "JM",
-        "THU": "DN",
-        "FRI": "BK"
+        "WED": "CM",
+        "THU": "ES",
+        "FRI": "RR"
       },
       "Pre Call": {
-        "MON": "AY",
+        "MON": "FM",
         "TUE": "KC",
-        "WED": "TT",
-        "THU": "RR",
-        "FRI": "CC"
+        "WED": "AY",
+        "THU": "MC",
+        "FRI": "TT"
       }
     },
     "shiftRoles": {
       "Late": {
         "MON": "RR",
-        "TUE": "JM",
-        "WED": "DN",
-        "THU": "BK",
-        "FRI": "MC"
+        "TUE": "CM",
+        "WED": "ES",
+        "THU": "RR",
+        "FRI": "BK"
       },
       "Call": {
-        "MON": "CA",
-        "TUE": "AY",
+        "MON": "BK",
+        "TUE": "FM",
         "WED": "KC",
-        "THU": "TT",
-        "FRI": "RR"
+        "THU": "AY",
+        "FRI": "MC"
       },
       "CVCC": {
         "MON": "",
@@ -222,6 +222,9 @@
   },
   "offsite": {
     "West": {
+      "MON": [
+        "MC"
+      ],
       "TUE": [
         "SK"
       ],
@@ -237,65 +240,65 @@
     },
     "Gill": {
       "MON": [
-        "TI",
-        "MA",
-        "MI"
+        "MI",
+        "JJ",
+        "TI"
       ],
       "TUE": [
-        "TI",
-        "MA",
-        "MI"
+        "MI",
+        "JJ",
+        "TI"
       ],
       "WED": [
-        "TI",
-        "MA",
-        "MI"
+        "MI",
+        "JJ",
+        "TI"
       ],
       "THU": [
-        "TI",
-        "MA",
-        "MI"
+        "MI",
+        "JJ",
+        "TI"
       ],
       "FRI": [
-        "TI",
-        "MA",
-        "MI"
+        "MI",
+        "JJ",
+        "TI"
       ]
     },
     "Vacation": {
       "MON": [
+        "MA",
         "DD",
-        "JT",
-        "JJ",
-        "CM",
+        "JM",
+        "SL",
         "KK"
       ],
       "TUE": [
+        "MA",
         "DD",
-        "JT",
-        "JJ",
-        "CM",
+        "JM",
+        "SL",
         "KK"
       ],
       "WED": [
+        "MA",
         "DD",
-        "JT",
-        "JJ",
-        "CM",
+        "JM",
+        "SL",
         "KK"
       ],
       "THU": [
+        "MA",
         "DD",
-        "JT",
-        "JJ",
-        "CM",
+        "JM",
+        "SL",
         "KK"
       ],
       "FRI": [
+        "MA",
         "DD",
-        "JT",
-        "JJ",
-        "CM",
+        "JM",
+        "SL",
         "KK"
       ]
     }

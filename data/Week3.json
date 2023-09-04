@@ -1,73 +1,56 @@
 {
   "unassignedPerDay": {
     "MON": [
-      "AY",
       "BK",
-      "CC",
-      "DN",
-      "ES",
-      "JM",
-      "KC",
-      "MC",
+      "CA",
+      "CM",
+      "DD",
+      "JJ",
+      "MA",
+      "MI",
       "RR",
-      "SL",
-      "TI",
-      "TT"
+      "SK"
     ],
     "TUE": [
       "AY",
-      "BK",
-      "CC",
-      "DN",
-      "ES",
-      "FM",
-      "KC",
-      "MC",
+      "CM",
+      "DD",
+      "MA",
       "RR",
+      "SK",
       "SL",
-      "TI",
-      "TT"
+      "MI"
     ],
     "WED": [
       "AY",
-      "BK",
-      "CA",
-      "CC",
-      "DN",
-      "ES",
+      "CM",
+      "DD",
       "FM",
       "KC",
-      "MC",
-      "RR",
-      "SL",
-      "TI"
+      "MA",
+      "MI",
+      "SL"
     ],
     "THU": [
       "AY",
       "CA",
-      "CC",
-      "DN",
+      "DD",
       "ES",
       "FM",
-      "JM",
-      "KC",
-      "MC",
-      "RR",
-      "SL",
-      "TI"
+      "JJ",
+      "MA",
+      "MI",
+      "SL"
     ],
     "FRI": [
       "AY",
-      "CA",
-      "CC",
-      "DN",
+      "BK",
+      "DD",
       "ES",
       "FM",
-      "JM",
-      "KC",
-      "RR",
-      "SL",
-      "TI"
+      "JJ",
+      "SK",
+      "SL"
     ]
   },
   "preAllocated": {
@@ -81,47 +64,47 @@
       },
       "Post Call": {
         "MON": "SL",
-        "TUE": "CA",
-        "WED": "AY",
-        "THU": "KC",
-        "FRI": "TT"
+        "TUE": "FM",
+        "WED": "ES",
+        "THU": "BK",
+        "FRI": "RR"
       },
       "Post Holiday": {
-        "MON": "FM",
+        "MON": "",
         "TUE": "",
         "WED": "",
         "THU": "",
         "FRI": ""
       },
       "Post Late": {
-        "MON": "SK",
-        "TUE": "RR",
-        "WED": "JM",
-        "THU": "DN",
-        "FRI": "BK"
-      },
-      "Pre Call": {
         "MON": "AY",
         "TUE": "KC",
-        "WED": "TT",
-        "THU": "RR",
-        "FRI": "CC"
+        "WED": "JJ",
+        "THU": "SK",
+        "FRI": "KC"
+      },
+      "Pre Call": {
+        "MON": "ES",
+        "TUE": "BK",
+        "WED": "RR",
+        "THU": "CM",
+        "FRI": "MI"
       }
     },
     "shiftRoles": {
       "Late": {
-        "MON": "RR",
-        "TUE": "JM",
-        "WED": "DN",
-        "THU": "BK",
-        "FRI": "MC"
+        "MON": "KC",
+        "TUE": "JJ",
+        "WED": "SK",
+        "THU": "KC",
+        "FRI": "CA"
       },
       "Call": {
-        "MON": "CA",
-        "TUE": "AY",
-        "WED": "KC",
-        "THU": "TT",
-        "FRI": "RR"
+        "MON": "FM",
+        "TUE": "ES",
+        "WED": "BK",
+        "THU": "RR",
+        "FRI": "CM"
       },
       "CVCC": {
         "MON": "",
@@ -157,7 +140,7 @@
       },
       "Peel 4": {
         "MON": "",
-        "TUE": "",
+        "TUE": "MI",
         "WED": "",
         "THU": "",
         "FRI": ""
@@ -213,89 +196,91 @@
       }
     },
     "admin": {
-      "MON": [],
-      "TUE": [],
-      "WED": [],
-      "THU": [],
-      "FRI": []
+      "MON": [
+        "JM"
+      ],
+      "TUE": [
+        "CA"
+      ],
+      "WED": [
+        "CA"
+      ],
+      "THU": [
+        "JM"
+      ],
+      "FRI": [
+        "MA"
+      ]
     }
   },
   "offsite": {
     "West": {
       "TUE": [
-        "SK"
+        "JM"
       ],
       "WED": [
-        "SK"
-      ],
-      "THU": [
-        "SK"
+        "JM"
       ],
       "FRI": [
-        "SK"
+        "JM"
       ]
     },
     "Gill": {
       "MON": [
         "TI",
-        "MA",
-        "MI"
+        "CC"
       ],
       "TUE": [
         "TI",
-        "MA",
-        "MI"
+        "CC"
       ],
       "WED": [
         "TI",
-        "MA",
-        "MI"
+        "CC"
       ],
       "THU": [
         "TI",
-        "MA",
-        "MI"
+        "CC"
       ],
       "FRI": [
         "TI",
-        "MA",
-        "MI"
+        "CC"
       ]
     },
     "Vacation": {
       "MON": [
-        "DD",
+        "MC",
+        "TT",
+        "DN",
         "JT",
-        "JJ",
-        "CM",
         "KK"
       ],
       "TUE": [
-        "DD",
+        "MC",
+        "TT",
+        "DN",
         "JT",
-        "JJ",
-        "CM",
         "KK"
       ],
       "WED": [
-        "DD",
+        "MC",
+        "TT",
+        "DN",
         "JT",
-        "JJ",
-        "CM",
         "KK"
       ],
       "THU": [
-        "DD",
+        "MC",
+        "TT",
+        "DN",
         "JT",
-        "JJ",
-        "CM",
         "KK"
       ],
       "FRI": [
-        "DD",
+        "MC",
+        "TT",
+        "DN",
         "JT",
-        "JJ",
-        "CM",
         "KK"
       ]
     }
