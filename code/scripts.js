@@ -458,7 +458,7 @@ saveButton.addEventListener('click', () => {
         return;
     }
 
-    const jsonContent = JSON.stringify(data, null, 2); // Use 2-space indent for initial formatting
+    const jsonContent = JSON.stringify(jsonData, null, 2); // Use 2-space indent for initial formatting
     let mimeType = 'application/json;charset=utf-8;';
 
     // Prompt the user for a filename
@@ -639,7 +639,7 @@ function isValidJSON(data) {
 document.getElementById('clearButton').addEventListener('click', function () {
     const isSure = confirm("Are you sure you want to clear all?");
     if (isSure) {
-        console.log('User asked to clear the table')
+        console.warn('User asked to clear the table')
         clearTable();
     } else console.log('User cancelled clearing the table')
 });
@@ -669,12 +669,15 @@ function clearTable() {
     document.querySelectorAll('.group-offsite:not(.first-in-group) .doctor-dropdown').forEach(dropdown => {
         dropdown.disabled = true;
     });
+    console.log('Table cleared');
 }
 
 
 function updateTableWithData(data) {
     // Clear the existing rows, or however you wish to handle merging/overwriting
     clearTable();
+    console.log('Updating table with data');
+
     const tableBody = document.querySelector("#scheduleTable tbody");
 
     function setDropdownValue(dropdown, value) {
@@ -731,7 +734,9 @@ function updateTableWithData(data) {
     }
 
     fillRowsForGroup('whine-zone', data.requested.whineZone);
-    fillRowsForGroupByDayArrays('whine-zone', data.requested.admin);
-    fillRowsForGroup('whine-zone', data.preAllocated.shiftRoles);
-    fillRowsForGroup('whine-zone', data.preAllocated.transitionShiftRoles);
+    fillRowsForGroupByDayArrays('admin', data.requested.admin);
+    fillRowsForGroup('shift-roles', data.preAllocated.shiftRoles);
+    fillRowsForGroup('transition-shift-roles', data.preAllocated.transitionShiftRoles);
+
+    console.log('Updating table with data complete');
 }
