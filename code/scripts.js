@@ -1,34 +1,59 @@
 // Constants for frequently accessed elements
 const STAFF_TABLE = document.getElementById('staffTable');
-let nameCount = 0;
+let STAFF_MEMBERS = [];
 const WEEKDAYS = ["MON", "TUE", "WED", "THU", "FRI"]
 
+
+// Initial Calls
+async function init() {
+    await fetchCSVAndPopulateStaffTable();
+    populateStaffMemberDropdowns();
+    clearTable();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+
 // CSV Fetching and Table Populating
-function fetchCSVAndPopulate() {
-    fetch('data/staff.csv')
-        .then(response => response.text())
-        .then(data => {
-            populateTable(data.split('\n').slice(1)); // Skip header row
-            setStaffCounts();
-            updateFooterCounts();
-        });
+async function fetchCSVAndPopulateStaffTable() {
+    const response = await fetch('data/staff.csv');
+    const data = await response.text();
+    const rows = data.split('\n').slice(1);  // Skip header row
+    populateTable(rows);
+}
+
+function createTableRowFromData(data) {
+    const columns = data.split(',');
+    const name = columns[0].trim();
+
+    const tr = document.createElement('tr');
+    tr.setAttribute('staff-name', name); // Set data-name attribute
+    tr.appendChild(createTableCell(name, 'bold'));
+    tr.appendChild(createBooleanTableCell(columns[1], 'cardiac'));
+    tr.appendChild(createBooleanTableCell(columns[2], 'charge'));
+    tr.appendChild(createTableCell("0", 'assg0'));
+    tr.appendChild(createTableCell("0", 'pnts0'));
+
+    return tr;
 }
 
 function populateTable(rows) {
     const tableBody = STAFF_TABLE.tBodies[0];
-    rows.forEach(row => {
-        const columns = row.split(',');
-        const name = columns[0].trim();
-        const tr = document.createElement('tr');
 
-        tr.setAttribute('staff-name', name); // Set data-name attribute
-        tr.appendChild(createTableCell(name, 'bold'));
-        tr.appendChild(createBooleanTableCell(columns[1], 'cardiac'));
-        tr.appendChild(createBooleanTableCell(columns[2], 'charge'));
-        tr.appendChild(createTableCell("0", 'assg0'));
-        tr.appendChild(createTableCell("0", 'pnts0'));
+    // Populate the STAFF_MEMBERS array
+    STAFF_MEMBERS = rows.map(row => row.split(',')[0].trim());
+    if (STAFF_MEMBERS.length == 0) console.warn('No staff members imported');
+
+    rows.forEach(row => {
+        const tr = createTableRowFromData(row);
         tableBody.appendChild(tr);
     });
+
+    const cardiacYesCount = Array.from(STAFF_TABLE.tBodies[0].rows).filter(row => row.cells[1].innerHTML.trim() !== "").length;
+    const chargeYesCount = Array.from(STAFF_TABLE.tBodies[0].rows).filter(row => row.cells[2].innerHTML.trim() !== "").length;
+
+    document.querySelector("[data-count-static='name']").textContent = STAFF_MEMBERS.length.toString();
+    document.querySelector("[data-count-static='diac']").textContent = cardiacYesCount.toString();
+    document.querySelector("[data-count-static='chrg']").textContent = chargeYesCount.toString();
 }
 
 function createTableCell(content, className) {
@@ -67,26 +92,20 @@ function sortTable(columnIndex) {
     sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
 }
 
-// Count Update
-function setStaffCounts() {
-    nameCount = STAFF_TABLE.tBodies[0].rows.length;
-    const cardiacYesCount = Array.from(STAFF_TABLE.tBodies[0].rows).filter(row => row.cells[1].innerHTML.trim() !== "").length;
-    const chargeYesCount = Array.from(STAFF_TABLE.tBodies[0].rows).filter(row => row.cells[2].innerHTML.trim() !== "").length;
-
-    document.getElementById("nameCount").textContent = nameCount.toString();
-    document.getElementById("cardiacCount").textContent = cardiacYesCount.toString();
-    document.getElementById("chargeCount").textContent = chargeYesCount.toString();
-    document.getElementById("assg0Count").textContent = "0";
-    document.getElementById("pnts0Count").textContent = "0";
-}
-
 // Dropdown Handling
-function populateDropdowns(doctorNames) {
+
+function populateStaffMemberDropdowns() {
+    // Check if staffNames array is empty
+    if (STAFF_MEMBERS.length === 0) {
+        console.warn("No staff names found. Dropdowns will not be populated.");
+        return;  // Exit the function early
+    }
+
     const dropdowns = document.querySelectorAll('.doctor-dropdown');
     dropdowns.forEach(dropdown => {
         dropdown.appendChild(createOption("", ""));  // Default option
 
-        doctorNames.forEach(name => {
+        STAFF_MEMBERS.forEach(name => {
             dropdown.appendChild(createOption(name, name));
         });
 
@@ -273,35 +292,35 @@ document.querySelectorAll('.group-header').forEach(header => {
     });
 });
 
-// Count all pre-set values
-function calculateRequestedCounts(day) {
-    return Array.from(document.querySelectorAll(`.group-admin .doctor-dropdown[data-day="${day}"], .group-whine-zone .doctor-dropdown[data-day="${day}"]`)).filter(dropdown => dropdown.value).length;
-}
-
-function calculateAssignedCounts(day) {
-    return Array.from(document.querySelectorAll(`.doctor-dropdown[data-day="${day}"]`))
-        .filter(dropdown => {
-            return dropdown.value && !dropdown.closest('.group-admin') && !dropdown.closest('.group-whine-zone');
-        }).length;
-}
-
 function updateFooterCounts(day = null, currentValue = null, prevValue = null, roleName = null) {
     const days = day ? [day] : ["MON", "TUE", "WED", "THU", "FRI"];
 
+    function calculateRequestedCounts(day) {
+        return Array.from(document.querySelectorAll(`tr[group="admin"]  .doctor-dropdown[data-day="${day}"], tr[group="whine-zone"] .doctor-dropdown[data-day="${day}"]`)).filter(dropdown => dropdown.value).length;
+    }
+
+    function calculateAssignedCounts(day) {
+        return Array.from(document.querySelectorAll(`.doctor-dropdown[data-day="${day}"]`))
+            .filter(dropdown => {
+                return dropdown.value && !dropdown.closest('tr[group="whine-zone"]') && !dropdown.closest('tr[group="whine-zone"]');
+            }).length;
+    }
+
     days.forEach(day => {
         const preassigned = calculateAssignedCounts(day);
-        document.querySelector(`.set-values-count[data-day-total="${day}"]`).textContent = preassigned.toString();
+        document.querySelector(`[data-count="set"][data-day-total="${day}"]`).textContent = preassigned.toString();
 
         const requested = calculateRequestedCounts(day);
-        document.querySelector(`.requested-values-count[data-day-total="${day}"]`).textContent = requested.toString();
+        document.querySelector(`[data-count="requested"][data-day-total="${day}"]`).textContent = requested.toString();
 
-        const unassigned = nameCount - preassigned;
-        document.querySelector(`.unset-values-count[data-day-total="${day}"]`).textContent = unassigned.toString();
+        const unassigned = STAFF_MEMBERS.length - preassigned;
+        document.querySelector(`[data-count="unset"][data-day-total="${day}"]`).textContent = unassigned.toString();
+
     });
 
     // Update the Points column if current or previous value is set
     if (currentValue || prevValue) {
-        let grandTotalPointsElem = document.getElementById('assg0Count');
+        let grandTotalPointsElem = document.querySelector('[data-count="assg0"]');
         let grandTotalPoints = parseInt(grandTotalPointsElem.textContent);
 
         // Increase the points for currentValue row in the Points column of the Staff table
@@ -311,6 +330,7 @@ function updateFooterCounts(day = null, currentValue = null, prevValue = null, r
             currentPoints.textContent = (parseInt(currentPoints.textContent) + 1).toString();
             grandTotalPoints = grandTotalPoints + 1;
         }
+
         // Decrease the points for prevValue row in the Points column of the Staff table
         if (prevValue) {
             const prevRow = document.querySelector(`tr[staff-name="${prevValue}"]`);
@@ -318,72 +338,50 @@ function updateFooterCounts(day = null, currentValue = null, prevValue = null, r
             prevPoints.textContent = (parseInt(prevPoints.textContent) - 1).toString();
             grandTotalPoints = grandTotalPoints - 1;
         }
+
         grandTotalPointsElem.textContent = grandTotalPoints.toString();  // Update the grand total in the table
     }
 }
 
-// Initial Calls
-document.addEventListener('DOMContentLoaded', () => {
-    fetchCSVAndPopulate();
-    fetch('../data/staff.csv')
-        .then(response => response.text())
-        .then(data => populateDropdowns(data.split('\n').slice(1).map(line => line.split(',')[0])));
-});
-
 function generateJSONFromTable() {
-    // Create the JSON content for pre-allocated schedule and off-site schedule
-    const shiftRolesData = [];
-    const transitionShiftRolesData = []
-    const requestedData = [];
-    const offsite = {};
 
-    // Create a JSON structure for unassigned names
-    const unassignedName = {};
+    const shiftRolesData = {};
+    const transitionShiftRolesData = {};
+    const whineZoneData = {};
+    const adminData = [];
 
-    WEEKDAYS.forEach(day => {
-        unassignedName[day] = [];  // Initializing the unassigned count for each day to an empty array
-    });
+    const offsiteData = getOffsiteGroups().reduce((acc, group) => {
+        acc[group] = [];
+        return acc;
+    }, {});
+
+    const unassignedName = WEEKDAYS.reduce((acc, day) => {
+        acc[day] = [];
+        return acc;
+    }, {});
 
     const rows = Array.from(document.querySelectorAll('.group-content'));
     rows.forEach(row => {
         const rowObj = {};
         const role = row.getAttribute('role-name'); // Get the 'role-name' attribute
 
-        rowObj["role"] = role;
         const columns = Array.from(row.querySelectorAll('.doctor-dropdown'));
         WEEKDAYS.forEach((day, index) => {
             rowObj[day] = columns[index].value;
         });
 
-        // if roles starts with vacation or offsite, add to offsite array
+        const group = row.getAttribute('group'); // Get the 'group' attribute
         if (row.classList.contains('group-offsite')) {
-            const group = row.getAttribute('group'); // Get the 'group' attribute
-            if (!offsite[group]) {
-                offsite[group] = {};
-                WEEKDAYS.forEach(day => {
-                    offsite[group][day] = [];
-                });
-            }
-            const columns = Array.from(row.querySelectorAll('.doctor-dropdown'));
-            WEEKDAYS.forEach((day, index) => {
-                if (columns[index].value) {
-                    offsite[group][day].push(columns[index].value);
-                }
-            });
+            offsiteData[group].push(rowObj);
+        } else if (group === 'admin') {
+            adminData.push(rowObj);
+        } else if (group === 'transition-shift-roles') {
+            transitionShiftRolesData[role] = rowObj;
+        } else if (group === 'shift-roles') {
+            shiftRolesData[role] = rowObj;
+        } else if (group === 'whine-zone') {
+            whineZoneData[role] = rowObj;
 
-        } else if (row.classList.contains('group-requested')) {
-            requestedData.push(rowObj);
-        } else if (row.classList.contains('group-transition-shift-roles')) {
-            transitionShiftRolesData.push(rowObj);
-        } else if (row.classList.contains('group-shift-roles')) {
-            shiftRolesData.push(rowObj);
-        } else  {
-            /* throw error */
-            console.log("Error: " + role + " unknown what data set to add to.");
-        }
-
-        if (row.classList.contains('group-whine-zone')) {
-            const columns = Array.from(row.querySelectorAll('.doctor-dropdown'));
             columns.forEach((column, index) => {
                 // if the column is not empty, add the name to the list for that day
                 if (column.value) {
@@ -404,86 +402,336 @@ function generateJSONFromTable() {
                     unassignedName[WEEKDAYS[index]] = [...uniqueValuesSet];
                 }
             });
+        } else {
+            console.error("Error: " + role + " in group " + group + " unknown what data set to add to.");
         }
     });
+
     return {
         unassignedPerDay: unassignedName,
-        preAllocated:{
+        preAllocated: {
             transitionShiftRoles: transitionShiftRolesData,
             shiftRoles: shiftRolesData
         },
-        requested: requestedData,
-        offsite: offsite
+        requested: {
+            whineZone: whineZoneData,
+            admin: adminData.reduce((acc, item) => {
+                WEEKDAYS.forEach(day => {
+                    if (item[day]) {
+                        if (!acc[day]) {
+                            acc[day] = [];
+                        }
+                        acc[day].push(item[day]);
+                    }
+                });
+                return acc;
+            }, Object.fromEntries(WEEKDAYS.map(day => [day, []])))
+        },
+        offsite: Object.keys(offsiteData).reduce((acc, groupKey) => {
+            const group = offsiteData[groupKey];
+            acc[groupKey] = group.reduce((innerAcc, item) => {
+                for (const key in item) {
+                    if (item[key]) {
+                        if (!innerAcc[key]) {
+                            innerAcc[key] = [];
+                        }
+                        innerAcc[key].push(item[key]);
+                    }
+                }
+                return innerAcc;
+            }, {});
+            return acc;
+        }, {})
     };
 }
 
+// Download Button Click Handler
+// Reference to the dropdown and button
+const saveButton = document.getElementById('saveButton');
 
-// Create a Function to Generate CSV from Table
-function generateCSVFromTable() {
-    // Create the CSV content from the table
-    const csvContent = [];
+// Add event listener to the save button
+saveButton.addEventListener('click', () => {
+    const jsonData = generateJSONFromTable();
 
-    // Add column names (days) to the first row
-    const columnNames = ['role'];
-    WEEKDAYS.forEach(day => columnNames.push(day));
-    csvContent.push(columnNames.join(','));
-
-    const rows = Array.from(document.querySelectorAll('.group-content'));
-    const csvRows = rows.map(row => {
-        const role = row.getAttribute('role-name'); // Get the 'role-name' attribute
-        const columns = Array.from(row.querySelectorAll('.doctor-dropdown'));
-        const roleAndColumns = [role, ...columns.map(column => column.value)]; // Prepend the role value
-        return roleAndColumns.join(',');
-    });
-
-    // Add the CSV rows to the content
-    csvContent.push(csvRows.join('\n'));
-
-    return csvContent.join('\n');
-}
-
-// Create a Function to Trigger Download
-function downloadFile(filename, content) {
-    // Determine the MIME type based on the file extension
-    let mimeType = 'text/plain;charset=utf-8;'; // default
-    if (filename.endsWith('.csv')) {
-        mimeType = 'text/csv;charset=utf-8;';
-    } else if (filename.endsWith('.json')) {
-        mimeType = 'application/json;charset=utf-8;';
+    if (!isValidJSON(jsonData)) {
+        console.error('JSON is invalid');
+        return;
     }
 
-    const blob = new Blob([content], {type: mimeType});
+    const jsonContent = JSON.stringify(data, null, 2); // Use 2-space indent for initial formatting
+    let mimeType = 'application/json;charset=utf-8;';
+
+    // Prompt the user for a filename
+    let filename = prompt("Enter a name for the file:", "schedule.json");
+
+    // Check if filename has been provided and if not, default to "schedule.json"
+    if (!filename) {
+        filename = "schedule.json";
+    } else if (!filename.endsWith(".json")) {
+        filename += ".json"; // Append .json if not already present
+    }
+
+    const blob = new Blob([jsonContent], {type: mimeType});
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
     link.download = filename;
     link.click();
     URL.revokeObjectURL(url);
-}
+});
 
 
-// Download Button Click Handler
-// Reference to the dropdown and button
-const formatSelect = document.getElementById('formatSelect');
-const saveButton = document.getElementById('saveButton');
+// Reference to the file input, label for displaying the filename, and the table
+const fileInput = document.getElementById('fileInput');
+const fileNameDisplay = document.getElementById('fileNameDisplay');
+const table = document.getElementById('scheduleTable');
 
-// Add event listener to the save button
-saveButton.addEventListener('click', () => {
-    const selectedFormat = formatSelect.value;
+fileInput.addEventListener('change', function () {
+    const file = fileInput.files[0];
 
-    if (selectedFormat === 'csv') {
-        const csvContent = generateCSVFromTable();
-        downloadFile('schedule.csv', csvContent);
-    } else if (selectedFormat === 'json') {
-        const jsonData = generateJSONFromTable();
-        const jsonContent = JSON.stringify(jsonData, null, 2);  // This will format the JSON with 2 spaces indentation
-        downloadFile('schedule.json', jsonContent);
-    } else {
-        console.error('Unsupported format selected.');
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            try {
+                const jsonData = JSON.parse(event.target.result);
+
+                if (isValidJSON(jsonData)) {
+                    updateTableWithData(jsonData);
+                    fileNameDisplay.textContent = `Selected: ${file.name}`;
+                } else {
+                    alert('Invalid JSON structure.');
+                }
+            } catch (e) {
+                alert('Error parsing JSON file.');
+            }
+        };
+
+        reader.onerror = function () {
+            alert('Error reading file.');
+        };
+
+        reader.readAsText(file);
     }
 });
 
-// Initially disable all dropdowns for "Gill" and "Vacation" groups
-document.querySelectorAll('.group-offsite:not(.first-in-group) .doctor-dropdown').forEach(dropdown => {
-    dropdown.disabled = true;
+function getOffsiteGroups() {
+    const matchingRows = document.querySelectorAll('#scheduleTable tr.group-content.group-offsite');
+
+    let groups = [];
+
+    matchingRows.forEach(row => {
+        const groupValue = row.getAttribute('group');
+        if (groupValue && !groups.includes(groupValue)) {
+            groups.push(groupValue);
+        }
+    });
+
+    return groups;
+}
+
+
+function isValidJSON(data) {
+
+    // Check if the object has the required properties
+    if (!data.hasOwnProperty('unassignedPerDay')
+        || !data.hasOwnProperty('preAllocated')
+        || !data.hasOwnProperty('requested')
+        || !data.hasOwnProperty('offsite')) {
+        return false;
+    }
+
+    // Validate the values of unassignedPerDay
+    for (const day in data.unassignedPerDay) {
+        if (!WEEKDAYS.includes(day)) return false; // Found an invalid day (not in the list of weekdays)
+        const dayNames = data.unassignedPerDay[day];
+        for (const name of dayNames) {
+            if (!STAFF_MEMBERS.includes(name)) {
+                return false; // Found an invalid name in the unassigned list
+            }
+        }
+    }
+
+    function validateGroupArray(groupData, groupName) {
+        for (const day in groupData) {
+            if (!WEEKDAYS.includes(day)) {
+                console.error(`Day "${day}" is not a valid day in ${groupName}`)
+                return false;
+            }
+            const dayNames = groupData[day];
+            for (const name of dayNames) {
+                if (!STAFF_MEMBERS.includes(name)) {
+                    console.error(`Name "${name}" is not a valid name in ${groupName}`)
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    function validateGroup(groupData, groupName) {
+        function getRolesByGroup(groupName) {
+            const matchingRows = document.querySelectorAll(`#scheduleTable tr[group="${groupName}"]`);
+            return [...matchingRows].reduce((acc, row) => {
+                const roleNameValue = row.getAttribute('role-name');
+                if (roleNameValue) {
+                    acc.push(roleNameValue);
+                }
+                return acc;
+            }, []);
+        }
+
+        const validRoles = getRolesByGroup(groupName);
+        for (const role of validRoles) {
+            if (!groupData[role]) {
+                console.error(`Role "${role}" missing in ${groupName}`);
+                return false;
+            }
+        }
+
+        for (const role in groupData) {
+            if (!validRoles.includes(role)) {
+                console.error(`Role "${role}" is not a valid role in ${groupName}`);
+                return false;
+            }
+            for (const day in groupData[role]) {
+                if (!WEEKDAYS.includes(day)) {
+                    console.error(`Day "${day}" is not a valid day in ${groupName}`);
+                    return false;
+                }
+                const name = groupData[role][day];
+                if (name !== "" && !STAFF_MEMBERS.includes(name)) {
+                    console.error(`Name "${name}" is not a valid name in ${groupName}`);
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    // Check if the offsite object has the required properties
+    const offsiteGroups = getOffsiteGroups();
+    for (const site in data.offsite) {
+        if (!offsiteGroups.includes(site)) {
+            console.error(`Site "${site}" is not a valid offsite group`);
+            return false;
+        }
+        if (!validateGroupArray(data.offsite[site], site)) return false;
+    }
+
+    // Check if the preAllocated object has the required properties
+    if (!data.preAllocated) return false;
+
+    if (!validateGroup(data.preAllocated.transitionShiftRoles, 'transition-shift-roles')) return false;
+
+    if (!validateGroup(data.preAllocated.shiftRoles, 'shift-roles')) return false;
+
+    // Check if the requested object has the required properties
+    if (!data.requested) return false;
+    if (!validateGroup(data.requested.whineZone, 'whine-zone')) return false;
+
+    if (!validateGroupArray(data.requested.admin, 'admin')) return false;
+
+    console.log('JSON is valid')
+    return true;
+}
+
+document.getElementById('clearButton').addEventListener('click', function () {
+    const isSure = confirm("Are you sure you want to clear all?");
+    if (isSure) {
+        console.log('User asked to clear the table')
+        clearTable();
+    } else console.log('User cancelled clearing the table')
 });
+
+function clearTable() {
+    const tableBody = document.querySelector("#scheduleTable tbody");
+
+    // 1. Reset the dropdowns to their default value.
+    const dropdowns = tableBody.querySelectorAll('select');
+    dropdowns.forEach((dropdown) => {
+        dropdown.selectedIndex = 0;
+    });
+
+    // 2. Enable all values in the dropdowns.
+    const dropdownOptions = tableBody.querySelectorAll('select option');
+    dropdownOptions.forEach((option) => {
+        option.removeAttribute('disabled');
+    });
+
+    // 3. Reset the summary counts to 0 based on data-count attribute.
+    const countElements = document.querySelectorAll("#staffTable [data-count], #scheduleTable [data-count]");
+    countElements.forEach((element) => {
+        element.textContent = "0";
+    });
+
+    // 4. Disable all offsite dropdown rows that aren't the first in group
+    document.querySelectorAll('.group-offsite:not(.first-in-group) .doctor-dropdown').forEach(dropdown => {
+        dropdown.disabled = true;
+    });
+}
+
+
+function updateTableWithData(data) {
+    // Clear the existing rows, or however you wish to handle merging/overwriting
+    clearTable();
+    const tableBody = document.querySelector("#scheduleTable tbody");
+
+    function setDropdownValue(dropdown, value) {
+        const option = [...dropdown.options].find(opt => opt.value === value);
+        if (option) {
+            option.selected = true;
+            dropdown.dispatchEvent(new Event('change', {'bubbles': true}));
+        } else {
+            console.error(`Option with value "${value}" not found in dropdown`);
+        }
+    }
+
+    function fillRowsForGroupByDayArrays(groupName, groupData) {
+        const rows = tableBody.querySelectorAll(`tr[group="${groupName}"]`);
+        for (const day in groupData) {
+            let columnIndex = WEEKDAYS.indexOf(day) + 1;
+            groupData[day].forEach((role, rowIndex) => {
+                if (rows[rowIndex]) {
+                    const cell = rows[rowIndex].cells[columnIndex];
+                    const dropdown = cell.querySelector('.doctor-dropdown');
+                    if (dropdown) {
+                        setDropdownValue(dropdown, role);
+                    }
+                }
+            });
+        }
+    }
+
+    function fillDropdownForRole(roleName, roleData) {
+        const row = tableBody.querySelector(`tr[role-name="${roleName}"]`);
+        if (!row) {
+            console.error(`Row not found for ${roleName}`);
+            return;
+        }
+        for (const day in roleData) {
+            const dropdown = row.querySelector(`.doctor-dropdown[data-day="${day}"]`);
+            if (dropdown) {
+                setDropdownValue(dropdown, roleData[day]);
+            } else {
+                console.error(`Dropdown not found for ${roleName} on ${day}`)
+            }
+        }
+    }
+
+    function fillRowsForGroup(groupName, groupData) {
+        for (const roleName in groupData) {
+            fillDropdownForRole(roleName, groupData[roleName]);
+        }
+    }
+
+    //
+    for (const site in data.offsite) {
+        fillRowsForGroupByDayArrays(site, data.offsite[site]);
+    }
+
+    fillRowsForGroup('whine-zone', data.requested.whineZone);
+    fillRowsForGroupByDayArrays('whine-zone', data.requested.admin);
+    fillRowsForGroup('whine-zone', data.preAllocated.shiftRoles);
+    fillRowsForGroup('whine-zone', data.preAllocated.transitionShiftRoles);
+}

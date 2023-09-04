@@ -111,6 +111,14 @@ th, td {
     border-radius: 5px;
     cursor: pointer;
     outline: none; /* Removes the default focus outline */
+    font-size: 14px;
+}
+.save-button:hover, #formatSelect:hover {
+    background-color: #45a049;
+}
+label[for="fileInput"] {
+    /* ... other styles ... */
+    font-size: 14px; /* Adjust this value to match your other buttons */
 }
 
 #formatSelect {
@@ -123,6 +131,4 @@ th, td {
     padding-right: 30px; /* Add some padding so text doesn't overlap the icon */
 }
 
-.save-button:hover, #formatSelect:hover {
-    background-color: #45a049;
-}
+

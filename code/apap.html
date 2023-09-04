@@ -27,11 +27,11 @@
             </tbody>
             <tfoot>
             <tr>
-                <td id="nameCount">0</td>
-                <td id="cardiacCount">0</td>
-                <td id="chargeCount">0</td>
-                <td id="assg0Count">0</td>
-                <td id="pnts0Count">0</td>
+                <td data-count-static="name"></td>
+                <td data-count-static="diac"></td>
+                <td data-count-static="chrg"></td>
+                <td data-count="assg0"></td>
+                <td data-count="pnts0"></td>
             </tr>
             </tfoot>
         </table>
@@ -55,7 +55,7 @@
             <tr class="group-header">
                 <td colspan="6">Transition Shift Roles</td>
             </tr>
-            <tr role-name="Post CVCC" class="group-content group-transition-shift-roles">
+            <tr role-name="Post CVCC" class="group-content" group="transition-shift-roles">
                 <td>Post CVCC</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select></td>
@@ -63,7 +63,7 @@
                 <td><select class="doctor-dropdown" data-day="THU"></select></td>
                 <td><select class="doctor-dropdown" data-day="FRI"></select></td>
             </tr>
-            <tr role-name="Post Call" class="group-content group-transition-shift-roles"
+            <tr role-name="Post Call" class="group-content" group="transition-shift-roles"
                 title="This role is automatically set based on the 'Call' role selection.">
                 <td>Post Call</td>
                 <td><select class="doctor-dropdown" data-day="MON" post-role-weekend></select></td>
@@ -72,7 +72,7 @@
                 <td><select class="doctor-dropdown" data-day="THU"></select></td>
                 <td><select class="doctor-dropdown" data-day="FRI"></select></td>
             </tr>
-            <tr role-name="Post Holiday" class="group-content group-transition-shift-roles">
+            <tr role-name="Post Holiday" class="group-content" group="transition-shift-roles">
                 <td title="This includes weekends">Post Holiday</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select></td>
@@ -80,7 +80,7 @@
                 <td><select class="doctor-dropdown" data-day="THU"></select></td>
                 <td><select class="doctor-dropdown" data-day="FRI"></select></td>
             </tr>
-            <tr role-name="Post Late" class="group-content group-transition-shift-roles"
+            <tr role-name="Post Late" class="group-content" group="transition-shift-roles"
                 title="This role is automatically set based on the 'Late' role selection.">
                 <td>Post Late</td>
                 <td><select class="doctor-dropdown" data-day="MON" post-role-weekend></select></td>
@@ -89,7 +89,7 @@
                 <td><select class="doctor-dropdown" data-day="THU"></select></td>
                 <td><select class="doctor-dropdown" data-day="FRI"></select></td>
             </tr>
-            <tr role-name="Pre Call" class="group-content group-transition-shift-roles"
+            <tr role-name="Pre Call" class="group-content" group="transition-shift-roles"
                 title="This role is automatically set based on the 'Call' role selection.">
                 <td>Pre Call</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select></td>
@@ -102,8 +102,8 @@
             <tr class="group-header">
                 <td colspan="6">Whine Zone</td>
             </tr>
-            <tr role-name="Peel 1" class="group-content group-whine-zone group-requested">
-                <td></td>
+            <tr role-name="Peel 1" class="group-content group-requested" group="whine-zone">
+                <td>1st</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select><span
                         class="cell-content optimized-value"></span></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select><span
@@ -115,8 +115,8 @@
                 <td><select class="doctor-dropdown" data-day="FRI"></select><span
                         class="cell-content optimized-value"></span></td>
             </tr>
-            <tr role-name="Peel 2" class="group-content group-whine-zone group-requested">
-                <td></td>
+            <tr role-name="Peel 2" class="group-content group-requested" group="whine-zone">
+                <td>2nd</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select><span
                         class="cell-content optimized-value"></span></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select><span
@@ -128,8 +128,8 @@
                 <td><select class="doctor-dropdown" data-day="FRI"></select><span
                         class="cell-content optimized-value"></span></td>
             </tr>
-            <tr role-name="Peel 3" class="group-content group-whine-zone group-requested">
-                <td></td>
+            <tr role-name="Peel 3" class="group-content group-requested" group="whine-zone">
+                <td>3rd</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select><span
                         class="cell-content optimized-value"></span></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select><span
@@ -141,8 +141,8 @@
                 <td><select class="doctor-dropdown" data-day="FRI"></select><span
                         class="cell-content optimized-value"></span></td>
             </tr>
-            <tr role-name="Peel 4" class="group-content group-whine-zone group-requested">
-                <td></td>
+            <tr role-name="Peel 4" class="group-content group-requested" group="whine-zone">
+                <td>4th</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select><span
                         class="cell-content optimized-value"></span></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select><span
@@ -154,8 +154,8 @@
                 <td><select class="doctor-dropdown" data-day="FRI"></select><span
                         class="cell-content optimized-value"></span></td>
             </tr>
-            <tr role-name="Peel 5" class="group-content group-whine-zone group-requested">
-                <td></td>
+            <tr role-name="Peel 5" class="group-content group-requested" group="whine-zone">
+                <td>5th</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select><span
                         class="cell-content optimized-value"></span></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select><span
@@ -167,8 +167,8 @@
                 <td><select class="doctor-dropdown" data-day="FRI"></select><span
                         class="cell-content optimized-value"></span></td>
             </tr>
-            <tr role-name="Peel 6" class="group-content group-whine-zone group-requested">
-                <td></td>
+            <tr role-name="Peel 6" class="group-content group-requested" group="whine-zone">
+                <td>6th</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select><span
                         class="cell-content optimized-value"></span></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select><span
@@ -180,8 +180,8 @@
                 <td><select class="doctor-dropdown" data-day="FRI"></select><span
                         class="cell-content optimized-value"></span></td>
             </tr>
-            <tr role-name="Peel 7" class="group-content group-whine-zone group-requested">
-                <td></td>
+            <tr role-name="Peel 7" class="group-content group-requested" group="whine-zone">
+                <td>7th</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select><span
                         class="cell-content optimized-value"></span></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select><span
@@ -193,8 +193,8 @@
                 <td><select class="doctor-dropdown" data-day="FRI"></select><span
                         class="cell-content optimized-value"></span></td>
             </tr>
-            <tr role-name="Peel 8" class="group-content group-whine-zone group-requested">
-                <td></td>
+            <tr role-name="Peel 8" class="group-content group-requested" group="whine-zone">
+                <td>8th</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select><span
                         class="cell-content optimized-value"></span></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select><span
@@ -206,8 +206,8 @@
                 <td><select class="doctor-dropdown" data-day="FRI"></select><span
                         class="cell-content optimized-value"></span></td>
             </tr>
-            <tr role-name="Peel 9" class="group-content group-whine-zone group-requested">
-                <td></td>
+            <tr role-name="Peel 9" class="group-content group-requested" group="whine-zone">
+                <td>9th</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select><span
                         class="cell-content optimized-value"></span></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select><span
@@ -219,8 +219,8 @@
                 <td><select class="doctor-dropdown" data-day="FRI"></select><span
                         class="cell-content optimized-value"></span></td>
             </tr>
-            <tr role-name="Peel 10" class="group-content group-whine-zone group-requested">
-                <td></td>
+            <tr role-name="Peel 10" class="group-content group-requested" group="whine-zone">
+                <td>10th</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select><span
                         class="cell-content optimized-value"></span></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select><span
@@ -232,8 +232,8 @@
                 <td><select class="doctor-dropdown" data-day="FRI"></select><span
                         class="cell-content optimized-value"></span></td>
             </tr>
-            <tr role-name="Peel 11" class="group-content group-whine-zone group-requested">
-                <td></td>
+            <tr role-name="Peel 11" class="group-content group-requested" group="whine-zone">
+                <td>11th</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select><span
                         class="cell-content optimized-value"></span></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select><span
@@ -249,7 +249,7 @@
             <tr class="group-header">
                 <td colspan="6">Shift Roles</td>
             </tr>
-            <tr role-name="Late" class="group-shift-roles group-content">
+            <tr role-name="Late" class="group-content" group="shift-roles">
                 <td>Late</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select></td>
@@ -257,7 +257,7 @@
                 <td><select class="doctor-dropdown" data-day="THU"></select></td>
                 <td><select class="doctor-dropdown" data-day="FRI"></select></td>
             </tr>
-            <tr role-name="Call" class="group-shift-roles group-content">
+            <tr role-name="Call" class="group-content" group="shift-roles">
                 <td>Call</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select></td>
@@ -265,7 +265,7 @@
                 <td><select class="doctor-dropdown" data-day="THU"></select></td>
                 <td><select class="doctor-dropdown" data-day="FRI"></select></td>
             </tr>
-            <tr role-name="CVCC" class="group-content group-shift-roles">
+            <tr role-name="CVCC" class="group-content" group="shift-roles">
                 <td title="Cardiovascular Critical Care">CVCC</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select></td>
@@ -277,7 +277,7 @@
             <tr class="group-header">
                 <td colspan="6">Admin Roles</td>
             </tr>
-            <tr role-name="Admin 1" class="group-content group-admin group-requested">
+            <tr role-name="Admin 1" class="group-content group-requested" group="admin">
                 <td>Admin</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select></td>
@@ -285,7 +285,7 @@
                 <td><select class="doctor-dropdown" data-day="THU"></select></td>
                 <td><select class="doctor-dropdown" data-day="FRI"></select></td>
             </tr>
-            <tr role-name="Admin 2" class="group-content group-admin group-requested">
+            <tr role-name="Admin 2" class="group-content group-requested" group="admin">
                 <td>Admin</td>
                 <td><select class="doctor-dropdown" data-day="MON"></select></td>
                 <td><select class="doctor-dropdown" data-day="TUE"></select></td>
@@ -395,39 +395,39 @@
             <tfoot>
             <tr>
                 <td>Preassigned</td>
-                <td><span class="set-values-count" data-day-total="MON">0</span></td>
-                <td><span class="set-values-count" data-day-total="TUE">0</span></td>
-                <td><span class="set-values-count" data-day-total="WED">0</span></td>
-                <td><span class="set-values-count" data-day-total="THU">0</span></td>
-                <td><span class="set-values-count" data-day-total="FRI">0</span></td>
+                <td data-day-total="MON" data-count="set"></td>
+                <td data-day-total="TUE" data-count="set"></td>
+                <td data-day-total="WED" data-count="set"></td>
+                <td data-day-total="THU" data-count="set"></td>
+                <td data-day-total="FRI" data-count="set"></td>
             </tr>
             <tr>
                 <td>Requested</td>
-                <td><span class="requested-values-count" data-day-total="MON">0</span></td>
-                <td><span class="requested-values-count" data-day-total="TUE">0</span></td>
-                <td><span class="requested-values-count" data-day-total="WED">0</span></td>
-                <td><span class="requested-values-count" data-day-total="THU">0</span></td>
-                <td><span class="requested-values-count" data-day-total="FRI">0</span></td>
+                <td data-day-total="MON" data-count="requested"></td>
+                <td data-day-total="TUE" data-count="requested"></td>
+                <td data-day-total="WED" data-count="requested"></td>
+                <td data-day-total="THU" data-count="requested"></td>
+                <td data-day-total="FRI" data-count="requested"></td>
             </tr>
             <tr>
                 <td>Unassigned</td>
-                <td><span class="unset-values-count" data-day-total="MON">0</span></td>
-                <td><span class="unset-values-count" data-day-total="TUE">0</span></td>
-                <td><span class="unset-values-count" data-day-total="WED">0</span></td>
-                <td><span class="unset-values-count" data-day-total="THU">0</span></td>
-                <td><span class="unset-values-count" data-day-total="FRI">0</span></td>
+                <td data-day-total="MON" data-count="unset"></td>
+                <td data-day-total="TUE" data-count="unset"></td>
+                <td data-day-total="WED" data-count="unset"></td>
+                <td data-day-total="THU" data-count="unset"></td>
+                <td data-day-total="FRI" data-count="unset"></td>
             </tr>
             </tfoot>
         </table>
-        <!-- Dropdown to select the format -->
-        <select id="formatSelect">
-            <option value="json">JSON</option>
-            <option value="csv">CSV</option>
-        </select>
-
+        <!-- Clear table -->
+        <button class="save-button" id="clearButton">Clear All</button>
         <!-- Save button -->
         <button class="save-button" id="saveButton">Download</button>
-    </div>
+        <!-- Hidden actual input -->
+        <input type="file" id="fileInput" style="display: none;" accept=".json">
+        <!-- Label styled as a button -->
+        <label for="fileInput" class="save-button">Upload File</label>
+        <span id="fileNameDisplay"></span>
 </div>
 <!-- Here you can link to any JavaScript files for functionality -->
 <script src="scripts.js"></script>
