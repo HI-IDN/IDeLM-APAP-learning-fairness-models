@@ -45,15 +45,16 @@ def format_sheet(records, prev_month, this_month):
             print(row)
 
         shift = row[1]
+        vacations = [item.strip() for item in row['Vacation'].split(',')] if not pd.isna(row['Vacation']) else []
         record = {
-            'Call1st': row['Call1st'],
-            'Call2nd': row['Call2nd'],
+            'Call': {'1st': row['Call1st'], '2nd': row['Call2nd']},
             'Gillette': {
                 'G1': row['G1'],
                 '4G': [item.strip() for item in row['4G'].split(',')] if not pd.isna(row['4G']) else None
             },
             'CVCC': row['CVCC'] if not pd.isna(row['CVCC']) else None,
-            'Vacation': [item.strip() for item in row['Vacation'].split(',')] if not pd.isna(row['Vacation']) else None,
+            'Vacation': [item for item in vacations if item != 'Adm'] if len(vacations) > 0 else None,
+            'Admin': len([item for item in vacations if item == 'Adm']),
             'Requests': row['Requests'] if not pd.isna(row['Requests']) else None
         }
         if 'Sedation' in records.columns:

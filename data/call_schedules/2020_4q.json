@@ -3,8 +3,10 @@
         "Sep": {
             "28": {
                 "Mon": {
-                    "Call1st": "Kowalsky",
-                    "Call2nd": "McCormick",
+                    "Call": {
+                        "1st": "Kowalsky",
+                        "2nd": "McCormick"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": [
@@ -16,9 +18,9 @@
                         "FM",
                         "KC",
                         "ES",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Ion",
                     "West": {
                         "CHC": "Rekuski"
@@ -27,8 +29,10 @@
             },
             "29": {
                 "Tues": {
-                    "Call1st": "Collins",
-                    "Call2nd": "Maresh",
+                    "Call": {
+                        "1st": "Collins",
+                        "2nd": "Maresh"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
@@ -38,9 +42,9 @@
                         "FM",
                         "KC",
                         "ES",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Requests": "DN off",
                     "Sedation": "Ion",
                     "West": {
@@ -50,8 +54,10 @@
             },
             "30": {
                 "Wed": {
-                    "Call1st": "LeBard",
-                    "Call2nd": "Tanaka",
+                    "Call": {
+                        "1st": "LeBard",
+                        "2nd": "Tanaka"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -61,9 +67,9 @@
                         "FM",
                         "KC",
                         "ES",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Ion",
                     "West": {
                         "CHC": null
@@ -74,8 +80,10 @@
         "Oct": {
             "1": {
                 "Thurs": {
-                    "Call1st": "Altman",
-                    "Call2nd": "Mickelson",
+                    "Call": {
+                        "1st": "Altman",
+                        "2nd": "Mickelson"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
@@ -85,9 +93,9 @@
                         "FM",
                         "KC",
                         "ES",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Ion",
                     "West": {
                         "CHC": null
@@ -96,8 +104,10 @@
             },
             "2": {
                 "Fri": {
-                    "Call1st": "Maresh",
-                    "Call2nd": "Kowalsky",
+                    "Call": {
+                        "1st": "Maresh",
+                        "2nd": "Kowalsky"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
@@ -107,9 +117,9 @@
                         "FM",
                         "KC",
                         "ES",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Ion",
                     "West": {
                         "CHC": null
@@ -118,24 +128,30 @@
             },
             "3": {
                 "Sat AM": {
-                    "Call1st": "Castro",
-                    "Call2nd": "Kowalsky",
+                    "Call": {
+                        "1st": "Castro",
+                        "2nd": "Kowalsky"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Sedation": "Kowalsky",
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "Kowalsky",
-                    "Call2nd": "Castro",
+                    "Call": {
+                        "1st": "Kowalsky",
+                        "2nd": "Castro"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -143,23 +159,29 @@
             },
             "4": {
                 "Sun AM": {
-                    "Call1st": "Maresh",
-                    "Call2nd": "Kowalsky",
+                    "Call": {
+                        "1st": "Maresh",
+                        "2nd": "Kowalsky"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "Castro",
-                    "Call2nd": "Kowalsky",
+                    "Call": {
+                        "1st": "Castro",
+                        "2nd": "Kowalsky"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -167,8 +189,10 @@
             },
             "5": {
                 "Mon": {
-                    "Call1st": "Moran",
-                    "Call2nd": "Kromer",
+                    "Call": {
+                        "1st": "Moran",
+                        "2nd": "Kromer"
+                    },
                     "Gillette": {
                         "G1": "Rekuski",
                         "4G": [
@@ -180,9 +204,9 @@
                         "CM",
                         "JT",
                         "CA",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Ion",
                     "West": {
                         "CHC": "LeBard"
@@ -191,8 +215,10 @@
             },
             "6": {
                 "Tues": {
-                    "Call1st": "Collins",
-                    "Call2nd": "Miller",
+                    "Call": {
+                        "1st": "Collins",
+                        "2nd": "Miller"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
@@ -202,9 +228,9 @@
                         "CM",
                         "JT",
                         "CA",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Maresh",
                     "West": {
                         "CHC": null
@@ -213,8 +239,10 @@
             },
             "7": {
                 "Wed": {
-                    "Call1st": "Castro",
-                    "Call2nd": "Kowalsky",
+                    "Call": {
+                        "1st": "Castro",
+                        "2nd": "Kowalsky"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
@@ -224,9 +252,9 @@
                         "CM",
                         "JT",
                         "CA",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Maresh",
                     "West": {
                         "CHC": null
@@ -235,8 +263,10 @@
             },
             "8": {
                 "Thurs": {
-                    "Call1st": "Kaus",
-                    "Call2nd": "Ion",
+                    "Call": {
+                        "1st": "Kaus",
+                        "2nd": "Ion"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -246,9 +276,9 @@
                         "CM",
                         "JT",
                         "CA",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Maresh",
                     "West": {
                         "CHC": null
@@ -257,8 +287,10 @@
             },
             "9": {
                 "Fri": {
-                    "Call1st": "Kromer",
-                    "Call2nd": "Miller",
+                    "Call": {
+                        "1st": "Kromer",
+                        "2nd": "Miller"
+                    },
                     "Gillette": {
                         "G1": "Rekuski",
                         "4G": null
@@ -268,9 +300,9 @@
                         "CM",
                         "JT",
                         "CA",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Maresh",
                     "West": {
                         "CHC": null
@@ -279,24 +311,30 @@
             },
             "10": {
                 "Sat AM": {
-                    "Call1st": "Collins",
-                    "Call2nd": "Miller",
+                    "Call": {
+                        "1st": "Collins",
+                        "2nd": "Miller"
+                    },
                     "Gillette": {
                         "G1": "Rekuski",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Sedation": "Miller",
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "Miller",
-                    "Call2nd": "Collins",
+                    "Call": {
+                        "1st": "Miller",
+                        "2nd": "Collins"
+                    },
                     "Gillette": {
                         "G1": "Rekuski",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -304,23 +342,29 @@
             },
             "11": {
                 "Sun AM": {
-                    "Call1st": "Kromer",
-                    "Call2nd": "Miller",
+                    "Call": {
+                        "1st": "Kromer",
+                        "2nd": "Miller"
+                    },
                     "Gillette": {
                         "G1": "Rekuski",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "Collins",
-                    "Call2nd": "Miller",
+                    "Call": {
+                        "1st": "Collins",
+                        "2nd": "Miller"
+                    },
                     "Gillette": {
                         "G1": "Rekuski",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -328,8 +372,10 @@
             },
             "12": {
                 "Mon": {
-                    "Call1st": "McCormick",
-                    "Call2nd": "Kaus",
+                    "Call": {
+                        "1st": "McCormick",
+                        "2nd": "Kaus"
+                    },
                     "Gillette": {
                         "G1": "Mickelson",
                         "4G": [
@@ -343,9 +389,9 @@
                         "JJ",
                         "TT",
                         "Ion",
-                        "DN",
-                        "Adm"
+                        "DN"
                     ],
+                    "Admin": 1,
                     "Sedation": "Castro",
                     "West": {
                         "CHC": "Kromer"
@@ -354,8 +400,10 @@
             },
             "13": {
                 "Tues": {
-                    "Call1st": "Maresh",
-                    "Call2nd": "Tomasson",
+                    "Call": {
+                        "1st": "Maresh",
+                        "2nd": "Tomasson"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -365,9 +413,9 @@
                         "JJ",
                         "TT",
                         "Ion",
-                        "DN",
-                        "Adm"
+                        "DN"
                     ],
+                    "Admin": 1,
                     "Sedation": "Castro",
                     "West": {
                         "CHC": null
@@ -376,8 +424,10 @@
             },
             "14": {
                 "Wed": {
-                    "Call1st": "Miller",
-                    "Call2nd": "Kowalsky",
+                    "Call": {
+                        "1st": "Miller",
+                        "2nd": "Kowalsky"
+                    },
                     "Gillette": {
                         "G1": "Rekuski",
                         "4G": null
@@ -387,9 +437,9 @@
                         "JJ",
                         "TT",
                         "Ion",
-                        "DN",
-                        "Adm"
+                        "DN"
                     ],
+                    "Admin": 1,
                     "Sedation": "Castro",
                     "West": {
                         "CHC": null
@@ -398,8 +448,10 @@
             },
             "15": {
                 "Thurs": {
-                    "Call1st": "McCormick",
-                    "Call2nd": "Kaus",
+                    "Call": {
+                        "1st": "McCormick",
+                        "2nd": "Kaus"
+                    },
                     "Gillette": {
                         "G1": "Mickelson",
                         "4G": null
@@ -409,9 +461,9 @@
                         "JJ",
                         "TT",
                         "Ion",
-                        "DN",
-                        "Adm"
+                        "DN"
                     ],
+                    "Admin": 1,
                     "Requests": "PM on",
                     "Sedation": "Castro",
                     "West": {
@@ -421,8 +473,10 @@
             },
             "16": {
                 "Fri": {
-                    "Call1st": "Tomasson",
-                    "Call2nd": "LeBard",
+                    "Call": {
+                        "1st": "Tomasson",
+                        "2nd": "LeBard"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -432,9 +486,9 @@
                         "JJ",
                         "TT",
                         "Ion",
-                        "DN",
-                        "Adm"
+                        "DN"
                     ],
+                    "Admin": 1,
                     "Sedation": "Castro",
                     "West": {
                         "CHC": null
@@ -443,12 +497,15 @@
             },
             "17": {
                 "Sat AM": {
-                    "Call1st": "Stene",
-                    "Call2nd": "LeBard",
+                    "Call": {
+                        "1st": "Stene",
+                        "2nd": "LeBard"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Requests": "FM/SK off",
                     "Sedation": "LeBard",
                     "West": {
@@ -456,12 +513,15 @@
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "LeBard",
-                    "Call2nd": "Stene",
+                    "Call": {
+                        "1st": "LeBard",
+                        "2nd": "Stene"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -469,23 +529,29 @@
             },
             "18": {
                 "Sun AM": {
-                    "Call1st": "Tomasson",
-                    "Call2nd": "LeBard",
+                    "Call": {
+                        "1st": "Tomasson",
+                        "2nd": "LeBard"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "Stene",
-                    "Call2nd": "LeBard",
+                    "Call": {
+                        "1st": "Stene",
+                        "2nd": "LeBard"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -493,8 +559,10 @@
             },
             "19": {
                 "Mon": {
-                    "Call1st": "Moran",
-                    "Call2nd": "Altman",
+                    "Call": {
+                        "1st": "Moran",
+                        "2nd": "Altman"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": [
@@ -506,9 +574,9 @@
                         "JM",
                         "PM",
                         "BRM",
-                        "RK",
-                        "Adm"
+                        "RK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Mickelson",
                     "West": {
                         "CHC": "Rekuski"
@@ -517,8 +585,10 @@
             },
             "20": {
                 "Tues": {
-                    "Call1st": "Castro",
-                    "Call2nd": "Ion",
+                    "Call": {
+                        "1st": "Castro",
+                        "2nd": "Ion"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
@@ -528,9 +598,9 @@
                         "JM",
                         "PM",
                         "BRM",
-                        "RK",
-                        "Adm"
+                        "RK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Mickelson",
                     "West": {
                         "CHC": null
@@ -539,8 +609,10 @@
             },
             "21": {
                 "Wed": {
-                    "Call1st": "Tomasson",
-                    "Call2nd": "Stene",
+                    "Call": {
+                        "1st": "Tomasson",
+                        "2nd": "Stene"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -550,9 +622,9 @@
                         "JM",
                         "PM",
                         "BRM",
-                        "RK",
-                        "Adm"
+                        "RK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Mickelson",
                     "West": {
                         "CHC": null
@@ -561,8 +633,10 @@
             },
             "22": {
                 "Thurs": {
-                    "Call1st": "LeBard",
-                    "Call2nd": "Kromer",
+                    "Call": {
+                        "1st": "LeBard",
+                        "2nd": "Kromer"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
@@ -572,9 +646,9 @@
                         "JM",
                         "PM",
                         "BRM",
-                        "RK",
-                        "Adm"
+                        "RK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Mickelson",
                     "West": {
                         "CHC": null
@@ -583,8 +657,10 @@
             },
             "23": {
                 "Fri": {
-                    "Call1st": "Kaus",
-                    "Call2nd": "Moran",
+                    "Call": {
+                        "1st": "Kaus",
+                        "2nd": "Moran"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
@@ -594,9 +670,9 @@
                         "JM",
                         "PM",
                         "BRM",
-                        "RK",
-                        "Adm"
+                        "RK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Mickelson",
                     "West": {
                         "CHC": null
@@ -605,24 +681,30 @@
             },
             "24": {
                 "Sat AM": {
-                    "Call1st": "Altman",
-                    "Call2nd": "Moran",
+                    "Call": {
+                        "1st": "Altman",
+                        "2nd": "Moran"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Sedation": "Moran",
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "Moran",
-                    "Call2nd": "Altman",
+                    "Call": {
+                        "1st": "Moran",
+                        "2nd": "Altman"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -630,23 +712,29 @@
             },
             "25": {
                 "Sun AM": {
-                    "Call1st": "Kaus",
-                    "Call2nd": "Moran",
+                    "Call": {
+                        "1st": "Kaus",
+                        "2nd": "Moran"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "Altman",
-                    "Call2nd": "Moran",
+                    "Call": {
+                        "1st": "Altman",
+                        "2nd": "Moran"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -654,8 +742,10 @@
             },
             "26": {
                 "Mon": {
-                    "Call1st": "Tanaka",
-                    "Call2nd": "McCormick",
+                    "Call": {
+                        "1st": "Tanaka",
+                        "2nd": "McCormick"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": [
@@ -667,9 +757,9 @@
                         "RK",
                         "DD",
                         "CM",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Stene",
                     "West": {
                         "CHC": "Rekuski"
@@ -678,8 +768,10 @@
             },
             "27": {
                 "Tues": {
-                    "Call1st": "Maresh",
-                    "Call2nd": "Miller",
+                    "Call": {
+                        "1st": "Maresh",
+                        "2nd": "Miller"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
@@ -689,9 +781,9 @@
                         "RK",
                         "DD",
                         "CM",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Moran",
                     "West": {
                         "CHC": null
@@ -700,8 +792,10 @@
             },
             "28": {
                 "Wed": {
-                    "Call1st": "Tomasson",
-                    "Call2nd": "Collins",
+                    "Call": {
+                        "1st": "Tomasson",
+                        "2nd": "Collins"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -711,9 +805,9 @@
                         "RK",
                         "DD",
                         "CM",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Moran",
                     "West": {
                         "CHC": null
@@ -722,8 +816,10 @@
             },
             "29": {
                 "Thurs": {
-                    "Call1st": "Kaus",
-                    "Call2nd": "Castro",
+                    "Call": {
+                        "1st": "Kaus",
+                        "2nd": "Castro"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
@@ -733,9 +829,9 @@
                         "RK",
                         "DD",
                         "CM",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Requests": "CC 2nd, SK on",
                     "Sedation": "Moran",
                     "West": {
@@ -745,8 +841,10 @@
             },
             "30": {
                 "Fri": {
-                    "Call1st": "Stene",
-                    "Call2nd": "Tanaka",
+                    "Call": {
+                        "1st": "Stene",
+                        "2nd": "Tanaka"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
@@ -756,9 +854,9 @@
                         "RK",
                         "DD",
                         "CM",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Moran",
                     "West": {
                         "CHC": null
@@ -767,12 +865,15 @@
             },
             "31": {
                 "Sat AM": {
-                    "Call1st": "McCormick",
-                    "Call2nd": "Tanaka",
+                    "Call": {
+                        "1st": "McCormick",
+                        "2nd": "Tanaka"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Requests": "DN, Ion, JM off",
                     "Sedation": "Tanaka",
                     "West": {
@@ -780,12 +881,15 @@
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "Tanaka",
-                    "Call2nd": "McCormick",
+                    "Call": {
+                        "1st": "Tanaka",
+                        "2nd": "McCormick"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -795,23 +899,29 @@
         "Nov": {
             "1": {
                 "Sun AM": {
-                    "Call1st": "Stene",
-                    "Call2nd": "Tanaka",
+                    "Call": {
+                        "1st": "Stene",
+                        "2nd": "Tanaka"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "McCormick",
-                    "Call2nd": "Tanaka",
+                    "Call": {
+                        "1st": "McCormick",
+                        "2nd": "Tanaka"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -819,8 +929,10 @@
             },
             "2": {
                 "Mon": {
-                    "Call1st": "Mickelson",
-                    "Call2nd": "Tomasson",
+                    "Call": {
+                        "1st": "Mickelson",
+                        "2nd": "Tomasson"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": [
@@ -832,9 +944,9 @@
                         "RR",
                         "SK",
                         "FM",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Requests": "CM on",
                     "Sedation": "Castro",
                     "West": {
@@ -844,8 +956,10 @@
             },
             "3": {
                 "Tues": {
-                    "Call1st": "Ion",
-                    "Call2nd": "Miller",
+                    "Call": {
+                        "1st": "Ion",
+                        "2nd": "Miller"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
@@ -855,9 +969,9 @@
                         "RR",
                         "SK",
                         "FM",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Castro",
                     "West": {
                         "CHC": null
@@ -866,8 +980,10 @@
             },
             "4": {
                 "Wed": {
-                    "Call1st": "Collins",
-                    "Call2nd": "Stene",
+                    "Call": {
+                        "1st": "Collins",
+                        "2nd": "Stene"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
@@ -877,9 +993,9 @@
                         "RR",
                         "SK",
                         "FM",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Castro",
                     "West": {
                         "CHC": null
@@ -888,8 +1004,10 @@
             },
             "5": {
                 "Thurs": {
-                    "Call1st": "Tanaka",
-                    "Call2nd": "Altman",
+                    "Call": {
+                        "1st": "Tanaka",
+                        "2nd": "Altman"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -899,9 +1017,9 @@
                         "RR",
                         "SK",
                         "FM",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Castro",
                     "West": {
                         "CHC": null
@@ -910,8 +1028,10 @@
             },
             "6": {
                 "Fri": {
-                    "Call1st": "Maresh",
-                    "Call2nd": "Tomasson",
+                    "Call": {
+                        "1st": "Maresh",
+                        "2nd": "Tomasson"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
@@ -921,9 +1041,9 @@
                         "RR",
                         "SK",
                         "FM",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Ion",
                     "West": {
                         "CHC": null
@@ -932,24 +1052,30 @@
             },
             "7": {
                 "Sat AM": {
-                    "Call1st": "Castro",
-                    "Call2nd": "Tomasson",
+                    "Call": {
+                        "1st": "Castro",
+                        "2nd": "Tomasson"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Sedation": "Tomasson",
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "Tomasson",
-                    "Call2nd": "Castro",
+                    "Call": {
+                        "1st": "Tomasson",
+                        "2nd": "Castro"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -957,23 +1083,29 @@
             },
             "8": {
                 "Sun AM": {
-                    "Call1st": "Maresh",
-                    "Call2nd": "Tomasson",
+                    "Call": {
+                        "1st": "Maresh",
+                        "2nd": "Tomasson"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "Castro",
-                    "Call2nd": "Tomasson",
+                    "Call": {
+                        "1st": "Castro",
+                        "2nd": "Tomasson"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -981,8 +1113,10 @@
             },
             "9": {
                 "Mon": {
-                    "Call1st": "Moran",
-                    "Call2nd": "LeBard",
+                    "Call": {
+                        "1st": "Moran",
+                        "2nd": "LeBard"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": [
@@ -994,10 +1128,9 @@
                         "Ion",
                         "KC",
                         "MA",
-                        "TT",
-                        "Adm",
-                        "Adm"
+                        "TT"
                     ],
+                    "Admin": 2,
                     "Sedation": "Altman",
                     "West": {
                         "CHC": "Kaus"
@@ -1006,8 +1139,10 @@
             },
             "10": {
                 "Tues": {
-                    "Call1st": "Rekuski",
-                    "Call2nd": "McCormick",
+                    "Call": {
+                        "1st": "Rekuski",
+                        "2nd": "McCormick"
+                    },
                     "Gillette": {
                         "G1": "Mickelson",
                         "4G": null
@@ -1016,10 +1151,9 @@
                         "Ion",
                         "KC",
                         "MA",
-                        "TT",
-                        "Adm",
-                        "Adm"
+                        "TT"
                     ],
+                    "Admin": 2,
                     "Sedation": "Altman",
                     "West": {
                         "CHC": null
@@ -1028,8 +1162,10 @@
             },
             "11": {
                 "Wed": {
-                    "Call1st": "Castro",
-                    "Call2nd": "Kromer",
+                    "Call": {
+                        "1st": "Castro",
+                        "2nd": "Kromer"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
@@ -1038,10 +1174,9 @@
                         "Ion",
                         "KC",
                         "MA",
-                        "TT",
-                        "Adm",
-                        "Adm"
+                        "TT"
                     ],
+                    "Admin": 2,
                     "Sedation": "Altman",
                     "West": {
                         "CHC": null
@@ -1050,8 +1185,10 @@
             },
             "12": {
                 "Thurs": {
-                    "Call1st": "Stene",
-                    "Call2nd": "Moran",
+                    "Call": {
+                        "1st": "Stene",
+                        "2nd": "Moran"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
@@ -1060,10 +1197,9 @@
                         "Ion",
                         "KC",
                         "MA",
-                        "TT",
-                        "Adm",
-                        "Adm"
+                        "TT"
                     ],
+                    "Admin": 2,
                     "Sedation": "Altman",
                     "West": {
                         "CHC": null
@@ -1072,8 +1208,10 @@
             },
             "13": {
                 "Fri": {
-                    "Call1st": "Miller",
-                    "Call2nd": "Rekuski",
+                    "Call": {
+                        "1st": "Miller",
+                        "2nd": "Rekuski"
+                    },
                     "Gillette": {
                         "G1": "Mickelson",
                         "4G": null
@@ -1082,10 +1220,9 @@
                         "Ion",
                         "KC",
                         "MA",
-                        "TT",
-                        "Adm",
-                        "Adm"
+                        "TT"
                     ],
+                    "Admin": 2,
                     "Sedation": "Altman",
                     "West": {
                         "CHC": null
@@ -1094,24 +1231,30 @@
             },
             "14": {
                 "Sat AM": {
-                    "Call1st": "McCormick",
-                    "Call2nd": "Rekuski",
+                    "Call": {
+                        "1st": "McCormick",
+                        "2nd": "Rekuski"
+                    },
                     "Gillette": {
                         "G1": "Mickelson",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Sedation": "Rekuski",
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "Rekuski",
-                    "Call2nd": "McCormick",
+                    "Call": {
+                        "1st": "Rekuski",
+                        "2nd": "McCormick"
+                    },
                     "Gillette": {
                         "G1": "Mickelson",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -1119,23 +1262,29 @@
             },
             "15": {
                 "Sun AM": {
-                    "Call1st": "Miller",
-                    "Call2nd": "Rekuski",
+                    "Call": {
+                        "1st": "Miller",
+                        "2nd": "Rekuski"
+                    },
                     "Gillette": {
                         "G1": "Mickelson",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "McCormick",
-                    "Call2nd": "Rekuski",
+                    "Call": {
+                        "1st": "McCormick",
+                        "2nd": "Rekuski"
+                    },
                     "Gillette": {
                         "G1": "Mickelson",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -1143,8 +1292,10 @@
             },
             "16": {
                 "Mon": {
-                    "Call1st": "Kowalsky",
-                    "Call2nd": "Moran",
+                    "Call": {
+                        "1st": "Kowalsky",
+                        "2nd": "Moran"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": [
@@ -1157,10 +1308,9 @@
                         "JJ",
                         "DN",
                         "ES",
-                        "JT",
-                        "Adm",
-                        "Adm"
+                        "JT"
                     ],
+                    "Admin": 2,
                     "Sedation": "Collins",
                     "West": {
                         "CHC": "Kaus"
@@ -1169,8 +1319,10 @@
             },
             "17": {
                 "Tues": {
-                    "Call1st": "Altman",
-                    "Call2nd": "Maresh",
+                    "Call": {
+                        "1st": "Altman",
+                        "2nd": "Maresh"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
@@ -1179,10 +1331,9 @@
                         "JJ",
                         "DN",
                         "ES",
-                        "JT",
-                        "Adm",
-                        "Adm"
+                        "JT"
                     ],
+                    "Admin": 2,
                     "Sedation": "Collins",
                     "West": {
                         "CHC": null
@@ -1191,8 +1342,10 @@
             },
             "18": {
                 "Wed": {
-                    "Call1st": "Castro",
-                    "Call2nd": "McCormick",
+                    "Call": {
+                        "1st": "Castro",
+                        "2nd": "McCormick"
+                    },
                     "Gillette": {
                         "G1": "Mickelson",
                         "4G": null
@@ -1201,10 +1354,9 @@
                         "JJ",
                         "DN",
                         "ES",
-                        "JT",
-                        "Adm",
-                        "Adm"
+                        "JT"
                     ],
+                    "Admin": 2,
                     "Requests": "CM on",
                     "Sedation": "Collins",
                     "West": {
@@ -1214,8 +1366,10 @@
             },
             "19": {
                 "Thurs": {
-                    "Call1st": "Moran",
-                    "Call2nd": "Rekuski",
+                    "Call": {
+                        "1st": "Moran",
+                        "2nd": "Rekuski"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -1224,10 +1378,9 @@
                         "JJ",
                         "DN",
                         "ES",
-                        "JT",
-                        "Adm",
-                        "Adm"
+                        "JT"
                     ],
+                    "Admin": 2,
                     "Sedation": "Collins",
                     "West": {
                         "CHC": null
@@ -1236,8 +1389,10 @@
             },
             "20": {
                 "Fri": {
-                    "Call1st": "Kowalsky",
-                    "Call2nd": "LeBard",
+                    "Call": {
+                        "1st": "Kowalsky",
+                        "2nd": "LeBard"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
@@ -1247,9 +1402,9 @@
                         "DN",
                         "ES",
                         "JT",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Collins",
                     "West": {
                         "CHC": null
@@ -1258,12 +1413,15 @@
             },
             "21": {
                 "Sat AM": {
-                    "Call1st": "Altman",
-                    "Call2nd": "LeBard",
+                    "Call": {
+                        "1st": "Altman",
+                        "2nd": "LeBard"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Requests": "RK Fri/Sun",
                     "Sedation": "LeBard",
                     "West": {
@@ -1271,12 +1429,15 @@
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "LeBard",
-                    "Call2nd": "Altman",
+                    "Call": {
+                        "1st": "LeBard",
+                        "2nd": "Altman"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -1284,23 +1445,29 @@
             },
             "22": {
                 "Sun AM": {
-                    "Call1st": "Kowalsky",
-                    "Call2nd": "LeBard",
+                    "Call": {
+                        "1st": "Kowalsky",
+                        "2nd": "LeBard"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "Altman",
-                    "Call2nd": "LeBard",
+                    "Call": {
+                        "1st": "Altman",
+                        "2nd": "LeBard"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -1308,8 +1475,10 @@
             },
             "23": {
                 "Mon": {
-                    "Call1st": "Tomasson",
-                    "Call2nd": "Tanaka",
+                    "Call": {
+                        "1st": "Tomasson",
+                        "2nd": "Tanaka"
+                    },
                     "Gillette": {
                         "G1": "Kaus",
                         "4G": [
@@ -1322,9 +1491,9 @@
                         "MA",
                         "BRM",
                         "RR",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Mickelson",
                     "West": {
                         "CHC": "Kromer"
@@ -1333,8 +1502,10 @@
             },
             "24": {
                 "Tues": {
-                    "Call1st": "Stene",
-                    "Call2nd": "Collins",
+                    "Call": {
+                        "1st": "Stene",
+                        "2nd": "Collins"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
@@ -1344,9 +1515,9 @@
                         "MA",
                         "BRM",
                         "RR",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Mickelson",
                     "West": {
                         "CHC": null
@@ -1355,8 +1526,10 @@
             },
             "25": {
                 "Wed": {
-                    "Call1st": "Altman",
-                    "Call2nd": "LeBard",
+                    "Call": {
+                        "1st": "Altman",
+                        "2nd": "LeBard"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
@@ -1366,9 +1539,9 @@
                         "MA",
                         "BRM",
                         "RR",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Mickelson",
                     "West": {
                         "CHC": null
@@ -1377,8 +1550,10 @@
             },
             "26": {
                 "Thurs AM": {
-                    "Call1st": "Maresh",
-                    "Call2nd": "Moran",
+                    "Call": {
+                        "1st": "Maresh",
+                        "2nd": "Moran"
+                    },
                     "Gillette": {
                         "G1": "Kaus",
                         "4G": null
@@ -1388,16 +1563,18 @@
                         "MA",
                         "BRM",
                         "RR",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Thurs PM": {
-                    "Call1st": "Tanaka",
-                    "Call2nd": "Moran",
+                    "Call": {
+                        "1st": "Tanaka",
+                        "2nd": "Moran"
+                    },
                     "Gillette": {
                         "G1": "Kaus",
                         "4G": null
@@ -1407,9 +1584,9 @@
                         "MA",
                         "BRM",
                         "RR",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "West": {
                         "CHC": null
                     }
@@ -1417,8 +1594,10 @@
             },
             "27": {
                 "Fri": {
-                    "Call1st": "Tanaka",
-                    "Call2nd": "Moran",
+                    "Call": {
+                        "1st": "Tanaka",
+                        "2nd": "Moran"
+                    },
                     "Gillette": {
                         "G1": "Kaus",
                         "4G": null
@@ -1428,9 +1607,9 @@
                         "MA",
                         "BRM",
                         "RR",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Mickelson",
                     "West": {
                         "CHC": null
@@ -1439,24 +1618,30 @@
             },
             "28": {
                 "Sat AM": {
-                    "Call1st": "Maresh",
-                    "Call2nd": "Moran",
+                    "Call": {
+                        "1st": "Maresh",
+                        "2nd": "Moran"
+                    },
                     "Gillette": {
                         "G1": "Kaus",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Sedation": "Tanaka",
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "Moran",
-                    "Call2nd": "Maresh",
+                    "Call": {
+                        "1st": "Moran",
+                        "2nd": "Maresh"
+                    },
                     "Gillette": {
                         "G1": "Kaus",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -1464,23 +1649,29 @@
             },
             "29": {
                 "Sun AM": {
-                    "Call1st": "Tanaka",
-                    "Call2nd": "Moran",
+                    "Call": {
+                        "1st": "Tanaka",
+                        "2nd": "Moran"
+                    },
                     "Gillette": {
                         "G1": "Kaus",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "Maresh",
-                    "Call2nd": "Moran",
+                    "Call": {
+                        "1st": "Maresh",
+                        "2nd": "Moran"
+                    },
                     "Gillette": {
                         "G1": "Kaus",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -1488,8 +1679,10 @@
             },
             "30": {
                 "Mon": {
-                    "Call1st": "Collins",
-                    "Call2nd": "Castro",
+                    "Call": {
+                        "1st": "Collins",
+                        "2nd": "Castro"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": [
@@ -1501,9 +1694,9 @@
                         "JM",
                         "SL",
                         "TT",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Stene",
                     "West": {
                         "CHC": "McCormick"
@@ -1514,8 +1707,10 @@
         "Dec": {
             "1": {
                 "Tues": {
-                    "Call1st": "Miller",
-                    "Call2nd": "Ion",
+                    "Call": {
+                        "1st": "Miller",
+                        "2nd": "Ion"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -1525,9 +1720,9 @@
                         "JM",
                         "SL",
                         "TT",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Stene",
                     "West": {
                         "CHC": null
@@ -1536,8 +1731,10 @@
             },
             "2": {
                 "Wed": {
-                    "Call1st": "Tomasson",
-                    "Call2nd": "Rekuski",
+                    "Call": {
+                        "1st": "Tomasson",
+                        "2nd": "Rekuski"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
@@ -1547,9 +1744,9 @@
                         "JM",
                         "SL",
                         "TT",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Stene",
                     "West": {
                         "CHC": null
@@ -1558,8 +1755,10 @@
             },
             "3": {
                 "Thurs": {
-                    "Call1st": "Clark",
-                    "Call2nd": "Kaus",
+                    "Call": {
+                        "1st": "Clark",
+                        "2nd": "Kaus"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
@@ -1569,9 +1768,9 @@
                         "JM",
                         "SL",
                         "TT",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Sedation": "Stene",
                     "West": {
                         "CHC": null
@@ -1580,8 +1779,10 @@
             },
             "4": {
                 "Fri": {
-                    "Call1st": "Collins",
-                    "Call2nd": "Miller",
+                    "Call": {
+                        "1st": "Collins",
+                        "2nd": "Miller"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -1591,9 +1792,9 @@
                         "JM",
                         "SL",
                         "TT",
-                        "KK",
-                        "Adm"
+                        "KK"
                     ],
+                    "Admin": 1,
                     "Requests": "ES off",
                     "Sedation": "Stene",
                     "West": {
@@ -1603,24 +1804,30 @@
             },
             "5": {
                 "Sat AM": {
-                    "Call1st": "Kowalsky",
-                    "Call2nd": "Miller",
+                    "Call": {
+                        "1st": "Kowalsky",
+                        "2nd": "Miller"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Sedation": "Miller",
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "Miller",
-                    "Call2nd": "Kowalsky",
+                    "Call": {
+                        "1st": "Miller",
+                        "2nd": "Kowalsky"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -1628,23 +1835,29 @@
             },
             "6": {
                 "Sun AM": {
-                    "Call1st": "Collins",
-                    "Call2nd": "Miller",
+                    "Call": {
+                        "1st": "Collins",
+                        "2nd": "Miller"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "Kowalsky",
-                    "Call2nd": "Miller",
+                    "Call": {
+                        "1st": "Kowalsky",
+                        "2nd": "Miller"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -1652,8 +1865,10 @@
             },
             "7": {
                 "Mon": {
-                    "Call1st": "Maresh",
-                    "Call2nd": "Tomasson",
+                    "Call": {
+                        "1st": "Maresh",
+                        "2nd": "Tomasson"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": [
@@ -1666,9 +1881,9 @@
                         "JJ",
                         "SK",
                         "FM",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Ion",
                     "West": {
                         "CHC": "LeBard"
@@ -1677,8 +1892,10 @@
             },
             "8": {
                 "Tues": {
-                    "Call1st": "Altman",
-                    "Call2nd": "Rekuski",
+                    "Call": {
+                        "1st": "Altman",
+                        "2nd": "Rekuski"
+                    },
                     "Gillette": {
                         "G1": "Stene",
                         "4G": null
@@ -1688,9 +1905,9 @@
                         "JJ",
                         "SK",
                         "FM",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Ion",
                     "West": {
                         "CHC": null
@@ -1699,8 +1916,10 @@
             },
             "9": {
                 "Wed": {
-                    "Call1st": "Clark",
-                    "Call2nd": "Collins",
+                    "Call": {
+                        "1st": "Clark",
+                        "2nd": "Collins"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -1710,9 +1929,9 @@
                         "JJ",
                         "SK",
                         "FM",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Ion",
                     "West": {
                         "CHC": null
@@ -1721,8 +1940,10 @@
             },
             "10": {
                 "Thurs": {
-                    "Call1st": "Kowalsky",
-                    "Call2nd": "Maresh",
+                    "Call": {
+                        "1st": "Kowalsky",
+                        "2nd": "Maresh"
+                    },
                     "Gillette": {
                         "G1": "Kromer",
                         "4G": null
@@ -1732,9 +1953,9 @@
                         "JJ",
                         "SK",
                         "FM",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Requests": "RK on",
                     "Sedation": "Ion",
                     "West": {
@@ -1744,8 +1965,10 @@
             },
             "11": {
                 "Fri": {
-                    "Call1st": "Tomasson",
-                    "Call2nd": "Altman",
+                    "Call": {
+                        "1st": "Tomasson",
+                        "2nd": "Altman"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
@@ -1755,9 +1978,9 @@
                         "JJ",
                         "SK",
                         "FM",
-                        "PM",
-                        "Adm"
+                        "PM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Ion",
                     "West": {
                         "CHC": null
@@ -1766,24 +1989,30 @@
             },
             "12": {
                 "Sat AM": {
-                    "Call1st": "Rekuski",
-                    "Call2nd": "Altman",
+                    "Call": {
+                        "1st": "Rekuski",
+                        "2nd": "Altman"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Sedation": "Altman",
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "Altman",
-                    "Call2nd": "Rekuski",
+                    "Call": {
+                        "1st": "Altman",
+                        "2nd": "Rekuski"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -1791,23 +2020,29 @@
             },
             "13": {
                 "Sun AM": {
-                    "Call1st": "Tomasson",
-                    "Call2nd": "Altman",
+                    "Call": {
+                        "1st": "Tomasson",
+                        "2nd": "Altman"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "Rekuski",
-                    "Call2nd": "Altman",
+                    "Call": {
+                        "1st": "Rekuski",
+                        "2nd": "Altman"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -1815,8 +2050,10 @@
             },
             "14": {
                 "Mon": {
-                    "Call1st": "Tanaka",
-                    "Call2nd": "Stene",
+                    "Call": {
+                        "1st": "Tanaka",
+                        "2nd": "Stene"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": [
@@ -1828,9 +2065,9 @@
                         "KC",
                         "KK",
                         "RK",
-                        "CM",
-                        "Adm"
+                        "CM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Collins",
                     "West": {
                         "CHC": "McCormick"
@@ -1839,8 +2076,10 @@
             },
             "15": {
                 "Tues": {
-                    "Call1st": "Maresh",
-                    "Call2nd": "Moran",
+                    "Call": {
+                        "1st": "Maresh",
+                        "2nd": "Moran"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -1850,9 +2089,9 @@
                         "KC",
                         "KK",
                         "RK",
-                        "CM",
-                        "Adm"
+                        "CM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Tomasson",
                     "West": {
                         "CHC": null
@@ -1861,8 +2100,10 @@
             },
             "16": {
                 "Wed": {
-                    "Call1st": "Miller",
-                    "Call2nd": "LeBard",
+                    "Call": {
+                        "1st": "Miller",
+                        "2nd": "LeBard"
+                    },
                     "Gillette": {
                         "G1": "Nicolai",
                         "4G": null
@@ -1872,9 +2113,9 @@
                         "KC",
                         "KK",
                         "RK",
-                        "CM",
-                        "Adm"
+                        "CM"
                     ],
+                    "Admin": 1,
                     "Sedation": "Tomasson",
                     "West": {
                         "CHC": null
@@ -1883,8 +2124,10 @@
             },
             "17": {
                 "Thurs": {
-                    "Call1st": "Rekuski",
-                    "Call2nd": "Altman",
+                    "Call": {
+                        "1st": "Rekuski",
+                        "2nd": "Altman"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
@@ -1894,9 +2137,9 @@
                         "KC",
                         "KK",
                         "RK",
-                        "CM",
-                        "Adm"
+                        "CM"
                     ],
+                    "Admin": 1,
                     "Requests": "FM/SK off, RR on",
                     "Sedation": "Tomasson",
                     "West": {
@@ -1906,8 +2149,10 @@
             },
             "18": {
                 "Fri": {
-                    "Call1st": "Moran",
-                    "Call2nd": "Tanaka",
+                    "Call": {
+                        "1st": "Moran",
+                        "2nd": "Tanaka"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -1917,9 +2162,9 @@
                         "KC",
                         "KK",
                         "RK",
-                        "CM",
-                        "Adm"
+                        "CM"
                     ],
+                    "Admin": 1,
                     "Requests": "PM off",
                     "Sedation": "Tomasson",
                     "West": {
@@ -1929,24 +2174,30 @@
             },
             "19": {
                 "Sat AM": {
-                    "Call1st": "Kaus",
-                    "Call2nd": "Tanaka",
+                    "Call": {
+                        "1st": "Kaus",
+                        "2nd": "Tanaka"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Sedation": "Tanaka",
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "Tanaka",
-                    "Call2nd": "Kaus",
+                    "Call": {
+                        "1st": "Tanaka",
+                        "2nd": "Kaus"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -1954,23 +2205,29 @@
             },
             "20": {
                 "Sun AM": {
-                    "Call1st": "Moran",
-                    "Call2nd": "Tanaka",
+                    "Call": {
+                        "1st": "Moran",
+                        "2nd": "Tanaka"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "Kaus",
-                    "Call2nd": "Tanaka",
+                    "Call": {
+                        "1st": "Kaus",
+                        "2nd": "Tanaka"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -1978,8 +2235,10 @@
             },
             "21": {
                 "Mon": {
-                    "Call1st": "LeBard",
-                    "Call2nd": "Mickelson",
+                    "Call": {
+                        "1st": "LeBard",
+                        "2nd": "Mickelson"
+                    },
                     "Gillette": {
                         "G1": "Stene",
                         "4G": [
@@ -1992,9 +2251,9 @@
                         "RR",
                         "CA",
                         "DD",
-                        "DN",
-                        "Adm"
+                        "DN"
                     ],
+                    "Admin": 1,
                     "Sedation": "Maresh",
                     "West": {
                         "CHC": "Kromer"
@@ -2003,8 +2262,10 @@
             },
             "22": {
                 "Tues": {
-                    "Call1st": "Collins",
-                    "Call2nd": "McCormick",
+                    "Call": {
+                        "1st": "Collins",
+                        "2nd": "McCormick"
+                    },
                     "Gillette": {
                         "G1": "Jochman",
                         "4G": null
@@ -2014,9 +2275,9 @@
                         "RR",
                         "CA",
                         "DD",
-                        "DN",
-                        "Adm"
+                        "DN"
                     ],
+                    "Admin": 1,
                     "Sedation": "Maresh",
                     "West": {
                         "CHC": null
@@ -2025,8 +2286,10 @@
             },
             "23": {
                 "Wed": {
-                    "Call1st": "Tomasson",
-                    "Call2nd": "Miller",
+                    "Call": {
+                        "1st": "Tomasson",
+                        "2nd": "Miller"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -2036,9 +2299,9 @@
                         "RR",
                         "CA",
                         "DD",
-                        "DN",
-                        "Adm"
+                        "DN"
                     ],
+                    "Admin": 1,
                     "Requests": "JT 1st, BRM 2nd, MA G",
                     "Sedation": "Maresh",
                     "West": {
@@ -2048,8 +2311,10 @@
             },
             "24": {
                 "Thurs": {
-                    "Call1st": "LeBard",
-                    "Call2nd": "Castro",
+                    "Call": {
+                        "1st": "LeBard",
+                        "2nd": "Castro"
+                    },
                     "Gillette": {
                         "G1": "Stene",
                         "4G": null
@@ -2059,9 +2324,9 @@
                         "RR",
                         "CA",
                         "DD",
-                        "DN",
-                        "Adm"
+                        "DN"
                     ],
+                    "Admin": 1,
                     "Sedation": "Maresh",
                     "West": {
                         "CHC": null
@@ -2070,8 +2335,10 @@
             },
             "25": {
                 "Fri AM": {
-                    "Call1st": "Clark",
-                    "Call2nd": "Castro",
+                    "Call": {
+                        "1st": "Clark",
+                        "2nd": "Castro"
+                    },
                     "Gillette": {
                         "G1": "Stene",
                         "4G": null
@@ -2081,16 +2348,18 @@
                         "RR",
                         "CA",
                         "DD",
-                        "DN",
-                        "Adm"
+                        "DN"
                     ],
+                    "Admin": 1,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Fri PM": {
-                    "Call1st": "Castro",
-                    "Call2nd": "Clark",
+                    "Call": {
+                        "1st": "Castro",
+                        "2nd": "Clark"
+                    },
                     "Gillette": {
                         "G1": "Stene",
                         "4G": null
@@ -2100,9 +2369,9 @@
                         "RR",
                         "CA",
                         "DD",
-                        "DN",
-                        "Adm"
+                        "DN"
                     ],
+                    "Admin": 1,
                     "West": {
                         "CHC": null
                     }
@@ -2110,24 +2379,30 @@
             },
             "26": {
                 "Sat AM": {
-                    "Call1st": "LeBard",
-                    "Call2nd": "Castro",
+                    "Call": {
+                        "1st": "LeBard",
+                        "2nd": "Castro"
+                    },
                     "Gillette": {
                         "G1": "Stene",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Sedation": "Castro",
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "Clark",
-                    "Call2nd": "Castro",
+                    "Call": {
+                        "1st": "Clark",
+                        "2nd": "Castro"
+                    },
                     "Gillette": {
                         "G1": "Stene",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -2135,23 +2410,29 @@
             },
             "27": {
                 "Sun AM": {
-                    "Call1st": "Castro",
-                    "Call2nd": "LeBard",
+                    "Call": {
+                        "1st": "Castro",
+                        "2nd": "LeBard"
+                    },
                     "Gillette": {
                         "G1": "Stene",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "LeBard",
-                    "Call2nd": "Clark",
+                    "Call": {
+                        "1st": "LeBard",
+                        "2nd": "Clark"
+                    },
                     "Gillette": {
                         "G1": "Stene",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -2159,8 +2440,10 @@
             },
             "28": {
                 "Mon": {
-                    "Call1st": "Kromer",
-                    "Call2nd": "Kaus",
+                    "Call": {
+                        "1st": "Kromer",
+                        "2nd": "Kaus"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": [
@@ -2177,6 +2460,7 @@
                         "RK",
                         "PM"
                     ],
+                    "Admin": 0,
                     "Sedation": "Moran",
                     "West": {
                         "CHC": "LeBard"
@@ -2185,8 +2469,10 @@
             },
             "29": {
                 "Tues": {
-                    "Call1st": "Altman",
-                    "Call2nd": "Tanaka",
+                    "Call": {
+                        "1st": "Altman",
+                        "2nd": "Tanaka"
+                    },
                     "Gillette": {
                         "G1": "Rekuski",
                         "4G": null
@@ -2199,6 +2485,7 @@
                         "RK",
                         "PM"
                     ],
+                    "Admin": 0,
                     "Requests": "ES off",
                     "Sedation": "Moran",
                     "West": {
@@ -2208,8 +2495,10 @@
             },
             "30": {
                 "Wed": {
-                    "Call1st": "Miller",
-                    "Call2nd": "Castro",
+                    "Call": {
+                        "1st": "Miller",
+                        "2nd": "Castro"
+                    },
                     "Gillette": {
                         "G1": "Angel",
                         "4G": null
@@ -2222,6 +2511,7 @@
                         "RK",
                         "PM"
                     ],
+                    "Admin": 0,
                     "Requests": "CC 2nd, BRM 1st, MA G",
                     "Sedation": "Moran",
                     "West": {
@@ -2231,8 +2521,10 @@
             },
             "31": {
                 "Thurs": {
-                    "Call1st": "Mickelson",
-                    "Call2nd": "Jochman",
+                    "Call": {
+                        "1st": "Mickelson",
+                        "2nd": "Jochman"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
@@ -2245,6 +2537,7 @@
                         "RK",
                         "PM"
                     ],
+                    "Admin": 0,
                     "Sedation": "Moran",
                     "West": {
                         "CHC": null
@@ -2257,8 +2550,10 @@
         "Jan": {
             "1": {
                 "Fri AM": {
-                    "Call1st": "Kromer",
-                    "Call2nd": "Jochman",
+                    "Call": {
+                        "1st": "Kromer",
+                        "2nd": "Jochman"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
@@ -2271,13 +2566,16 @@
                         "RK",
                         "PM"
                     ],
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Fri PM": {
-                    "Call1st": "Jochman",
-                    "Call2nd": "Kromer",
+                    "Call": {
+                        "1st": "Jochman",
+                        "2nd": "Kromer"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
@@ -2290,6 +2588,7 @@
                         "RK",
                         "PM"
                     ],
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -2297,24 +2596,30 @@
             },
             "2": {
                 "Sat AM": {
-                    "Call1st": "Mickelson",
-                    "Call2nd": "Jochman",
+                    "Call": {
+                        "1st": "Mickelson",
+                        "2nd": "Jochman"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
                     },
+                    "Admin": 0,
                     "Sedation": "Jochman",
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sat PM": {
-                    "Call1st": "Kromer",
-                    "Call2nd": "Jochman",
+                    "Call": {
+                        "1st": "Kromer",
+                        "2nd": "Jochman"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
@@ -2322,23 +2627,29 @@
             },
             "3": {
                 "Sun AM": {
-                    "Call1st": "Mickelson",
-                    "Call2nd": "Jochman",
+                    "Call": {
+                        "1st": "Mickelson",
+                        "2nd": "Jochman"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
                 },
                 "Sun PM": {
-                    "Call1st": "Kromer",
-                    "Call2nd": "Jochman",
+                    "Call": {
+                        "1st": "Kromer",
+                        "2nd": "Jochman"
+                    },
                     "Gillette": {
                         "G1": "Ion",
                         "4G": null
                     },
+                    "Admin": 0,
                     "West": {
                         "CHC": null
                     }
