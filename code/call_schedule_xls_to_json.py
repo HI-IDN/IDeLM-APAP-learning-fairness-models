@@ -20,7 +20,7 @@ def format_sheet(records, prev_month, this_month):
         for col, value in row.items():
             if value == 'G1':
                 col_mapping[col] = 'G1'
-            elif value == '4G' or value =='At Gillette':
+            elif value == '4G' or value == 'At Gillette':
                 col_mapping[col] = '4G'
             elif value == 'CHC' or value == 'Children\'s Minnetonka':
                 col_mapping[col] = 'CHC'
@@ -43,7 +43,6 @@ def format_sheet(records, prev_month, this_month):
 
         if '4G' not in records.columns:
             print(row)
-
 
         shift = row[1]
         record = {
@@ -159,6 +158,19 @@ def xls_to_json(filename):
         # reset this_month to next_month for next iteration
         prev_month = this_month
         this_month = next_month
+
+    if quarter == 1:
+        if len(data[year - 1]) == 0:
+            data.pop(year - 1)
+    else:
+        if len(data[year][months_map[quarter - 1][len(months_map[quarter - 1]) - 1]]) == 0:
+            data[year].pop(months_map[quarter - 1][len(months_map[quarter - 1]) - 1])
+    if quarter == 4:
+        if len(data[year + 1]) == 0:
+            data.pop(year + 1)
+    else:
+        if len(data[year][months_map[quarter + 1][0]]) == 0:
+            data[year].pop(months_map[quarter + 1][0])
 
     return json.dumps(data, indent=4)
 
