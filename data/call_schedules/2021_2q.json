@@ -1,0 +1,1808 @@
+{
+    "2021": {
+        "Apr": {
+            "5": {
+                "Mon": {
+                    "Call1st": "Castro",
+                    "Call2nd": "Kaus",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": [
+                            "KK",
+                            "X"
+                        ]
+                    },
+                    "Vacation": [
+                        "MA",
+                        "Ion",
+                        "MC",
+                        "JT",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Jochman"
+                }
+            },
+            "6": {
+                "Tues": {
+                    "Call1st": "Tanaka",
+                    "Call2nd": "McCormick",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "MA",
+                        "Ion",
+                        "MC",
+                        "JT",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Jochman"
+                }
+            },
+            "7": {
+                "Wed": {
+                    "Call1st": "Moran",
+                    "Call2nd": "Kowalsky",
+                    "Gillette": {
+                        "G1": "Kromer",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "MA",
+                        "Ion",
+                        "MC",
+                        "JT",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Jochman"
+                }
+            },
+            "8": {
+                "Thurs": {
+                    "Call1st": "Stene",
+                    "Call2nd": "Miller",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "MA",
+                        "Ion",
+                        "MC",
+                        "JT",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Requests": "ES on",
+                    "Sedation": "Jochman"
+                }
+            },
+            "9": {
+                "Fri": {
+                    "Call1st": "Altman",
+                    "Call2nd": "Tanaka",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "MA",
+                        "Ion",
+                        "MC",
+                        "JT",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Jochman"
+                }
+            },
+            "10": {
+                "Sat AM": {
+                    "Call1st": "Maresh",
+                    "Call2nd": "Tanaka",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "Sedation": "Tanaka"
+                },
+                "Sat PM": {
+                    "Call1st": "Tanaka",
+                    "Call2nd": "Maresh",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    }
+                }
+            },
+            "11": {
+                "Sun AM": {
+                    "Call1st": "Altman",
+                    "Call2nd": "Tanaka",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    }
+                },
+                "Sun PM": {
+                    "Call1st": "Maresh",
+                    "Call2nd": "Tanaka",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    }
+                }
+            },
+            "12": {
+                "Mon": {
+                    "Call1st": "LeBard",
+                    "Call2nd": "Moran",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": [
+                            "X"
+                        ]
+                    },
+                    "Vacation": [
+                        "ES",
+                        "CC",
+                        "BRM",
+                        "RK",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Ion"
+                }
+            },
+            "13": {
+                "Tues": {
+                    "Call1st": "Collins",
+                    "Call2nd": "Tomasson",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "ES",
+                        "CC",
+                        "BRM",
+                        "RK",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Ion"
+                }
+            },
+            "14": {
+                "Wed": {
+                    "Call1st": "Kaus",
+                    "Call2nd": "Tanaka",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "ES",
+                        "CC",
+                        "BRM",
+                        "RK",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Ion"
+                }
+            },
+            "15": {
+                "Thurs": {
+                    "Call1st": "McCormick",
+                    "Call2nd": "Jochman",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "ES",
+                        "CC",
+                        "BRM",
+                        "RK",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Ion"
+                }
+            },
+            "16": {
+                "Fri": {
+                    "Call1st": "Kromer",
+                    "Call2nd": "LeBard",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "ES",
+                        "CC",
+                        "BRM",
+                        "RK",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Ion"
+                }
+            },
+            "17": {
+                "Sat AM": {
+                    "Call1st": "Collins",
+                    "Call2nd": "LeBard",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "Sedation": "LeBard"
+                },
+                "Sat PM": {
+                    "Call1st": "LeBard",
+                    "Call2nd": "Collins",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    }
+                }
+            },
+            "18": {
+                "Sun AM": {
+                    "Call1st": "Kromer",
+                    "Call2nd": "LeBard",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    }
+                },
+                "Sun PM": {
+                    "Call1st": "Collins",
+                    "Call2nd": "LeBard",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    }
+                }
+            },
+            "19": {
+                "Mon": {
+                    "Call1st": "Tanaka",
+                    "Call2nd": "Clark",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": [
+                            "X"
+                        ]
+                    },
+                    "Vacation": [
+                        "JJ",
+                        "CA",
+                        "DD",
+                        "PM",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Nicolai"
+                }
+            },
+            "20": {
+                "Tues": {
+                    "Call1st": "Stene",
+                    "Call2nd": "Moran",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JJ",
+                        "CA",
+                        "DD",
+                        "PM",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Nicolai"
+                }
+            },
+            "21": {
+                "Wed": {
+                    "Call1st": "Tomasson",
+                    "Call2nd": "Collins",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JJ",
+                        "CA",
+                        "DD",
+                        "PM",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Nicolai"
+                }
+            },
+            "22": {
+                "Thurs": {
+                    "Call1st": "LeBard",
+                    "Call2nd": "Maresh",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JJ",
+                        "CA",
+                        "DD",
+                        "PM",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Requests": "SL on",
+                    "Sedation": "Nicolai"
+                }
+            },
+            "23": {
+                "Fri": {
+                    "Call1st": "Miller",
+                    "Call2nd": "Kaus",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JJ",
+                        "CA",
+                        "DD",
+                        "PM",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Nicolai"
+                }
+            },
+            "24": {
+                "Sat AM": {
+                    "Call1st": "Moran",
+                    "Call2nd": "Kaus",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Sedation": "Kaus"
+                },
+                "Sat PM": {
+                    "Call1st": "Kaus",
+                    "Call2nd": "Moran",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    }
+                }
+            },
+            "25": {
+                "Sun AM": {
+                    "Call1st": "Miller",
+                    "Call2nd": "Kaus",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    }
+                },
+                "Sun PM": {
+                    "Call1st": "Moran",
+                    "Call2nd": "Kaus",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    }
+                }
+            },
+            "26": {
+                "Mon": {
+                    "Call1st": "Stene",
+                    "Call2nd": "Kromer",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": [
+                            "JJ",
+                            "X"
+                        ]
+                    },
+                    "Vacation": [
+                        "CM",
+                        "SL",
+                        "KC",
+                        "JM",
+                        "Ion",
+                        "Adm"
+                    ],
+                    "Sedation": "Altman"
+                }
+            },
+            "27": {
+                "Tues": {
+                    "Call1st": "Collins",
+                    "Call2nd": "Tomasson",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "CM",
+                        "SL",
+                        "KC",
+                        "JM",
+                        "Ion",
+                        "Adm"
+                    ],
+                    "Sedation": "Altman"
+                }
+            },
+            "28": {
+                "Wed": {
+                    "Call1st": "Kaus",
+                    "Call2nd": "Nicolai",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "CM",
+                        "SL",
+                        "KC",
+                        "JM",
+                        "Ion",
+                        "Adm"
+                    ],
+                    "Sedation": "Altman"
+                }
+            },
+            "29": {
+                "Thurs": {
+                    "Call1st": "McCormick",
+                    "Call2nd": "Tanaka",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "CM",
+                        "SL",
+                        "KC",
+                        "JM",
+                        "Ion",
+                        "Adm"
+                    ],
+                    "Requests": "PM 1st",
+                    "Sedation": "Altman"
+                }
+            },
+            "30": {
+                "Fri": {
+                    "Call1st": "Castro",
+                    "Call2nd": "Kowalsky",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "CM",
+                        "SL",
+                        "KC",
+                        "JM",
+                        "Ion",
+                        "Adm"
+                    ],
+                    "Sedation": "Altman"
+                }
+            }
+        },
+        "May": {
+            "1": {
+                "Sat AM": {
+                    "Call1st": "Stene",
+                    "Call2nd": "Kowalsky",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    },
+                    "Sedation": "Kowalsky"
+                },
+                "Sat PM": {
+                    "Call1st": "Kowalsky",
+                    "Call2nd": "Stene",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    }
+                }
+            },
+            "2": {
+                "Sun AM": {
+                    "Call1st": "Castro",
+                    "Call2nd": "Kowalsky",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    }
+                },
+                "Sun PM": {
+                    "Call1st": "Stene",
+                    "Call2nd": "Kowalsky",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    }
+                }
+            },
+            "3": {
+                "Mon": {
+                    "Call1st": "Tomasson",
+                    "Call2nd": "Maresh",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": [
+                            "JJ",
+                            "X"
+                        ]
+                    },
+                    "Vacation": [
+                        "TT",
+                        "SL",
+                        "RR",
+                        "KK",
+                        "PM",
+                        "Adm"
+                    ],
+                    "Sedation": "Nicolai"
+                }
+            },
+            "4": {
+                "Tues": {
+                    "Call1st": "Kaus",
+                    "Call2nd": "Miller",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "TT",
+                        "SL",
+                        "RR",
+                        "KK",
+                        "PM",
+                        "Adm"
+                    ],
+                    "Requests": "BRM 2nd",
+                    "Sedation": "Nicolai"
+                }
+            },
+            "5": {
+                "Wed": {
+                    "Call1st": "Stene",
+                    "Call2nd": "Altman",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "TT",
+                        "SL",
+                        "RR",
+                        "KK",
+                        "PM",
+                        "Adm"
+                    ],
+                    "Sedation": "Nicolai"
+                }
+            },
+            "6": {
+                "Thurs": {
+                    "Call1st": "Collins",
+                    "Call2nd": "Moran",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "TT",
+                        "SL",
+                        "RR",
+                        "KK",
+                        "PM",
+                        "Adm"
+                    ],
+                    "Requests": "MC on",
+                    "Sedation": "Nicolai"
+                }
+            },
+            "7": {
+                "Fri": {
+                    "Call1st": "Maresh",
+                    "Call2nd": "Ion",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "TT",
+                        "SL",
+                        "RR",
+                        "KK",
+                        "PM",
+                        "Adm"
+                    ],
+                    "Sedation": "Nicolai"
+                }
+            },
+            "8": {
+                "Sat AM": {
+                    "Call1st": "Clark",
+                    "Call2nd": "Ion",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "Requests": "CA off",
+                    "Sedation": "Ion"
+                },
+                "Sat PM": {
+                    "Call1st": "Ion",
+                    "Call2nd": "Clark",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    }
+                }
+            },
+            "9": {
+                "Sun AM": {
+                    "Call1st": "Maresh",
+                    "Call2nd": "Ion",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    }
+                },
+                "Sun PM": {
+                    "Call1st": "Clark",
+                    "Call2nd": "Ion",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    }
+                }
+            },
+            "10": {
+                "Mon": {
+                    "Call1st": "LeBard",
+                    "Call2nd": "Kowalsky",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": [
+                            "TT"
+                        ]
+                    },
+                    "Vacation": [
+                        "CC",
+                        "SK",
+                        "FM",
+                        "JT",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Jochman"
+                }
+            },
+            "11": {
+                "Tues": {
+                    "Call1st": "Kromer",
+                    "Call2nd": "Miller",
+                    "Gillette": {
+                        "G1": "Tanaka",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "CC",
+                        "SK",
+                        "FM",
+                        "JT",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Jochman"
+                }
+            },
+            "12": {
+                "Wed": {
+                    "Call1st": "Altman",
+                    "Call2nd": "Ion",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "CC",
+                        "SK",
+                        "FM",
+                        "JT",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Jochman"
+                }
+            },
+            "13": {
+                "Thurs": {
+                    "Call1st": "Kowalsky",
+                    "Call2nd": "Stene",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "CC",
+                        "SK",
+                        "FM",
+                        "JT",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Requests": "RK on",
+                    "Sedation": "Jochman"
+                }
+            },
+            "14": {
+                "Fri": {
+                    "Call1st": "Kromer",
+                    "Call2nd": "McCormick",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "CC",
+                        "SK",
+                        "FM",
+                        "JT",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Jochman"
+                }
+            },
+            "15": {
+                "Sat AM": {
+                    "Call1st": "Collins",
+                    "Call2nd": "McCormick",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Requests": "KC off",
+                    "Sedation": "McCormick"
+                },
+                "Sat PM": {
+                    "Call1st": "McCormick",
+                    "Call2nd": "Collins",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    }
+                }
+            },
+            "16": {
+                "Sun AM": {
+                    "Call1st": "Kromer",
+                    "Call2nd": "McCormick",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    }
+                },
+                "Sun PM": {
+                    "Call1st": "Collins",
+                    "Call2nd": "McCormick",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    }
+                }
+            },
+            "17": {
+                "Mon": {
+                    "Call1st": "Moran",
+                    "Call2nd": "LeBard",
+                    "Gillette": {
+                        "G1": "Ion",
+                        "4G": [
+                            "Ion",
+                            "X"
+                        ]
+                    },
+                    "CVCC": "DD",
+                    "Vacation": [
+                        "DN",
+                        "ES",
+                        "RK",
+                        "CM",
+                        "Adm"
+                    ],
+                    "Sedation": "Altman"
+                }
+            },
+            "18": {
+                "Tues": {
+                    "Call1st": "Castro",
+                    "Call2nd": "Clark",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "CVCC": "DD",
+                    "Vacation": [
+                        "DN",
+                        "ES",
+                        "RK",
+                        "CM",
+                        "Adm"
+                    ],
+                    "Sedation": "Altman"
+                }
+            },
+            "19": {
+                "Wed": {
+                    "Call1st": "McCormick",
+                    "Call2nd": "Kaus",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "CVCC": "DD",
+                    "Vacation": [
+                        "DN",
+                        "ES",
+                        "RK",
+                        "CM",
+                        "Adm"
+                    ],
+                    "Requests": "PM 1st",
+                    "Sedation": "Altman"
+                }
+            },
+            "20": {
+                "Thurs": {
+                    "Call1st": "Maresh",
+                    "Call2nd": "Collins",
+                    "Gillette": {
+                        "G1": "Ion",
+                        "4G": null
+                    },
+                    "CVCC": "DD",
+                    "Vacation": [
+                        "DN",
+                        "ES",
+                        "RK",
+                        "CM",
+                        "Adm"
+                    ],
+                    "Sedation": "Altman"
+                }
+            },
+            "21": {
+                "Fri": {
+                    "Call1st": "Tomasson",
+                    "Call2nd": "Tanaka",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "CVCC": "DD",
+                    "Vacation": [
+                        "DN",
+                        "ES",
+                        "RK",
+                        "CM",
+                        "Adm"
+                    ],
+                    "Sedation": "Altman"
+                }
+            },
+            "22": {
+                "Sat AM": {
+                    "Call1st": "LeBard",
+                    "Call2nd": "Tanaka",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "Requests": "KC off",
+                    "Sedation": "Tanaka"
+                },
+                "Sat PM": {
+                    "Call1st": "Tanaka",
+                    "Call2nd": "LeBard",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    }
+                }
+            },
+            "23": {
+                "Sun AM": {
+                    "Call1st": "Tomasson",
+                    "Call2nd": "Tanaka",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    }
+                },
+                "Sun PM": {
+                    "Call1st": "LeBard",
+                    "Call2nd": "Tanaka",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    }
+                }
+            },
+            "24": {
+                "Mon": {
+                    "Call1st": "Ion",
+                    "Call2nd": "Stene",
+                    "Gillette": {
+                        "G1": "Miller",
+                        "4G": [
+                            "Miller"
+                        ]
+                    },
+                    "Vacation": [
+                        "JJ",
+                        "RK",
+                        "JM",
+                        "MC",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Kaus"
+                }
+            },
+            "25": {
+                "Tues": {
+                    "Call1st": "Moran",
+                    "Call2nd": "Nicolai",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JJ",
+                        "RK",
+                        "JM",
+                        "MC",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Kaus"
+                }
+            },
+            "26": {
+                "Wed": {
+                    "Call1st": "McCormick",
+                    "Call2nd": "Tanaka",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JJ",
+                        "RK",
+                        "JM",
+                        "MC",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Kaus"
+                }
+            },
+            "27": {
+                "Thurs": {
+                    "Call1st": "Clark",
+                    "Call2nd": "Ion",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JJ",
+                        "RK",
+                        "JM",
+                        "MC",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Kaus"
+                }
+            },
+            "28": {
+                "Fri": {
+                    "Call1st": "Castro",
+                    "Call2nd": "Nicolai",
+                    "Gillette": {
+                        "G1": "Miller",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JJ",
+                        "RK",
+                        "JM",
+                        "MC",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Kaus"
+                }
+            },
+            "29": {
+                "Sat AM": {
+                    "Call1st": "Altman",
+                    "Call2nd": "Nicolai",
+                    "Gillette": {
+                        "G1": "Miller",
+                        "4G": null
+                    },
+                    "Sedation": "Nicolai"
+                },
+                "Sat PM": {
+                    "Call1st": "Nicolai",
+                    "Call2nd": "Altman",
+                    "Gillette": {
+                        "G1": "Miller",
+                        "4G": null
+                    }
+                }
+            },
+            "30": {
+                "Sun AM": {
+                    "Call1st": "Castro",
+                    "Call2nd": "Nicolai",
+                    "Gillette": {
+                        "G1": "Miller",
+                        "4G": null
+                    }
+                },
+                "Sun PM": {
+                    "Call1st": "Altman",
+                    "Call2nd": "Nicolai",
+                    "Gillette": {
+                        "G1": "Miller",
+                        "4G": null
+                    }
+                }
+            },
+            "31": {
+                "Mon AM": {
+                    "Call1st": "Nicolai",
+                    "Call2nd": "Castro",
+                    "Gillette": {
+                        "G1": "Miller",
+                        "4G": [
+                            "BRM",
+                            "JJ",
+                            "X"
+                        ]
+                    },
+                    "Vacation": [
+                        "DD",
+                        "MA",
+                        "CA",
+                        "Ion",
+                        "CM",
+                        "Adm"
+                    ]
+                },
+                "Mon PM": {
+                    "Call1st": "Castro",
+                    "Call2nd": "Altman",
+                    "Gillette": {
+                        "G1": "Miller",
+                        "4G": null
+                    }
+                }
+            }
+        },
+        "Jun": {
+            "1": {
+                "Tues": {
+                    "Call1st": "Kaus",
+                    "Call2nd": "Tomasson",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "DD",
+                        "MA",
+                        "CA",
+                        "Ion",
+                        "CM",
+                        "Adm"
+                    ],
+                    "Sedation": "Kromer"
+                }
+            },
+            "2": {
+                "Wed": {
+                    "Call1st": "Maresh",
+                    "Call2nd": "Collins",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "DD",
+                        "MA",
+                        "CA",
+                        "Ion",
+                        "CM",
+                        "Adm"
+                    ],
+                    "Sedation": "Kromer"
+                }
+            },
+            "3": {
+                "Thurs": {
+                    "Call1st": "Clark",
+                    "Call2nd": "Castro ",
+                    "Gillette": {
+                        "G1": "Miller",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "DD",
+                        "MA",
+                        "CA",
+                        "Ion",
+                        "CM",
+                        "Adm"
+                    ],
+                    "Requests": "Castro 2nd",
+                    "Sedation": "Kromer"
+                }
+            },
+            "4": {
+                "Fri": {
+                    "Call1st": "Stene",
+                    "Call2nd": "Tomasson",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "DD",
+                        "MA",
+                        "CA",
+                        "Ion",
+                        "CM",
+                        "Adm"
+                    ],
+                    "Sedation": "Kromer"
+                }
+            },
+            "5": {
+                "Sat AM": {
+                    "Call1st": "Tanaka",
+                    "Call2nd": "Tomasson",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    },
+                    "Sedation": "Tomasson"
+                },
+                "Sat PM": {
+                    "Call1st": "Tomasson",
+                    "Call2nd": "Tanaka",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    }
+                }
+            },
+            "6": {
+                "Sun AM": {
+                    "Call1st": "Stene",
+                    "Call2nd": "Tomasson",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    }
+                },
+                "Sun PM": {
+                    "Call1st": "Tanaka",
+                    "Call2nd": "Tomasson",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    }
+                }
+            },
+            "7": {
+                "Mon": {
+                    "Call1st": "Maresh",
+                    "Call2nd": "LeBard",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": [
+                            "JJ",
+                            "X"
+                        ]
+                    },
+                    "CVCC": "DD",
+                    "Vacation": [
+                        "CC",
+                        "Ion",
+                        "KC",
+                        "RR",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Moran"
+                }
+            },
+            "8": {
+                "Tues": {
+                    "Call1st": "Altman",
+                    "Call2nd": "Collins",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "CVCC": "DD",
+                    "Vacation": [
+                        "CC",
+                        "Ion",
+                        "KC",
+                        "RR",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Moran"
+                }
+            },
+            "9": {
+                "Wed": {
+                    "Call1st": "Tomasson",
+                    "Call2nd": "Stene",
+                    "Gillette": {
+                        "G1": "Jochman",
+                        "4G": null
+                    },
+                    "CVCC": "DD",
+                    "Vacation": [
+                        "CC",
+                        "Ion",
+                        "KC",
+                        "RR",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Moran"
+                }
+            },
+            "10": {
+                "Thurs": {
+                    "Call1st": "Kowalsky",
+                    "Call2nd": "McCormick",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "CVCC": "DD",
+                    "Vacation": [
+                        "CC",
+                        "Ion",
+                        "KC",
+                        "RR",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Requests": "RK on",
+                    "Sedation": "Moran"
+                }
+            },
+            "11": {
+                "Fri": {
+                    "Call1st": "Maresh",
+                    "Call2nd": "Collins",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "CVCC": "DD",
+                    "Vacation": [
+                        "CC",
+                        "Ion",
+                        "KC",
+                        "RR",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Moran"
+                }
+            },
+            "12": {
+                "Sat AM": {
+                    "Call1st": "LeBard",
+                    "Call2nd": "Collins",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "Sedation": "Collins"
+                },
+                "Sat PM": {
+                    "Call1st": "Collins",
+                    "Call2nd": "LeBard",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    }
+                }
+            },
+            "13": {
+                "Sun AM": {
+                    "Call1st": "Maresh",
+                    "Call2nd": "Collins",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    }
+                },
+                "Sun PM": {
+                    "Call1st": "LeBard",
+                    "Call2nd": "Collins",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    }
+                }
+            },
+            "14": {
+                "Mon": {
+                    "Call1st": "Moran",
+                    "Call2nd": "Castro",
+                    "Gillette": {
+                        "G1": "Nicolai",
+                        "4G": [
+                            "DN",
+                            "X"
+                        ]
+                    },
+                    "Vacation": [
+                        "TT",
+                        "PM",
+                        "MA",
+                        "RK",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Ion"
+                }
+            },
+            "15": {
+                "Tues": {
+                    "Call1st": "Jochman",
+                    "Call2nd": "Miller",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "TT",
+                        "PM",
+                        "MA",
+                        "RK",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Ion"
+                }
+            },
+            "16": {
+                "Wed": {
+                    "Call1st": "Stene",
+                    "Call2nd": "Maresh",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "TT",
+                        "PM",
+                        "MA",
+                        "RK",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Ion"
+                }
+            },
+            "17": {
+                "Thurs": {
+                    "Call1st": "Tomasson",
+                    "Call2nd": "LeBard",
+                    "Gillette": {
+                        "G1": "Nicolai",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "TT",
+                        "PM",
+                        "MA",
+                        "RK",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Ion"
+                }
+            },
+            "18": {
+                "Fri": {
+                    "Call1st": "Moran",
+                    "Call2nd": "Castro",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "TT",
+                        "PM",
+                        "MA",
+                        "RK",
+                        "KK",
+                        "Adm"
+                    ],
+                    "Sedation": "Ion"
+                }
+            },
+            "19": {
+                "Sat AM": {
+                    "Call1st": "Kaus",
+                    "Call2nd": "Castro",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Requests": "CA off",
+                    "Sedation": "Castro"
+                },
+                "Sat PM": {
+                    "Call1st": "Castro",
+                    "Call2nd": "Kaus",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    }
+                }
+            },
+            "20": {
+                "Sun AM": {
+                    "Call1st": "Moran",
+                    "Call2nd": "Castro",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    }
+                },
+                "Sun PM": {
+                    "Call1st": "Kaus",
+                    "Call2nd": "Castro",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    }
+                }
+            },
+            "21": {
+                "Mon": {
+                    "Call1st": "Clark",
+                    "Call2nd": "Ion",
+                    "Gillette": {
+                        "G1": "Kromer",
+                        "4G": [
+                            "KK",
+                            "X"
+                        ]
+                    },
+                    "Vacation": [
+                        "JT",
+                        "MC",
+                        "CM",
+                        "SL",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Stene"
+                }
+            },
+            "22": {
+                "Tues": {
+                    "Call1st": "Altman",
+                    "Call2nd": "McCormick",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JT",
+                        "MC",
+                        "CM",
+                        "SL",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Stene"
+                }
+            },
+            "23": {
+                "Wed": {
+                    "Call1st": "Tanaka",
+                    "Call2nd": "Castro",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JT",
+                        "MC",
+                        "CM",
+                        "SL",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Stene"
+                }
+            },
+            "24": {
+                "Thurs": {
+                    "Call1st": "Miller",
+                    "Call2nd": "Kaus",
+                    "Gillette": {
+                        "G1": "Kromer",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JT",
+                        "MC",
+                        "CM",
+                        "SL",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Requests": "BRM 1st",
+                    "Sedation": "Stene"
+                }
+            },
+            "25": {
+                "Fri": {
+                    "Call1st": "McCormick",
+                    "Call2nd": "Ion",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JT",
+                        "MC",
+                        "CM",
+                        "SL",
+                        "DN",
+                        "Adm"
+                    ],
+                    "Sedation": "Clark"
+                }
+            },
+            "26": {
+                "Sat AM": {
+                    "Call1st": "Stene",
+                    "Call2nd": "Ion",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "Sedation": "Ion"
+                },
+                "Sat PM": {
+                    "Call1st": "Ion",
+                    "Call2nd": "Stene",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    }
+                }
+            },
+            "27": {
+                "Sun AM": {
+                    "Call1st": "McCormick",
+                    "Call2nd": "Ion",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    }
+                },
+                "Sun PM": {
+                    "Call1st": "Stene",
+                    "Call2nd": "Ion",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    }
+                }
+            },
+            "28": {
+                "Mon": {
+                    "Call1st": "LeBard",
+                    "Call2nd": "Altman",
+                    "Gillette": {
+                        "G1": "Kowalsky",
+                        "4G": [
+                            "RK"
+                        ]
+                    },
+                    "Vacation": [
+                        "JT",
+                        "DD",
+                        "BRM",
+                        "SK",
+                        "FM",
+                        "KK"
+                    ],
+                    "Sedation": "Maresh"
+                }
+            },
+            "29": {
+                "Tues": {
+                    "Call1st": "Collins",
+                    "Call2nd": "Clark",
+                    "Gillette": {
+                        "G1": "Rekuski",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JT",
+                        "DD",
+                        "BRM",
+                        "SK",
+                        "FM",
+                        "KK"
+                    ],
+                    "Sedation": "Maresh"
+                }
+            },
+            "30": {
+                "Wed": {
+                    "Call1st": "McCormick",
+                    "Call2nd": "Ion",
+                    "Gillette": {
+                        "G1": "Angel",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JT",
+                        "DD",
+                        "BRM",
+                        "SK",
+                        "FM",
+                        "KK"
+                    ],
+                    "Sedation": "Maresh"
+                }
+            }
+        },
+        "Jul": {
+            "1": {
+                "Thurs": {
+                    "Call1st": "Altman",
+                    "Call2nd": "Castro",
+                    "Gillette": {
+                        "G1": "Mickelson",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JT",
+                        "DD",
+                        "BRM",
+                        "SK",
+                        "FM",
+                        "KK"
+                    ],
+                    "Requests": "CC 2nd, ES off",
+                    "Sedation": "Maresh"
+                }
+            },
+            "2": {
+                "Fri": {
+                    "Call1st": "Clark",
+                    "Call2nd": "Nicolai",
+                    "Gillette": {
+                        "G1": "Kowalsky",
+                        "4G": null
+                    },
+                    "Vacation": [
+                        "JT",
+                        "DD",
+                        "BRM",
+                        "SK",
+                        "FM",
+                        "KK"
+                    ],
+                    "Sedation": "Maresh"
+                }
+            },
+            "3": {
+                "Sat AM": {
+                    "Call1st": "Jochman",
+                    "Call2nd": "Nicolai",
+                    "Gillette": {
+                        "G1": "Kowalsky",
+                        "4G": null
+                    },
+                    "Sedation": "Nicolai"
+                },
+                "Sat PM": {
+                    "Call1st": "Nicolai",
+                    "Call2nd": "Jochman",
+                    "Gillette": {
+                        "G1": "Kowalsky",
+                        "4G": null
+                    }
+                }
+            },
+            "4": {
+                "Sun AM": {
+                    "Call1st": "Clark",
+                    "Call2nd": "Nicolai",
+                    "Gillette": {
+                        "G1": "Kowalsky",
+                        "4G": null
+                    }
+                },
+                "Sun PM": {
+                    "Call1st": "Jochman",
+                    "Call2nd": "Nicolai",
+                    "Gillette": {
+                        "G1": "Kowalsky",
+                        "4G": null
+                    }
+                }
+            },
+            "5": {
+                "Mon AM": {
+                    "Call1st": "Nicolai",
+                    "Call2nd": "Clark",
+                    "Gillette": {
+                        "G1": "Kowalsky",
+                        "4G": null
+                    }
+                },
+                "Mon PM": {
+                    "Call1st": "Clark",
+                    "Call2nd": "Jochman",
+                    "Gillette": {
+                        "G1": "Kowalsky",
+                        "4G": null
+                    }
+                }
+            }
+        }
+    }
+}

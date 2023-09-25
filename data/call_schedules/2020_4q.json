@@ -995,7 +995,8 @@
                         "KC",
                         "MA",
                         "TT",
-                        "Admx2"
+                        "Adm",
+                        "Adm"
                     ],
                     "Sedation": "Altman",
                     "West": {
@@ -1016,7 +1017,8 @@
                         "KC",
                         "MA",
                         "TT",
-                        "Admx2"
+                        "Adm",
+                        "Adm"
                     ],
                     "Sedation": "Altman",
                     "West": {
@@ -1037,7 +1039,8 @@
                         "KC",
                         "MA",
                         "TT",
-                        "Admx2"
+                        "Adm",
+                        "Adm"
                     ],
                     "Sedation": "Altman",
                     "West": {
@@ -1058,7 +1061,8 @@
                         "KC",
                         "MA",
                         "TT",
-                        "Admx2"
+                        "Adm",
+                        "Adm"
                     ],
                     "Sedation": "Altman",
                     "West": {
@@ -1079,7 +1083,8 @@
                         "KC",
                         "MA",
                         "TT",
-                        "Admx2"
+                        "Adm",
+                        "Adm"
                     ],
                     "Sedation": "Altman",
                     "West": {
@@ -1153,7 +1158,8 @@
                         "DN",
                         "ES",
                         "JT",
-                        "Admx2"
+                        "Adm",
+                        "Adm"
                     ],
                     "Sedation": "Collins",
                     "West": {
@@ -1174,7 +1180,8 @@
                         "DN",
                         "ES",
                         "JT",
-                        "Admx2"
+                        "Adm",
+                        "Adm"
                     ],
                     "Sedation": "Collins",
                     "West": {
@@ -1195,7 +1202,8 @@
                         "DN",
                         "ES",
                         "JT",
-                        "Admx2"
+                        "Adm",
+                        "Adm"
                     ],
                     "Requests": "CM on",
                     "Sedation": "Collins",
@@ -1217,7 +1225,8 @@
                         "DN",
                         "ES",
                         "JT",
-                        "Admx2"
+                        "Adm",
+                        "Adm"
                     ],
                     "Sedation": "Collins",
                     "West": {
@@ -1422,7 +1431,7 @@
                         "PM",
                         "Adm"
                     ],
-                    "Sedation": "Mickelson?",
+                    "Sedation": "Mickelson",
                     "West": {
                         "CHC": null
                     }
