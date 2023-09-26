@@ -35,6 +35,7 @@ def format_sheet(records, prev_month, this_month):
 
     # Rename columns using the mapping
     records.rename(columns=col_mapping, inplace=True)
+    records = records.applymap(lambda x: x.strip() if isinstance(x, str) else x)
 
     for index, row in records.iterrows():
         day = int(row['Day'])
@@ -47,7 +48,7 @@ def format_sheet(records, prev_month, this_month):
         shift = row[1]
         vacations = [item.strip() for item in row['Vacation'].split(',')] if not pd.isna(row['Vacation']) else []
         record = {
-            'Call': {'1st': row['Call1st'], '2nd': row['Call2nd']},
+            'Call': {'1st': row['Call1st'].strip(), '2nd': row['Call2nd']},
             'Gillette': {
                 'G1': row['G1'],
                 '4G': [item.strip() for item in row['4G'].split(',')] if not pd.isna(row['4G']) else None
