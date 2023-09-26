@@ -60,7 +60,7 @@ def format_sheet(records, prev_month, this_month):
         }
         if 'Sedation' in records.columns:
             record['Sedation'] = row['Sedation'] if not pd.isna(row['Sedation']) else None
-        if 'CHC' in records.columns:
+        if 'CHC' in records.columns and not pd.isna(row['CHC']):
             record['West'] = {'CHC': row['CHC'] if not pd.isna(row['CHC']) else None}
 
         # Remove None values from record - they are not needed

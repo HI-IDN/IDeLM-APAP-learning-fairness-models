@@ -46,10 +46,7 @@
                     ],
                     "Admin": 1,
                     "Requests": "DN off",
-                    "Sedation": "Ion",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Ion"
                 }
             },
             "30": {
@@ -70,10 +67,7 @@
                         "KK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Ion",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Ion"
                 }
             }
         },
@@ -96,10 +90,7 @@
                         "KK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Ion",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Ion"
                 }
             },
             "2": {
@@ -120,10 +111,7 @@
                         "KK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Ion",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Ion"
                 }
             },
             "3": {
@@ -137,10 +125,7 @@
                         "4G": null
                     },
                     "Admin": 0,
-                    "Sedation": "Kowalsky",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Kowalsky"
                 },
                 "Sat PM": {
                     "Call": {
@@ -151,10 +136,7 @@
                         "G1": "Jochman",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "4": {
@@ -167,10 +149,7 @@
                         "G1": "Jochman",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -181,10 +160,7 @@
                         "G1": "Jochman",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "5": {
@@ -231,10 +207,7 @@
                         "PM"
                     ],
                     "Admin": 1,
-                    "Sedation": "Maresh",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Maresh"
                 }
             },
             "7": {
@@ -255,10 +228,7 @@
                         "PM"
                     ],
                     "Admin": 1,
-                    "Sedation": "Maresh",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Maresh"
                 }
             },
             "8": {
@@ -279,10 +249,7 @@
                         "PM"
                     ],
                     "Admin": 1,
-                    "Sedation": "Maresh",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Maresh"
                 }
             },
             "9": {
@@ -303,10 +270,7 @@
                         "PM"
                     ],
                     "Admin": 1,
-                    "Sedation": "Maresh",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Maresh"
                 }
             },
             "10": {
@@ -320,10 +284,7 @@
                         "4G": null
                     },
                     "Admin": 0,
-                    "Sedation": "Miller",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Miller"
                 },
                 "Sat PM": {
                     "Call": {
@@ -334,10 +295,7 @@
                         "G1": "Rekuski",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "11": {
@@ -350,10 +308,7 @@
                         "G1": "Rekuski",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -364,10 +319,7 @@
                         "G1": "Rekuski",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "12": {
@@ -416,10 +368,7 @@
                         "DN"
                     ],
                     "Admin": 1,
-                    "Sedation": "Castro",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Castro"
                 }
             },
             "14": {
@@ -440,10 +389,7 @@
                         "DN"
                     ],
                     "Admin": 1,
-                    "Sedation": "Castro",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Castro"
                 }
             },
             "15": {
@@ -465,10 +411,7 @@
                     ],
                     "Admin": 1,
                     "Requests": "PM on",
-                    "Sedation": "Castro",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Castro"
                 }
             },
             "16": {
@@ -489,10 +432,7 @@
                         "DN"
                     ],
                     "Admin": 1,
-                    "Sedation": "Castro",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Castro"
                 }
             },
             "17": {
@@ -507,10 +447,7 @@
                     },
                     "Admin": 0,
                     "Requests": "FM/SK off",
-                    "Sedation": "LeBard",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "LeBard"
                 },
                 "Sat PM": {
                     "Call": {
@@ -521,10 +458,7 @@
                         "G1": "Angel",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "18": {
@@ -537,10 +471,7 @@
                         "G1": "Angel",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -551,10 +482,7 @@
                         "G1": "Angel",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "19": {
@@ -601,10 +529,7 @@
                         "RK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Mickelson",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Mickelson"
                 }
             },
             "21": {
@@ -625,10 +550,7 @@
                         "RK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Mickelson",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Mickelson"
                 }
             },
             "22": {
@@ -649,10 +571,7 @@
                         "RK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Mickelson",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Mickelson"
                 }
             },
             "23": {
@@ -673,10 +592,7 @@
                         "RK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Mickelson",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Mickelson"
                 }
             },
             "24": {
@@ -690,10 +606,7 @@
                         "4G": null
                     },
                     "Admin": 0,
-                    "Sedation": "Moran",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Moran"
                 },
                 "Sat PM": {
                     "Call": {
@@ -704,10 +617,7 @@
                         "G1": "Nicolai",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "25": {
@@ -720,10 +630,7 @@
                         "G1": "Nicolai",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -734,10 +641,7 @@
                         "G1": "Nicolai",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "26": {
@@ -784,10 +688,7 @@
                         "KK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Moran",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Moran"
                 }
             },
             "28": {
@@ -808,10 +709,7 @@
                         "KK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Moran",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Moran"
                 }
             },
             "29": {
@@ -833,10 +731,7 @@
                     ],
                     "Admin": 1,
                     "Requests": "CC 2nd, SK on",
-                    "Sedation": "Moran",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Moran"
                 }
             },
             "30": {
@@ -857,10 +752,7 @@
                         "KK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Moran",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Moran"
                 }
             },
             "31": {
@@ -875,10 +767,7 @@
                     },
                     "Admin": 0,
                     "Requests": "DN, Ion, JM off",
-                    "Sedation": "Tanaka",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Tanaka"
                 },
                 "Sat PM": {
                     "Call": {
@@ -889,10 +778,7 @@
                         "G1": "Jochman",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             }
         },
@@ -907,10 +793,7 @@
                         "G1": "Jochman",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -921,10 +804,7 @@
                         "G1": "Jochman",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "2": {
@@ -972,10 +852,7 @@
                         "KK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Castro",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Castro"
                 }
             },
             "4": {
@@ -996,10 +873,7 @@
                         "KK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Castro",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Castro"
                 }
             },
             "5": {
@@ -1020,10 +894,7 @@
                         "KK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Castro",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Castro"
                 }
             },
             "6": {
@@ -1044,10 +915,7 @@
                         "KK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Ion",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Ion"
                 }
             },
             "7": {
@@ -1061,10 +929,7 @@
                         "4G": null
                     },
                     "Admin": 0,
-                    "Sedation": "Tomasson",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Tomasson"
                 },
                 "Sat PM": {
                     "Call": {
@@ -1075,10 +940,7 @@
                         "G1": "Nicolai",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "8": {
@@ -1091,10 +953,7 @@
                         "G1": "Nicolai",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -1105,10 +964,7 @@
                         "G1": "Nicolai",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "9": {
@@ -1154,10 +1010,7 @@
                         "TT"
                     ],
                     "Admin": 2,
-                    "Sedation": "Altman",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Altman"
                 }
             },
             "11": {
@@ -1177,10 +1030,7 @@
                         "TT"
                     ],
                     "Admin": 2,
-                    "Sedation": "Altman",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Altman"
                 }
             },
             "12": {
@@ -1200,10 +1050,7 @@
                         "TT"
                     ],
                     "Admin": 2,
-                    "Sedation": "Altman",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Altman"
                 }
             },
             "13": {
@@ -1223,10 +1070,7 @@
                         "TT"
                     ],
                     "Admin": 2,
-                    "Sedation": "Altman",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Altman"
                 }
             },
             "14": {
@@ -1240,10 +1084,7 @@
                         "4G": null
                     },
                     "Admin": 0,
-                    "Sedation": "Rekuski",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Rekuski"
                 },
                 "Sat PM": {
                     "Call": {
@@ -1254,10 +1095,7 @@
                         "G1": "Mickelson",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "15": {
@@ -1270,10 +1108,7 @@
                         "G1": "Mickelson",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -1284,10 +1119,7 @@
                         "G1": "Mickelson",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "16": {
@@ -1334,10 +1166,7 @@
                         "JT"
                     ],
                     "Admin": 2,
-                    "Sedation": "Collins",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Collins"
                 }
             },
             "18": {
@@ -1358,10 +1187,7 @@
                     ],
                     "Admin": 2,
                     "Requests": "CM on",
-                    "Sedation": "Collins",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Collins"
                 }
             },
             "19": {
@@ -1381,10 +1207,7 @@
                         "JT"
                     ],
                     "Admin": 2,
-                    "Sedation": "Collins",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Collins"
                 }
             },
             "20": {
@@ -1405,10 +1228,7 @@
                         "PM"
                     ],
                     "Admin": 1,
-                    "Sedation": "Collins",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Collins"
                 }
             },
             "21": {
@@ -1423,10 +1243,7 @@
                     },
                     "Admin": 0,
                     "Requests": "RK Fri/Sun",
-                    "Sedation": "LeBard",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "LeBard"
                 },
                 "Sat PM": {
                     "Call": {
@@ -1437,10 +1254,7 @@
                         "G1": "Ion",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "22": {
@@ -1453,10 +1267,7 @@
                         "G1": "Ion",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -1467,10 +1278,7 @@
                         "G1": "Ion",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "23": {
@@ -1518,10 +1326,7 @@
                         "PM"
                     ],
                     "Admin": 1,
-                    "Sedation": "Mickelson",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Mickelson"
                 }
             },
             "25": {
@@ -1542,10 +1347,7 @@
                         "PM"
                     ],
                     "Admin": 1,
-                    "Sedation": "Mickelson",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Mickelson"
                 }
             },
             "26": {
@@ -1565,10 +1367,7 @@
                         "RR",
                         "PM"
                     ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 1
                 },
                 "Thurs PM": {
                     "Call": {
@@ -1586,10 +1385,7 @@
                         "RR",
                         "PM"
                     ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 1
                 }
             },
             "27": {
@@ -1610,10 +1406,7 @@
                         "PM"
                     ],
                     "Admin": 1,
-                    "Sedation": "Mickelson",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Mickelson"
                 }
             },
             "28": {
@@ -1627,10 +1420,7 @@
                         "4G": null
                     },
                     "Admin": 0,
-                    "Sedation": "Tanaka",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Tanaka"
                 },
                 "Sat PM": {
                     "Call": {
@@ -1641,10 +1431,7 @@
                         "G1": "Kaus",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "29": {
@@ -1657,10 +1444,7 @@
                         "G1": "Kaus",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -1671,10 +1455,7 @@
                         "G1": "Kaus",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "30": {
@@ -1723,10 +1504,7 @@
                         "KK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Stene",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Stene"
                 }
             },
             "2": {
@@ -1747,10 +1525,7 @@
                         "KK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Stene",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Stene"
                 }
             },
             "3": {
@@ -1771,10 +1546,7 @@
                         "KK"
                     ],
                     "Admin": 1,
-                    "Sedation": "Stene",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Stene"
                 }
             },
             "4": {
@@ -1796,10 +1568,7 @@
                     ],
                     "Admin": 1,
                     "Requests": "ES off",
-                    "Sedation": "Stene",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Stene"
                 }
             },
             "5": {
@@ -1813,10 +1582,7 @@
                         "4G": null
                     },
                     "Admin": 0,
-                    "Sedation": "Miller",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Miller"
                 },
                 "Sat PM": {
                     "Call": {
@@ -1827,10 +1593,7 @@
                         "G1": "Angel",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "6": {
@@ -1843,10 +1606,7 @@
                         "G1": "Angel",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -1857,10 +1617,7 @@
                         "G1": "Angel",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "7": {
@@ -1908,10 +1665,7 @@
                         "PM"
                     ],
                     "Admin": 1,
-                    "Sedation": "Ion",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Ion"
                 }
             },
             "9": {
@@ -1932,10 +1686,7 @@
                         "PM"
                     ],
                     "Admin": 1,
-                    "Sedation": "Ion",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Ion"
                 }
             },
             "10": {
@@ -1957,10 +1708,7 @@
                     ],
                     "Admin": 1,
                     "Requests": "RK on",
-                    "Sedation": "Ion",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Ion"
                 }
             },
             "11": {
@@ -1981,10 +1729,7 @@
                         "PM"
                     ],
                     "Admin": 1,
-                    "Sedation": "Ion",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Ion"
                 }
             },
             "12": {
@@ -1998,10 +1743,7 @@
                         "4G": null
                     },
                     "Admin": 0,
-                    "Sedation": "Altman",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Altman"
                 },
                 "Sat PM": {
                     "Call": {
@@ -2012,10 +1754,7 @@
                         "G1": "Nicolai",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "13": {
@@ -2028,10 +1767,7 @@
                         "G1": "Nicolai",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -2042,10 +1778,7 @@
                         "G1": "Nicolai",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "14": {
@@ -2092,10 +1825,7 @@
                         "CM"
                     ],
                     "Admin": 1,
-                    "Sedation": "Tomasson",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Tomasson"
                 }
             },
             "16": {
@@ -2116,10 +1846,7 @@
                         "CM"
                     ],
                     "Admin": 1,
-                    "Sedation": "Tomasson",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Tomasson"
                 }
             },
             "17": {
@@ -2141,10 +1868,7 @@
                     ],
                     "Admin": 1,
                     "Requests": "FM/SK off, RR on",
-                    "Sedation": "Tomasson",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Tomasson"
                 }
             },
             "18": {
@@ -2166,10 +1890,7 @@
                     ],
                     "Admin": 1,
                     "Requests": "PM off",
-                    "Sedation": "Tomasson",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Tomasson"
                 }
             },
             "19": {
@@ -2183,10 +1904,7 @@
                         "4G": null
                     },
                     "Admin": 0,
-                    "Sedation": "Tanaka",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Tanaka"
                 },
                 "Sat PM": {
                     "Call": {
@@ -2197,10 +1915,7 @@
                         "G1": "Angel",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "20": {
@@ -2213,10 +1928,7 @@
                         "G1": "Angel",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -2227,10 +1939,7 @@
                         "G1": "Angel",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "21": {
@@ -2278,10 +1987,7 @@
                         "DN"
                     ],
                     "Admin": 1,
-                    "Sedation": "Maresh",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Maresh"
                 }
             },
             "23": {
@@ -2303,10 +2009,7 @@
                     ],
                     "Admin": 1,
                     "Requests": "JT 1st, BRM 2nd, MA G",
-                    "Sedation": "Maresh",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Maresh"
                 }
             },
             "24": {
@@ -2327,10 +2030,7 @@
                         "DN"
                     ],
                     "Admin": 1,
-                    "Sedation": "Maresh",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Maresh"
                 }
             },
             "25": {
@@ -2350,10 +2050,7 @@
                         "DD",
                         "DN"
                     ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 1
                 },
                 "Fri PM": {
                     "Call": {
@@ -2371,10 +2068,7 @@
                         "DD",
                         "DN"
                     ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 1
                 }
             },
             "26": {
@@ -2388,10 +2082,7 @@
                         "4G": null
                     },
                     "Admin": 0,
-                    "Sedation": "Castro",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Castro"
                 },
                 "Sat PM": {
                     "Call": {
@@ -2402,10 +2093,7 @@
                         "G1": "Stene",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "27": {
@@ -2418,10 +2106,7 @@
                         "G1": "Stene",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -2432,10 +2117,7 @@
                         "G1": "Stene",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "28": {
@@ -2487,10 +2169,7 @@
                     ],
                     "Admin": 0,
                     "Requests": "ES off",
-                    "Sedation": "Moran",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Moran"
                 }
             },
             "30": {
@@ -2513,10 +2192,7 @@
                     ],
                     "Admin": 0,
                     "Requests": "CC 2nd, BRM 1st, MA G",
-                    "Sedation": "Moran",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Moran"
                 }
             },
             "31": {
@@ -2538,10 +2214,7 @@
                         "PM"
                     ],
                     "Admin": 0,
-                    "Sedation": "Moran",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Moran"
                 }
             }
         }
@@ -2566,10 +2239,7 @@
                         "RK",
                         "PM"
                     ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Fri PM": {
                     "Call": {
@@ -2588,10 +2258,7 @@
                         "RK",
                         "PM"
                     ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "2": {
@@ -2605,10 +2272,7 @@
                         "4G": null
                     },
                     "Admin": 0,
-                    "Sedation": "Jochman",
-                    "West": {
-                        "CHC": null
-                    }
+                    "Sedation": "Jochman"
                 },
                 "Sat PM": {
                     "Call": {
@@ -2619,10 +2283,7 @@
                         "G1": "Ion",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             },
             "3": {
@@ -2635,10 +2296,7 @@
                         "G1": "Ion",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 },
                 "Sun PM": {
                     "Call": {
@@ -2649,10 +2307,7 @@
                         "G1": "Ion",
                         "4G": null
                     },
-                    "Admin": 0,
-                    "West": {
-                        "CHC": null
-                    }
+                    "Admin": 0
                 }
             }
         }
