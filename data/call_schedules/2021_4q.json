@@ -27,7 +27,7 @@
                 }
             },
             "5": {
-                "Tues": {
+                "Tue": {
                     "Call": {
                         "1st": "Altman",
                         "2nd": "LeBard"
@@ -70,7 +70,7 @@
                 }
             },
             "7": {
-                "Thurs": {
+                "Thu": {
                     "Call": {
                         "1st": "Tomasson",
                         "2nd": "McCormick"
@@ -187,7 +187,7 @@
                 }
             },
             "12": {
-                "Tues": {
+                "Tue": {
                     "Call": {
                         "1st": "Clark",
                         "2nd": "LeBard"
@@ -229,7 +229,7 @@
                 }
             },
             "14": {
-                "Thurs": {
+                "Thu": {
                     "Call": {
                         "1st": "Moran",
                         "2nd": "Jochman"
@@ -347,7 +347,7 @@
                 }
             },
             "19": {
-                "Tues": {
+                "Tue": {
                     "Call": {
                         "1st": "Collins",
                         "2nd": "Altman"
@@ -390,7 +390,7 @@
                 }
             },
             "21": {
-                "Thurs": {
+                "Thu": {
                     "Call": {
                         "1st": "Mickelson",
                         "2nd": "Clark"
@@ -506,7 +506,7 @@
                 }
             },
             "26": {
-                "Tues": {
+                "Tue": {
                     "Call": {
                         "1st": "Altman",
                         "2nd": "Stene"
@@ -548,7 +548,7 @@
                 }
             },
             "28": {
-                "Thurs": {
+                "Thu": {
                     "Call": {
                         "1st": "Tanaka",
                         "2nd": "Rekuski"
@@ -665,7 +665,7 @@
                 }
             },
             "2": {
-                "Tues": {
+                "Tue": {
                     "Call": {
                         "1st": "Miller",
                         "2nd": "Maresh"
@@ -707,7 +707,7 @@
                 }
             },
             "4": {
-                "Thurs": {
+                "Thu": {
                     "Call": {
                         "1st": "Stene",
                         "2nd": "Castro"
@@ -823,7 +823,7 @@
                 }
             },
             "9": {
-                "Tues": {
+                "Tue": {
                     "Call": {
                         "1st": "Moran",
                         "2nd": "Clark"
@@ -865,7 +865,7 @@
                 }
             },
             "11": {
-                "Thurs": {
+                "Thu": {
                     "Call": {
                         "1st": "Kaus",
                         "2nd": "Kromer"
@@ -980,7 +980,7 @@
                 }
             },
             "16": {
-                "Tues": {
+                "Tue": {
                     "Call": {
                         "1st": "LeBard",
                         "2nd": "Stene"
@@ -1022,7 +1022,7 @@
                 }
             },
             "18": {
-                "Thurs": {
+                "Thu": {
                     "Call": {
                         "1st": "Clark",
                         "2nd": "Castro"
@@ -1136,7 +1136,7 @@
                 }
             },
             "23": {
-                "Tues": {
+                "Tue": {
                     "Call": {
                         "1st": "Maresh",
                         "2nd": "Nicolai"
@@ -1179,7 +1179,7 @@
                 }
             },
             "25": {
-                "Thurs AM": {
+                "Thu AM": {
                     "Call": {
                         "1st": "Tanaka",
                         "2nd": "Moran"
@@ -1197,7 +1197,7 @@
                     ],
                     "Admin": 1
                 },
-                "Thurs PM": {
+                "Thu PM": {
                     "Call": {
                         "1st": "Kaus",
                         "2nd": "Moran"
@@ -1309,7 +1309,7 @@
                 }
             },
             "30": {
-                "Tues": {
+                "Tue": {
                     "Call": {
                         "1st": "Castro",
                         "2nd": "Kromer"
@@ -1353,7 +1353,7 @@
                 }
             },
             "2": {
-                "Thurs": {
+                "Thu": {
                     "Call": {
                         "1st": "Tanaka",
                         "2nd": "Kaus"
@@ -1468,7 +1468,7 @@
                 }
             },
             "7": {
-                "Tues": {
+                "Tue": {
                     "Call": {
                         "1st": "Collins",
                         "2nd": "Clark"
@@ -1510,7 +1510,7 @@
                 }
             },
             "9": {
-                "Thurs": {
+                "Thu": {
                     "Call": {
                         "1st": "Rekuski",
                         "2nd": "Mickelson"
@@ -1626,7 +1626,7 @@
                 }
             },
             "14": {
-                "Tues": {
+                "Tue": {
                     "Call": {
                         "1st": "Moran",
                         "2nd": "Tanaka"
@@ -1668,7 +1668,7 @@
                 }
             },
             "16": {
-                "Thurs": {
+                "Thu": {
                     "Call": {
                         "1st": "Maresh",
                         "2nd": "Tomasson"
@@ -1784,7 +1784,7 @@
                 }
             },
             "21": {
-                "Tues": {
+                "Tue": {
                     "Call": {
                         "1st": "Stene",
                         "2nd": "Kromer"
@@ -1829,7 +1829,7 @@
                 }
             },
             "23": {
-                "Thurs": {
+                "Thu": {
                     "Call": {
                         "1st": "Castro",
                         "2nd": "Collins"
@@ -1945,7 +1945,7 @@
                 }
             },
             "28": {
-                "Tues": {
+                "Tue": {
                     "Call": {
                         "1st": "Clark",
                         "2nd": "Kaus"
@@ -1989,7 +1989,7 @@
                 }
             },
             "30": {
-                "Thurs": {
+                "Thu": {
                     "Call": {
                         "1st": "Nicolai",
                         "2nd": "Moran"

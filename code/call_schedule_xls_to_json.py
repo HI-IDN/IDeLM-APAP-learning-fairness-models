@@ -42,10 +42,21 @@ def format_sheet(records, prev_month, this_month):
         if month is None:
             month = this_month if day < 15 else prev_month
 
-        if '4G' not in records.columns:
-            print(row)
+        def transform_shift(shift):
+            # Split the shift value into components (e.g. "Sunday AM" => ["Sunday", "AM"])
+            components = shift.split()
 
-        shift = row[1]
+            # Abbreviate the day to its first 3 letters
+            day = components[0][:3]
+
+            # If there's an AM/PM component, capitalize it
+            if len(components) > 1:
+                period = components[1].upper()
+                return f"{day} {period}"
+            else:
+                return day
+
+        shift = transform_shift(row[1])
         vacations = [item.strip() for item in row['Vacation'].split(',')] if not pd.isna(row['Vacation']) else []
         record = {
             'Call': {'1st': row['Call1st'].strip(), '2nd': row['Call2nd']},
