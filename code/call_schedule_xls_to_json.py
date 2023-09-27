@@ -1,8 +1,9 @@
 import pandas as pd
 import json
 import argparse
+import re
 
-def format_sheet(records, prev_month, this_month, simple_mode):
+def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
     current_day = 0
     next_month = {}
     month = None
@@ -36,6 +37,21 @@ def format_sheet(records, prev_month, this_month, simple_mode):
     records.rename(columns=col_mapping, inplace=True)
     records = records.applymap(lambda x: x.strip() if isinstance(x, str) else x)
 
+    def cleanup_request_string(request_string, mapping=name_to_anst):
+        # Replace all names with corresponding initials
+        for name, initials in mapping.items():
+            request_string = re.sub(re.escape(name), initials, request_string, flags=re.IGNORECASE)
+
+        return request_string
+
+    def replace_name_with_initials(data, mapping=name_to_anst):
+        if isinstance(data, dict):
+            return {k: replace_name_with_initials(v, mapping) for k, v in data.items()}
+        elif isinstance(data, list):
+            return [replace_name_with_initials(item, mapping) for item in data]
+        else:
+            return mapping.get(data, data)
+
     for index, row in records.iterrows():
         day = int(row['Day'])
         if month is None:
@@ -66,7 +82,7 @@ def format_sheet(records, prev_month, this_month, simple_mode):
             'CVCC': row['CVCC'] if not pd.isna(row['CVCC']) else None,
             'Vacation': [item for item in vacations if item != 'Adm'] if len(vacations) > 0 else None,
             'Admin': len([item for item in vacations if item == 'Adm']),
-            'Requests': row['Requests'] if not pd.isna(row['Requests']) else None
+            'Requests': cleanup_request_string(row['Requests']) if not pd.isna(row['Requests']) else None
         }
         if 'Sedation' in records.columns:
             record['Sedation'] = row['Sedation'] if not pd.isna(row['Sedation']) else None
@@ -96,6 +112,9 @@ def format_sheet(records, prev_month, this_month, simple_mode):
         # Remove None values from record - they are not needed
         record = {k: v for k, v in record.items() if v is not None}
 
+        # Then use the function:
+        record = replace_name_with_initials(record)
+
         if day < current_day:
             month = next_month if month is this_month else this_month
 
@@ -111,7 +130,7 @@ def format_sheet(records, prev_month, this_month, simple_mode):
     return prev_month, this_month, next_month
 
 
-def xls_to_json(filename, simple_mode=False):
+def xls_to_json(filename, name_to_anst, simple_mode=False):
     # Extract filename from path to get year and quarter
     filename_only = filename.split('/')[-1]
     year = int(filename_only.split('_')[0])
@@ -148,7 +167,7 @@ def xls_to_json(filename, simple_mode=False):
     for month_index, sheet_name in enumerate(xls.sheet_names):
         df = xls.parse(sheet_name)
 
-        prev_month, this_month, next_month = format_sheet(df, prev_month, this_month, simple_mode)
+        prev_month, this_month, next_month = format_sheet(df, prev_month, this_month, simple_mode, name_to_anst)
 
         # concatenate this month and data['months'][month]
         month = months_map[quarter][month_index]
@@ -225,7 +244,11 @@ assert args.filename.lower().endswith('.xls'), "Input filename must end with .xl
 output_filename = args.output if args.output else args.filename.replace('.xls', '.json')
 assert output_filename.lower().endswith('.json'), "Output filename must end with .json"
 
-json_data = xls_to_json(args.filename, args.simple)
+# Create a dictionary to map names to initials
+staff_df = pd.read_csv("../data/staff.csv")
+name_to_anst = {row['name']: row['anst'] for index, row in staff_df.iterrows() if not pd.isna(row['name'])}
+
+json_data = xls_to_json(args.filename, name_to_anst, args.simple)
 with open(output_filename, 'w') as outfile:
     outfile.write(json_data)
 print("Wrote to file: " + output_filename)
