@@ -2,8 +2,7 @@ import pandas as pd
 import json
 import argparse
 
-
-def format_sheet(records, prev_month, this_month):
+def format_sheet(records, prev_month, this_month, simple_mode):
     current_day = 0
     next_month = {}
     month = None
@@ -59,7 +58,7 @@ def format_sheet(records, prev_month, this_month):
         shift = transform_shift(row[1])
         vacations = [item.strip() for item in row['Vacation'].split(',')] if not pd.isna(row['Vacation']) else []
         record = {
-            'Call': {'1st': row['Call1st'].strip(), '2nd': row['Call2nd']},
+            'Call': {1: row['Call1st'].strip(), 2: row['Call2nd']},
             'Gillette': {
                 'G1': row['G1'],
                 '4G': [item.strip() for item in row['4G'].split(',')] if not pd.isna(row['4G']) else None
@@ -73,6 +72,26 @@ def format_sheet(records, prev_month, this_month):
             record['Sedation'] = row['Sedation'] if not pd.isna(row['Sedation']) else None
         if 'CHC' in records.columns and not pd.isna(row['CHC']):
             record['West'] = {'CHC': row['CHC'] if not pd.isna(row['CHC']) else None}
+
+        if simple_mode:
+            offsite = [record['Gillette']['G1']]
+            if '4G' in record['Gillette'] and record['Gillette']['4G'] is not None:
+                offsite.extend(record['Gillette']['4G'])
+            if 'West' in record and record['West'] is not None:
+                offsite.append(record['West']['CHC'])
+            if 'CVCC' in record and record['CVCC'] is not None:
+                offsite.append(record['CVCC'])
+            if 'Sedation' in record and record['Sedation'] is not None:
+                offsite.append(record['Sedation'])
+            if 'Vacation' in record and record['Vacation'] is not None:
+                offsite.extend(record['Vacation'])
+
+            record = {
+                'Call': record['Call'],
+                'Admin': record['Admin'],
+                'Requests': record['Requests'],
+                'Offsite': offsite
+            }
 
         # Remove None values from record - they are not needed
         record = {k: v for k, v in record.items() if v is not None}
@@ -92,7 +111,7 @@ def format_sheet(records, prev_month, this_month):
     return prev_month, this_month, next_month
 
 
-def xls_to_json(filename):
+def xls_to_json(filename, simple_mode=False):
     # Extract filename from path to get year and quarter
     filename_only = filename.split('/')[-1]
     year = int(filename_only.split('_')[0])
@@ -129,7 +148,7 @@ def xls_to_json(filename):
     for month_index, sheet_name in enumerate(xls.sheet_names):
         df = xls.parse(sheet_name)
 
-        prev_month, this_month, next_month = format_sheet(df, prev_month, this_month)
+        prev_month, this_month, next_month = format_sheet(df, prev_month, this_month, simple_mode)
 
         # concatenate this month and data['months'][month]
         month = months_map[quarter][month_index]
@@ -190,11 +209,23 @@ def xls_to_json(filename):
 
 # Set up the argument parser
 parser = argparse.ArgumentParser(description='Convert xls to json')
+# Existing filename argument
 parser.add_argument('filename', type=str, help='Path to the xls file to convert')
-args = parser.parse_args()
+# New output filename argument
+parser.add_argument('-o', '--output', type=str, default=None, help='Path for the resulting json file. If not '
+                                                                   'provided, default naming will be used.')
+# New simple mode flag
+parser.add_argument('-s', '--simple', action='store_true', help='Enable simple mode. This will simplify the JSON to '
+                                                                'just the main hospital (everyone else is offsite, '
+                                                                'either on Gillette, West or on vacation).')
 
-json_data = xls_to_json(args.filename)
-jsonfile = args.filename.replace('.xls', '.json')
-with open(jsonfile, 'w') as outfile:
+args = parser.parse_args()
+# Sanity check for input and output filenames
+assert args.filename.lower().endswith('.xls'), "Input filename must end with .xls"
+output_filename = args.output if args.output else args.filename.replace('.xls', '.json')
+assert output_filename.lower().endswith('.json'), "Output filename must end with .json"
+
+json_data = xls_to_json(args.filename, args.simple)
+with open(output_filename, 'w') as outfile:
     outfile.write(json_data)
-print("Wrote to file: " + jsonfile)
+print("Wrote to file: " + output_filename)

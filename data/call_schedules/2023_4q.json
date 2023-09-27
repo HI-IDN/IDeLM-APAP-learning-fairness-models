@@ -4,716 +4,595 @@
             "2": {
                 "Mon": {
                     "Call": {
-                        "1st": "Castro",
-                        "2nd": "Tomasson"
+                        "1": "Castro",
+                        "2": "Tomasson"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": [
-                            "CM",
-                            "DN"
-                        ]
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Requests": "BK off",
+                    "Offsite": [
+                        "Angel",
+                        "CM",
+                        "DN",
                         "Ion",
                         "FM",
                         "SK",
                         "JM",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "Requests": "BK off"
+                    ]
                 }
             },
             "3": {
                 "Tue": {
                     "Call": {
-                        "1st": "LeBard",
-                        "2nd": "Ayano"
+                        "1": "LeBard",
+                        "2": "Ayano"
                     },
-                    "Gillette": {
-                        "G1": "Nicolai",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Nicolai",
+                        "Jochman",
                         "Ion",
                         "FM",
                         "SK",
                         "JM",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Jochman"
-                    }
+                    ]
                 }
             },
             "4": {
                 "Wed": {
                     "Call": {
-                        "1st": "Kloesel",
-                        "2nd": "Collins"
+                        "1": "Kloesel",
+                        "2": "Collins"
                     },
-                    "Gillette": {
-                        "G1": "Mickelson",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Mickelson",
+                        "Jochman",
                         "Ion",
                         "FM",
                         "SK",
                         "JM",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Jochman"
-                    }
+                    ]
                 }
             },
             "5": {
                 "Thu": {
                     "Call": {
-                        "1st": "Rekuski",
-                        "2nd": "Altman"
+                        "1": "Rekuski",
+                        "2": "Altman"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Angel",
+                        "Jochman",
                         "Ion",
                         "FM",
                         "SK",
                         "JM",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Jochman"
-                    }
+                    ]
                 }
             },
             "6": {
                 "Fri": {
                     "Call": {
-                        "1st": "Tomasson",
-                        "2nd": "LeBard"
+                        "1": "Tomasson",
+                        "2": "LeBard"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Kromer",
+                        "Jochman",
                         "Ion",
                         "FM",
                         "SK",
                         "JM",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Jochman"
-                    }
+                    ]
                 }
             },
             "7": {
                 "Sat AM": {
                     "Call": {
-                        "1st": "Clark",
-                        "2nd": "LeBard"
-                    },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": null
+                        "1": "Clark",
+                        "2": "LeBard"
                     },
                     "Admin": 0,
-                    "Requests": "TT off"
+                    "Requests": "TT off",
+                    "Offsite": [
+                        "Kromer"
+                    ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1st": "LeBard",
-                        "2nd": "Clark"
+                        "1": "LeBard",
+                        "2": "Clark"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Kromer"
+                    ]
                 }
             },
             "8": {
                 "Sun AM": {
                     "Call": {
-                        "1st": "Tomasson",
-                        "2nd": "LeBard"
+                        "1": "Tomasson",
+                        "2": "LeBard"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Kromer"
+                    ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1st": "Clark",
-                        "2nd": "LeBard"
+                        "1": "Clark",
+                        "2": "LeBard"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Kromer"
+                    ]
                 }
             },
             "9": {
                 "Mon": {
                     "Call": {
-                        "1st": "Kaus",
-                        "2nd": "Mickelson"
+                        "1": "Kaus",
+                        "2": "Mickelson"
                     },
-                    "Gillette": {
-                        "G1": "Nicolai",
-                        "4G": [
-                            "DN",
-                            "Ion",
-                            "X"
-                        ]
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Nicolai",
+                        "DN",
+                        "Ion",
+                        "X",
                         "JJ",
                         "RR",
                         "MA",
                         "CA",
                         "BRM"
-                    ],
-                    "Admin": 1
+                    ]
                 }
             },
             "10": {
                 "Tue": {
                     "Call": {
-                        "1st": "Maresh",
-                        "2nd": "Ayano"
+                        "1": "Maresh",
+                        "2": "Ayano"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Ion",
+                        "Clark",
                         "JJ",
                         "RR",
                         "KK",
                         "CA",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Clark"
-                    }
+                    ]
                 }
             },
             "11": {
                 "Wed": {
                     "Call": {
-                        "1st": "Moran",
-                        "2nd": "Collins"
+                        "1": "Moran",
+                        "2": "Collins"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Kromer",
+                        "Clark",
                         "JJ",
                         "RR",
                         "MA",
                         "CA",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Clark"
-                    }
+                    ]
                 }
             },
             "12": {
                 "Thu": {
                     "Call": {
-                        "1st": "Tomasson",
-                        "2nd": "LeBard"
+                        "1": "Tomasson",
+                        "2": "LeBard"
                     },
-                    "Gillette": {
-                        "G1": "Nicolai",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Requests": "JT 1st",
+                    "Offsite": [
+                        "Nicolai",
+                        "Clark",
                         "JJ",
                         "RR",
                         "MA",
                         "CA",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "Requests": "JT 1st",
-                    "West": {
-                        "CHC": "Clark"
-                    }
+                    ]
                 }
             },
             "13": {
                 "Fri": {
                     "Call": {
-                        "1st": "Mickelson",
-                        "2nd": "Castro"
+                        "1": "Mickelson",
+                        "2": "Castro"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Ion",
+                        "Clark",
                         "JJ",
                         "RR",
                         "MA",
                         "CA",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Clark"
-                    }
+                    ]
                 }
             },
             "14": {
                 "Sat AM": {
                     "Call": {
-                        "1st": "Klobucher",
-                        "2nd": "Castro"
-                    },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
+                        "1": "Klobucher",
+                        "2": "Castro"
                     },
                     "Admin": 0,
-                    "Requests": "SK/FM, TT, CAy, KK off"
+                    "Requests": "SK/FM, TT, CAy, KK off",
+                    "Offsite": [
+                        "Ion"
+                    ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1st": "Castro",
-                        "2nd": "Klobucher"
+                        "1": "Castro",
+                        "2": "Klobucher"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ion"
+                    ]
                 }
             },
             "15": {
                 "Sun AM": {
                     "Call": {
-                        "1st": "Mickelson",
-                        "2nd": "Castro"
+                        "1": "Mickelson",
+                        "2": "Castro"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ion"
+                    ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1st": "Klobucher",
-                        "2nd": "Castro"
+                        "1": "Klobucher",
+                        "2": "Castro"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ion"
+                    ]
                 }
             },
             "16": {
                 "Mon": {
                     "Call": {
-                        "1st": "Tomasson",
-                        "2nd": "Altman"
+                        "1": "Tomasson",
+                        "2": "Altman"
                     },
-                    "Gillette": {
-                        "G1": "Ayano",
-                        "4G": [
-                            "CAy",
-                            "X"
-                        ]
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Requests": "Miller at Gillette",
+                    "Offsite": [
+                        "Ayano",
+                        "CAy",
+                        "X",
                         "JJ",
                         "JM",
                         "KC",
                         "BK",
                         "SL",
                         "DN"
-                    ],
-                    "Admin": 0,
-                    "Requests": "Miller at Gillette"
+                    ]
                 }
             },
             "17": {
                 "Tue": {
                     "Call": {
-                        "1st": "Kaus",
-                        "2nd": "Tanaka"
+                        "1": "Kaus",
+                        "2": "Tanaka"
                     },
-                    "Gillette": {
-                        "G1": "Miller",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Requests": "CC jury duty this week, maybe next",
+                    "Offsite": [
+                        "Miller",
+                        "Rekuski",
                         "JJ",
                         "JM",
                         "KC",
                         "BK",
                         "SL",
                         "DN"
-                    ],
-                    "Admin": 0,
-                    "Requests": "CC jury duty this week, maybe next",
-                    "West": {
-                        "CHC": "Rekuski"
-                    }
+                    ]
                 }
             },
             "18": {
                 "Wed": {
                     "Call": {
-                        "1st": "Ion",
-                        "2nd": "LeBard"
+                        "1": "Ion",
+                        "2": "LeBard"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Kromer",
+                        "Rekuski",
                         "JJ",
                         "JM",
                         "KC",
                         "BK",
                         "MC",
                         "DN"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Rekuski"
-                    }
+                    ]
                 }
             },
             "19": {
                 "Thu": {
                     "Call": {
-                        "1st": "Altman",
-                        "2nd": "Mickelson"
+                        "1": "Altman",
+                        "2": "Mickelson"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Requests": "MA, CA on",
+                    "Offsite": [
+                        "Angel",
+                        "Rekuski",
                         "JJ",
                         "JM",
                         "KC",
                         "BK",
                         "MC",
                         "DN"
-                    ],
-                    "Admin": 0,
-                    "Requests": "MA, CA on",
-                    "West": {
-                        "CHC": "Rekuski"
-                    }
+                    ]
                 }
             },
             "20": {
                 "Fri": {
                     "Call": {
-                        "1st": "Moran",
-                        "2nd": "Tanaka"
+                        "1": "Moran",
+                        "2": "Tanaka"
                     },
-                    "Gillette": {
-                        "G1": "Ayano",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ayano",
+                        "Rekuski",
                         "JJ",
                         "JM",
                         "KC",
                         "BK",
                         "MC",
                         "DN"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Rekuski"
-                    }
+                    ]
                 }
             },
             "21": {
                 "Sat AM": {
                     "Call": {
-                        "1st": "Kaus",
-                        "2nd": "Tanaka"
-                    },
-                    "Gillette": {
-                        "G1": "Ayano",
-                        "4G": null
+                        "1": "Kaus",
+                        "2": "Tanaka"
                     },
                     "Admin": 0,
-                    "Requests": "TK off"
+                    "Requests": "TK off",
+                    "Offsite": [
+                        "Ayano"
+                    ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1st": "Tanaka",
-                        "2nd": "Kaus"
+                        "1": "Tanaka",
+                        "2": "Kaus"
                     },
-                    "Gillette": {
-                        "G1": "Ayano",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ayano"
+                    ]
                 }
             },
             "22": {
                 "Sun AM": {
                     "Call": {
-                        "1st": "Moran",
-                        "2nd": "Tanaka"
+                        "1": "Moran",
+                        "2": "Tanaka"
                     },
-                    "Gillette": {
-                        "G1": "Ayano",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ayano"
+                    ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1st": "Kaus",
-                        "2nd": "Tanaka"
+                        "1": "Kaus",
+                        "2": "Tanaka"
                     },
-                    "Gillette": {
-                        "G1": "Ayano",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ayano"
+                    ]
                 }
             },
             "23": {
                 "Mon": {
                     "Call": {
-                        "1st": "Maresh",
-                        "2nd": "Tomasson"
+                        "1": "Maresh",
+                        "2": "Tomasson"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": [
-                            "MC",
-                            "CAy",
-                            "X"
-                        ]
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Jochman",
+                        "MC",
+                        "CAy",
+                        "X",
                         "DN",
                         "BRM",
                         "MA",
                         "DD",
                         "KK"
-                    ],
-                    "Admin": 1
+                    ]
                 }
             },
             "24": {
                 "Tue": {
                     "Call": {
-                        "1st": "Rekuski",
-                        "2nd": "Clark"
+                        "1": "Rekuski",
+                        "2": "Clark"
                     },
-                    "Gillette": {
-                        "G1": "Collins",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Collins",
+                        "Kaus",
                         "CM",
                         "BRM",
                         "MA",
                         "DD",
                         "KK"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Kaus"
-                    }
+                    ]
                 }
             },
             "25": {
                 "Wed": {
                     "Call": {
-                        "1st": "Altman",
-                        "2nd": "Kloesel"
+                        "1": "Altman",
+                        "2": "Kloesel"
                     },
-                    "Gillette": {
-                        "G1": "Ayano",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Ayano",
+                        "Kaus",
                         "CM",
                         "BRM",
                         "MA",
                         "DD",
                         "KK"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Kaus"
-                    }
+                    ]
                 }
             },
             "26": {
                 "Thu": {
                     "Call": {
-                        "1st": "Tanaka",
-                        "2nd": "Moran"
+                        "1": "Tanaka",
+                        "2": "Moran"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Jochman",
+                        "Kaus",
                         "CM",
                         "BRM",
                         "MA",
                         "DD",
                         "KK"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Kaus"
-                    }
+                    ]
                 }
             },
             "27": {
                 "Fri": {
                     "Call": {
-                        "1st": "Maresh",
-                        "2nd": "Nicolai"
+                        "1": "Maresh",
+                        "2": "Nicolai"
                     },
-                    "Gillette": {
-                        "G1": "Collins",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Collins",
+                        "Kaus",
                         "CM",
                         "BRM",
                         "MA",
                         "DD",
                         "KK"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Kaus"
-                    }
+                    ]
                 }
             },
             "28": {
                 "Sat AM": {
                     "Call": {
-                        "1st": "Rekuski",
-                        "2nd": "Nicolai"
+                        "1": "Rekuski",
+                        "2": "Nicolai"
                     },
-                    "Gillette": {
-                        "G1": "Collins",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Collins"
+                    ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1st": "Nicolai",
-                        "2nd": "Rekuski"
+                        "1": "Nicolai",
+                        "2": "Rekuski"
                     },
-                    "Gillette": {
-                        "G1": "Collins",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Collins"
+                    ]
                 }
             },
             "29": {
                 "Sun AM": {
                     "Call": {
-                        "1st": "Maresh",
-                        "2nd": "Nicolai"
+                        "1": "Maresh",
+                        "2": "Nicolai"
                     },
-                    "Gillette": {
-                        "G1": "Collins",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Collins"
+                    ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1st": "Rekuski",
-                        "2nd": "Nicolai"
+                        "1": "Rekuski",
+                        "2": "Nicolai"
                     },
-                    "Gillette": {
-                        "G1": "Collins",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Collins"
+                    ]
                 }
             },
             "30": {
                 "Mon": {
                     "Call": {
-                        "1st": "Clark",
-                        "2nd": "Ion"
+                        "1": "Clark",
+                        "2": "Ion"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": [
-                            "MC",
-                            "X"
-                        ]
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Requests": "KC on",
+                    "Offsite": [
+                        "Angel",
+                        "MC",
+                        "X",
                         "CAy",
                         "CM",
                         "KK",
                         "TT",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "Requests": "KC on"
+                    ]
                 }
             },
             "31": {
                 "Tue": {
                     "Call": {
-                        "1st": "Tomasson",
-                        "2nd": "LeBard"
+                        "1": "Tomasson",
+                        "2": "LeBard"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Requests": "DN, RR off",
+                    "Offsite": [
+                        "Jochman",
+                        "Maresh",
                         "CAy",
                         "CM",
                         "KK",
                         "TT",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "Requests": "DN, RR off",
-                    "West": {
-                        "CHC": "Maresh"
-                    }
+                    ]
                 }
             }
         },
@@ -721,744 +600,618 @@
             "1": {
                 "Wed": {
                     "Call": {
-                        "1st": "Klobucher",
-                        "2nd": "Kaus"
+                        "1": "Klobucher",
+                        "2": "Kaus"
                     },
-                    "Gillette": {
-                        "G1": "Collins",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Collins",
+                        "Maresh",
                         "CAy",
                         "CM",
                         "KK",
                         "TT",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Maresh"
-                    }
+                    ]
                 }
             },
             "2": {
                 "Thu": {
                     "Call": {
-                        "1st": "Nicolai",
-                        "2nd": "Rekuski"
+                        "1": "Nicolai",
+                        "2": "Rekuski"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Requests": "DN on",
+                    "Offsite": [
+                        "Angel",
+                        "Maresh",
                         "CAy",
                         "CM",
                         "KK",
                         "TT",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "Requests": "DN on",
-                    "West": {
-                        "CHC": "Maresh"
-                    }
+                    ]
                 }
             },
             "3": {
                 "Fri": {
                     "Call": {
-                        "1st": "Kloesel",
-                        "2nd": "Castro"
+                        "1": "Kloesel",
+                        "2": "Castro"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Jochman",
+                        "Maresh",
                         "CAy",
                         "CM",
                         "KK",
                         "TT",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Maresh"
-                    }
+                    ]
                 }
             },
             "4": {
                 "Sat AM": {
                     "Call": {
-                        "1st": "Altman",
-                        "2nd": "Castro"
+                        "1": "Altman",
+                        "2": "Castro"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Jochman"
+                    ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1st": "Castro",
-                        "2nd": "Altman"
+                        "1": "Castro",
+                        "2": "Altman"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Jochman"
+                    ]
                 }
             },
             "5": {
                 "Sun AM": {
                     "Call": {
-                        "1st": "Kloesel",
-                        "2nd": "Castro"
+                        "1": "Kloesel",
+                        "2": "Castro"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Jochman"
+                    ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1st": "Altman",
-                        "2nd": "Castro"
+                        "1": "Altman",
+                        "2": "Castro"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Jochman"
+                    ]
                 }
             },
             "6": {
                 "Mon": {
                     "Call": {
-                        "1st": "Tomasson",
-                        "2nd": "Maresh"
+                        "1": "Tomasson",
+                        "2": "Maresh"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": [
-                            "X"
-                        ]
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Kromer",
+                        "X",
                         "BRM",
                         "CAy",
                         "RR",
                         "SL",
                         "Ion"
-                    ],
-                    "Admin": 1
+                    ]
                 }
             },
             "7": {
                 "Tue": {
                     "Call": {
-                        "1st": "Moran",
-                        "2nd": "Klobucher"
+                        "1": "Moran",
+                        "2": "Klobucher"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Angel",
+                        "Clark",
                         "BRM",
                         "CAy",
                         "RR",
                         "SL",
                         "Ion"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Clark"
-                    }
+                    ]
                 }
             },
             "8": {
                 "Wed": {
                     "Call": {
-                        "1st": "Castro",
-                        "2nd": "Tanaka"
+                        "1": "Castro",
+                        "2": "Tanaka"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Jochman",
+                        "Clark",
                         "BRM",
                         "CAy",
                         "RR",
                         "SL",
                         "Ion"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Clark"
-                    }
+                    ]
                 }
             },
             "9": {
                 "Thu": {
                     "Call": {
-                        "1st": "Mickelson",
-                        "2nd": "Kaus"
+                        "1": "Mickelson",
+                        "2": "Kaus"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Requests": "CM on",
+                    "Offsite": [
+                        "Kromer",
+                        "Clark",
                         "BRM",
                         "CAy",
                         "RR",
                         "SL",
                         "Ion"
-                    ],
-                    "Admin": 1,
-                    "Requests": "CM on",
-                    "West": {
-                        "CHC": "Clark"
-                    }
+                    ]
                 }
             },
             "10": {
                 "Fri": {
                     "Call": {
-                        "1st": "Tomasson",
-                        "2nd": "Nicolai"
+                        "1": "Tomasson",
+                        "2": "Nicolai"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Angel",
+                        "Clark",
                         "BRM",
                         "CAy",
                         "RR",
                         "SL",
                         "Ion"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Clark"
-                    }
+                    ]
                 }
             },
             "11": {
                 "Sat AM": {
                     "Call": {
-                        "1st": "Maresh",
-                        "2nd": "Nicolai"
+                        "1": "Maresh",
+                        "2": "Nicolai"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1st": "Nicolai",
-                        "2nd": "Maresh"
+                        "1": "Nicolai",
+                        "2": "Maresh"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 }
             },
             "12": {
                 "Sun AM": {
                     "Call": {
-                        "1st": "Tomasson",
-                        "2nd": "Nicolai"
+                        "1": "Tomasson",
+                        "2": "Nicolai"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1st": "Maresh",
-                        "2nd": "Nicolai"
+                        "1": "Maresh",
+                        "2": "Nicolai"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 }
             },
             "13": {
                 "Mon": {
                     "Call": {
-                        "1st": "Klobucher",
-                        "2nd": "Castro"
+                        "1": "Klobucher",
+                        "2": "Castro"
                     },
-                    "Gillette": {
-                        "G1": "Clark",
-                        "4G": [
-                            "KC",
-                            "MC"
-                        ]
-                    },
-                    "CVCC": "DD",
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Clark",
+                        "KC",
+                        "MC",
+                        "DD",
                         "BRM",
                         "FM",
                         "SK",
                         "SL",
                         "KK"
-                    ],
-                    "Admin": 0
+                    ]
                 }
             },
             "14": {
                 "Tue": {
                     "Call": {
-                        "1st": "Altman",
-                        "2nd": "Mickelson"
+                        "1": "Altman",
+                        "2": "Mickelson"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "CVCC": "DD",
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Jochman",
+                        "Maresh",
+                        "DD",
                         "BRM",
                         "FM",
                         "SK",
                         "SL",
                         "KK"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Maresh"
-                    }
+                    ]
                 }
             },
             "15": {
                 "Wed": {
                     "Call": {
-                        "1st": "Rekuski",
-                        "2nd": "Nicolai"
+                        "1": "Rekuski",
+                        "2": "Nicolai"
                     },
-                    "Gillette": {
-                        "G1": "Collins",
-                        "4G": null
-                    },
-                    "CVCC": "DD",
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Collins",
+                        "Maresh",
+                        "DD",
                         "BRM",
                         "FM",
                         "SK",
                         "SL",
                         "KK"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Maresh"
-                    }
+                    ]
                 }
             },
             "16": {
                 "Thu": {
                     "Call": {
-                        "1st": "Castro",
-                        "2nd": "Ion"
+                        "1": "Castro",
+                        "2": "Ion"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "CVCC": "DD",
-                    "Vacation": [
+                    "Admin": 0,
+                    "Requests": "MA, Ion on",
+                    "Offsite": [
+                        "Angel",
+                        "Maresh",
+                        "DD",
                         "BRM",
                         "FM",
                         "SK",
                         "SL",
                         "KK"
-                    ],
-                    "Admin": 0,
-                    "Requests": "MA, Ion on",
-                    "West": {
-                        "CHC": "Maresh"
-                    }
+                    ]
                 }
             },
             "17": {
                 "Fri": {
                     "Call": {
-                        "1st": "Altman",
-                        "2nd": "Mickelson"
+                        "1": "Altman",
+                        "2": "Mickelson"
                     },
-                    "Gillette": {
-                        "G1": "Clark",
-                        "4G": null
-                    },
-                    "CVCC": "DD",
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Clark",
+                        "Maresh",
+                        "DD",
                         "BRM",
                         "FM",
                         "SK",
                         "SL",
                         "KK"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Maresh"
-                    }
+                    ]
                 }
             },
             "18": {
                 "Sat AM": {
                     "Call": {
-                        "1st": "Kloesel",
-                        "2nd": "Mickelson"
+                        "1": "Kloesel",
+                        "2": "Mickelson"
                     },
-                    "Gillette": {
-                        "G1": "Clark",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Clark"
+                    ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1st": "Mickelson",
-                        "2nd": "Kloesel"
+                        "1": "Mickelson",
+                        "2": "Kloesel"
                     },
-                    "Gillette": {
-                        "G1": "Clark",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Clark"
+                    ]
                 }
             },
             "19": {
                 "Sun AM": {
                     "Call": {
-                        "1st": "Altman",
-                        "2nd": "Mickelson"
+                        "1": "Altman",
+                        "2": "Mickelson"
                     },
-                    "Gillette": {
-                        "G1": "Clark",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Clark"
+                    ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1st": "Kloesel",
-                        "2nd": "Mickelson"
+                        "1": "Kloesel",
+                        "2": "Mickelson"
                     },
-                    "Gillette": {
-                        "G1": "Clark",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Clark"
+                    ]
                 }
             },
             "20": {
                 "Mon": {
                     "Call": {
-                        "1st": "Maresh",
-                        "2nd": "Klobucher"
+                        "1": "Maresh",
+                        "2": "Klobucher"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": [
-                            "Ion",
-                            "KC",
-                            "X"
-                        ]
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Ion",
+                        "Ion",
+                        "KC",
+                        "X",
                         "MA",
                         "MC",
                         "CC",
                         "DN",
                         "BRM"
-                    ],
-                    "Admin": 1
+                    ]
                 }
             },
             "21": {
                 "Tue": {
                     "Call": {
-                        "1st": "Moran",
-                        "2nd": "Tanaka"
+                        "1": "Moran",
+                        "2": "Tanaka"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Kromer",
+                        "Jochman",
                         "MA",
                         "MC",
                         "CC",
                         "DN",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Jochman"
-                    }
+                    ]
                 }
             },
             "22": {
                 "Wed": {
                     "Call": {
-                        "1st": "Mickelson",
-                        "2nd": "Kloesel"
+                        "1": "Mickelson",
+                        "2": "Kloesel"
                     },
-                    "Gillette": {
-                        "G1": "Clark",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Clark",
+                        "Jochman",
                         "MA",
                         "MC",
                         "CC",
                         "DN",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Jochman"
-                    }
+                    ]
                 }
             },
             "23": {
                 "Thu AM": {
                     "Call": {
-                        "1st": "LeBard",
-                        "2nd": "Rekuski"
+                        "1": "LeBard",
+                        "2": "Rekuski"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Ion",
                         "MA",
                         "MC",
                         "CC",
                         "DN",
                         "BRM"
-                    ],
-                    "Admin": 1
+                    ]
                 },
                 "Thu PM": {
                     "Call": {
-                        "1st": "Ayano",
-                        "2nd": "Rekuski"
+                        "1": "Ayano",
+                        "2": "Rekuski"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Ion",
                         "MA",
                         "MC",
                         "CC",
                         "DN",
                         "BRM"
-                    ],
-                    "Admin": 1
+                    ]
                 }
             },
             "24": {
                 "Fri AM": {
                     "Call": {
-                        "1st": "Rekuski",
-                        "2nd": NaN
+                        "1": "Rekuski",
+                        "2": NaN
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Ion",
+                        "Jochman",
                         "MA",
                         "MC",
                         "CC",
                         "DN",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Jochman"
-                    }
+                    ]
                 },
                 "Fri PM": {
                     "Call": {
-                        "1st": "Ayano",
-                        "2nd": "Rekuski"
+                        "1": "Ayano",
+                        "2": "Rekuski"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Ion",
                         "MA",
                         "MC",
                         "CC",
                         "DN",
                         "BRM"
-                    ],
-                    "Admin": 1
+                    ]
                 }
             },
             "25": {
                 "Sat AM": {
                     "Call": {
-                        "1st": "LeBard",
-                        "2nd": "Rekuski"
+                        "1": "LeBard",
+                        "2": "Rekuski"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ion"
+                    ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1st": "Rekuski",
-                        "2nd": "LeBard"
+                        "1": "Rekuski",
+                        "2": "LeBard"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ion"
+                    ]
                 }
             },
             "26": {
                 "Sun AM": {
                     "Call": {
-                        "1st": "Ayano",
-                        "2nd": "Rekuski"
+                        "1": "Ayano",
+                        "2": "Rekuski"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ion"
+                    ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1st": "LeBard",
-                        "2nd": "Rekuski"
+                        "1": "LeBard",
+                        "2": "Rekuski"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ion"
+                    ]
                 }
             },
             "27": {
                 "Mon": {
                     "Call": {
-                        "1st": "Kaus",
-                        "2nd": "Castro"
+                        "1": "Kaus",
+                        "2": "Castro"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": [
-                            "DN",
-                            "X"
-                        ]
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel",
+                        "DN",
+                        "X",
                         "CA",
                         "JJ",
                         "KC",
                         "Ion",
                         "ES",
                         "BRM"
-                    ],
-                    "Admin": 0
+                    ]
                 }
             },
             "28": {
                 "Tue": {
                     "Call": {
-                        "1st": "Tanaka",
-                        "2nd": "Tomasson"
+                        "1": "Tanaka",
+                        "2": "Tomasson"
                     },
-                    "Gillette": {
-                        "G1": "Nicolai",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Nicolai",
+                        "Maresh",
                         "CA",
                         "JJ",
                         "KC",
                         "Ion",
                         "ES",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Maresh"
-                    }
+                    ]
                 }
             },
             "29": {
                 "Wed": {
                     "Call": {
-                        "1st": "Klobucher",
-                        "2nd": "Rekuski"
+                        "1": "Klobucher",
+                        "2": "Rekuski"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Kromer",
+                        "Maresh",
                         "CA",
                         "JJ",
                         "KC",
                         "Ion",
                         "ES",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Maresh"
-                    }
+                    ]
                 }
             },
             "30": {
                 "Thu": {
                     "Call": {
-                        "1st": "Kloesel",
-                        "2nd": "Ayano"
+                        "1": "Kloesel",
+                        "2": "Ayano"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel",
+                        "Maresh",
                         "CA",
                         "JJ",
                         "KC",
                         "Ion",
                         "ES",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Maresh"
-                    }
+                    ]
                 }
             }
         },
@@ -1466,759 +1219,635 @@
             "1": {
                 "Fri": {
                     "Call": {
-                        "1st": "Kaus",
-                        "2nd": "Mickelson"
+                        "1": "Kaus",
+                        "2": "Mickelson"
                     },
-                    "Gillette": {
-                        "G1": "Nicolai",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Nicolai",
+                        "Maresh",
                         "CA",
                         "JJ",
                         "KC",
                         "Ion",
                         "ES",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Maresh"
-                    }
+                    ]
                 }
             },
             "2": {
                 "Sat AM": {
                     "Call": {
-                        "1st": "Moran",
-                        "2nd": "Mickelson"
+                        "1": "Moran",
+                        "2": "Mickelson"
                     },
-                    "Gillette": {
-                        "G1": "Nicolai",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Nicolai"
+                    ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1st": "Mickelson",
-                        "2nd": "Moran"
+                        "1": "Mickelson",
+                        "2": "Moran"
                     },
-                    "Gillette": {
-                        "G1": "Nicolai",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Nicolai"
+                    ]
                 }
             },
             "3": {
                 "Sun AM": {
                     "Call": {
-                        "1st": "Kaus",
-                        "2nd": "Mickelson"
+                        "1": "Kaus",
+                        "2": "Mickelson"
                     },
-                    "Gillette": {
-                        "G1": "Nicolai",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Nicolai"
+                    ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1st": "Moran",
-                        "2nd": "Mickelson"
+                        "1": "Moran",
+                        "2": "Mickelson"
                     },
-                    "Gillette": {
-                        "G1": "Nicolai",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Nicolai"
+                    ]
                 }
             },
             "4": {
                 "Mon": {
                     "Call": {
-                        "1st": "Maresh",
-                        "2nd": "Klobucher"
+                        "1": "Maresh",
+                        "2": "Klobucher"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": [
-                            "Ion",
-                            "X"
-                        ]
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Jochman",
+                        "Ion",
+                        "X",
                         "BK",
                         "SL",
                         "KK",
                         "CAy",
                         "BRM"
-                    ],
-                    "Admin": 1
+                    ]
                 }
             },
             "5": {
                 "Tue": {
                     "Call": {
-                        "1st": "Rekuski",
-                        "2nd": "Collins"
+                        "1": "Rekuski",
+                        "2": "Collins"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Ion",
+                        "Kaus",
                         "BK",
                         "SL",
                         "KK",
                         "CAy",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Kaus"
-                    }
+                    ]
                 }
             },
             "6": {
                 "Wed": {
                     "Call": {
-                        "1st": "Altman",
-                        "2nd": "Nicolai"
+                        "1": "Altman",
+                        "2": "Nicolai"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Angel",
+                        "Kaus",
                         "BK",
                         "SL",
                         "KK",
                         "CAy",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Kaus"
-                    }
+                    ]
                 }
             },
             "7": {
                 "Thu": {
                     "Call": {
-                        "1st": "Tanaka",
-                        "2nd": "Moran"
+                        "1": "Tanaka",
+                        "2": "Moran"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Jochman",
+                        "Kaus",
                         "BK",
                         "SL",
                         "KK",
                         "CAy",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Kaus"
-                    }
+                    ]
                 }
             },
             "8": {
                 "Fri": {
                     "Call": {
-                        "1st": "Rekuski",
-                        "2nd": "Collins"
+                        "1": "Rekuski",
+                        "2": "Collins"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 1,
+                    "Offsite": [
+                        "Ion",
+                        "Kaus",
                         "BK",
                         "SL",
                         "KK",
                         "CAy",
                         "BRM"
-                    ],
-                    "Admin": 1,
-                    "West": {
-                        "CHC": "Kaus"
-                    }
+                    ]
                 }
             },
             "9": {
                 "Sat AM": {
                     "Call": {
-                        "1st": "Tomasson",
-                        "2nd": "Collins"
+                        "1": "Tomasson",
+                        "2": "Collins"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ion"
+                    ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1st": "Collins",
-                        "2nd": "Tomasson"
+                        "1": "Collins",
+                        "2": "Tomasson"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ion"
+                    ]
                 }
             },
             "10": {
                 "Sun AM": {
                     "Call": {
-                        "1st": "Rekuski",
-                        "2nd": "Collins"
+                        "1": "Rekuski",
+                        "2": "Collins"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ion"
+                    ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1st": "Tomasson",
-                        "2nd": "Collins"
+                        "1": "Tomasson",
+                        "2": "Collins"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ion"
+                    ]
                 }
             },
             "11": {
                 "Mon": {
                     "Call": {
-                        "1st": "Moran",
-                        "2nd": "Castro"
+                        "1": "Moran",
+                        "2": "Castro"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": [
-                            "Ion",
-                            "X"
-                        ]
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel",
+                        "Ion",
+                        "X",
                         "KK",
                         "CM",
                         "TT",
                         "JM",
                         "SL",
                         "BRM"
-                    ],
-                    "Admin": 0
+                    ]
                 }
             },
             "12": {
                 "Tue": {
                     "Call": {
-                        "1st": "Kloesel",
-                        "2nd": "Clark"
+                        "1": "Kloesel",
+                        "2": "Clark"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Jochman",
+                        "Rekuski",
                         "KK",
                         "CM",
                         "TT",
                         "JM",
                         "SL",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Rekuski"
-                    }
+                    ]
                 }
             },
             "13": {
                 "Wed": {
                     "Call": {
-                        "1st": "Altman",
-                        "2nd": "Kaus"
+                        "1": "Altman",
+                        "2": "Kaus"
                     },
-                    "Gillette": {
-                        "G1": "Ion",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Ion",
+                        "Rekuski",
                         "KK",
                         "CM",
                         "TT",
                         "JM",
                         "SL",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Rekuski"
-                    }
+                    ]
                 }
             },
             "14": {
                 "Thu": {
                     "Call": {
-                        "1st": "Tomasson",
-                        "2nd": "Nicolai"
+                        "1": "Tomasson",
+                        "2": "Nicolai"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel",
+                        "Rekuski",
                         "KK",
                         "CM",
                         "TT",
                         "JM",
                         "SL",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Rekuski"
-                    }
+                    ]
                 }
             },
             "15": {
                 "Fri": {
                     "Call": {
-                        "1st": "Castro",
-                        "2nd": "Klobucher"
+                        "1": "Castro",
+                        "2": "Klobucher"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Jochman",
+                        "Rekuski",
                         "KK",
                         "CM",
                         "TT",
                         "JM",
                         "SL",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Rekuski"
-                    }
+                    ]
                 }
             },
             "16": {
                 "Sat AM": {
                     "Call": {
-                        "1st": "Kloesel",
-                        "2nd": "Klobucher"
-                    },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
+                        "1": "Kloesel",
+                        "2": "Klobucher"
                     },
                     "Admin": 0,
-                    "Requests": "KC, RR, CA off"
+                    "Requests": "KC, RR, CA off",
+                    "Offsite": [
+                        "Jochman"
+                    ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1st": "Klobucher",
-                        "2nd": "Kloesel"
+                        "1": "Klobucher",
+                        "2": "Kloesel"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Jochman"
+                    ]
                 }
             },
             "17": {
                 "Sun AM": {
                     "Call": {
-                        "1st": "Castro",
-                        "2nd": "Klobucher"
+                        "1": "Castro",
+                        "2": "Klobucher"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Jochman"
+                    ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1st": "Kloesel",
-                        "2nd": "Klobucher"
+                        "1": "Kloesel",
+                        "2": "Klobucher"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Jochman"
+                    ]
                 }
             },
             "18": {
                 "Mon": {
                     "Call": {
-                        "1st": "LeBard",
-                        "2nd": "Tanaka"
+                        "1": "LeBard",
+                        "2": "Tanaka"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": [
-                            "X"
-                        ]
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Kromer",
+                        "X",
                         "JT",
                         "DD",
                         "FM",
                         "SK",
                         "DN",
                         "BRM"
-                    ],
-                    "Admin": 0
+                    ]
                 }
             },
             "19": {
                 "Tue": {
                     "Call": {
-                        "1st": "Ayano",
-                        "2nd": "Maresh"
+                        "1": "Ayano",
+                        "2": "Maresh"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel",
+                        "Rekuski",
                         "JT",
                         "DD",
                         "FM",
                         "SK",
                         "DN",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Rekuski"
-                    }
+                    ]
                 }
             },
             "20": {
                 "Wed": {
                     "Call": {
-                        "1st": "Kloesel",
-                        "2nd": "Mickelson"
+                        "1": "Kloesel",
+                        "2": "Mickelson"
                     },
-                    "Gillette": {
-                        "G1": "Jochman",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Jochman",
+                        "Rekuski",
                         "JT",
                         "DD",
                         "FM",
                         "SK",
                         "DN",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Rekuski"
-                    }
+                    ]
                 }
             },
             "21": {
                 "Thu": {
                     "Call": {
-                        "1st": "Castro",
-                        "2nd": "Tanaka"
+                        "1": "Castro",
+                        "2": "Tanaka"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Kromer",
+                        "Rekuski",
                         "JT",
                         "DD",
                         "FM",
                         "SK",
                         "DN",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Rekuski"
-                    }
+                    ]
                 }
             },
             "22": {
                 "Fri": {
                     "Call": {
-                        "1st": "Collins",
-                        "2nd": "Clark"
+                        "1": "Collins",
+                        "2": "Clark"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel",
+                        "Rekuski",
                         "JT",
                         "DD",
                         "FM",
                         "SK",
                         "DN",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Rekuski"
-                    }
+                    ]
                 }
             },
             "23": {
                 "Sat AM": {
                     "Call": {
-                        "1st": "Maresh",
-                        "2nd": "Clark"
+                        "1": "Maresh",
+                        "2": "Clark"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1st": "Clark",
-                        "2nd": "Maresh"
+                        "1": "Clark",
+                        "2": "Maresh"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 }
             },
             "24": {
                 "Sun AM": {
                     "Call": {
-                        "1st": "Collins",
-                        "2nd": "Clark"
+                        "1": "Collins",
+                        "2": "Clark"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1st": "Maresh",
-                        "2nd": "Clark"
+                        "1": "Maresh",
+                        "2": "Clark"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 }
             },
             "25": {
                 "Mon AM": {
                     "Call": {
-                        "1st": "Clark",
-                        "2nd": "Collins"
+                        "1": "Clark",
+                        "2": "Collins"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": [
-                            "CM",
-                            "X"
-                        ]
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel",
+                        "CM",
+                        "X",
                         "DN",
                         "JT",
                         "CC",
                         "Ion",
                         "RR",
                         "BRM"
-                    ],
-                    "Admin": 0
+                    ]
                 },
                 "Mon PM": {
                     "Call": {
-                        "1st": "Collins",
-                        "2nd": "Maresh"
+                        "1": "Collins",
+                        "2": "Maresh"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel",
                         "DN",
                         "JT",
                         "CC",
                         "Ion",
                         "RR",
                         "BRM"
-                    ],
-                    "Admin": 0
+                    ]
                 }
             },
             "26": {
                 "Tue": {
                     "Call": {
-                        "1st": "LeBard",
-                        "2nd": "Altman"
+                        "1": "LeBard",
+                        "2": "Altman"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Kromer",
+                        "Jochman",
                         "DN",
                         "JT",
                         "CC",
                         "Ion",
                         "RR",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Jochman"
-                    }
+                    ]
                 }
             },
             "27": {
                 "Wed": {
                     "Call": {
-                        "1st": "Ayano",
-                        "2nd": "Kloesel"
+                        "1": "Ayano",
+                        "2": "Kloesel"
                     },
-                    "Gillette": {
-                        "G1": "Mickelson",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Mickelson",
+                        "Jochman",
                         "DN",
                         "JT",
                         "CC",
                         "Ion",
                         "RR",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Jochman"
-                    }
+                    ]
                 }
             },
             "28": {
                 "Thu": {
                     "Call": {
-                        "1st": "Klobucher",
-                        "2nd": "Clark"
+                        "1": "Klobucher",
+                        "2": "Clark"
                     },
-                    "Gillette": {
-                        "G1": "Kromer",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Kromer",
+                        "Jochman",
                         "DN",
                         "JT",
                         "CC",
                         "Ion",
                         "RR",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Jochman"
-                    }
+                    ]
                 }
             },
             "29": {
                 "Fri": {
                     "Call": {
-                        "1st": "Tanaka",
-                        "2nd": "Kaus"
+                        "1": "Tanaka",
+                        "2": "Kaus"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Vacation": [
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel",
+                        "Jochman",
                         "DN",
                         "JT",
                         "CC",
                         "Ion",
                         "RR",
                         "BRM"
-                    ],
-                    "Admin": 0,
-                    "West": {
-                        "CHC": "Jochman"
-                    }
+                    ]
                 }
             },
             "30": {
                 "Sat AM": {
                     "Call": {
-                        "1st": "Moran",
-                        "2nd": "Kaus"
+                        "1": "Moran",
+                        "2": "Kaus"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1st": "Kaus",
-                        "2nd": "Moran"
+                        "1": "Kaus",
+                        "2": "Moran"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 }
             },
             "31": {
                 "Sun AM": {
                     "Call": {
-                        "1st": "Tanaka",
-                        "2nd": "Kaus"
+                        "1": "Tanaka",
+                        "2": "Kaus"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1st": "Moran",
-                        "2nd": "Kaus"
+                        "1": "Moran",
+                        "2": "Kaus"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 }
             }
         }
@@ -2228,25 +1857,23 @@
             "1": {
                 "Mon AM": {
                     "Call": {
-                        "1st": "Kaus",
-                        "2nd": "Tanaka"
+                        "1": "Kaus",
+                        "2": "Tanaka"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 },
                 "Mon PM": {
                     "Call": {
-                        "1st": "Tanaka",
-                        "2nd": "Moran"
+                        "1": "Tanaka",
+                        "2": "Moran"
                     },
-                    "Gillette": {
-                        "G1": "Angel",
-                        "4G": null
-                    },
-                    "Admin": 0
+                    "Admin": 0,
+                    "Offsite": [
+                        "Angel"
+                    ]
                 }
             }
         }
