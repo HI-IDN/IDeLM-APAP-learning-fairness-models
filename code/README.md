@@ -1,50 +1,51 @@
-## Overview
-The APAP system is designed to efficiently and fairly assign shifts and roles to anesthesiologists in a hospital setting, based on various factors like specializations, pre-assigned roles, and hospital policy.
+# README: Anesthesia Scheduling Equity Problem
+## Overview:
+The Anesthesia Scheduling Equity Problem (ASEP) addresses unique challenges faced by anesthesiologists in their 
+daily scheduling. Given the unpredictable nature of their operations, there is a need to ensure an equitable 
+distribution of workload.
 
-## Problem Description
-Anesthesiologists at a hospital have different roles and shifts, such as:
-* Cardiac, 
-* Charge, 
-* Post call, 
-* Post late, 
-* Post CVCC, 
-* Pre call, 
-* Late, 
-* Call. 
+## Background: 
+Background:
+Anesthesiologists operate differently from many other professions, especially when it comes to daily scheduling:
 
-The objective is to ensure that roles and shifts are distributed fairly among anesthesiologists while adhering to certain constraints and ensuring specialized roles are filled appropriately.
+Their day often starts before 7:00 am and can vary greatly in length.
 
-## Code Explanation
-### Data Import and Initialization:
-**Google Sheets Integration**: The code fetches data directly from a specified Google Sheet which includes information about the anesthesiologists and their pre-assigned shifts.
+The exact end of the workday is unpredictable due to varying surgery schedules and procedure durations.
 
-**Anesthetists Details**: Anesthetists are represented with their initials in the code. Special roles and shifts are assigned to certain individuals based on their expertise.
+There isn't a fixed *end-of-the-day*; instead, anesthesiologists might leave at different times as their services 
+are no longer required.
 
-### Model Creation:
-The `gurobipy` package is used to formulate and solve the optimization problem.
+## Operational Details:
+The anesthesiologist group comprises 22 consultants working across three primary locations:
 
-#### Decision Variables:
+### Outpatient Surgical Clinic (Childrens Minnetonka, West):
+* Operates during daytime hours.
+* Services minor surgeries.
+* No evening or overnight services.
+### Gillette Children´s Speciality Hospital:
+* Offers 24/7 coverage.
+* Serves patients needing advanced orthopedic care, rehabilitation, neurosurgery, and plastic surgery.
+* Consistently has a team of 3-4 anesthesiologists with one on overnight duty.
+### Children’s Minnesota Hospital:
+* Largest service area with multiple specialties.
+* On an average day, requires 11-13 anesthesiologists.
+* Two anesthesiologists are always on call.
+* One stays overnight ("call anesthesiologist") and another works late ("late-call anesthesiologist").
 
-* `x`: Represents whether an anesthetist `a` is assigned to a slot `p` on day `d`.
-* `y`: Cumulative points assigned to each anesthetist `a` for their slots.
-* `z1`, `z2`, `z3`, `z4`: Variables that determine the maximum and minimum points for all anesthetists.
-* `h`: Decision on whether anesthetist `a` plays the role of Cardio on day `d`.
-* `c`: Decision on whether anesthetist `a` is in charge on day `d`.
+## Special Considerations:
 
-#### Constraints:
+* Specialized Heart Surgery Services: Half of the anesthesiology team specializes in cardiac surgeries. One from this 
+group is always in either the call or late-call role.
+* OR Management / Charge Doctor: A designated doctor oversees the operations of the hospital's operating rooms. This 
+  role often requires extended hours.
+* CVCC (Cardiovascular Critical Care): One anesthesiologist serves in the cardiac ICU. After an overnight ICU shift, 
+  this doctor departs first the following day.
+* Non-clinical: 4-5 of the six anesthesiologists not working daily are on vacation, and 1-2 are allocated for 
+  administrative duties.
 
-* Each anesthetist must be assigned one and only one slot for each day.
-* For each slot on each day, only one anesthetist can be assigned.
-* Points are calculated based on the slot they are assigned to.
-* Constraints ensure that specialized roles like Cardio and Charge are assigned appropriately.
-* Limits are placed on the number of times an anesthetist can be assigned to the Cardio or Charge role over the week.
+## Objective:
+Develop a model to equitably assign work to the 6-7 anesthesiologists who have varying tasks each working weekday.
 
-#### Objective:
-
-Minimize the maximum difference in points among all the anesthetists to ensure fairness.
-
-### Post-processing:
-After solving, the assignments can be written back to the Google Sheet or further processed as needed.
 
 ## Getting Started
 ### Prerequisites:
