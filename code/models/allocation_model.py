@@ -10,24 +10,24 @@ class AllocationModel:
     def __init__(self, data):
 
         # Decision variables
-        x = self.m.addVars(data.doctors, data.days, data.orders, vtype=GRB.BINARY)
+        self.x = self.m.addVars(data.doctors, data.days, data.orders, vtype=GRB.BINARY)
 
         # Each doctor in Whine[day] is assigned to one order per day
-        self.m.addConstrs((sum(x[doctor, day, order] for order in data.orders) == 1 for day in data.days for doctor in
-                           data.Whine[day]))
+        self.m.addConstrs((sum(self.x[doctor, day, order] for order in data.orders) == 1 for day in data.days for
+                           doctor in data.Whine[day]))
 
         # Those pre-assigned can also be only at one place
-        self.m.addConstrs((sum(x[doctor, day, order] for order in data.orders) == 1 for day in data.days for doctor in
-                           list(data.preassigned[day].values())))
+        self.m.addConstrs((sum(self.x[doctor, day, order] for order in data.orders) == 1 for day in data.days for
+                           doctor in list(data.preassigned[day].values())))
 
         # Each order on a given day is assigned to at most one doctor
-        self.m.addConstrs((sum(x[doctor, day, order] for doctor in data.doctors) <= 1 for day in data.days for order in
-                           data.orders))
+        self.m.addConstrs((sum(self.x[doctor, day, order] for doctor in data.doctors) <= 1 for day in data.days for
+                           order in data.orders))
 
         # Pre-assigned doctors
         for day, order_doctor_dict in data.preassigned.items():
             for order, doctor in order_doctor_dict.items():
-                self.m.addConstr(x[doctor, day, order] == 1)
+                self.m.addConstr(self.x[doctor, day, order] == 1)
 
         # For each day, set x values to zero for doctors not scheduled
         for day in data.days:
@@ -38,14 +38,14 @@ class AllocationModel:
             not_scheduled = [doctor for doctor in data.doctors if doctor not in scheduled_doctors]
 
             # Set x values to zero for these doctors
-            self.m.addConstrs(x[doctor, day, order] == 0 for order in data.orders for doctor in not_scheduled)
+            self.m.addConstrs(self.x[doctor, day, order] == 0 for order in data.orders for doctor in not_scheduled)
 
             # Make sure that no doctor is assigned an order that goes beyond the "call", last one out
-            self.m.addConstrs(x[doctor, day, order] == 0 for doctor in data.doctors for order in data.orders if
+            self.m.addConstrs(self.x[doctor, day, order] == 0 for doctor in data.doctors for order in data.orders if
                               order > list(data.preassigned[day].keys())[-1])
 
         # Calculate the Total Order for Each Doctor
-        total_order = {doctor: sum(order * x[doctor, day, order] for day in data.days for order in data.orders) for
+        total_order = {doctor: sum(order * self.x[doctor, day, order] for day in data.days for order in data.orders) for
                        doctor in data.doctors}
 
         # Adjust the total order for doctors with Admin duties
@@ -75,10 +75,10 @@ class AllocationModel:
         self.z = self.m.addVars(data.charge_doctors, data.days, vtype=GRB.BINARY, name="Charge Doctor: z")
 
         # Update the constraint to use potential_charge_doctors
-        self.m.addConstrs((sum(z[doctor, day] for doctor in data.potential_charge_doctors[day]) == 1 for day in
+        self.m.addConstrs((sum(self.z[doctor, day] for doctor in data.potential_charge_doctors[day]) == 1 for day in
                            data.days), name="one_in_charge")
 
-        self.m.addConstrs((x[doctor, day, data.charge_order_dict[day]] >= self.z[doctor, day]
+        self.m.addConstrs((self.x[doctor, day, data.charge_order_dict[day]] >= self.z[doctor, day]
                            for day in data.days for doctor in data.charge_doctors if doctor in data.Whine[day]),
                           name="charge_order_constr")
 
