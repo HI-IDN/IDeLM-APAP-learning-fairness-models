@@ -23,6 +23,7 @@ class DataHandler:
     preassigned = {day: {} for day in days}
     charge_order_dict = {}
     potential_charge_doctors = {}
+    potential_cardiac_doctors = {}
     call_and_late_call_doctors = {}
     Admin = {}
     orders = []
@@ -45,7 +46,7 @@ class DataHandler:
         df = df[columns_to_use]
 
         # Extract all anesthesiologists that still need to be assigned a fair workload per day:
-        idx = list(range(0, 7)) + list(range(18, 20)) + list(range(20, 22)) + list(range(22, 39))
+        idx = list(range(0, 7)) + list(range(18, 20)) + list(range(20, 22)) + list(range(22, 36))
 
         for day in self.days:
             assigned_doctors = df[day].iloc[idx].dropna().values.tolist()
@@ -83,6 +84,10 @@ class DataHandler:
             self.potential_charge_doctors[day] = sorted(
                 list(set(self.Whine[day] + self.call_and_late_call_doctors[day]) & set(self.charge_doctors)))
 
+            self.potential_cardiac_doctors[day] = sorted(
+                list(set(self.call_and_late_call_doctors[day]) & set(self.cardiac_doctors))
+            )
+
         # Extracts the admin doctors for each day.
         idx1 = df[df['Role'] == 'Admin 1'].index[0]
         idx2 = df[df['Role'] == 'Admin 2'].index[0]
@@ -102,3 +107,6 @@ class DataHandler:
         # Redefining the set of orders based on the maximum order number in preassigned
         max_order = max([max(order_doctor_dict.keys()) for order_doctor_dict in self.preassigned.values()])
         self.orders = list(range(1, max_order + 1))
+
+        # Roles, that match the order of the orders
+        self.roles = {i: df['Role'].iloc[i + start_row] for i in self.orders}

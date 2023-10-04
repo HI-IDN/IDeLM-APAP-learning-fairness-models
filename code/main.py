@@ -1,6 +1,6 @@
 from data.data_handler import DataHandler
 from models.allocation_model import AllocationModel
-# from utils import some_utility_function
+
 
 def main():
     # Constants
@@ -12,10 +12,14 @@ def main():
     # df = some_preprocessing_function(df)
 
     # Step 3: Apply the scheduling algorithm
-    results = AllocationModel(df)
+    model = AllocationModel(df, simple=False)
+    if not model.solve():
+        print("No solution found")
+        model.debug_constraints()
+        return
 
     # Step 4: Output the results
-    # some_utility_function(results)
+    model.print()
 
 
 if __name__ == '__main__':
