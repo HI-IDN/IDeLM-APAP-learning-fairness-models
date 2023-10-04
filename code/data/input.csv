@@ -1,41 +1,37 @@
-Role,MON,TUE,WED,THU,FRI,Name,PeelPoints
-Date,,,,,,MC,31
-Post Gill,MI,CM,MA,MI,TI,AY,30
-Post CVCC,,,,,,DD,30
-Post Call,BK,RR,CA,JT,BK,SL,30
-Post Weekend/Holiday,AY,,,,,JT,30
-Post Late,KC,JJ,JM,SL,MC,JJ,30
-Pre Call,,,BK,CA,JJ,ES,30
-,KK,KK,MC,KK,RR,RR,30
-,ES,SL,RR,JJ,ES,JM,29
-,SL,MC,ES,AY,AY,KK,29
-,JM,DD,KK,ES,DD,CA,27
-,DD,ES,AY,RR,SL,BK,25
-Whine,JT,AY,JJ,DD,JT,KC,3
-Zone,MC,BK,,,JM,,
-,,,,,,,
-,,,,,,,
-,,,,,,,
-,,,,,,,
-late,JJ,JM,SL,MC,KK,,
-call,RR,CA,JT,BK,CA,,
-Admin 1,CA,JT,DD,JM,MA,,
-Admin 2,,,,,,,
-West,,KC,KC,KC,KC,,
-Gill,CM,CM,CM,CM,CM,,
-Gill,MA,MA,MA,MA,MA,,
-Gill,MI,MI,MI,MI,MI,,
-Gill,TI,TI,TI,TI,TI,,
-VAC,CC,CC,CC,CC,CC,,
-VAC,TT,TT,TT,TT,TT,,
-VAC,SK,SK,SK,SK,SK,,
-VAC,FM,FM,FM,FM,FM,,
-VAC,DN,DN,DN,DN,DN,,
-VAC,,,,,,,
-DD CVCC Day,,,,,,,
-AIC,JJ,CA,JJ,MC,JM,,
-Cardiac,RR,JM,SL,BK,CA,,
-West sitter,,,,,,,
-Wine zone,,,,,,,
-selection,,,,,,,
-Worksheet,,,,,,,
+Role,MON,TUE,WED,THU,FRI
+Date,,,,,
+Post Gill,MA,MI,TI,MA,MI
+Post CVCC,,,,,
+Post Call,SL,CA,AY,KC,TT
+Post Weekend/Holiday,FM,,,,
+Post Late,SK,RR,JM,DN,JT
+Pre Call,AY,KC,TT,RR,CC
+Whine,CC,CC,,,FM
+Whine,,,,,
+Whine,,,,,
+Whine,,,,,
+Whine,,,,,
+Whine,,,,,
+Zone,,,CC,CC,
+Whine,,,,,
+Whine,,,,,
+Whine,,,,,
+Whine,,,,,
+late,RR,JM,DN,JT,MC
+call,CA,AY,KC,TT,RR
+Admin 1,JM,MA,JT,CA,JM
+Admin 2,,,,,
+West,,,RR,JM,
+Gill,MI,MI,MI,MI,MI
+Gill,TI,TI,TI,TI,TI
+Gill,MA,,MA,MA,MA
+Gill,,,,,
+VAC,DD,DD,DD,DD,DD
+VAC,BK,BK,BK,BK,BK
+VAC,JJ,JJ,JJ,JJ,JJ
+VAC,CM,CM,CM,CM,CM
+VAC,KK,KK,KK,KK,KK
+VAC,,,,,
+DD CVCC Day,,,,,
+AIC,CA,MC,DN,MC,CA
+Cardiac,RR,JM,KC,JT,RR
