@@ -95,8 +95,8 @@ def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
 
         if simple_mode:
             offsite = []
-            if 'G1' in record['Gillette'] and record['Gillette']['41'] is not None:
-                offsite.extend(record['Gillette']['41'])
+            if 'G1' in record['Gillette'] and record['Gillette']['G1'] is not None:
+                offsite.append(record['Gillette']['G1'])
             if '4G' in record['Gillette'] and record['Gillette']['4G'] is not None:
                 offsite.extend(record['Gillette']['4G'])
             if 'West' in record and record['West'] is not None:
@@ -119,7 +119,7 @@ def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
         record = {k: v for k, v in record.items() if v is not None}
 
         # Then use the function:
-        record = replace_name_with_initials(record)
+        #record = replace_name_with_initials(record)
 
         if day < current_day:
             month = next_month if month is this_month else this_month

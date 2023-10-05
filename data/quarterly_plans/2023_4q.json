@@ -1064,7 +1064,7 @@
                 "Fri AM": {
                     "Call": {
                         "1": "RR",
-                        "2": NaN
+                        "2": null
                     },
                     "Admin": 1,
                     "Offsite": [

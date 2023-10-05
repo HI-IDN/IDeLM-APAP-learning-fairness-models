@@ -1218,11 +1218,10 @@
                 "Fri AM": {
                     "Call": {
                         "1": "CA",
-                        "2": NaN
+                        "2": null
                     },
                     "Admin": 1,
                     "Offsite": [
-                        NaN,
                         "FM",
                         "PM",
                         "MI",
