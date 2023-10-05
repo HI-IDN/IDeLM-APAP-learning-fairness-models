@@ -4,15 +4,15 @@
             "28": {
                 "Mon": {
                     "Call": {
-                        "1": "Kowalsky",
-                        "2": "McCormick"
+                        "1": "RK",
+                        "2": "PM"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "DN",
                         "X",
                         "RR",
-                        "Ion",
+                        "TI",
                         "SK",
                         "FM",
                         "KC",
@@ -24,14 +24,14 @@
             "29": {
                 "Tue": {
                     "Call": {
-                        "1": "Collins",
-                        "2": "Maresh"
+                        "1": "MC",
+                        "2": "JM"
                     },
                     "Admin": 1,
                     "Requests": "DN off",
                     "Offsite": [
                         "JJ",
-                        "Ion",
+                        "TI",
                         "SK",
                         "FM",
                         "KC",
@@ -48,8 +48,8 @@
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Ion",
+                        "MA",
+                        "TI",
                         "SK",
                         "FM",
                         "KC",
@@ -63,13 +63,13 @@
             "1": {
                 "Thu": {
                     "Call": {
-                        "1": "Altman",
-                        "2": "Mickelson"
+                        "1": "CA",
+                        "2": "CM"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "DN",
-                        "Ion",
+                        "TI",
                         "SK",
                         "FM",
                         "KC",
@@ -81,13 +81,13 @@
             "2": {
                 "Fri": {
                     "Call": {
-                        "1": "Maresh",
-                        "2": "Kowalsky"
+                        "1": "JM",
+                        "2": "RK"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "JJ",
-                        "Ion",
+                        "TI",
                         "SK",
                         "FM",
                         "KC",
@@ -99,19 +99,19 @@
             "3": {
                 "Sat AM": {
                     "Call": {
-                        "1": "Castro",
-                        "2": "Kowalsky"
+                        "1": "CC",
+                        "2": "RK"
                     },
                     "Admin": 0,
                     "Offsite": [
                         "JJ",
-                        "Kowalsky"
+                        "RK"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1": "Kowalsky",
-                        "2": "Castro"
+                        "1": "RK",
+                        "2": "CC"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -122,8 +122,8 @@
             "4": {
                 "Sun AM": {
                     "Call": {
-                        "1": "Maresh",
-                        "2": "Kowalsky"
+                        "1": "JM",
+                        "2": "RK"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -132,8 +132,8 @@
                 },
                 "Sun PM": {
                     "Call": {
-                        "1": "Castro",
-                        "2": "Kowalsky"
+                        "1": "CC",
+                        "2": "RK"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -144,15 +144,15 @@
             "5": {
                 "Mon": {
                     "Call": {
-                        "1": "Moran",
-                        "2": "Kromer"
+                        "1": "FM",
+                        "2": "KK"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "RR",
                         "RR",
                         "SL",
-                        "Ion",
+                        "TI",
                         "ES",
                         "CM",
                         "JT",
@@ -164,13 +164,13 @@
             "6": {
                 "Tue": {
                     "Call": {
-                        "1": "Collins",
-                        "2": "Miller"
+                        "1": "MC",
+                        "2": "MI"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "DN",
-                        "Maresh",
+                        "JM",
                         "ES",
                         "CM",
                         "JT",
@@ -182,13 +182,13 @@
             "7": {
                 "Wed": {
                     "Call": {
-                        "1": "Castro",
-                        "2": "Kowalsky"
+                        "1": "CC",
+                        "2": "RK"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "JJ",
-                        "Maresh",
+                        "JM",
                         "ES",
                         "CM",
                         "JT",
@@ -200,13 +200,13 @@
             "8": {
                 "Thu": {
                     "Call": {
-                        "1": "Kaus",
-                        "2": "Ion"
+                        "1": "SK",
+                        "2": "TI"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Maresh",
+                        "MA",
+                        "JM",
                         "ES",
                         "CM",
                         "JT",
@@ -218,13 +218,13 @@
             "9": {
                 "Fri": {
                     "Call": {
-                        "1": "Kromer",
-                        "2": "Miller"
+                        "1": "KK",
+                        "2": "MI"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "RR",
-                        "Maresh",
+                        "JM",
                         "ES",
                         "CM",
                         "JT",
@@ -236,19 +236,19 @@
             "10": {
                 "Sat AM": {
                     "Call": {
-                        "1": "Collins",
-                        "2": "Miller"
+                        "1": "MC",
+                        "2": "MI"
                     },
                     "Admin": 0,
                     "Offsite": [
                         "RR",
-                        "Miller"
+                        "MI"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1": "Miller",
-                        "2": "Collins"
+                        "1": "MI",
+                        "2": "MC"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -259,8 +259,8 @@
             "11": {
                 "Sun AM": {
                     "Call": {
-                        "1": "Kromer",
-                        "2": "Miller"
+                        "1": "KK",
+                        "2": "MI"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -269,8 +269,8 @@
                 },
                 "Sun PM": {
                     "Call": {
-                        "1": "Collins",
-                        "2": "Miller"
+                        "1": "MC",
+                        "2": "MI"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -281,21 +281,21 @@
             "12": {
                 "Mon": {
                     "Call": {
-                        "1": "McCormick",
-                        "2": "Kaus"
+                        "1": "PM",
+                        "2": "SK"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Mickelson",
+                        "CM",
                         "CM",
                         "RR",
                         "X",
-                        "Kromer",
-                        "Castro",
+                        "KK",
+                        "CC",
                         "FM",
                         "JJ",
                         "TT",
-                        "Ion",
+                        "TI",
                         "DN"
                     ]
                 }
@@ -303,17 +303,17 @@
             "13": {
                 "Tue": {
                     "Call": {
-                        "1": "Maresh",
+                        "1": "JM",
                         "2": "JT"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Castro",
+                        "MA",
+                        "CC",
                         "FM",
                         "JJ",
                         "TT",
-                        "Ion",
+                        "TI",
                         "DN"
                     ]
                 }
@@ -321,17 +321,17 @@
             "14": {
                 "Wed": {
                     "Call": {
-                        "1": "Miller",
-                        "2": "Kowalsky"
+                        "1": "MI",
+                        "2": "RK"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "RR",
-                        "Castro",
+                        "CC",
                         "FM",
                         "JJ",
                         "TT",
-                        "Ion",
+                        "TI",
                         "DN"
                     ]
                 }
@@ -339,18 +339,18 @@
             "15": {
                 "Thu": {
                     "Call": {
-                        "1": "McCormick",
-                        "2": "Kaus"
+                        "1": "PM",
+                        "2": "SK"
                     },
                     "Admin": 1,
                     "Requests": "PM on",
                     "Offsite": [
-                        "Mickelson",
-                        "Castro",
+                        "CM",
+                        "CC",
                         "FM",
                         "JJ",
                         "TT",
-                        "Ion",
+                        "TI",
                         "DN"
                     ]
                 }
@@ -363,12 +363,12 @@
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Castro",
+                        "MA",
+                        "CC",
                         "FM",
                         "JJ",
                         "TT",
-                        "Ion",
+                        "TI",
                         "DN"
                     ]
                 }
@@ -382,7 +382,7 @@
                     "Admin": 0,
                     "Requests": "FM/SK off",
                     "Offsite": [
-                        "Angel",
+                        "MA",
                         "SL"
                     ]
                 },
@@ -393,7 +393,7 @@
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Angel"
+                        "MA"
                     ]
                 }
             },
@@ -405,7 +405,7 @@
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Angel"
+                        "MA"
                     ]
                 },
                 "Sun PM": {
@@ -415,15 +415,15 @@
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Angel"
+                        "MA"
                     ]
                 }
             },
             "19": {
                 "Mon": {
                     "Call": {
-                        "1": "Moran",
-                        "2": "Altman"
+                        "1": "FM",
+                        "2": "CA"
                     },
                     "Admin": 1,
                     "Offsite": [
@@ -431,10 +431,10 @@
                         "X",
                         "RR",
                         "DD",
-                        "Mickelson",
+                        "CM",
                         "JM",
                         "PM",
-                        "BRM",
+                        "MI",
                         "RK"
                     ]
                 }
@@ -442,17 +442,17 @@
             "20": {
                 "Tue": {
                     "Call": {
-                        "1": "Castro",
-                        "2": "Ion"
+                        "1": "CC",
+                        "2": "TI"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "DN",
                         "DD",
-                        "Mickelson",
+                        "CM",
                         "JM",
                         "PM",
-                        "BRM",
+                        "MI",
                         "RK"
                     ]
                 }
@@ -465,12 +465,12 @@
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
+                        "MA",
                         "DD",
-                        "Mickelson",
+                        "CM",
                         "JM",
                         "PM",
-                        "BRM",
+                        "MI",
                         "RK"
                     ]
                 }
@@ -479,16 +479,16 @@
                 "Thu": {
                     "Call": {
                         "1": "SL",
-                        "2": "Kromer"
+                        "2": "KK"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "JJ",
                         "DD",
-                        "Mickelson",
+                        "CM",
                         "JM",
                         "PM",
-                        "BRM",
+                        "MI",
                         "RK"
                     ]
                 }
@@ -496,17 +496,17 @@
             "23": {
                 "Fri": {
                     "Call": {
-                        "1": "Kaus",
-                        "2": "Moran"
+                        "1": "SK",
+                        "2": "FM"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "DN",
                         "DD",
-                        "Mickelson",
+                        "CM",
                         "JM",
                         "PM",
-                        "BRM",
+                        "MI",
                         "RK"
                     ]
                 }
@@ -514,19 +514,19 @@
             "24": {
                 "Sat AM": {
                     "Call": {
-                        "1": "Altman",
-                        "2": "Moran"
+                        "1": "CA",
+                        "2": "FM"
                     },
                     "Admin": 0,
                     "Offsite": [
                         "DN",
-                        "Moran"
+                        "FM"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1": "Moran",
-                        "2": "Altman"
+                        "1": "FM",
+                        "2": "CA"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -537,8 +537,8 @@
             "25": {
                 "Sun AM": {
                     "Call": {
-                        "1": "Kaus",
-                        "2": "Moran"
+                        "1": "SK",
+                        "2": "FM"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -547,8 +547,8 @@
                 },
                 "Sun PM": {
                     "Call": {
-                        "1": "Altman",
-                        "2": "Moran"
+                        "1": "CA",
+                        "2": "FM"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -560,12 +560,12 @@
                 "Mon": {
                     "Call": {
                         "1": "TT",
-                        "2": "McCormick"
+                        "2": "PM"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "JJ",
-                        "Ion",
+                        "TI",
                         "RR",
                         "ES",
                         "SL",
@@ -579,13 +579,13 @@
             "27": {
                 "Tue": {
                     "Call": {
-                        "1": "Maresh",
-                        "2": "Miller"
+                        "1": "JM",
+                        "2": "MI"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Ion",
-                        "Moran",
+                        "TI",
+                        "FM",
                         "SL",
                         "RK",
                         "DD",
@@ -598,12 +598,12 @@
                 "Wed": {
                     "Call": {
                         "1": "JT",
-                        "2": "Collins"
+                        "2": "MC"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Moran",
+                        "MA",
+                        "FM",
                         "SL",
                         "RK",
                         "DD",
@@ -615,14 +615,14 @@
             "29": {
                 "Thu": {
                     "Call": {
-                        "1": "Kaus",
-                        "2": "Castro"
+                        "1": "SK",
+                        "2": "CC"
                     },
                     "Admin": 1,
                     "Requests": "CC 2nd, SK on",
                     "Offsite": [
                         "DN",
-                        "Moran",
+                        "FM",
                         "SL",
                         "RK",
                         "DD",
@@ -640,7 +640,7 @@
                     "Admin": 1,
                     "Offsite": [
                         "JJ",
-                        "Moran",
+                        "FM",
                         "SL",
                         "RK",
                         "DD",
@@ -652,11 +652,11 @@
             "31": {
                 "Sat AM": {
                     "Call": {
-                        "1": "McCormick",
+                        "1": "PM",
                         "2": "TT"
                     },
                     "Admin": 0,
-                    "Requests": "DN, Ion, JM off",
+                    "Requests": "DN, TI, JM off",
                     "Offsite": [
                         "JJ",
                         "TT"
@@ -665,7 +665,7 @@
                 "Sat PM": {
                     "Call": {
                         "1": "TT",
-                        "2": "McCormick"
+                        "2": "PM"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -688,7 +688,7 @@
                 },
                 "Sun PM": {
                     "Call": {
-                        "1": "McCormick",
+                        "1": "PM",
                         "2": "TT"
                     },
                     "Admin": 0,
@@ -700,16 +700,16 @@
             "2": {
                 "Mon": {
                     "Call": {
-                        "1": "Mickelson",
+                        "1": "CM",
                         "2": "JT"
                     },
                     "Admin": 1,
                     "Requests": "CM on",
                     "Offsite": [
-                        "Angel",
+                        "MA",
                         "X",
-                        "McCormick",
-                        "Castro",
+                        "PM",
+                        "CC",
                         "SL",
                         "RR",
                         "SK",
@@ -721,13 +721,13 @@
             "3": {
                 "Tue": {
                     "Call": {
-                        "1": "Ion",
-                        "2": "Miller"
+                        "1": "TI",
+                        "2": "MI"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "DN",
-                        "Castro",
+                        "CC",
                         "SL",
                         "RR",
                         "SK",
@@ -739,13 +739,13 @@
             "4": {
                 "Wed": {
                     "Call": {
-                        "1": "Collins",
+                        "1": "MC",
                         "2": "ES"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "JJ",
-                        "Castro",
+                        "CC",
                         "SL",
                         "RR",
                         "SK",
@@ -758,12 +758,12 @@
                 "Thu": {
                     "Call": {
                         "1": "TT",
-                        "2": "Altman"
+                        "2": "CA"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Castro",
+                        "MA",
+                        "CC",
                         "SL",
                         "RR",
                         "SK",
@@ -775,13 +775,13 @@
             "6": {
                 "Fri": {
                     "Call": {
-                        "1": "Maresh",
+                        "1": "JM",
                         "2": "JT"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "DN",
-                        "Ion",
+                        "TI",
                         "SL",
                         "RR",
                         "SK",
@@ -793,7 +793,7 @@
             "7": {
                 "Sat AM": {
                     "Call": {
-                        "1": "Castro",
+                        "1": "CC",
                         "2": "JT"
                     },
                     "Admin": 0,
@@ -805,7 +805,7 @@
                 "Sat PM": {
                     "Call": {
                         "1": "JT",
-                        "2": "Castro"
+                        "2": "CC"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -816,7 +816,7 @@
             "8": {
                 "Sun AM": {
                     "Call": {
-                        "1": "Maresh",
+                        "1": "JM",
                         "2": "JT"
                     },
                     "Admin": 0,
@@ -826,7 +826,7 @@
                 },
                 "Sun PM": {
                     "Call": {
-                        "1": "Castro",
+                        "1": "CC",
                         "2": "JT"
                     },
                     "Admin": 0,
@@ -838,7 +838,7 @@
             "9": {
                 "Mon": {
                     "Call": {
-                        "1": "Moran",
+                        "1": "FM",
                         "2": "SL"
                     },
                     "Admin": 2,
@@ -846,9 +846,9 @@
                         "JJ",
                         "CM",
                         "X",
-                        "Kaus",
-                        "Altman",
-                        "Ion",
+                        "SK",
+                        "CA",
+                        "TI",
                         "KC",
                         "MA",
                         "TT"
@@ -859,13 +859,13 @@
                 "Tue": {
                     "Call": {
                         "1": "RR",
-                        "2": "McCormick"
+                        "2": "PM"
                     },
                     "Admin": 2,
                     "Offsite": [
-                        "Mickelson",
-                        "Altman",
-                        "Ion",
+                        "CM",
+                        "CA",
+                        "TI",
                         "KC",
                         "MA",
                         "TT"
@@ -875,14 +875,14 @@
             "11": {
                 "Wed": {
                     "Call": {
-                        "1": "Castro",
-                        "2": "Kromer"
+                        "1": "CC",
+                        "2": "KK"
                     },
                     "Admin": 2,
                     "Offsite": [
                         "DN",
-                        "Altman",
-                        "Ion",
+                        "CA",
+                        "TI",
                         "KC",
                         "MA",
                         "TT"
@@ -893,13 +893,13 @@
                 "Thu": {
                     "Call": {
                         "1": "ES",
-                        "2": "Moran"
+                        "2": "FM"
                     },
                     "Admin": 2,
                     "Offsite": [
                         "JJ",
-                        "Altman",
-                        "Ion",
+                        "CA",
+                        "TI",
                         "KC",
                         "MA",
                         "TT"
@@ -909,14 +909,14 @@
             "13": {
                 "Fri": {
                     "Call": {
-                        "1": "Miller",
+                        "1": "MI",
                         "2": "RR"
                     },
                     "Admin": 2,
                     "Offsite": [
-                        "Mickelson",
-                        "Altman",
-                        "Ion",
+                        "CM",
+                        "CA",
+                        "TI",
                         "KC",
                         "MA",
                         "TT"
@@ -926,62 +926,62 @@
             "14": {
                 "Sat AM": {
                     "Call": {
-                        "1": "McCormick",
+                        "1": "PM",
                         "2": "RR"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Mickelson",
+                        "CM",
                         "RR"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
                         "1": "RR",
-                        "2": "McCormick"
+                        "2": "PM"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Mickelson"
+                        "CM"
                     ]
                 }
             },
             "15": {
                 "Sun AM": {
                     "Call": {
-                        "1": "Miller",
+                        "1": "MI",
                         "2": "RR"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Mickelson"
+                        "CM"
                     ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1": "McCormick",
+                        "1": "PM",
                         "2": "RR"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Mickelson"
+                        "CM"
                     ]
                 }
             },
             "16": {
                 "Mon": {
                     "Call": {
-                        "1": "Kowalsky",
-                        "2": "Moran"
+                        "1": "RK",
+                        "2": "FM"
                     },
                     "Admin": 2,
                     "Offsite": [
-                        "Angel",
-                        "Ion",
+                        "MA",
+                        "TI",
                         "CM",
                         "X",
-                        "Kaus",
-                        "Collins",
+                        "SK",
+                        "MC",
                         "JJ",
                         "DN",
                         "ES",
@@ -992,13 +992,13 @@
             "17": {
                 "Tue": {
                     "Call": {
-                        "1": "Altman",
-                        "2": "Maresh"
+                        "1": "CA",
+                        "2": "JM"
                     },
                     "Admin": 2,
                     "Offsite": [
-                        "Ion",
-                        "Collins",
+                        "TI",
+                        "MC",
                         "JJ",
                         "DN",
                         "ES",
@@ -1009,14 +1009,14 @@
             "18": {
                 "Wed": {
                     "Call": {
-                        "1": "Castro",
-                        "2": "McCormick"
+                        "1": "CC",
+                        "2": "PM"
                     },
                     "Admin": 2,
                     "Requests": "CM on",
                     "Offsite": [
-                        "Mickelson",
-                        "Collins",
+                        "CM",
+                        "MC",
                         "JJ",
                         "DN",
                         "ES",
@@ -1027,13 +1027,13 @@
             "19": {
                 "Thu": {
                     "Call": {
-                        "1": "Moran",
+                        "1": "FM",
                         "2": "RR"
                     },
                     "Admin": 2,
                     "Offsite": [
-                        "Angel",
-                        "Collins",
+                        "MA",
+                        "MC",
                         "JJ",
                         "DN",
                         "ES",
@@ -1044,13 +1044,13 @@
             "20": {
                 "Fri": {
                     "Call": {
-                        "1": "Kowalsky",
+                        "1": "RK",
                         "2": "SL"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Ion",
-                        "Collins",
+                        "TI",
+                        "MC",
                         "JJ",
                         "DN",
                         "ES",
@@ -1062,46 +1062,46 @@
             "21": {
                 "Sat AM": {
                     "Call": {
-                        "1": "Altman",
+                        "1": "CA",
                         "2": "SL"
                     },
                     "Admin": 0,
                     "Requests": "RK Fri/Sun",
                     "Offsite": [
-                        "Ion",
+                        "TI",
                         "SL"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
                         "1": "SL",
-                        "2": "Altman"
+                        "2": "CA"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Ion"
+                        "TI"
                     ]
                 }
             },
             "22": {
                 "Sun AM": {
                     "Call": {
-                        "1": "Kowalsky",
+                        "1": "RK",
                         "2": "SL"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Ion"
+                        "TI"
                     ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1": "Altman",
+                        "1": "CA",
                         "2": "SL"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Ion"
+                        "TI"
                     ]
                 }
             },
@@ -1113,14 +1113,14 @@
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Kaus",
+                        "SK",
                         "SK",
                         "X",
-                        "Kromer",
-                        "Mickelson",
+                        "KK",
+                        "CM",
                         "CC",
                         "MA",
-                        "BRM",
+                        "MI",
                         "RR",
                         "PM"
                     ]
@@ -1130,15 +1130,15 @@
                 "Tue": {
                     "Call": {
                         "1": "ES",
-                        "2": "Collins"
+                        "2": "MC"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "DN",
-                        "Mickelson",
+                        "CM",
                         "CC",
                         "MA",
-                        "BRM",
+                        "MI",
                         "RR",
                         "PM"
                     ]
@@ -1147,16 +1147,16 @@
             "25": {
                 "Wed": {
                     "Call": {
-                        "1": "Altman",
+                        "1": "CA",
                         "2": "SL"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "JJ",
-                        "Mickelson",
+                        "CM",
                         "CC",
                         "MA",
-                        "BRM",
+                        "MI",
                         "RR",
                         "PM"
                     ]
@@ -1165,15 +1165,15 @@
             "26": {
                 "Thu AM": {
                     "Call": {
-                        "1": "Maresh",
-                        "2": "Moran"
+                        "1": "JM",
+                        "2": "FM"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Kaus",
+                        "SK",
                         "CC",
                         "MA",
-                        "BRM",
+                        "MI",
                         "RR",
                         "PM"
                     ]
@@ -1181,14 +1181,14 @@
                 "Thu PM": {
                     "Call": {
                         "1": "TT",
-                        "2": "Moran"
+                        "2": "FM"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Kaus",
+                        "SK",
                         "CC",
                         "MA",
-                        "BRM",
+                        "MI",
                         "RR",
                         "PM"
                     ]
@@ -1198,15 +1198,15 @@
                 "Fri": {
                     "Call": {
                         "1": "TT",
-                        "2": "Moran"
+                        "2": "FM"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Kaus",
-                        "Mickelson",
+                        "SK",
+                        "CM",
                         "CC",
                         "MA",
-                        "BRM",
+                        "MI",
                         "RR",
                         "PM"
                     ]
@@ -1215,23 +1215,23 @@
             "28": {
                 "Sat AM": {
                     "Call": {
-                        "1": "Maresh",
-                        "2": "Moran"
+                        "1": "JM",
+                        "2": "FM"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Kaus",
+                        "SK",
                         "TT"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1": "Moran",
-                        "2": "Maresh"
+                        "1": "FM",
+                        "2": "JM"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Kaus"
+                        "SK"
                     ]
                 }
             },
@@ -1239,35 +1239,35 @@
                 "Sun AM": {
                     "Call": {
                         "1": "TT",
-                        "2": "Moran"
+                        "2": "FM"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Kaus"
+                        "SK"
                     ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1": "Maresh",
-                        "2": "Moran"
+                        "1": "JM",
+                        "2": "FM"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Kaus"
+                        "SK"
                     ]
                 }
             },
             "30": {
                 "Mon": {
                     "Call": {
-                        "1": "Collins",
-                        "2": "Castro"
+                        "1": "MC",
+                        "2": "CC"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "DN",
                         "X",
-                        "McCormick",
+                        "PM",
                         "ES",
                         "CA",
                         "JM",
@@ -1282,12 +1282,12 @@
             "1": {
                 "Tue": {
                     "Call": {
-                        "1": "Miller",
-                        "2": "Ion"
+                        "1": "MI",
+                        "2": "TI"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
+                        "MA",
                         "ES",
                         "CA",
                         "JM",
@@ -1318,8 +1318,8 @@
             "3": {
                 "Thu": {
                     "Call": {
-                        "1": "Clark",
-                        "2": "Kaus"
+                        "1": "KC",
+                        "2": "SK"
                     },
                     "Admin": 1,
                     "Offsite": [
@@ -1336,13 +1336,13 @@
             "4": {
                 "Fri": {
                     "Call": {
-                        "1": "Collins",
-                        "2": "Miller"
+                        "1": "MC",
+                        "2": "MI"
                     },
                     "Admin": 1,
                     "Requests": "ES off",
                     "Offsite": [
-                        "Angel",
+                        "MA",
                         "ES",
                         "CA",
                         "JM",
@@ -1355,52 +1355,52 @@
             "5": {
                 "Sat AM": {
                     "Call": {
-                        "1": "Kowalsky",
-                        "2": "Miller"
+                        "1": "RK",
+                        "2": "MI"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Angel",
-                        "Miller"
+                        "MA",
+                        "MI"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1": "Miller",
-                        "2": "Kowalsky"
+                        "1": "MI",
+                        "2": "RK"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Angel"
+                        "MA"
                     ]
                 }
             },
             "6": {
                 "Sun AM": {
                     "Call": {
-                        "1": "Collins",
-                        "2": "Miller"
+                        "1": "MC",
+                        "2": "MI"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Angel"
+                        "MA"
                     ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1": "Kowalsky",
-                        "2": "Miller"
+                        "1": "RK",
+                        "2": "MI"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Angel"
+                        "MA"
                     ]
                 }
             },
             "7": {
                 "Mon": {
                     "Call": {
-                        "1": "Maresh",
+                        "1": "JM",
                         "2": "JT"
                     },
                     "Admin": 1,
@@ -1409,7 +1409,7 @@
                         "ES",
                         "KK",
                         "SL",
-                        "Ion",
+                        "TI",
                         "CC",
                         "JJ",
                         "SK",
@@ -1421,13 +1421,13 @@
             "8": {
                 "Tue": {
                     "Call": {
-                        "1": "Altman",
+                        "1": "CA",
                         "2": "RR"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "ES",
-                        "Ion",
+                        "TI",
                         "CC",
                         "JJ",
                         "SK",
@@ -1439,13 +1439,13 @@
             "9": {
                 "Wed": {
                     "Call": {
-                        "1": "Clark",
-                        "2": "Collins"
+                        "1": "KC",
+                        "2": "MC"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Ion",
+                        "MA",
+                        "TI",
                         "CC",
                         "JJ",
                         "SK",
@@ -1457,14 +1457,14 @@
             "10": {
                 "Thu": {
                     "Call": {
-                        "1": "Kowalsky",
-                        "2": "Maresh"
+                        "1": "RK",
+                        "2": "JM"
                     },
                     "Admin": 1,
                     "Requests": "RK on",
                     "Offsite": [
-                        "Kromer",
-                        "Ion",
+                        "KK",
+                        "TI",
                         "CC",
                         "JJ",
                         "SK",
@@ -1477,12 +1477,12 @@
                 "Fri": {
                     "Call": {
                         "1": "JT",
-                        "2": "Altman"
+                        "2": "CA"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "DN",
-                        "Ion",
+                        "TI",
                         "CC",
                         "JJ",
                         "SK",
@@ -1495,17 +1495,17 @@
                 "Sat AM": {
                     "Call": {
                         "1": "RR",
-                        "2": "Altman"
+                        "2": "CA"
                     },
                     "Admin": 0,
                     "Offsite": [
                         "DN",
-                        "Altman"
+                        "CA"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1": "Altman",
+                        "1": "CA",
                         "2": "RR"
                     },
                     "Admin": 0,
@@ -1518,7 +1518,7 @@
                 "Sun AM": {
                     "Call": {
                         "1": "JT",
-                        "2": "Altman"
+                        "2": "CA"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -1528,7 +1528,7 @@
                 "Sun PM": {
                     "Call": {
                         "1": "RR",
-                        "2": "Altman"
+                        "2": "CA"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -1546,9 +1546,9 @@
                     "Offsite": [
                         "JJ",
                         "X",
-                        "McCormick",
+                        "PM",
                         "DD",
-                        "Collins",
+                        "MC",
                         "KC",
                         "KK",
                         "RK",
@@ -1559,12 +1559,12 @@
             "15": {
                 "Tue": {
                     "Call": {
-                        "1": "Maresh",
-                        "2": "Moran"
+                        "1": "JM",
+                        "2": "FM"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
+                        "MA",
                         "DD",
                         "JT",
                         "KC",
@@ -1577,7 +1577,7 @@
             "16": {
                 "Wed": {
                     "Call": {
-                        "1": "Miller",
+                        "1": "MI",
                         "2": "SL"
                     },
                     "Admin": 1,
@@ -1596,7 +1596,7 @@
                 "Thu": {
                     "Call": {
                         "1": "RR",
-                        "2": "Altman"
+                        "2": "CA"
                     },
                     "Admin": 1,
                     "Requests": "FM/SK off, RR on",
@@ -1614,13 +1614,13 @@
             "18": {
                 "Fri": {
                     "Call": {
-                        "1": "Moran",
+                        "1": "FM",
                         "2": "TT"
                     },
                     "Admin": 1,
                     "Requests": "PM off",
                     "Offsite": [
-                        "Angel",
+                        "MA",
                         "DD",
                         "JT",
                         "KC",
@@ -1633,45 +1633,45 @@
             "19": {
                 "Sat AM": {
                     "Call": {
-                        "1": "Kaus",
+                        "1": "SK",
                         "2": "TT"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Angel",
+                        "MA",
                         "TT"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
                         "1": "TT",
-                        "2": "Kaus"
+                        "2": "SK"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Angel"
+                        "MA"
                     ]
                 }
             },
             "20": {
                 "Sun AM": {
                     "Call": {
-                        "1": "Moran",
+                        "1": "FM",
                         "2": "TT"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Angel"
+                        "MA"
                     ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1": "Kaus",
+                        "1": "SK",
                         "2": "TT"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Angel"
+                        "MA"
                     ]
                 }
             },
@@ -1679,16 +1679,16 @@
                 "Mon": {
                     "Call": {
                         "1": "SL",
-                        "2": "Mickelson"
+                        "2": "CM"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "ES",
                         "ES",
                         "X",
-                        "Kromer",
-                        "Maresh",
-                        "Ion",
+                        "KK",
+                        "JM",
+                        "TI",
                         "RR",
                         "CA",
                         "DD",
@@ -1699,14 +1699,14 @@
             "22": {
                 "Tue": {
                     "Call": {
-                        "1": "Collins",
-                        "2": "McCormick"
+                        "1": "MC",
+                        "2": "PM"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "JJ",
-                        "Maresh",
-                        "Ion",
+                        "JM",
+                        "TI",
                         "RR",
                         "CA",
                         "DD",
@@ -1718,14 +1718,14 @@
                 "Wed": {
                     "Call": {
                         "1": "JT",
-                        "2": "Miller"
+                        "2": "MI"
                     },
                     "Admin": 1,
-                    "Requests": "JT 1st, BRM 2nd, MA G",
+                    "Requests": "JT 1st, MI 2nd, MA G",
                     "Offsite": [
-                        "Angel",
-                        "Maresh",
-                        "Ion",
+                        "MA",
+                        "JM",
+                        "TI",
                         "RR",
                         "CA",
                         "DD",
@@ -1737,13 +1737,13 @@
                 "Thu": {
                     "Call": {
                         "1": "SL",
-                        "2": "Castro"
+                        "2": "CC"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "ES",
-                        "Maresh",
-                        "Ion",
+                        "JM",
+                        "TI",
                         "RR",
                         "CA",
                         "DD",
@@ -1754,13 +1754,13 @@
             "25": {
                 "Fri AM": {
                     "Call": {
-                        "1": "Clark",
-                        "2": "Castro"
+                        "1": "KC",
+                        "2": "CC"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "ES",
-                        "Ion",
+                        "TI",
                         "RR",
                         "CA",
                         "DD",
@@ -1769,13 +1769,13 @@
                 },
                 "Fri PM": {
                     "Call": {
-                        "1": "Castro",
-                        "2": "Clark"
+                        "1": "CC",
+                        "2": "KC"
                     },
                     "Admin": 1,
                     "Offsite": [
                         "ES",
-                        "Ion",
+                        "TI",
                         "RR",
                         "CA",
                         "DD",
@@ -1787,18 +1787,18 @@
                 "Sat AM": {
                     "Call": {
                         "1": "SL",
-                        "2": "Castro"
+                        "2": "CC"
                     },
                     "Admin": 0,
                     "Offsite": [
                         "ES",
-                        "Castro"
+                        "CC"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1": "Clark",
-                        "2": "Castro"
+                        "1": "KC",
+                        "2": "CC"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -1809,7 +1809,7 @@
             "27": {
                 "Sun AM": {
                     "Call": {
-                        "1": "Castro",
+                        "1": "CC",
                         "2": "SL"
                     },
                     "Admin": 0,
@@ -1820,7 +1820,7 @@
                 "Sun PM": {
                     "Call": {
                         "1": "SL",
-                        "2": "Clark"
+                        "2": "KC"
                     },
                     "Admin": 0,
                     "Offsite": [
@@ -1831,17 +1831,17 @@
             "28": {
                 "Mon": {
                     "Call": {
-                        "1": "Kromer",
-                        "2": "Kaus"
+                        "1": "KK",
+                        "2": "SK"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Ion",
-                        "Ion",
+                        "TI",
+                        "TI",
                         "RR",
                         "X",
                         "SL",
-                        "Moran",
+                        "FM",
                         "JT",
                         "JM",
                         "MC",
@@ -1854,14 +1854,14 @@
             "29": {
                 "Tue": {
                     "Call": {
-                        "1": "Altman",
+                        "1": "CA",
                         "2": "TT"
                     },
                     "Admin": 0,
                     "Requests": "ES off",
                     "Offsite": [
                         "RR",
-                        "Moran",
+                        "FM",
                         "JT",
                         "JM",
                         "MC",
@@ -1874,14 +1874,14 @@
             "30": {
                 "Wed": {
                     "Call": {
-                        "1": "Miller",
-                        "2": "Castro"
+                        "1": "MI",
+                        "2": "CC"
                     },
                     "Admin": 0,
-                    "Requests": "CC 2nd, BRM 1st, MA G",
+                    "Requests": "CC 2nd, MI 1st, MA G",
                     "Offsite": [
-                        "Angel",
-                        "Moran",
+                        "MA",
+                        "FM",
                         "JT",
                         "JM",
                         "MC",
@@ -1894,13 +1894,13 @@
             "31": {
                 "Thu": {
                     "Call": {
-                        "1": "Mickelson",
+                        "1": "CM",
                         "2": "JJ"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Ion",
-                        "Moran",
+                        "TI",
+                        "FM",
                         "JT",
                         "JM",
                         "MC",
@@ -1917,12 +1917,12 @@
             "1": {
                 "Fri AM": {
                     "Call": {
-                        "1": "Kromer",
+                        "1": "KK",
                         "2": "JJ"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Ion",
+                        "TI",
                         "JT",
                         "JM",
                         "MC",
@@ -1934,11 +1934,11 @@
                 "Fri PM": {
                     "Call": {
                         "1": "JJ",
-                        "2": "Kromer"
+                        "2": "KK"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Ion",
+                        "TI",
                         "JT",
                         "JM",
                         "MC",
@@ -1951,45 +1951,45 @@
             "2": {
                 "Sat AM": {
                     "Call": {
-                        "1": "Mickelson",
+                        "1": "CM",
                         "2": "JJ"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Ion",
+                        "TI",
                         "JJ"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1": "Kromer",
+                        "1": "KK",
                         "2": "JJ"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Ion"
+                        "TI"
                     ]
                 }
             },
             "3": {
                 "Sun AM": {
                     "Call": {
-                        "1": "Mickelson",
+                        "1": "CM",
                         "2": "JJ"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Ion"
+                        "TI"
                     ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1": "Kromer",
+                        "1": "KK",
                         "2": "JJ"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Ion"
+                        "TI"
                     ]
                 }
             }

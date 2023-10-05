@@ -1,1765 +1,1783 @@
 {
-    "2018": {
+    "2023": {
         "Jul": {
-            "2": {
+            "3": {
                 "Mon": {
                     "Call": {
-                        "1": "Miller",
-                        "2": "Kaus"
+                        "1": "CC",
+                        "2": "MI"
                     },
                     "Admin": 1,
-                    "Requests": "BRM 1st",
+                    "Requests": "DN off",
                     "Offsite": [
-                        "TT",
-                        "TT",
+                        "KK",
+                        "KK",
+                        "DN",
                         "X",
-                        "SL",
-                        "DD",
-                        "Kowalsky",
-                        "Ion",
-                        "JM",
-                        "CM"
-                    ]
-                }
-            },
-            "3": {
-                "Tue": {
-                    "Call": {
-                        "1": "DN",
-                        "2": "Altman"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Angel",
-                        "DD",
-                        "Kowalsky",
-                        "Ion",
+                        "TI",
+                        "BK",
+                        "ES",
                         "JM",
                         "CM"
                     ]
                 }
             },
             "4": {
-                "Wed": {
+                "Tue": {
                     "Call": {
-                        "1": "Altman",
-                        "2": "DN"
+                        "1": "MI",
+                        "2": "CC"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "DD",
-                        "Ion",
+                        "KK",
+                        "TI",
+                        "BK",
+                        "ES",
                         "JM",
                         "CM"
                     ]
                 }
             },
             "5": {
-                "Thu": {
+                "Wed": {
                     "Call": {
-                        "1": "Collins",
-                        "2": "McCormick"
+                        "1": "MC",
+                        "2": "JT"
                     },
                     "Admin": 1,
-                    "Requests": "MC on",
                     "Offsite": [
+                        "MA",
                         "RR",
-                        "DD",
-                        "Kowalsky",
-                        "Ion",
+                        "TI",
+                        "BK",
+                        "ES",
                         "JM",
                         "CM"
                     ]
                 }
             },
             "6": {
-                "Fri": {
+                "Thu": {
                     "Call": {
-                        "1": "Moran",
-                        "2": "Kaus"
+                        "1": "SL",
+                        "2": "AY"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "TT",
-                        "DD",
-                        "Kowalsky",
-                        "Ion",
+                        "DN",
+                        "RR",
+                        "TI",
+                        "BK",
+                        "ES",
                         "JM",
                         "CM"
                     ]
                 }
             },
             "7": {
-                "Sat AM": {
+                "Fri": {
                     "Call": {
-                        "1": "JT",
-                        "2": "Kaus"
+                        "1": "SK",
+                        "2": "KC"
                     },
-                    "Admin": 0,
+                    "Admin": 1,
                     "Offsite": [
-                        "TT",
-                        "Kaus"
-                    ]
-                },
-                "Sat PM": {
-                    "Call": {
-                        "1": "Kaus",
-                        "2": "JT"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "TT"
+                        "KK",
+                        "RR",
+                        "TI",
+                        "BK",
+                        "ES",
+                        "JM",
+                        "CM"
                     ]
                 }
             },
             "8": {
-                "Sun AM": {
+                "Sat AM": {
                     "Call": {
-                        "1": "Moran",
-                        "2": "Kaus"
+                        "1": "FM",
+                        "2": "KC"
                     },
                     "Admin": 0,
-                    "Requests": "RK off",
+                    "Requests": "FM/SK on, KC on",
                     "Offsite": [
-                        "TT"
+                        "KK"
                     ]
                 },
-                "Sun PM": {
+                "Sat PM": {
                     "Call": {
-                        "1": "JT",
-                        "2": "Kaus"
+                        "1": "KC",
+                        "2": "FM"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "TT"
+                        "KK"
                     ]
                 }
             },
             "9": {
-                "Mon": {
+                "Sun AM": {
                     "Call": {
-                        "1": "Maresh",
-                        "2": "JJ"
+                        "1": "SK",
+                        "2": "KC"
                     },
-                    "Admin": 1,
+                    "Admin": 0,
                     "Offsite": [
-                        "Angel",
-                        "Ion",
-                        "TT",
-                        "X",
-                        "SL",
-                        "Collins",
-                        "RR",
-                        "CM",
-                        "CA",
-                        "PM"
+                        "KK"
+                    ]
+                },
+                "Sun PM": {
+                    "Call": {
+                        "1": "FM",
+                        "2": "KC"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "KK"
                     ]
                 }
             },
             "10": {
-                "Tue": {
+                "Mon": {
                     "Call": {
-                        "1": "Kromer",
-                        "2": "ES"
+                        "1": "JT",
+                        "2": "TT"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Ion",
-                        "Collins",
+                        "TI",
+                        "KK",
+                        "BK",
+                        "JM",
                         "RR",
-                        "CM",
-                        "CA",
-                        "PM"
+                        "SL",
+                        "DN"
                     ]
                 }
             },
             "11": {
-                "Wed": {
+                "Tue": {
                     "Call": {
-                        "1": "JT",
-                        "2": "Castro"
+                        "1": "ES",
+                        "2": "CM"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "TT",
-                        "Collins",
+                        "MA",
+                        "KC",
+                        "BK",
+                        "JM",
                         "RR",
-                        "CM",
-                        "CA",
-                        "PM"
+                        "SL",
+                        "DN"
                     ]
                 }
             },
             "12": {
-                "Thu": {
+                "Wed": {
                     "Call": {
-                        "1": "Kaus",
-                        "2": "Kowalsky"
+                        "1": "SK",
+                        "2": "AY"
                     },
                     "Admin": 1,
-                    "Requests": "BRM off",
                     "Offsite": [
-                        "Angel",
-                        "Collins",
+                        "MI",
+                        "KC",
+                        "BK",
+                        "JM",
                         "RR",
-                        "CM",
-                        "CA",
-                        "PM"
+                        "SL",
+                        "DN"
                     ]
                 }
             },
             "13": {
-                "Fri": {
+                "Thu": {
                     "Call": {
-                        "1": "Maresh",
-                        "2": "DN"
+                        "1": "CA",
+                        "2": "MC"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Ion",
-                        "Collins",
+                        "KK",
+                        "KC",
+                        "BK",
+                        "JM",
                         "RR",
-                        "CM",
-                        "CA",
-                        "PM"
+                        "SL",
+                        "DN"
                     ]
                 }
             },
             "14": {
-                "Sat AM": {
-                    "Call": {
-                        "1": "Miller",
-                        "2": "DN"
-                    },
-                    "Admin": 0,
-                    "Requests": "JM Fri/Sun",
-                    "Offsite": [
-                        "Ion",
-                        "DN"
-                    ]
-                },
-                "Sat PM": {
-                    "Call": {
-                        "1": "DN",
-                        "2": "Miller"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Ion"
-                    ]
-                }
-            },
-            "15": {
-                "Sun AM": {
-                    "Call": {
-                        "1": "Maresh",
-                        "2": "DN"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Ion"
-                    ]
-                },
-                "Sun PM": {
-                    "Call": {
-                        "1": "Miller",
-                        "2": "DN"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Ion"
-                    ]
-                }
-            },
-            "16": {
-                "Mon": {
-                    "Call": {
-                        "1": "Kromer",
-                        "2": "SL"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Mickelson",
-                        "Ion",
-                        "X",
-                        "Kaus",
-                        "ES",
-                        "MA",
-                        "JJ",
-                        "CA",
-                        "RK"
-                    ]
-                }
-            },
-            "17": {
-                "Tue": {
-                    "Call": {
-                        "1": "Moran",
-                        "2": "Collins"
-                    },
-                    "Admin": 1,
-                    "Requests": "FM or SK on",
-                    "Offsite": [
-                        "RR",
-                        "ES",
-                        "MA",
-                        "JJ",
-                        "CA",
-                        "RK"
-                    ]
-                }
-            },
-            "18": {
-                "Wed": {
-                    "Call": {
-                        "1": "Maresh",
-                        "2": "McCormick"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Ion",
-                        "ES",
-                        "MA",
-                        "JJ",
-                        "CA",
-                        "RK"
-                    ]
-                }
-            },
-            "19": {
-                "Thu": {
-                    "Call": {
-                        "1": "DN",
-                        "2": "JT"
-                    },
-                    "Admin": 1,
-                    "Requests": "DN 1st, JT 2nd",
-                    "Offsite": [
-                        "Mickelson",
-                        "ES",
-                        "MA",
-                        "JJ",
-                        "CA",
-                        "RK"
-                    ]
-                }
-            },
-            "20": {
                 "Fri": {
                     "Call": {
-                        "1": "Collins",
-                        "2": "Castro"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "RR",
-                        "ES",
-                        "MA",
-                        "JJ",
-                        "CA",
-                        "RK"
-                    ]
-                }
-            },
-            "21": {
-                "Sat AM": {
-                    "Call": {
-                        "1": "Kromer",
-                        "2": "Castro"
-                    },
-                    "Admin": 0,
-                    "Requests": "PM off",
-                    "Offsite": [
-                        "RR",
-                        "Castro"
-                    ]
-                },
-                "Sat PM": {
-                    "Call": {
-                        "1": "Castro",
-                        "2": "Kromer"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "RR"
-                    ]
-                }
-            },
-            "22": {
-                "Sun AM": {
-                    "Call": {
-                        "1": "Collins",
-                        "2": "Castro"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "RR"
-                    ]
-                },
-                "Sun PM": {
-                    "Call": {
-                        "1": "Kromer",
-                        "2": "Castro"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "RR"
-                    ]
-                }
-            },
-            "23": {
-                "Mon": {
-                    "Call": {
-                        "1": "Moran",
-                        "2": "Kowalsky"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Mickelson",
-                        "TT",
-                        "Kaus",
-                        "Maresh",
-                        "ES",
-                        "DD",
-                        "JT",
-                        "DN"
-                    ]
-                }
-            },
-            "24": {
-                "Tue": {
-                    "Call": {
-                        "1": "McCormick",
+                        "1": "JT",
                         "2": "JJ"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Maresh",
-                        "ES",
+                        "TI",
+                        "KC",
+                        "BK",
+                        "JM",
+                        "RR",
+                        "SL",
+                        "DN"
+                    ]
+                }
+            },
+            "15": {
+                "Sat AM": {
+                    "Call": {
+                        "1": "TT",
+                        "2": "JJ"
+                    },
+                    "Admin": 0,
+                    "Requests": "JJ on",
+                    "Offsite": [
+                        "TI"
+                    ]
+                },
+                "Sat PM": {
+                    "Call": {
+                        "1": "JJ",
+                        "2": "TT"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "TI"
+                    ]
+                }
+            },
+            "16": {
+                "Sun AM": {
+                    "Call": {
+                        "1": "JT",
+                        "2": "JJ"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "TI"
+                    ]
+                },
+                "Sun PM": {
+                    "Call": {
+                        "1": "TT",
+                        "2": "JJ"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "TI"
+                    ]
+                }
+            },
+            "17": {
+                "Mon": {
+                    "Call": {
+                        "1": "BK",
+                        "2": "ES"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "MI",
+                        "X",
                         "DD",
+                        "KK",
+                        "CA",
+                        "KC",
+                        "DN"
+                    ]
+                }
+            },
+            "18": {
+                "Tue": {
+                    "Call": {
+                        "1": "JM",
+                        "2": "FM"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "MA",
+                        "JJ",
+                        "DD",
+                        "KK",
+                        "CA",
+                        "KC",
+                        "DN"
+                    ]
+                }
+            },
+            "19": {
+                "Wed": {
+                    "Call": {
+                        "1": "RR",
+                        "2": "TT"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "TI",
+                        "JJ",
+                        "DD",
+                        "KK",
+                        "CA",
+                        "KC",
+                        "DN"
+                    ]
+                }
+            },
+            "20": {
+                "Thu": {
+                    "Call": {
+                        "1": "SK",
+                        "2": "CM"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "MI",
+                        "JJ",
+                        "DD",
+                        "KK",
+                        "CA",
+                        "KC",
+                        "DN"
+                    ]
+                }
+            },
+            "21": {
+                "Fri": {
+                    "Call": {
+                        "1": "BK",
+                        "2": "ES"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "MA",
+                        "JJ",
+                        "DD",
+                        "KK",
+                        "CA",
+                        "KC",
+                        "DN"
+                    ]
+                }
+            },
+            "22": {
+                "Sat AM": {
+                    "Call": {
+                        "1": "JM",
+                        "2": "ES"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "MA"
+                    ]
+                },
+                "Sat PM": {
+                    "Call": {
+                        "1": "ES",
+                        "2": "JM"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "MA"
+                    ]
+                }
+            },
+            "23": {
+                "Sun AM": {
+                    "Call": {
+                        "1": "BK",
+                        "2": "ES"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "MA"
+                    ]
+                },
+                "Sun PM": {
+                    "Call": {
+                        "1": "JM",
+                        "2": "ES"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "MA"
+                    ]
+                }
+            },
+            "24": {
+                "Mon": {
+                    "Call": {
+                        "1": "TT",
+                        "2": "RR"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "TI",
+                        "X",
+                        "CM",
+                        "FM",
+                        "SK",
                         "JT",
                         "DN"
                     ]
                 }
             },
             "25": {
-                "Wed": {
+                "Tue": {
                     "Call": {
-                        "1": "SL",
-                        "2": "Kromer"
+                        "1": "AY",
+                        "2": "SL"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "RR",
-                        "Maresh",
-                        "ES",
-                        "DD",
+                        "MI",
+                        "JM",
+                        "CM",
+                        "FM",
+                        "SK",
                         "JT",
                         "DN"
                     ]
                 }
             },
             "26": {
-                "Thu": {
+                "Wed": {
                     "Call": {
-                        "1": "Castro",
-                        "2": "Moran"
+                        "1": "KC",
+                        "2": "CA"
                     },
                     "Admin": 1,
-                    "Requests": "CC 1st",
                     "Offsite": [
-                        "TT",
-                        "Maresh",
-                        "ES",
-                        "DD",
+                        "MA",
+                        "JM",
+                        "CM",
+                        "FM",
+                        "SK",
                         "JT",
                         "DN"
                     ]
                 }
             },
             "27": {
-                "Fri": {
+                "Thu": {
                     "Call": {
-                        "1": "JJ",
-                        "2": "Kowalsky"
+                        "1": "ES",
+                        "2": "JJ"
                     },
                     "Admin": 1,
+                    "Requests": "TI on",
                     "Offsite": [
-                        "Mickelson",
-                        "Maresh",
-                        "ES",
-                        "DD",
+                        "TI",
+                        "JM",
+                        "CM",
+                        "FM",
+                        "SK",
                         "JT",
                         "DN"
                     ]
                 }
             },
             "28": {
-                "Sat AM": {
+                "Fri": {
                     "Call": {
-                        "1": "McCormick",
-                        "2": "Kowalsky"
+                        "1": "SL",
+                        "2": "RR"
                     },
-                    "Admin": 0,
-                    "Requests": "SL, CA, FM/SK off",
+                    "Admin": 1,
                     "Offsite": [
-                        "Mickelson",
-                        "Kowalsky"
-                    ]
-                },
-                "Sat PM": {
-                    "Call": {
-                        "1": "Kowalsky",
-                        "2": "McCormick"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Mickelson"
+                        "MI",
+                        "JM",
+                        "CM",
+                        "FM",
+                        "SK",
+                        "JT",
+                        "DN"
                     ]
                 }
             },
             "29": {
-                "Sun AM": {
+                "Sat AM": {
                     "Call": {
-                        "1": "JJ",
-                        "2": "Kowalsky"
+                        "1": "AY",
+                        "2": "RR"
                     },
                     "Admin": 0,
+                    "Requests": "CA off",
                     "Offsite": [
-                        "Mickelson"
+                        "MI"
                     ]
                 },
-                "Sun PM": {
+                "Sat PM": {
                     "Call": {
-                        "1": "McCormick",
-                        "2": "Kowalsky"
+                        "1": "RR",
+                        "2": "AY"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Mickelson"
+                        "MI"
                     ]
                 }
             },
             "30": {
-                "Mon": {
+                "Sun AM": {
                     "Call": {
-                        "1": "Kaus",
-                        "2": "Ion"
+                        "1": "SL",
+                        "2": "RR"
                     },
-                    "Admin": 1,
+                    "Admin": 0,
                     "Offsite": [
-                        "RR",
-                        "X",
-                        "Kromer",
-                        "DN",
-                        "JT",
-                        "ES",
-                        "BRM",
-                        "TT"
+                        "MI"
+                    ]
+                },
+                "Sun PM": {
+                    "Call": {
+                        "1": "AY",
+                        "2": "RR"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "MI"
                     ]
                 }
             },
             "31": {
-                "Tue": {
+                "Mon": {
                     "Call": {
-                        "1": "SL",
-                        "2": "Maresh"
+                        "1": "TT",
+                        "2": "SK"
                     },
                     "Admin": 1,
+                    "Requests": "DN off",
                     "Offsite": [
-                        "Angel",
+                        "MA",
                         "DN",
-                        "JT",
+                        "X",
+                        "CM",
                         "ES",
-                        "BRM",
-                        "TT"
+                        "JJ",
+                        "JT",
+                        "TI"
                     ]
                 }
             }
         },
         "Aug": {
             "1": {
-                "Wed": {
+                "Tue": {
                     "Call": {
-                        "1": "Castro",
-                        "2": "Moran"
+                        "1": "JM",
+                        "2": "MC"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Mickelson",
                         "DN",
-                        "JT",
+                        "RR",
+                        "CM",
                         "ES",
-                        "BRM",
-                        "TT"
+                        "JJ",
+                        "JT",
+                        "TI"
                     ]
                 }
             },
             "2": {
-                "Thu": {
+                "Wed": {
                     "Call": {
-                        "1": "McCormick",
-                        "2": "Collins"
+                        "1": "FM",
+                        "2": "AY"
                     },
                     "Admin": 1,
-                    "Requests": "PM 1st, MC 2nd",
                     "Offsite": [
+                        "MI",
                         "RR",
-                        "DN",
-                        "JT",
+                        "CM",
                         "ES",
-                        "BRM",
-                        "TT"
+                        "JJ",
+                        "JT",
+                        "TI"
                     ]
                 }
             },
             "3": {
-                "Fri": {
+                "Thu": {
                     "Call": {
-                        "1": "SL",
-                        "2": "Ion"
+                        "1": "CC",
+                        "2": "KC"
                     },
                     "Admin": 1,
+                    "Requests": "MA on, CC 1st, KC on",
                     "Offsite": [
-                        "Angel",
-                        "DN",
-                        "JT",
+                        "MA",
+                        "RR",
+                        "CM",
                         "ES",
-                        "BRM",
-                        "TT"
+                        "JJ",
+                        "JT",
+                        "TI"
                     ]
                 }
             },
             "4": {
-                "Sat AM": {
+                "Fri": {
                     "Call": {
-                        "1": "Altman",
-                        "2": "Ion"
+                        "1": "TT",
+                        "2": "JM"
                     },
-                    "Admin": 0,
-                    "Requests": "RR, RK, off",
+                    "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Ion"
-                    ]
-                },
-                "Sat PM": {
-                    "Call": {
-                        "1": "Ion",
-                        "2": "Altman"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Angel"
+                        "DN",
+                        "RR",
+                        "CM",
+                        "ES",
+                        "JJ",
+                        "JT",
+                        "TI"
                     ]
                 }
             },
             "5": {
-                "Sun AM": {
-                    "Call": {
-                        "1": "SL",
-                        "2": "Ion"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Angel"
-                    ]
-                },
-                "Sun PM": {
-                    "Call": {
-                        "1": "Altman",
-                        "2": "Ion"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Angel"
-                    ]
-                }
-            },
-            "6": {
-                "Mon": {
-                    "Call": {
-                        "1": "JJ",
-                        "2": "Kowalsky"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "RR",
-                        "X",
-                        "SL",
-                        "Maresh",
-                        "PM",
-                        "DN",
-                        "FM",
-                        "SK"
-                    ]
-                }
-            },
-            "7": {
-                "Tue": {
-                    "Call": {
-                        "1": "Kromer",
-                        "2": "Castro"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Mickelson",
-                        "Maresh",
-                        "PM",
-                        "DN",
-                        "FM",
-                        "SK"
-                    ]
-                }
-            },
-            "8": {
-                "Wed": {
-                    "Call": {
-                        "1": "JT",
-                        "2": "Ion"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Angel",
-                        "Maresh",
-                        "PM",
-                        "DN",
-                        "FM",
-                        "SK"
-                    ]
-                }
-            },
-            "9": {
-                "Thu": {
-                    "Call": {
-                        "1": "JJ",
-                        "2": "Altman"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "RR",
-                        "Maresh",
-                        "PM",
-                        "DN",
-                        "FM",
-                        "SK"
-                    ]
-                }
-            },
-            "10": {
-                "Fri": {
-                    "Call": {
-                        "1": "Kromer",
-                        "2": "ES"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Mickelson",
-                        "Maresh",
-                        "PM",
-                        "DN",
-                        "FM",
-                        "SK"
-                    ]
-                }
-            },
-            "11": {
                 "Sat AM": {
                     "Call": {
-                        "1": "TT",
-                        "2": "ES"
+                        "1": "MC",
+                        "2": "JM"
                     },
                     "Admin": 0,
-                    "Requests": "CA, RR, JJ off",
                     "Offsite": [
-                        "Mickelson",
-                        "ES"
+                        "DN"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1": "ES",
-                        "2": "TT"
+                        "1": "JM",
+                        "2": "MC"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Mickelson"
+                        "DN"
                     ]
                 }
             },
-            "12": {
+            "6": {
                 "Sun AM": {
                     "Call": {
-                        "1": "Kromer",
-                        "2": "ES"
+                        "1": "TT",
+                        "2": "JM"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Mickelson"
+                        "DN"
                     ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1": "TT",
-                        "2": "ES"
+                        "1": "MC",
+                        "2": "JM"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Mickelson"
+                        "DN"
                     ]
                 }
             },
-            "13": {
+            "7": {
                 "Mon": {
                     "Call": {
-                        "1": "Collins",
-                        "2": "JT"
+                        "1": "SL",
+                        "2": "FM"
                     },
                     "Admin": 1,
-                    "Requests": "JJ off",
                     "Offsite": [
-                        "RR",
-                        "X",
-                        "McCormick",
-                        "Altman",
-                        "SK",
-                        "FM",
-                        "DD",
-                        "RK"
+                        "TI",
+                        "DN",
+                        "BK",
+                        "CC",
+                        "AY",
+                        "KC",
+                        "CM"
                     ]
                 }
             },
-            "14": {
+            "8": {
                 "Tue": {
                     "Call": {
-                        "1": "SL",
-                        "2": "DN"
+                        "1": "ES",
+                        "2": "RR"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Altman",
-                        "SK",
-                        "FM",
-                        "DD",
-                        "RK"
+                        "MI",
+                        "JM",
+                        "BK",
+                        "CC",
+                        "AY",
+                        "KC",
+                        "CM"
                     ]
                 }
             },
-            "15": {
+            "9": {
                 "Wed": {
                     "Call": {
-                        "1": "ES",
-                        "2": "Kromer"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Mickelson",
-                        "Altman",
-                        "SK",
-                        "FM",
-                        "DD",
-                        "RK"
-                    ]
-                }
-            },
-            "16": {
-                "Thu": {
-                    "Call": {
-                        "1": "Maresh",
+                        "1": "SK",
                         "2": "TT"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "RR",
-                        "Altman",
-                        "SK",
-                        "FM",
+                        "DN",
+                        "JM",
+                        "BK",
+                        "CC",
+                        "AY",
+                        "KC",
+                        "CM"
+                    ]
+                }
+            },
+            "10": {
+                "Thu": {
+                    "Call": {
+                        "1": "SL",
+                        "2": "KK"
+                    },
+                    "Admin": 1,
+                    "Requests": "SL on",
+                    "Offsite": [
+                        "MA",
+                        "JM",
+                        "BK",
+                        "CC",
+                        "AY",
+                        "KC",
+                        "CM"
+                    ]
+                }
+            },
+            "11": {
+                "Fri": {
+                    "Call": {
+                        "1": "ES",
+                        "2": "JT"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "TI",
+                        "JM",
+                        "BK",
+                        "CC",
+                        "AY",
+                        "KC",
+                        "CM"
+                    ]
+                }
+            },
+            "12": {
+                "Sat AM": {
+                    "Call": {
+                        "1": "CA",
+                        "2": "JT"
+                    },
+                    "Admin": 0,
+                    "Requests": "FM/SK off",
+                    "Offsite": [
+                        "TI"
+                    ]
+                },
+                "Sat PM": {
+                    "Call": {
+                        "1": "JT",
+                        "2": "CA"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "TI"
+                    ]
+                }
+            },
+            "13": {
+                "Sun AM": {
+                    "Call": {
+                        "1": "ES",
+                        "2": "JT"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "TI"
+                    ]
+                },
+                "Sun PM": {
+                    "Call": {
+                        "1": "CA",
+                        "2": "JT"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "TI"
+                    ]
+                }
+            },
+            "14": {
+                "Mon": {
+                    "Call": {
+                        "1": "BK",
+                        "2": "RR"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "MI",
+                        "JJ",
+                        "X",
+                        "MA",
                         "DD",
-                        "RK"
+                        "JM",
+                        "SL",
+                        "KK"
+                    ]
+                }
+            },
+            "15": {
+                "Tue": {
+                    "Call": {
+                        "1": "FM",
+                        "2": "CM"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "JJ",
+                        "SK",
+                        "MA",
+                        "DD",
+                        "JM",
+                        "SL",
+                        "KK"
+                    ]
+                }
+            },
+            "16": {
+                "Wed": {
+                    "Call": {
+                        "1": "KC",
+                        "2": "ES"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "TI",
+                        "SK",
+                        "MA",
+                        "DD",
+                        "JM",
+                        "SL",
+                        "KK"
                     ]
                 }
             },
             "17": {
-                "Fri": {
+                "Thu": {
                     "Call": {
-                        "1": "SL",
-                        "2": "JJ"
+                        "1": "AY",
+                        "2": "RR"
                     },
                     "Admin": 1,
+                    "Requests": "AY 1st",
                     "Offsite": [
-                        "Angel",
-                        "Altman",
+                        "MI",
                         "SK",
-                        "FM",
+                        "MA",
                         "DD",
-                        "RK"
+                        "JM",
+                        "SL",
+                        "KK"
                     ]
                 }
             },
             "18": {
+                "Fri": {
+                    "Call": {
+                        "1": "MC",
+                        "2": "BK"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "JJ",
+                        "SK",
+                        "MA",
+                        "DD",
+                        "JM",
+                        "SL",
+                        "KK"
+                    ]
+                }
+            },
+            "19": {
                 "Sat AM": {
                     "Call": {
-                        "1": "McCormick",
-                        "2": "JJ"
+                        "1": "TT",
+                        "2": "BK"
                     },
                     "Admin": 0,
-                    "Requests": "DN, JM off",
                     "Offsite": [
-                        "Angel",
                         "JJ"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1": "JJ",
-                        "2": "McCormick"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Angel"
-                    ]
-                }
-            },
-            "19": {
-                "Sun AM": {
-                    "Call": {
-                        "1": "SL",
-                        "2": "JJ"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Angel"
-                    ]
-                },
-                "Sun PM": {
-                    "Call": {
-                        "1": "McCormick",
-                        "2": "JJ"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Angel"
-                    ]
-                }
-            },
-            "20": {
-                "Mon": {
-                    "Call": {
-                        "1": "Kromer",
-                        "2": "Maresh"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Ion",
-                        "DN",
-                        "Ion",
-                        "X",
-                        "McCormick",
-                        "JT",
-                        "RR",
-                        "CC",
-                        "CM",
-                        "TT"
-                    ]
-                }
-            },
-            "21": {
-                "Tue": {
-                    "Call": {
-                        "1": "ES",
-                        "2": "Kaus"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "DN",
-                        "JT",
-                        "RR",
-                        "CC",
-                        "CM",
-                        "TT"
-                    ]
-                }
-            },
-            "22": {
-                "Wed": {
-                    "Call": {
-                        "1": "Collins",
-                        "2": "JJ"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Angel",
-                        "JT",
-                        "RR",
-                        "CC",
-                        "CM",
-                        "TT"
-                    ]
-                }
-            },
-            "23": {
-                "Thu": {
-                    "Call": {
-                        "1": "Altman",
-                        "2": "Maresh"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Ion",
-                        "JT",
-                        "RR",
-                        "CC",
-                        "CM",
-                        "TT"
-                    ]
-                }
-            },
-            "24": {
-                "Fri": {
-                    "Call": {
-                        "1": "Kaus",
-                        "2": "Kromer"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "DN",
-                        "JT",
-                        "RR",
-                        "CC",
-                        "CM",
-                        "TT"
-                    ]
-                }
-            },
-            "25": {
-                "Sat AM": {
-                    "Call": {
-                        "1": "Moran",
-                        "2": "Kromer"
-                    },
-                    "Admin": 0,
-                    "Requests": "JT, ES, off",
-                    "Offsite": [
-                        "DN",
-                        "Kromer"
-                    ]
-                },
-                "Sat PM": {
-                    "Call": {
-                        "1": "Kromer",
-                        "2": "Moran"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "DN"
-                    ]
-                }
-            },
-            "26": {
-                "Sun AM": {
-                    "Call": {
-                        "1": "Kaus",
-                        "2": "Kromer"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "DN"
-                    ]
-                },
-                "Sun PM": {
-                    "Call": {
-                        "1": "Moran",
-                        "2": "Kromer"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "DN"
-                    ]
-                }
-            },
-            "27": {
-                "Mon": {
-                    "Call": {
-                        "1": "JT",
-                        "2": "McCormick"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Mickelson",
-                        "RK",
-                        "DN",
-                        "X",
-                        "SL",
-                        "ES",
-                        "Ion",
-                        "JM",
-                        "MA",
-                        "CA",
-                        "MC"
-                    ]
-                }
-            },
-            "28": {
-                "Tue": {
-                    "Call": {
-                        "1": "Castro",
-                        "2": "Miller"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Kowalsky",
-                        "ES",
-                        "Ion",
-                        "JM",
-                        "MA",
-                        "CA",
-                        "MC"
-                    ]
-                }
-            },
-            "29": {
-                "Wed": {
-                    "Call": {
-                        "1": "Kaus",
+                        "1": "BK",
                         "2": "TT"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "DN",
-                        "ES",
-                        "Ion",
-                        "JM",
-                        "MA",
+                        "JJ"
+                    ]
+                }
+            },
+            "20": {
+                "Sun AM": {
+                    "Call": {
+                        "1": "MC",
+                        "2": "BK"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "JJ"
+                    ]
+                },
+                "Sun PM": {
+                    "Call": {
+                        "1": "TT",
+                        "2": "BK"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "JJ"
+                    ]
+                }
+            },
+            "21": {
+                "Mon": {
+                    "Call": {
+                        "1": "FM",
+                        "2": "SL"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "MI",
+                        "JJ",
+                        "X",
                         "CA",
-                        "MC"
+                        "RR",
+                        "KK",
+                        "CC",
+                        "TI"
+                    ]
+                }
+            },
+            "22": {
+                "Tue": {
+                    "Call": {
+                        "1": "JM",
+                        "2": "DN"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "MA",
+                        "KC",
+                        "CA",
+                        "RR",
+                        "KK",
+                        "CC",
+                        "TI"
+                    ]
+                }
+            },
+            "23": {
+                "Wed": {
+                    "Call": {
+                        "1": "SK",
+                        "2": "BK"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "JJ",
+                        "KC",
+                        "CA",
+                        "RR",
+                        "KK",
+                        "CC",
+                        "TI"
+                    ]
+                }
+            },
+            "24": {
+                "Thu": {
+                    "Call": {
+                        "1": "MC",
+                        "2": "JT"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "MI",
+                        "KC",
+                        "CA",
+                        "RR",
+                        "KK",
+                        "CC",
+                        "TI"
+                    ]
+                }
+            },
+            "25": {
+                "Fri": {
+                    "Call": {
+                        "1": "JM",
+                        "2": "AY"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "MA",
+                        "KC",
+                        "CA",
+                        "RR",
+                        "KK",
+                        "CC",
+                        "TI"
+                    ]
+                }
+            },
+            "26": {
+                "Sat AM": {
+                    "Call": {
+                        "1": "SL",
+                        "2": "AY"
+                    },
+                    "Admin": 0,
+                    "Requests": "ES off",
+                    "Offsite": [
+                        "MA"
+                    ]
+                },
+                "Sat PM": {
+                    "Call": {
+                        "1": "AY",
+                        "2": "SL"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "MA"
+                    ]
+                }
+            },
+            "27": {
+                "Sun AM": {
+                    "Call": {
+                        "1": "JM",
+                        "2": "AY"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "MA"
+                    ]
+                },
+                "Sun PM": {
+                    "Call": {
+                        "1": "SL",
+                        "2": "AY"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "MA"
+                    ]
+                }
+            },
+            "28": {
+                "Mon": {
+                    "Call": {
+                        "1": "FM",
+                        "2": "KC"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "TI",
+                        "CC",
+                        "X",
+                        "MC",
+                        "TT",
+                        "DN",
+                        "JT",
+                        "KK"
+                    ]
+                }
+            },
+            "29": {
+                "Tue": {
+                    "Call": {
+                        "1": "ES",
+                        "2": "JJ"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "CC",
+                        "JM",
+                        "MC",
+                        "TT",
+                        "DN",
+                        "JT",
+                        "KK"
                     ]
                 }
             },
             "30": {
-                "Thu": {
+                "Wed": {
                     "Call": {
-                        "1": "McCormick",
-                        "2": "Kromer"
+                        "1": "BK",
+                        "2": "SK"
                     },
-                    "Admin": 0,
+                    "Admin": 1,
                     "Offsite": [
-                        "Mickelson",
-                        "ES",
-                        "Ion",
-                        "JM",
                         "MA",
-                        "CA",
-                        "MC"
+                        "JM",
+                        "MC",
+                        "TT",
+                        "DN",
+                        "JT",
+                        "KK"
                     ]
                 }
             },
             "31": {
-                "Fri": {
+                "Thu": {
                     "Call": {
-                        "1": "JT",
-                        "2": "Miller"
+                        "1": "RR",
+                        "2": "KC"
                     },
-                    "Admin": 0,
+                    "Admin": 1,
                     "Offsite": [
-                        "Kowalsky",
-                        "ES",
-                        "Ion",
+                        "TI",
                         "JM",
-                        "MA",
-                        "CA",
-                        "MC"
+                        "MC",
+                        "TT",
+                        "DN",
+                        "JT",
+                        "KK"
                     ]
                 }
             }
         },
         "Sep": {
             "1": {
-                "Sat AM": {
+                "Fri": {
                     "Call": {
-                        "1": "RR",
-                        "2": "Miller"
+                        "1": "CM",
+                        "2": "CA"
                     },
-                    "Admin": 0,
+                    "Admin": 1,
                     "Offsite": [
-                        "Kowalsky",
-                        "Miller"
-                    ]
-                },
-                "Sat PM": {
-                    "Call": {
-                        "1": "Miller",
-                        "2": "RR"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Kowalsky"
+                        "CC",
+                        "JM",
+                        "MC",
+                        "TT",
+                        "DN",
+                        "JT",
+                        "KK"
                     ]
                 }
             },
             "2": {
-                "Sun AM": {
+                "Sat AM": {
                     "Call": {
-                        "1": "JT",
-                        "2": "Miller"
+                        "1": "MI",
+                        "2": "CA"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Kowalsky"
+                        "CC"
                     ]
                 },
-                "Sun PM": {
+                "Sat PM": {
                     "Call": {
-                        "1": "RR",
-                        "2": "Miller"
+                        "1": "CA",
+                        "2": "MI"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Kowalsky"
+                        "CC"
                     ]
                 }
             },
             "3": {
-                "Mon AM": {
+                "Sun AM": {
                     "Call": {
-                        "1": "Miller",
-                        "2": "JT"
+                        "1": "CM",
+                        "2": "CA"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Kowalsky",
-                        "RK",
-                        "X",
-                        "Kromer"
+                        "CC"
                     ]
                 },
-                "Mon PM": {
+                "Sun PM": {
                     "Call": {
-                        "1": "JT",
-                        "2": "RR"
+                        "1": "MI",
+                        "2": "CA"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Kowalsky"
+                        "CC"
                     ]
                 }
             },
             "4": {
-                "Tue": {
+                "Mon AM": {
                     "Call": {
-                        "1": "SL",
-                        "2": "Kaus"
+                        "1": "CM",
+                        "2": "CA"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "CC",
+                        "CC",
+                        "AY",
+                        "X"
+                    ]
+                },
+                "Mon PM": {
+                    "Call": {
+                        "1": "MI",
+                        "2": "CA"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Castro",
-                        "Ion",
-                        "JM",
-                        "MC",
-                        "TT"
+                        "CC",
+                        "DD",
+                        "KC",
+                        "TI",
+                        "RR",
+                        "DN"
                     ]
                 }
             },
             "5": {
-                "Wed": {
+                "Tue": {
                     "Call": {
-                        "1": "McCormick",
-                        "2": "DN"
+                        "1": "SL",
+                        "2": "JM"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Mickelson",
-                        "Castro",
+                        "MA",
                         "JJ",
-                        "JM",
-                        "MC",
-                        "TT"
+                        "DD",
+                        "KC",
+                        "TI",
+                        "RR",
+                        "DN"
                     ]
                 }
             },
             "6": {
-                "Thu": {
+                "Wed": {
                     "Call": {
-                        "1": "Moran",
-                        "2": "Miller"
+                        "1": "MC",
+                        "2": "BK"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Kowalsky",
-                        "Castro",
+                        "AY",
                         "JJ",
-                        "JM",
-                        "MC",
-                        "TT"
+                        "DD",
+                        "KC",
+                        "TI",
+                        "RR",
+                        "DN"
                     ]
                 }
             },
             "7": {
-                "Fri": {
+                "Thu": {
                     "Call": {
-                        "1": "ES",
-                        "2": "Altman"
+                        "1": "TT",
+                        "2": "JT"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Castro",
+                        "CC",
                         "JJ",
-                        "JM",
-                        "MC",
-                        "TT"
+                        "DD",
+                        "KC",
+                        "TI",
+                        "RR",
+                        "DN"
                     ]
                 }
             },
             "8": {
-                "Sat AM": {
+                "Fri": {
                     "Call": {
-                        "1": "SL",
-                        "2": "Altman"
+                        "1": "FM",
+                        "2": "SK"
                     },
-                    "Admin": 0,
+                    "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Altman"
-                    ]
-                },
-                "Sat PM": {
-                    "Call": {
-                        "1": "Altman",
-                        "2": "SL"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "Angel"
+                        "MA",
+                        "JJ",
+                        "DD",
+                        "KC",
+                        "TI",
+                        "RR",
+                        "DN"
                     ]
                 }
             },
             "9": {
-                "Sun AM": {
+                "Sat AM": {
                     "Call": {
-                        "1": "ES",
-                        "2": "Altman"
+                        "1": "SL",
+                        "2": "SK"
+                    },
+                    "Admin": 0,
+                    "Requests": "CC off",
+                    "Offsite": [
+                        "MA"
+                    ]
+                },
+                "Sat PM": {
+                    "Call": {
+                        "1": "SK",
+                        "2": "SL"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Angel"
+                        "MA"
+                    ]
+                }
+            },
+            "10": {
+                "Sun AM": {
+                    "Call": {
+                        "1": "FM",
+                        "2": "SK"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "MA"
                     ]
                 },
                 "Sun PM": {
                     "Call": {
                         "1": "SL",
-                        "2": "Altman"
+                        "2": "SK"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Angel"
-                    ]
-                }
-            },
-            "10": {
-                "Mon": {
-                    "Call": {
-                        "1": "Kowalsky",
-                        "2": "Moran"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "JJ",
-                        "JJ",
-                        "BRM",
-                        "Kaus",
-                        "Maresh",
-                        "KK",
-                        "PM",
-                        "JT",
-                        "CM"
+                        "MA"
                     ]
                 }
             },
             "11": {
-                "Tue": {
+                "Mon": {
                     "Call": {
-                        "1": "TT",
-                        "2": "Castro"
+                        "1": "CA",
+                        "2": "RR"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "RR",
-                        "Maresh",
-                        "KK",
-                        "PM",
+                        "MI",
+                        "X",
+                        "DD",
                         "JT",
-                        "CM"
+                        "JJ",
+                        "CM",
+                        "KK"
                     ]
                 }
             },
             "12": {
-                "Wed": {
+                "Tue": {
                     "Call": {
-                        "1": "ES",
-                        "2": "Altman"
+                        "1": "AY",
+                        "2": "JM"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Maresh",
-                        "KK",
-                        "PM",
+                        "TI",
+                        "SK",
+                        "DD",
                         "JT",
-                        "CM"
+                        "JJ",
+                        "CM",
+                        "KK"
                     ]
                 }
             },
             "13": {
-                "Thu": {
+                "Wed": {
                     "Call": {
-                        "1": "Moran",
-                        "2": "SL"
+                        "1": "KC",
+                        "2": "DN"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "Miller",
-                        "Maresh",
-                        "KK",
-                        "PM",
+                        "MA",
+                        "SK",
+                        "DD",
                         "JT",
-                        "CM"
+                        "JJ",
+                        "CM",
+                        "KK"
                     ]
                 }
             },
             "14": {
-                "Fri": {
+                "Thu": {
                     "Call": {
                         "1": "TT",
-                        "2": "Castro"
+                        "2": "BK"
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "JJ",
-                        "Maresh",
-                        "KK",
-                        "PM",
+                        "MI",
+                        "SK",
+                        "DD",
                         "JT",
-                        "CM"
+                        "JJ",
+                        "CM",
+                        "KK"
                     ]
                 }
             },
             "15": {
-                "Sat AM": {
+                "Fri": {
                     "Call": {
-                        "1": "Ion",
-                        "2": "Castro"
+                        "1": "RR",
+                        "2": "MC"
                     },
-                    "Admin": 0,
+                    "Admin": 1,
                     "Offsite": [
+                        "TI",
+                        "SK",
+                        "DD",
+                        "JT",
                         "JJ",
-                        "Castro"
-                    ]
-                },
-                "Sat PM": {
-                    "Call": {
-                        "1": "Castro",
-                        "2": "Ion"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "JJ"
+                        "CM",
+                        "KK"
                     ]
                 }
             },
             "16": {
-                "Sun AM": {
+                "Sat AM": {
                     "Call": {
-                        "1": "TT",
-                        "2": "Castro"
+                        "1": "CC",
+                        "2": "MC"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "JJ"
+                        "TI"
                     ]
                 },
-                "Sun PM": {
+                "Sat PM": {
                     "Call": {
-                        "1": "Ion",
-                        "2": "Castro"
+                        "1": "MC",
+                        "2": "CC"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "JJ"
+                        "TI"
                     ]
                 }
             },
             "17": {
-                "Mon": {
+                "Sun AM": {
                     "Call": {
-                        "1": "Maresh",
-                        "2": "ES"
+                        "1": "RR",
+                        "2": "MC"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Mickelson",
-                        "X",
-                        "DN",
-                        "Kowalsky",
-                        "SL",
-                        "KK",
-                        "PM",
-                        "FM",
-                        "SK"
+                        "TI"
+                    ]
+                },
+                "Sun PM": {
+                    "Call": {
+                        "1": "CC",
+                        "2": "MC"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "TI"
                     ]
                 }
             },
             "18": {
-                "Tue": {
+                "Mon": {
                     "Call": {
-                        "1": "Collins",
-                        "2": "Miller"
+                        "1": "KC",
+                        "2": "CA"
                     },
-                    "Admin": 0,
+                    "Admin": 1,
                     "Offsite": [
-                        "RR",
-                        "Kowalsky",
+                        "MA",
+                        "X",
+                        "TT",
                         "SL",
-                        "KK",
-                        "PM",
-                        "FM",
-                        "SK"
+                        "JM",
+                        "BK",
+                        "KK"
                     ]
                 }
             },
             "19": {
-                "Wed": {
+                "Tue": {
                     "Call": {
-                        "1": "Altman",
-                        "2": "Ion"
+                        "1": "JT",
+                        "2": "SK"
                     },
-                    "Admin": 0,
+                    "Admin": 1,
                     "Offsite": [
-                        "Angel",
-                        "Kowalsky",
+                        "MI",
+                        "RR",
+                        "TT",
                         "SL",
-                        "KK",
-                        "PM",
-                        "FM",
-                        "SK"
+                        "JM",
+                        "BK",
+                        "KK"
                     ]
                 }
             },
             "20": {
-                "Thu": {
+                "Wed": {
                     "Call": {
-                        "1": "ES",
-                        "2": "JT"
+                        "1": "JJ",
+                        "2": "CC"
                     },
-                    "Admin": 0,
+                    "Admin": 1,
                     "Offsite": [
-                        "Mickelson",
-                        "Castro",
+                        "TI",
+                        "RR",
+                        "TT",
                         "SL",
-                        "KK",
-                        "PM",
-                        "FM",
-                        "SK"
+                        "JM",
+                        "BK",
+                        "KK"
                     ]
                 }
             },
             "21": {
-                "Fri": {
+                "Thu": {
                     "Call": {
-                        "1": "Collins",
-                        "2": "Maresh"
+                        "1": "CA",
+                        "2": "FM"
                     },
-                    "Admin": 0,
+                    "Admin": 1,
+                    "Requests": "CA on",
                     "Offsite": [
+                        "MA",
                         "RR",
-                        "Castro",
+                        "TT",
                         "SL",
-                        "KK",
-                        "PM",
-                        "FM",
-                        "SK"
+                        "JM",
+                        "BK",
+                        "KK"
                     ]
                 }
             },
             "22": {
-                "Sat AM": {
+                "Fri": {
                     "Call": {
-                        "1": "Kowalsky",
-                        "2": "Maresh"
+                        "1": "AY",
+                        "2": "KC"
                     },
-                    "Admin": 0,
+                    "Admin": 1,
                     "Offsite": [
+                        "MI",
                         "RR",
-                        "Maresh"
-                    ]
-                },
-                "Sat PM": {
-                    "Call": {
-                        "1": "Maresh",
-                        "2": "Kowalsky"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "RR"
+                        "TT",
+                        "SL",
+                        "JM",
+                        "BK",
+                        "KK"
                     ]
                 }
             },
             "23": {
-                "Sun AM": {
-                    "Call": {
-                        "1": "Collins",
-                        "2": "Maresh"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "RR"
-                    ]
-                },
-                "Sun PM": {
-                    "Call": {
-                        "1": "Kowalsky",
-                        "2": "Maresh"
-                    },
-                    "Admin": 0,
-                    "Offsite": [
-                        "RR"
-                    ]
-                }
-            },
-            "24": {
-                "Mon": {
-                    "Call": {
-                        "1": "Kaus",
-                        "2": "TT"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Mickelson",
-                        "CA",
-                        "X",
-                        "McCormick",
-                        "Ion",
-                        "DD",
-                        "SL",
-                        "DN",
-                        "KK"
-                    ]
-                }
-            },
-            "25": {
-                "Tue": {
-                    "Call": {
-                        "1": "Miller",
-                        "2": "ES"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Altman",
-                        "Ion",
-                        "DD",
-                        "SL",
-                        "DN",
-                        "KK"
-                    ]
-                }
-            },
-            "26": {
-                "Wed": {
-                    "Call": {
-                        "1": "JJ",
-                        "2": "Collins"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Mickelson",
-                        "Ion",
-                        "DD",
-                        "SL",
-                        "DN",
-                        "KK"
-                    ]
-                }
-            },
-            "27": {
-                "Thu": {
-                    "Call": {
-                        "1": "Castro",
-                        "2": "Angel"
-                    },
-                    "Admin": 1,
-                    "Requests": "CC on",
-                    "Offsite": [
-                        "RR",
-                        "Ion",
-                        "DD",
-                        "SL",
-                        "DN",
-                        "KK"
-                    ]
-                }
-            },
-            "28": {
-                "Fri": {
-                    "Call": {
-                        "1": "Kaus",
-                        "2": "Moran"
-                    },
-                    "Admin": 1,
-                    "Offsite": [
-                        "Mickelson",
-                        "Ion",
-                        "DD",
-                        "SL",
-                        "DN",
-                        "KK"
-                    ]
-                }
-            },
-            "29": {
                 "Sat AM": {
                     "Call": {
-                        "1": "ES",
-                        "2": "Moran"
+                        "1": "JT",
+                        "2": "KC"
                     },
                     "Admin": 0,
+                    "Requests": "JJ off",
                     "Offsite": [
-                        "Mickelson",
-                        "Moran"
+                        "MI"
                     ]
                 },
                 "Sat PM": {
                     "Call": {
-                        "1": "Moran",
-                        "2": "ES"
+                        "1": "KC",
+                        "2": "JT"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Mickelson"
+                        "MI"
                     ]
                 }
             },
-            "30": {
+            "24": {
                 "Sun AM": {
                     "Call": {
-                        "1": "Kaus",
-                        "2": "Moran"
+                        "1": "AY",
+                        "2": "KC"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Mickelson"
+                        "MI"
                     ]
                 },
                 "Sun PM": {
                     "Call": {
-                        "1": "ES",
-                        "2": "Moran"
+                        "1": "JT",
+                        "2": "KC"
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "Mickelson"
+                        "MI"
+                    ]
+                }
+            },
+            "25": {
+                "Mon": {
+                    "Call": {
+                        "1": "RR",
+                        "2": "JJ"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "CM",
+                        "CM",
+                        "CC",
+                        "TT",
+                        "SK",
+                        "FM",
+                        "DN"
+                    ]
+                }
+            },
+            "26": {
+                "Tue": {
+                    "Call": {
+                        "1": "CA",
+                        "2": "JM"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "MA",
+                        "KC",
+                        "CC",
+                        "TT",
+                        "SK",
+                        "FM",
+                        "DN"
+                    ]
+                }
+            },
+            "27": {
+                "Wed": {
+                    "Call": {
+                        "1": "JT",
+                        "2": "SL"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "MI",
+                        "KC",
+                        "CC",
+                        "TT",
+                        "SK",
+                        "FM",
+                        "DN"
+                    ]
+                }
+            },
+            "28": {
+                "Thu": {
+                    "Call": {
+                        "1": "BK",
+                        "2": "MC"
+                    },
+                    "Admin": 1,
+                    "Requests": "TI on",
+                    "Offsite": [
+                        "TI",
+                        "KC",
+                        "CC",
+                        "TT",
+                        "SK",
+                        "FM",
+                        "DN"
+                    ]
+                }
+            },
+            "29": {
+                "Fri": {
+                    "Call": {
+                        "1": "CA",
+                        "2": "KK"
+                    },
+                    "Admin": 1,
+                    "Offsite": [
+                        "CM",
+                        "KC",
+                        "CC",
+                        "TT",
+                        "SK",
+                        "FM",
+                        "DN"
+                    ]
+                }
+            },
+            "30": {
+                "Sat AM": {
+                    "Call": {
+                        "1": "JJ",
+                        "2": "KK"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "CM"
+                    ]
+                },
+                "Sat PM": {
+                    "Call": {
+                        "1": "KK",
+                        "2": "JJ"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "CM"
+                    ]
+                }
+            }
+        },
+        "Oct": {
+            "1": {
+                "Sun AM": {
+                    "Call": {
+                        "1": "CA",
+                        "2": "KK"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "CM"
+                    ]
+                },
+                "Sun PM": {
+                    "Call": {
+                        "1": "JJ",
+                        "2": "KK"
+                    },
+                    "Admin": 0,
+                    "Offsite": [
+                        "CM"
                     ]
                 }
             }
