@@ -23,8 +23,8 @@ def split_into_weeks(data):
             for day, day_data in sorted(days.items()):
                 current_date = datetime.date(int(year), month_name_to_number(month), int(day))
 
-                year, week_number = current_date.isocalendar()[0], current_date.isocalendar()[1]
-                week_key = f"{year}-week{week_number:02}"
+                year_number, week_number = current_date.isocalendar()[0], current_date.isocalendar()[1]
+                week_key = f"{year_number}-week{week_number:02}"
                 if week_key not in weekly_data:
                     weekly_data[week_key] = {}
 
@@ -48,7 +48,7 @@ def save_weekly_data(weekly_data, outdir):
     for week_key in sorted(weekly_data.keys()):
         week_values = OrderedDict(sorted(weekly_data[week_key].items()))
         filename = week_key
-        if len(weekly_data) < 7:
+        if len(week_values) < 7:
             filename += "-partial"
         filename = write_json(week_values, filename, outdir)
         filenames.append(filename)

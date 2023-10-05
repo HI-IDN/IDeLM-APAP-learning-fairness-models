@@ -15,7 +15,7 @@ $(QUARTER_CALL_PLAN)/%.json: $(QUARTER_CALL_PLAN)/%.xls data/xls_to_json_convert
 # Rule to split quarterly .json into weekly segments
 $(WEEKLY_CALL_PLANS): data/quarterly_json_week_splitter.py $(QUARTER_JSON)
 	rm -rf $@.tmp && mkdir $@.tmp
-	$(foreach q,$(QUARTER_JSON),python3 data/quarterly_json_week_splitter.py $(q) --outdir $@.tmp;)
+	$(foreach q,$(QUARTER_JSON),python3 data/quarterly_json_week_splitter.py $(q) --outdir $@.tmp  || exit 1;)
 	mv $@.tmp $@
 
 # This intermediate rule will ensure that each JSON file gets generated in the temporary directory.
@@ -51,5 +51,6 @@ $(WEEKLY_PLANS): move-weekly-json-files-to-tmp
 all:
 	make $(QUARTER_JSON)
 	make $(WEEKLY_CALL_PLANS)
+tmp:
 	make $(WEEKLY_PLANS)
 
