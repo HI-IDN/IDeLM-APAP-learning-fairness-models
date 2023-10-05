@@ -75,9 +75,12 @@ def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
         shift = transform_shift(row[1])
         vacations = [item.strip() for item in row['Vacation'].split(',')] if not pd.isna(row['Vacation']) else []
         record = {
-            'Call': {1: row['Call1st'].strip(), 2: row['Call2nd']},
+            'Call': {
+                1: row['Call1st'].strip() if not pd.isna(row['Call1st']) else None,
+                2: row['Call2nd'].strip() if not pd.isna(row['Call2nd']) else None
+            },
             'Gillette': {
-                'G1': row['G1'],
+                'G1': row['G1'] if not pd.isna(row['G1']) else None,
                 '4G': [item.strip() for item in row['4G'].split(',')] if not pd.isna(row['4G']) else None
             },
             'CVCC': row['CVCC'] if not pd.isna(row['CVCC']) else None,
@@ -91,7 +94,9 @@ def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
             record['West'] = {'CHC': row['CHC'] if not pd.isna(row['CHC']) else None}
 
         if simple_mode:
-            offsite = [record['Gillette']['G1']]
+            offsite = []
+            if 'G1' in record['Gillette'] and record['Gillette']['41'] is not None:
+                offsite.extend(record['Gillette']['41'])
             if '4G' in record['Gillette'] and record['Gillette']['4G'] is not None:
                 offsite.extend(record['Gillette']['4G'])
             if 'West' in record and record['West'] is not None:
