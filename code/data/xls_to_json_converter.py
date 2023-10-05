@@ -119,7 +119,7 @@ def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
         record = {k: v for k, v in record.items() if v is not None}
 
         # Then use the function:
-        #record = replace_name_with_initials(record)
+        record = replace_name_with_initials(record)
 
         if day < current_day:
             month = next_month if month is this_month else this_month
