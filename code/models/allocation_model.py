@@ -1,7 +1,5 @@
-import gurobipy as gp
-from gurobipy import GRB
 from gurobipy import Model, GRB
-from utils import read_and_remove_file, extract_values_from_text
+from data.utils import read_and_remove_file, extract_values_from_text
 
 
 class AllocationModel:

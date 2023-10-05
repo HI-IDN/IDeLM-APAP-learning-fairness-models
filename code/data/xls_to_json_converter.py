@@ -1,7 +1,8 @@
 import pandas as pd
-import json
+from utils import write_json
 import argparse
 import re
+
 
 def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
     current_day = 0
@@ -40,7 +41,7 @@ def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
     def cleanup_request_string(request_string, mapping=name_to_anst):
         # Replace all names with corresponding initials
         for name, initials in mapping.items():
-            request_string = re.sub(re.escape(name), initials, request_string, flags=re.IGNORECASE)
+            request_string = re.sub(re.escape(name), initials, request_string)
 
         return request_string
 
@@ -130,7 +131,7 @@ def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
     return prev_month, this_month, next_month
 
 
-def xls_to_json(filename, name_to_anst, simple_mode=False):
+def xls_to_data(filename, name_to_anst, simple_mode=False):
     # Extract filename from path to get year and quarter
     filename_only = filename.split('/')[-1]
     year = int(filename_only.split('_')[0])
@@ -223,7 +224,7 @@ def xls_to_json(filename, name_to_anst, simple_mode=False):
         if len(data[year][months_map[quarter + 1][0]]) == 0:
             data[year].pop(months_map[quarter + 1][0])
 
-    return json.dumps(data, indent=4)
+    return data
 
 
 # Set up the argument parser
@@ -234,9 +235,9 @@ parser.add_argument('filename', type=str, help='Path to the xls file to convert'
 parser.add_argument('-o', '--output', type=str, default=None, help='Path for the resulting json file. If not '
                                                                    'provided, default naming will be used.')
 # New simple mode flag
-parser.add_argument('-s', '--simple', action='store_true', help='Enable simple mode. This will simplify the JSON to '
-                                                                'just the main hospital (everyone else is offsite, '
-                                                                'either on Gillette, West or on vacation).')
+parser.add_argument('-s', '--simple', action='store_true',
+                    help='Enable simple mode. This will simplify the JSON to just the main hospital '
+                         '(everyone else is offsite, either on Gillette, West or on vacation).')
 
 args = parser.parse_args()
 # Sanity check for input and output filenames
@@ -248,7 +249,5 @@ assert output_filename.lower().endswith('.json'), "Output filename must end with
 staff_df = pd.read_csv("../data/staff.csv")
 name_to_anst = {row['name']: row['anst'] for index, row in staff_df.iterrows() if not pd.isna(row['name'])}
 
-json_data = xls_to_json(args.filename, name_to_anst, args.simple)
-with open(output_filename, 'w') as outfile:
-    outfile.write(json_data)
-print("Wrote to file: " + output_filename)
+data = xls_to_data(args.filename, name_to_anst, args.simple)
+write_json(data, output_filename, overwrite=True)

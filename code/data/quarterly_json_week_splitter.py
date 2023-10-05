@@ -1,16 +1,20 @@
 from collections import OrderedDict
 import datetime
 import argparse
-import json
 import os
 import math
+from utils import read_json, write_json
+
 
 def split_into_weeks(data):
     """
-    Splits the data into separate weeks
+    Splits data into separate weeks based on the dates.
 
-    :param data: The JSON data representing the schedule.
-    :param weekly_data: The JSON data representing the schedule split into weeks.
+    Args:
+        data (dict): Dictionary representing the schedule with year, month, and day.
+
+    Returns:
+        dict: Data split into separate weeks.
     """
     weekly_data = {}
 
@@ -19,7 +23,8 @@ def split_into_weeks(data):
             for day, day_data in sorted(days.items()):
                 current_date = datetime.date(int(year), month_name_to_number(month), int(day))
 
-                week_key = f"{current_date.isocalendar()[0]}-week{current_date.isocalendar()[1]}"
+                year, week_number = current_date.isocalendar()[0], current_date.isocalendar()[1]
+                week_key = f"{year}-week{week_number:02}"
                 if week_key not in weekly_data:
                     weekly_data[week_key] = {}
 
@@ -27,15 +32,38 @@ def split_into_weeks(data):
                 weekly_data[week_key][date_key] = day_data
     return weekly_data
 
+
 def save_weekly_data(weekly_data, outdir):
-    """Saves the weekly data to separate JSON files."""
+    """
+    Saves the weekly data into separate JSON files in the specified directory.
+
+    Args:
+        weekly_data (dict): Data split into weeks.
+        outdir (str): Directory to save the output JSON files.
+
+    Returns:
+        list: List of filenames of the saved JSON files.
+    """
+    filenames = []
     for week_key in sorted(weekly_data.keys()):
         week_values = OrderedDict(sorted(weekly_data[week_key].items()))
-        save_to_file(week_values, week_key, outdir)
-
+        filename = week_key
+        if len(weekly_data) < 7:
+            filename += "-partial"
+        filename = write_json(week_values, filename, outdir)
+        filenames.append(filename)
+    return filenames
 
 def month_name_to_number(month_name):
-    """Helper function to convert month name to month number."""
+    """
+    Converts a month name to its corresponding number.
+
+    Args:
+        month_name (str): Name of the month.
+
+    Returns:
+        int: Corresponding month number.
+    """
     month_dict = {
         'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4,
         'May': 5, 'Jun': 6, 'Jul': 7, 'Aug': 8,
@@ -44,41 +72,39 @@ def month_name_to_number(month_name):
     return month_dict[month_name]
 
 
-def save_to_file(data, filename, outdir):
-    """Helper function to save data to JSON file."""
-    if not os.path.exists(outdir):
-        os.makedirs(outdir)
+def combine_weekly_data(files):
+    """
+    Combines weekly data from files in the specified directory into a single dictionary.
 
-    if len(data)<7:
-        filename += "-partial"
+    Args:
+        files (list): List of filenames of the weekly data JSON files.
 
-    full_path = os.path.join(outdir, f"{filename}.json")
-    with open(full_path, 'w') as f:
-        json.dump(data, f, indent=4)
-    print(f"Saved to file: {full_path}")
-
-
-def combine_weekly_data(outdir):
+    Returns:
+        dict: Combined data.
+    """
     combined_data = {}
-    for filename in sorted(os.listdir(outdir)):
-        with open(os.path.join(outdir, filename), 'r') as f:
-            week_data = json.load(f)
-            for year, months in week_data.items():
-                if year not in combined_data:
-                    combined_data[year] = {}
-                for month, days in months.items():
-                    if month not in combined_data[year]:
-                        combined_data[year][month] = {}
-                    for day, day_data in days.items():
-                        combined_data[year][month][day] = day_data
+    for filename in files:
+        week_data = read_json(filename)
+        for year, months in week_data.items():
+            if year not in combined_data:
+                combined_data[year] = {}
+            for month, days in months.items():
+                if month not in combined_data[year]:
+                    combined_data[year][month] = {}
+                for day, day_data in days.items():
+                    combined_data[year][month][day] = day_data
     return combined_data
+
 
 def flatten_dict(data):
     """
-    Flattens a nested dictionary structure with year, month, and day into a single-level dictionary.
+    Flattens a nested dictionary into a single-level dictionary.
 
-    :param data: The nested dictionary to flatten.
-    :return: A flattened dictionary.
+    Args:
+        data (dict): Nested dictionary with year, month, and day.
+
+    Returns:
+        dict: Flattened dictionary with date as the key.
     """
     flattened = {}
     for year, months in data.items():
@@ -88,7 +114,19 @@ def flatten_dict(data):
                 flattened[key] = day_data
     return flattened
 
+
 def compare_dicts(dict1, dict2, path=[]):
+    """
+    Compares two dictionaries and prints the differences, if any.
+
+    Args:
+        dict1 (dict): First dictionary to compare.
+        dict2 (dict): Second dictionary to compare.
+        path (list, optional): List of keys for nested dictionaries. Defaults to an empty list.
+
+    Returns:
+        bool: True if the dictionaries match, False otherwise.
+    """
     if set(dict1.keys()) != set(dict2.keys()):
         print(f"Keys do not match at path: {' -> '.join(path)}")
         missing_in_dict1 = set(dict2.keys()) - set(dict1.keys())
@@ -126,14 +164,12 @@ if __name__ == '__main__':
     parser.add_argument('--outdir', type=str, required=True, help='Output directory to save the weekly JSON files.')
 
     args = parser.parse_args()
-
-    with open(args.infile, 'r') as f:
-        data = json.load(f)
+    data = read_json(args.infile)
 
     weekly_data = split_into_weeks(data)
-    save_weekly_data(weekly_data, args.outdir)
+    files = save_weekly_data(weekly_data, args.outdir)
 
     # Verify if combined weekly data matches the original data
-    combined_data = combine_weekly_data(args.outdir)
+    combined_data = combine_weekly_data(files)
     assert compare_dicts(combined_data, flatten_dict(data)), ("Error: Combined weekly data does not match the "
                                                               "original data!")

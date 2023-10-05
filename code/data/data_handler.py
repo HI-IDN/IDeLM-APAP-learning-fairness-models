@@ -1,4 +1,4 @@
-from utils import read_json
+from data.utils import read_json
 import pandas as pd
 
 
