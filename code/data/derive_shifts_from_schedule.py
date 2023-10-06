@@ -92,6 +92,35 @@ def get_previous_weekday(current_day, current_week_dict, previous_week_dict, wee
     return None, None  # In case no previous weekday is found
 
 
+def get_previous_weekend_shifts(current_day, current_week_dict, previous_week_dict):
+    """
+    Get the AM and PM shifts of the previous day before a given day.
+
+    Parameters:
+    - current_day (str): The day of the week for which the previous day's shifts are to be found.
+    - current_week_dict (dict): Dictionary containing the current week's data.
+    - previous_week_dict (dict): Dictionary containing the prior week's data.
+
+    Returns:
+    - tuple: AM and PM shifts for the day before the current_day.
+    """
+    yesterday = WEEK[(WEEK.index(current_day) - 1) % 7]
+
+    am_key = f"{yesterday} AM"
+    pm_key = f"{yesterday} PM"
+
+    # If yesterday was in the current week
+    if yesterday in WEEK[:WEEK.index(current_day)]:
+        assert am_key in current_week_dict, f"AM shift not found for {yesterday} in current week"
+        assert pm_key in current_week_dict, f"PM shift not found for {yesterday} in current week"
+        return current_week_dict.get(am_key), current_week_dict.get(pm_key)
+    # If yesterday was in the previous week
+    else:
+        assert am_key in previous_week_dict, f"AM shift not found for {yesterday} in previous week"
+        assert pm_key in previous_week_dict, f"PM shift not found for {yesterday} in previous week"
+        return previous_week_dict.get(am_key), previous_week_dict.get(pm_key)
+
+
 def generate_new_structure(current, before, after):
     result = {}
     days = list(current.keys())
@@ -106,21 +135,23 @@ def generate_new_structure(current, before, after):
             # TODO: handle weekend shifts (e.g. 'Sat AM', 'Sat PM', 'Sun AM', 'Sun PM') later
             continue
 
-        next_day, is_tomorrow = get_next_weekday(today, current, after, weekdays, weekdays_after)
-        prev_day, is_yesterday = get_previous_weekday(today, current, before, weekdays, weekdays_before)
+        next_weekday, is_tomorrow = get_next_weekday(today, current, after, weekdays, weekdays_after)
+        prev_weekday, is_yesterday = get_previous_weekday(today, current, before, weekdays, weekdays_before)
 
         on_call = current[today]["Call"]["1"]
         on_late = current[today]["Call"]["2"]
         admin = [None] * current[today]["Admin"]
 
-        pre_call = next_day["Call"]["1"]
-
-        post_call = prev_day["Call"]["1"]
-        post_late = prev_day["Call"]["2"]
+        pre_call = next_weekday["Call"]["1"]
 
         if not is_yesterday:
-            post_holiday = 'X'
+            am_shift, pm_shift = get_previous_weekend_shifts(today, current, before)
+            post_call = pm_shift["Call"]["1"]
+            post_late = pm_shift["Call"]["2"]
+            post_holiday = am_shift["Call"]["1"]
         else:
+            post_call = prev_weekday["Call"]["1"]
+            post_late = prev_weekday["Call"]["2"]
             post_holiday = None
 
         result[today] = {
@@ -251,7 +282,7 @@ def main():
     new_structure = transpose_dict(new_structure)
     new_structure['Period'] = week_range
 
-    write_json(new_structure, os.path.basename(args.output), os.path.dirname(args.output), indent_level=None)
+    write_json(new_structure, os.path.basename(args.output), os.path.dirname(args.output), indent_level=2)
 
 
 if __name__ == "__main__":
