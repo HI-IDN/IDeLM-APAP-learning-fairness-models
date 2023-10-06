@@ -121,6 +121,36 @@ def get_previous_weekend_shifts(current_day, current_week_dict, previous_week_di
         return previous_week_dict.get(am_key), previous_week_dict.get(pm_key)
 
 
+def get_next_weekend_shifts(current_day, current_week_dict, next_week_dict):
+    """
+    Get the AM and PM shifts for the next day after a given day.
+
+    Parameters:
+    - current_day (str): The day of the week for which the following day's shifts are to be found.
+    - current_week_dict (dict): Dictionary containing the current week's data.
+    - next_week_dict (dict): Dictionary containing the next week's data.
+
+    Returns:
+    - tuple: AM and PM shifts for the day following the current_day.
+    """
+    tomorrow = WEEK[(WEEK.index(current_day) + 1) % 7]
+
+    am_key = f"{tomorrow} AM"
+    pm_key = f"{tomorrow} PM"
+
+    # If the next day is in the same week as current_day
+    if tomorrow in WEEK[:WEEK.index(current_day) + 2]:
+        assert am_key in current_week_dict, f"AM shift not found for {tomorrow} in current week"
+        assert pm_key in current_week_dict, f"PM shift not found for {tomorrow} in current week"
+        return current_week_dict.get(am_key), current_week_dict.get(pm_key)
+
+    # If the next day is in the next week
+    else:
+        assert am_key in next_week_dict, f"AM shift not found for {tomorrow} in next week"
+        assert pm_key in next_week_dict, f"PM shift not found for {tomorrow} in next week"
+        return next_week_dict.get(am_key), next_week_dict.get(pm_key)
+
+
 def generate_new_structure(current, before, after):
     result = {}
     days = list(current.keys())
@@ -142,7 +172,11 @@ def generate_new_structure(current, before, after):
         on_late = current[today]["Call"]["2"]
         admin = [None] * current[today]["Admin"]
 
-        pre_call = next_weekday["Call"]["1"]
+        if not is_tomorrow:
+            am_shift, pm_shift = get_next_weekend_shifts(today, current, after)
+            pre_call = am_shift["Call"]["1"]
+        else:
+            pre_call = next_weekday["Call"]["1"]
 
         if not is_yesterday:
             am_shift, pm_shift = get_previous_weekend_shifts(today, current, before)
