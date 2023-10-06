@@ -5,7 +5,10 @@ WEEKLY_PLANS=../data/weekly_plans
 
 QUARTER_XLS=$(wildcard $(QUARTER_CALL_PLAN)/*.xls)
 QUARTER_JSON=$(subst .xls,.json,$(QUARTER_XLS))
-WEEKLY_CALL_JSON=$(wildcard $(WEEKLY_CALL_PLANS)/*.json)
+VALID_WEEKLY_CALL_JSON=$(sort $(wildcard $(WEEKLY_CALL_PLANS)/[0-9][0-9][0-9][0-9]-week[0-9][0-9].json))
+FIRST_WEEK := $(firstword $(VALID_WEEKLY_CALL_JSON))
+LAST_WEEK  := $(lastword $(VALID_WEEKLY_CALL_JSON))
+WEEKLY_CALL_JSON=$(filter-out $(FIRST_WEEK) $(LAST_WEEK),$(VALID_WEEKLY_CALL_JSON))
 
 
 # Rule to convert .xls to .json
@@ -25,32 +28,17 @@ $(WEEKLY_PLANS).tmp/%.json: $(WEEKLY_CALL_PLANS)/%.json data/derive_shifts_from_
 # This is a 'phony' target which means it's not associated with any actual file, just a name for a set of instructions.
 .INTERMEDIATE: move-weekly-json-files-to-tmp
 
-# Sort the list and store in a temporary variable.
-SORTED_WEEKLY_CALL_JSON := $(sort $(WEEKLY_CALL_JSON))
-
-# Remove the first and last item from the sorted list.
-ifneq ($(words $(SORTED_WEEKLY_CALL_JSON)),0)
-FIRST_WEEK := $(firstword $(SORTED_WEEKLY_CALL_JSON))
-LAST_WEEK  := $(word $(words $(SORTED_WEEKLY_CALL_JSON)),$(SORTED_WEEKLY_CALL_JSON))
-ADJUSTED_WEEKLY_CALL_JSON := $(filter-out $(FIRST_WEEK) $(LAST_WEEK),$(SORTED_WEEKLY_CALL_JSON))
-else
-ADJUSTED_WEEKLY_CALL_JSON :=
-endif
-
 move-weekly-json-files-to-tmp:
 	mkdir -p $(WEEKLY_PLANS).tmp && find $(WEEKLY_PLANS).tmp -type f -delete
-	$(foreach w,$(ADJUSTED_WEEKLY_CALL_JSON), make $(subst $(WEEKLY_CALL_PLANS),$(WEEKLY_PLANS).tmp,$(w)) || exit 1;)
+	$(foreach w,$(WEEKLY_CALL_JSON), make $(subst $(WEEKLY_CALL_PLANS),$(WEEKLY_PLANS).tmp,$(w)) || exit 1;)
 
 # This is your main target to move the processed files from temp to the main directory.
-$(WEEKLY_PLANS): move-weekly-json-files-to-tmp
-	mv $(WEEKLY_PLANS).tmp/* $(WEEKLY_PLANS)/
-	rmdir $(WEEKLY_PLANS).tmp
-
+$(WEEKLY_PLANS): move-weekly-json-files-to-tmp data/derive_shifts_from_schedule.py
+	rm -rf $(WEEKLY_PLANS) && mv $(WEEKLY_PLANS).tmp $(WEEKLY_PLANS)
 
 # Default target
 all:
 	make $(QUARTER_JSON)
 	make $(WEEKLY_CALL_PLANS)
-tmp:
 	make $(WEEKLY_PLANS)
 
