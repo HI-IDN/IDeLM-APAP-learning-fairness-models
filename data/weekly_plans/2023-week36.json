@@ -1,0 +1,68 @@
+{
+  "OnCall": [
+    "SL",
+    "MC",
+    "TT",
+    "FM"
+  ],
+  "OnLate": [
+    "JM",
+    "BK",
+    "JT",
+    "SK"
+  ],
+  "Post-Call": [
+    "CM",
+    "SL",
+    "MC",
+    "TT"
+  ],
+  "Post-Holiday": [
+    "X",
+    null,
+    null,
+    null
+  ],
+  "Post-Late": [
+    "CA",
+    "JM",
+    "BK",
+    "JT"
+  ],
+  "Pre-Call": [
+    "MC",
+    "TT",
+    "FM",
+    "CA"
+  ],
+  "Admin": [
+    [
+      null
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ]
+  ],
+  "Day": [
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekday"
+  ],
+  "Order": [
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri"
+  ],
+  "Period": {
+    "start": "2023-09-04",
+    "end": "2023-09-10"
+  }
+}
