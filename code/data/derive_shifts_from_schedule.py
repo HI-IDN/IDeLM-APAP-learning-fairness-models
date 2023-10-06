@@ -177,7 +177,10 @@ def generate_new_structure(current, before, after):
 
     for index, today in enumerate(days):
         day_type = 'Weekday' if today in weekdays else 'Weekend'
-        admin = [None] * current[today]["Admin"]
+        if current[today]["Admin"] and current[today]["Admin"] > 0:
+            admin = [f'Adm{admin}' for admin in range(1, current[today]["Admin"] + 1)]
+        else:
+            admin = [None]
 
         on_call = current[today]["Call"]["1"]
         on_late = current[today]["Call"]["2"]
@@ -187,7 +190,6 @@ def generate_new_structure(current, before, after):
             continue
         elif 'PM' in today:
             next_day = get_next_shift(today, current, after)
-            print(next_day)
             post_call = None
             post_late = None
             post_holiday = None
@@ -342,7 +344,7 @@ def main():
     new_structure = transpose_dict(new_structure)
     new_structure['Period'] = week_range
 
-    write_json(new_structure, os.path.basename(args.output), os.path.dirname(args.output), indent_level=2)
+    write_json(new_structure, os.path.basename(args.output), os.path.dirname(args.output), indent_level=None)
 
 
 if __name__ == "__main__":
