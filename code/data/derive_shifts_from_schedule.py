@@ -133,6 +133,7 @@ def get_next_weekend_shifts(current_day, current_week_dict, next_week_dict):
     Returns:
     - tuple: AM and PM shifts for the day following the current_day.
     """
+    assert current_day in WEEK, f"Invalid day of the week: {current_day}. Must be one of {WEEK}"
     tomorrow = WEEK[(WEEK.index(current_day) + 1) % 7]
 
     am_key = f"{tomorrow} AM"
@@ -151,6 +152,22 @@ def get_next_weekend_shifts(current_day, current_week_dict, next_week_dict):
         return next_week_dict.get(am_key), next_week_dict.get(pm_key)
 
 
+def get_next_shift(current_day, current_week_dict, next_week_dict):
+    """
+    Get the next shift following a given day.
+
+    Parameters:
+    - current_day (str): The day of the week for which the following day's shifts are to be found.
+    - current_week_dict (dict): Dictionary containing the current week's data.
+    - next_week_dict (dict): Dictionary containing the next week's data.
+
+    Returns:
+    - dict: Value of the next shift following the current_day.
+    """
+    return next((current_week_dict[shift] for shift in current_week_dict if shift > current_day),
+                next_week_dict[next(iter(next_week_dict))])
+
+
 def generate_new_structure(current, before, after):
     result = {}
     days = list(current.keys())
@@ -160,34 +177,46 @@ def generate_new_structure(current, before, after):
 
     for index, today in enumerate(days):
         day_type = 'Weekday' if today in weekdays else 'Weekend'
-
-        if day_type == 'Weekend':
-            # TODO: handle weekend shifts (e.g. 'Sat AM', 'Sat PM', 'Sun AM', 'Sun PM') later
-            continue
-
-        next_weekday, is_tomorrow = get_next_weekday(today, current, after, weekdays, weekdays_after)
-        prev_weekday, is_yesterday = get_previous_weekday(today, current, before, weekdays, weekdays_before)
+        admin = [None] * current[today]["Admin"]
 
         on_call = current[today]["Call"]["1"]
         on_late = current[today]["Call"]["2"]
-        admin = [None] * current[today]["Admin"]
 
-        if not is_tomorrow:
-            am_shift, pm_shift = get_next_weekend_shifts(today, current, after)
-            pre_call = am_shift["Call"]["1"]
-        else:
-            pre_call = next_weekday["Call"]["1"]
-
-        if not is_yesterday:
-            am_shift, pm_shift = get_previous_weekend_shifts(today, current, before)
-            post_call = pm_shift["Call"]["1"]
-            post_late = pm_shift["Call"]["2"]
-            post_holiday = am_shift["Call"]["1"]
-        else:
-            post_call = prev_weekday["Call"]["1"]
-            post_late = prev_weekday["Call"]["2"]
+        if any(day in today for day in WEEK[-2:]):
+            # TODO: handle weekend shifts (e.g. 'Sat AM', 'Sat PM', 'Sun AM', 'Sun PM') later
+            continue
+        elif 'AM' in today:
+            # Ignore the AM shifts
+            continue
+        elif 'PM' in today:
+            next_day = get_next_shift(today, current, after)
+            print(next_day)
+            post_call = None
+            post_late = None
             post_holiday = None
+            pre_call = next_day["Call"]["1"]
+        else:
+            # General case: weekday
+            next_weekday, is_tomorrow = get_next_weekday(today, current, after, weekdays, weekdays_after)
+            prev_weekday, is_yesterday = get_previous_weekday(today, current, before, weekdays, weekdays_before)
 
+            if not is_tomorrow:
+                am_shift, pm_shift = get_next_weekend_shifts(today, current, after)
+                pre_call = am_shift["Call"]["1"]
+            else:
+                pre_call = next_weekday["Call"]["1"]
+
+            if not is_yesterday:
+                am_shift, pm_shift = get_previous_weekend_shifts(today, current, before)
+                post_call = pm_shift["Call"]["1"]
+                post_late = pm_shift["Call"]["2"]
+                post_holiday = am_shift["Call"]["1"]
+            else:
+                post_call = prev_weekday["Call"]["1"]
+                post_late = prev_weekday["Call"]["2"]
+                post_holiday = None
+
+        today = today.split(' ')[0]  # Remove the AM/PM suffix if present
         result[today] = {
             "OnCall": on_call,
             "OnLate": on_late,

@@ -1,35 +1,41 @@
 {
   "OnCall": [
+    "MI",
     "SL",
     "MC",
     "TT",
     "FM"
   ],
   "OnLate": [
+    "CA",
     "JM",
     "BK",
     "JT",
     "SK"
   ],
   "Post-Call": [
+    null,
     "MI",
     "SL",
     "MC",
     "TT"
   ],
   "Post-Holiday": [
+    null,
     "CM",
     null,
     null,
     null
   ],
   "Post-Late": [
+    null,
     "CA",
     "JM",
     "BK",
     "JT"
   ],
   "Pre-Call": [
+    "SL",
     "MC",
     "TT",
     "FM",
@@ -47,15 +53,20 @@
     ],
     [
       null
+    ],
+    [
+      null
     ]
   ],
   "Day": [
+    "Weekend",
     "Weekday",
     "Weekday",
     "Weekday",
     "Weekday"
   ],
   "Order": [
+    "Mon",
     "Tue",
     "Wed",
     "Thu",
