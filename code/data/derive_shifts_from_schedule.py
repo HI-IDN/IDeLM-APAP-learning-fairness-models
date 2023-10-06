@@ -182,10 +182,7 @@ def generate_new_structure(current, before, after):
         on_call = current[today]["Call"]["1"]
         on_late = current[today]["Call"]["2"]
 
-        if any(day in today for day in WEEK[-2:]):
-            # TODO: handle weekend shifts (e.g. 'Sat AM', 'Sat PM', 'Sun AM', 'Sun PM') later
-            continue
-        elif 'AM' in today:
+        if 'AM' in today:
             # Ignore the AM shifts
             continue
         elif 'PM' in today:
