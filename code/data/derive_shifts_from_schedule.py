@@ -114,7 +114,6 @@ def generate_new_structure(current, before, after):
         admin = [None] * current[today]["Admin"]
 
         pre_call = next_day["Call"]["1"]
-        pre_late = next_day["Call"]["2"]
 
         post_call = prev_day["Call"]["1"]
         post_late = prev_day["Call"]["2"]
@@ -127,12 +126,11 @@ def generate_new_structure(current, before, after):
         result[today] = {
             "OnCall": on_call,
             "OnLate": on_late,
-            "Admin": admin,
             "Post-Call": post_call,
             "Post-Holiday": post_holiday,
             "Post-Late": post_late,
             "Pre-Call": pre_call,
-            "Pre-Late": pre_late,
+            "Admin": admin,
             "Day": day_type
         }
 
@@ -253,7 +251,7 @@ def main():
     new_structure = transpose_dict(new_structure)
     new_structure['Period'] = week_range
 
-    write_json(new_structure, os.path.basename(args.output), os.path.dirname(args.output), indent_level=4)
+    write_json(new_structure, os.path.basename(args.output), os.path.dirname(args.output), indent_level=None)
 
 
 if __name__ == "__main__":
