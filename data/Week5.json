@@ -1,303 +1,69 @@
 {
-  "unassignedPerDay": {
-    "MON": [
-      "AY",
-      "BK",
-      "CC",
-      "DN",
-      "ES",
-      "JM",
-      "KC",
-      "MC",
-      "RR",
-      "SL",
-      "TI",
-      "TT"
-    ],
-    "TUE": [
-      "AY",
-      "BK",
-      "CC",
-      "DN",
-      "ES",
-      "FM",
-      "KC",
-      "MC",
-      "RR",
-      "SL",
-      "TI",
-      "TT"
-    ],
-    "WED": [
-      "AY",
-      "BK",
-      "CA",
-      "CC",
-      "DN",
-      "ES",
-      "FM",
-      "KC",
-      "MC",
-      "RR",
-      "SL",
-      "TI"
-    ],
-    "THU": [
-      "AY",
-      "CA",
-      "CC",
-      "DN",
-      "ES",
-      "FM",
-      "JM",
-      "KC",
-      "MC",
-      "RR",
-      "SL",
-      "TI"
-    ],
-    "FRI": [
-      "AY",
-      "CA",
-      "CC",
-      "DN",
-      "ES",
-      "FM",
-      "JM",
-      "KC",
-      "RR",
-      "SL",
-      "TI"
-    ]
-  },
-  "preAllocated": {
-    "transitionShiftRoles": {
-      "Post CVCC": {
-        "MON": "",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      },
-      "Post Call": {
-        "MON": "SL",
-        "TUE": "CA",
-        "WED": "AY",
-        "THU": "KC",
-        "FRI": "TT"
-      },
-      "Post Holiday": {
-        "MON": "FM",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      },
-      "Post Late": {
-        "MON": "SK",
-        "TUE": "RR",
-        "WED": "JM",
-        "THU": "DN",
-        "FRI": "BK"
-      },
-      "Pre Call": {
-        "MON": "AY",
-        "TUE": "KC",
-        "WED": "TT",
-        "THU": "RR",
-        "FRI": "CC"
-      }
-    },
-    "shiftRoles": {
-      "Late": {
-        "MON": "RR",
-        "TUE": "JM",
-        "WED": "DN",
-        "THU": "BK",
-        "FRI": "MC"
-      },
-      "Call": {
-        "MON": "CA",
-        "TUE": "AY",
-        "WED": "KC",
-        "THU": "TT",
-        "FRI": "RR"
-      },
-      "CVCC": {
-        "MON": "",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      }
-    }
-  },
-  "requested": {
-    "whineZone": {
-      "Peel 1": {
-        "MON": "",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      },
-      "Peel 2": {
-        "MON": "",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      },
-      "Peel 3": {
-        "MON": "",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      },
-      "Peel 4": {
-        "MON": "",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      },
-      "Peel 5": {
-        "MON": "",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      },
-      "Peel 6": {
-        "MON": "",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      },
-      "Peel 7": {
-        "MON": "",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      },
-      "Peel 8": {
-        "MON": "",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      },
-      "Peel 9": {
-        "MON": "",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      },
-      "Peel 10": {
-        "MON": "",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      },
-      "Peel 11": {
-        "MON": "",
-        "TUE": "",
-        "WED": "",
-        "THU": "",
-        "FRI": ""
-      }
-    },
-    "admin": {
-      "MON": [],
-      "TUE": [],
-      "WED": [],
-      "THU": [],
-      "FRI": []
-    }
-  },
-  "offsite": {
-    "West": {
-      "TUE": [
-        "SK"
-      ],
-      "WED": [
-        "SK"
-      ],
-      "THU": [
-        "SK"
-      ],
-      "FRI": [
-        "SK"
-      ]
-    },
-    "Gill": {
-      "MON": [
-        "TI",
-        "MA",
-        "MI"
-      ],
-      "TUE": [
-        "TI",
-        "MA",
-        "MI"
-      ],
-      "WED": [
-        "TI",
-        "MA",
-        "MI"
-      ],
-      "THU": [
-        "TI",
-        "MA",
-        "MI"
-      ],
-      "FRI": [
-        "TI",
-        "MA",
-        "MI"
-      ]
-    },
-    "Vacation": {
-      "MON": [
-        "DD",
-        "JT",
-        "JJ",
-        "CM",
-        "KK"
-      ],
-      "TUE": [
-        "DD",
-        "JT",
-        "JJ",
-        "CM",
-        "KK"
-      ],
-      "WED": [
-        "DD",
-        "JT",
-        "JJ",
-        "CM",
-        "KK"
-      ],
-      "THU": [
-        "DD",
-        "JT",
-        "JJ",
-        "CM",
-        "KK"
-      ],
-      "FRI": [
-        "DD",
-        "JT",
-        "JJ",
-        "CM",
-        "KK"
-      ]
-    }
+  "OnCall": [
+    "CA",
+    "AY",
+    "KC",
+    "TT",
+    "RR"
+  ],
+  "OnLate": [
+    "RR",
+    "JM",
+    "DN",
+    "BK",
+    "MC"
+  ],
+  "Post-Call": [
+    "SL",
+    "CA",
+    "AY",
+    "KC",
+    "TT"
+  ],
+  "Post-Holiday": [
+    "FM",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "Post-Late": [
+    "SK",
+    "RR",
+    "JM",
+    "DN",
+    "BK"
+  ],
+  "Pre-Call": [
+    "AY",
+    "KC",
+    "TT",
+    "RR",
+    "CC"
+  ],
+  "Admin": [
+    [],
+    [],
+    [],
+    [],
+    []
+  ],
+  "Day": [
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekday"
+  ],
+  "Order": [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri"
+  ],
+  "Period": {
+    "start": "2023-09-11",
+    "end": "2023-09-15"
   }
 }
