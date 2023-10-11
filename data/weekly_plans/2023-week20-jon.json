@@ -1,0 +1,192 @@
+{
+  "OnCall": [
+    "FM",
+    "MI",
+    "KK",
+    "CC",
+    "MI",
+    "RR",
+    "TI"
+  ],
+  "OnLate": [
+    "TI",
+    "JM",
+    "SK",
+    "CA",
+    "RR",
+    "TI",
+    "RR"
+  ],
+  "Post-Call": [
+    "AY",
+    "FM",
+    "MI",
+    "KK",
+    "CC",
+    null,
+    null
+  ],
+  "Post-Holiday": [
+    "KK",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "Post-Late": [
+    "CC",
+    "TI",
+    "JM",
+    "SK",
+    "CA",
+    null,
+    null
+  ],
+  "Pre-Call": [
+    "MI",
+    "KK",
+    "CC",
+    "MI",
+    "TI",
+    "MI",
+    "MI"
+  ],
+  "Admin": [
+    [
+      null
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ]
+  ],
+  "Day": [
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekend",
+    "Weekend"
+  ],
+  "Order": [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun"
+  ],
+  "Period": {
+    "start": "2023-05-15",
+    "end": "2023-05-21"
+  },
+  "Whine": [
+    [
+      "JM",
+      "JJ",
+      "BK",
+      "DD",
+      "RR",
+      "SK",
+      "CA"
+    ],
+    [
+      "SK",
+      "RR",
+      "CA",
+      "CC",
+      "DD",
+      "AY",
+      "BK"
+    ],
+    [
+      "CA",
+      "BK",
+      "DD",
+      "FM",
+      "AY",
+      "RR",
+      "TI"
+    ],
+    [
+      "RR",
+      "BK",
+      "DD",
+      "FM",
+      "JM",
+      "AY",
+      "TI"
+    ],
+    [
+      "BK",
+      "DD",
+      "FM",
+      "KK",
+      "AY",
+      "SK",
+      "JM"
+    ],
+    null,
+    null
+  ],
+  "Points": {
+    "BK": 31,
+    "CA": 34,
+    "CC": 26,
+    "CM": 0,
+    "DD": 33,
+    "DN": 0,
+    "ES": 0,
+    "FM": 34,
+    "JJ": 6,
+    "JM": 36,
+    "JT": 0,
+    "KC": 0,
+    "KK": 25,
+    "MA": 0,
+    "MC": 0,
+    "MI": 32,
+    "AY": 35,
+    "RR": 38,
+    "SK": 36,
+    "SL": 0,
+    "TI": 37,
+    "TT": 0
+  },
+  "AIC": [
+    "CA",
+    "JM",
+    "TI",
+    "CC",
+    "JM",
+    null,
+    null
+  ],
+  "Cardiac": [
+    "FM",
+    "CA",
+    "SK",
+    "CA",
+    "RR",
+    null,
+    null
+  ]
+}

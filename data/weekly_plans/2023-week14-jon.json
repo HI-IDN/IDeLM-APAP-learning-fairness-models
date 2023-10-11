@@ -1,0 +1,194 @@
+{
+  "OnCall": [
+    "TI",
+    "KK",
+    "TT",
+    "AY",
+    "FM",
+    "CA",
+    "SK"
+  ],
+  "OnLate": [
+    "SK",
+    "CA",
+    "SL",
+    "RR",
+    "CA",
+    "SK",
+    "CA"
+  ],
+  "Post-Call": [
+    "CC",
+    "TI",
+    "KK",
+    "TT",
+    "AY",
+    null,
+    null
+  ],
+  "Post-Holiday": [
+    "BK",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "Post-Late": [
+    "JJ",
+    "SK",
+    "CA",
+    "SL",
+    "RR",
+    null,
+    null
+  ],
+  "Pre-Call": [
+    "KK",
+    "TT",
+    "AY",
+    "FM",
+    "SK",
+    "KK",
+    "KK"
+  ],
+  "Admin": [
+    [
+      "Adm1"
+    ],
+    [
+      "Adm1"
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ]
+  ],
+  "Day": [
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekend",
+    "Weekend"
+  ],
+  "Order": [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun"
+  ],
+  "Period": {
+    "start": "2023-04-03",
+    "end": "2023-04-09"
+  },
+  "Whine": [
+    [
+      "CA",
+      "SL",
+      "FM",
+      "JT",
+      "AY",
+      "RR",
+      "TT",
+      "DD"
+    ],
+    [
+      "BK",
+      "CC",
+      "DD",
+      "FM",
+      "JT",
+      "AY",
+      "RR",
+      "SL"
+    ],
+    [
+      "BK",
+      "CC",
+      "DD",
+      "FM",
+      "JT",
+      "RR",
+      "SK"
+    ],
+    [
+      "BK",
+      "CA",
+      "CC",
+      "DD",
+      "JT",
+      "KK",
+      "SK"
+    ],
+    [
+      "BK",
+      "CC",
+      "DD",
+      "JT",
+      "KK",
+      "SL",
+      "TT"
+    ],
+    null,
+    null
+  ],
+  "Points": {
+    "BK": 18,
+    "CA": 35,
+    "CC": 22,
+    "CM": 0,
+    "DD": 37,
+    "DN": 0,
+    "ES": 0,
+    "FM": 36,
+    "JJ": 3,
+    "JM": 0,
+    "JT": 39,
+    "KC": 0,
+    "KK": 35,
+    "MA": 0,
+    "MC": 0,
+    "MI": 0,
+    "AY": 34,
+    "RR": 42,
+    "SK": 38,
+    "SL": 39,
+    "TI": 15,
+    "TT": 37
+  },
+  "AIC": [
+    "TI",
+    "CA",
+    "CC",
+    "CC",
+    "BK",
+    null,
+    null
+  ],
+  "Cardiac": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ]
+}
