@@ -6,7 +6,7 @@ import argparse
 import re
 import os
 import datetime
-from staff import Doctors
+from staff import Doctors, ADMIN_IDENTIFIER
 
 WEEK = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 WEEKDAYS = WEEK[:5]
@@ -179,7 +179,7 @@ def generate_new_structure(current, before, after):
     for index, today in enumerate(days):
         day_type = 'Weekday' if today in weekdays else 'Weekend'
         if current[today]["Admin"] and current[today]["Admin"] > 0:
-            admin = [f'Adm{admin}' for admin in range(1, current[today]["Admin"] + 1)]
+            admin = [ADMIN_IDENTIFIER for _ in range(current[today]["Admin"])]
         else:
             admin = [None]
 
@@ -340,9 +340,9 @@ def find_unassigned(schedule, doctors):
             for assigned in assigned_doctors:
                 if assigned is None:
                     continue
-                if assigned.startswith('Adm'):
+                if assigned == ADMIN_IDENTIFIER:
                     continue
-                if assigned == 'X':
+                if assigned == doctors.unknown.ID:
                     Warning(f"An undefined doctor {assigned} is assigned on {day}.")
                     continue
 

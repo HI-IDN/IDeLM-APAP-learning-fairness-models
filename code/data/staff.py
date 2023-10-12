@@ -2,6 +2,9 @@ import csv
 import datetime
 import datetime as dt
 
+ADMIN_IDENTIFIER = 'AD'
+ADMIN_IDENTIFIERS = ['AD', 'Admin', 'Adm']
+
 
 class Doctors:
     """

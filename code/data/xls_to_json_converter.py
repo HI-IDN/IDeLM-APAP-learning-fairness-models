@@ -1,12 +1,13 @@
+import datetime
+
 import pandas as pd
 from utils import write_json
 import argparse
 import re
-from staff import Doctors
+from staff import Doctors, ADMIN_IDENTIFIERS
 
 # Global variable for staff
-staff = Doctors()
-ADMIN_IDENTIFIER = ['Admin', 'Adm', 'AD']
+staff = Doctors(start_date=datetime.date.min, end_date=datetime.date.max)
 
 
 def format_sheet(records, prev_month, this_month, simple_mode):
@@ -95,8 +96,8 @@ def format_sheet(records, prev_month, this_month, simple_mode):
                 '4G': [item.strip() for item in row['4G'].split(',')] if not pd.isna(row['4G']) else None
             },
             'CVCC': row['CVCC'] if not pd.isna(row['CVCC']) else None,
-            'Vacation': [item for item in vacations if item not in ADMIN_IDENTIFIER] if len(vacations) > 0 else None,
-            'Admin': len([item for item in vacations if item in ADMIN_IDENTIFIER]),
+            'Vacation': [item for item in vacations if item not in ADMIN_IDENTIFIERS] if len(vacations) > 0 else None,
+            'Admin': len([item for item in vacations if item in ADMIN_IDENTIFIERS]),
             'Requests': cleanup_request_string(row['Requests']) if not pd.isna(row['Requests']) else None
         }
         if 'Sedation' in records.columns:
