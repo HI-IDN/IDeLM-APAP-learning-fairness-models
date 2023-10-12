@@ -1,1 +1,101 @@
-{"OnCall": ["KC", "CA", "TT", "SK", "BK", "TI", "KC"], "OnLate": ["BK", "KK", "SL", "ES", "TI", "KC", "TI"], "Post-Call": ["SL", "KC", "CA", "TT", "SK", null, null], "Post-Holiday": ["JM", null, null, null, null, null, null], "Post-Late": ["JT", "BK", "KK", "SL", "ES", null, null], "Pre-Call": ["CA", "TT", "SK", "BK", "KC", "CA", "CA"], "Admin": [["DD"], ["JM"], ["JT"], ["CA"], ["JJ"], [null], [null]], "Day": ["Weekday", "Weekday", "Weekday", "Weekday", "Weekday", "Weekend", "Weekend"], "Order": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], "Period": {"start": "2023-06-19", "end": "2023-06-25"}}
+{
+  "OnCall": [
+    "KC",
+    "CA",
+    "TT",
+    "SK",
+    "BK",
+    "TI",
+    "KC"
+  ],
+  "OnLate": [
+    "BK",
+    "KK",
+    "SL",
+    "ES",
+    "TI",
+    "KC",
+    "TI"
+  ],
+  "Post-Call": [
+    "SL",
+    "KC",
+    "CA",
+    "TT",
+    "SK",
+    null,
+    null
+  ],
+  "Post-Holiday": [
+    "JM",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "Post-Late": [
+    "JT",
+    "BK",
+    "KK",
+    "SL",
+    "ES",
+    null,
+    null
+  ],
+  "Pre-Call": [
+    "CA",
+    "TT",
+    "SK",
+    "BK",
+    "KC",
+    "CA",
+    "CA"
+  ],
+  "Admin": [
+    [
+      "DD"
+    ],
+    [
+      "JM"
+    ],
+    [
+      "JT"
+    ],
+    [
+      "CA"
+    ],
+    [
+      "JJ"
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ]
+  ],
+  "Day": [
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekend",
+    "Weekend"
+  ],
+  "Order": [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun"
+  ],
+  "Period": {
+    "start": "2023-06-19",
+    "end": "2023-06-25"
+  }
+}

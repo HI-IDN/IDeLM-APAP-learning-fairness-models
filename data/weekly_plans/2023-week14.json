@@ -1,1 +1,101 @@
-{"OnCall": ["TI", "KK", "TT", "AY", "FM", "CA", "SK"], "OnLate": ["SK", "CA", "SL", "RR", "CA", "SK", "CA"], "Post-Call": ["CC", "TI", "KK", "TT", "AY", null, null], "Post-Holiday": ["BK", null, null, null, null, null, null], "Post-Late": ["JJ", "SK", "CA", "SL", "RR", null, null], "Pre-Call": ["KK", "TT", "AY", "FM", "SK", "KK", "KK"], "Admin": [["Adm1"], ["Adm1"], [null], [null], [null], [null], [null]], "Day": ["Weekday", "Weekday", "Weekday", "Weekday", "Weekday", "Weekend", "Weekend"], "Order": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], "Period": {"start": "2023-04-03", "end": "2023-04-09"}}
+{
+  "OnCall": [
+    "TI",
+    "KK",
+    "TT",
+    "AY",
+    "FM",
+    "CA",
+    "SK"
+  ],
+  "OnLate": [
+    "SK",
+    "CA",
+    "SL",
+    "RR",
+    "CA",
+    "SK",
+    "CA"
+  ],
+  "Post-Call": [
+    "CC",
+    "TI",
+    "KK",
+    "TT",
+    "AY",
+    null,
+    null
+  ],
+  "Post-Holiday": [
+    "BK",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "Post-Late": [
+    "JJ",
+    "SK",
+    "CA",
+    "SL",
+    "RR",
+    null,
+    null
+  ],
+  "Pre-Call": [
+    "KK",
+    "TT",
+    "AY",
+    "FM",
+    "SK",
+    "KK",
+    "KK"
+  ],
+  "Admin": [
+    [
+      "Adm1"
+    ],
+    [
+      "Adm1"
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ],
+    [
+      null
+    ]
+  ],
+  "Day": [
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekday",
+    "Weekend",
+    "Weekend"
+  ],
+  "Order": [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun"
+  ],
+  "Period": {
+    "start": "2023-04-03",
+    "end": "2023-04-09"
+  }
+}
