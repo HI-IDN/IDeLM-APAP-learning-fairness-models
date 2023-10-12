@@ -55,25 +55,80 @@
   ],
   "Admin": [
     [
-      "DD"
+      "Adm1"
     ],
     [
-      "JM"
+      "Adm1"
     ],
     [
-      "JT"
+      "Adm1"
     ],
     [
-      "CA"
+      "Adm1"
     ],
     [
-      "JJ"
-    ],
-    [
-      null
+      "Adm1"
     ],
     [
       null
+    ],
+    [
+      null
+    ]
+  ],
+  "Offsite": [
+    [
+      "DN",
+      "JJ",
+      "DN",
+      "X",
+      "MA",
+      "RR",
+      "CC",
+      "MI",
+      "CM"
+    ],
+    [
+      "MC",
+      "JM",
+      "MA",
+      "RR",
+      "CC",
+      "MI",
+      "CM"
+    ],
+    [
+      "JJ",
+      "JM",
+      "MA",
+      "RR",
+      "CC",
+      "MI",
+      "CM"
+    ],
+    [
+      "DN",
+      "JM",
+      "MA",
+      "RR",
+      "CC",
+      "MI",
+      "CM"
+    ],
+    [
+      "MC",
+      "JM",
+      "MA",
+      "RR",
+      "CC",
+      "MI",
+      "CM"
+    ],
+    [
+      "MC"
+    ],
+    [
+      "MC"
     ]
   ],
   "Day": [
@@ -85,6 +140,69 @@
     "Weekend",
     "Weekend"
   ],
+  "Unassigned": [
+    [
+      "AY",
+      "DD",
+      "ES",
+      "FM",
+      "KK",
+      "MC",
+      "SK",
+      "TI",
+      "TT"
+    ],
+    [
+      "AY",
+      "DD",
+      "DN",
+      "ES",
+      "FM",
+      "JJ",
+      "JT",
+      "SK",
+      "SL",
+      "TI"
+    ],
+    [
+      "AY",
+      "BK",
+      "DD",
+      "DN",
+      "ES",
+      "FM",
+      "JT",
+      "KC",
+      "MC",
+      "TI"
+    ],
+    [
+      "AY",
+      "CA",
+      "DD",
+      "FM",
+      "JJ",
+      "JT",
+      "KC",
+      "KK",
+      "MC",
+      "TI"
+    ],
+    [
+      "AY",
+      "CA",
+      "DD",
+      "DN",
+      "FM",
+      "JJ",
+      "JT",
+      "KK",
+      "SL",
+      "TT"
+    ],
+    [],
+    []
+  ],
   "Order": [
     "Mon",
     "Tue",
@@ -93,6 +211,30 @@
     "Fri",
     "Sat",
     "Sun"
+  ],
+  "Doctors": [
+    "AY",
+    "BK",
+    "CA",
+    "CC",
+    "CM",
+    "DD",
+    "DN",
+    "ES",
+    "FM",
+    "JJ",
+    "JM",
+    "JT",
+    "KC",
+    "KK",
+    "MA",
+    "MC",
+    "MI",
+    "RR",
+    "SK",
+    "SL",
+    "TI",
+    "TT"
   ],
   "Period": {
     "start": "2023-06-19",

@@ -76,6 +76,59 @@
       null
     ]
   ],
+  "Offsite": [
+    [
+      "MI",
+      "X",
+      "DD",
+      "JT",
+      "JJ",
+      "CM",
+      "KK"
+    ],
+    [
+      "TI",
+      "SK",
+      "DD",
+      "JT",
+      "JJ",
+      "CM",
+      "KK"
+    ],
+    [
+      "MA",
+      "SK",
+      "DD",
+      "JT",
+      "JJ",
+      "CM",
+      "KK"
+    ],
+    [
+      "MI",
+      "SK",
+      "DD",
+      "JT",
+      "JJ",
+      "CM",
+      "KK"
+    ],
+    [
+      "TI",
+      "SK",
+      "DD",
+      "JT",
+      "JJ",
+      "CM",
+      "KK"
+    ],
+    [
+      "TI"
+    ],
+    [
+      "TI"
+    ]
+  ],
   "Day": [
     "Weekday",
     "Weekday",
@@ -85,6 +138,70 @@
     "Weekend",
     "Weekend"
   ],
+  "Unassigned": [
+    [
+      "BK",
+      "CC",
+      "DN",
+      "ES",
+      "JM",
+      "KC",
+      "MA",
+      "MC",
+      "TI",
+      "TT"
+    ],
+    [
+      "BK",
+      "CC",
+      "DN",
+      "ES",
+      "FM",
+      "MA",
+      "MC",
+      "MI",
+      "SL",
+      "TT"
+    ],
+    [
+      "BK",
+      "CA",
+      "CC",
+      "ES",
+      "FM",
+      "MC",
+      "MI",
+      "RR",
+      "SL",
+      "TI"
+    ],
+    [
+      "AY",
+      "CA",
+      "CC",
+      "ES",
+      "FM",
+      "JM",
+      "MA",
+      "MC",
+      "SL",
+      "TI"
+    ],
+    [
+      "AY",
+      "CA",
+      "DN",
+      "ES",
+      "FM",
+      "JM",
+      "KC",
+      "MA",
+      "MI",
+      "SL"
+    ],
+    [],
+    []
+  ],
   "Order": [
     "Mon",
     "Tue",
@@ -93,6 +210,30 @@
     "Fri",
     "Sat",
     "Sun"
+  ],
+  "Doctors": [
+    "AY",
+    "BK",
+    "CA",
+    "CC",
+    "CM",
+    "DD",
+    "DN",
+    "ES",
+    "FM",
+    "JJ",
+    "JM",
+    "JT",
+    "KC",
+    "KK",
+    "MA",
+    "MC",
+    "MI",
+    "RR",
+    "SK",
+    "SL",
+    "TI",
+    "TT"
   ],
   "Period": {
     "start": "2023-09-11",

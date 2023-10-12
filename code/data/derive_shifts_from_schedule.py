@@ -6,6 +6,7 @@ import argparse
 import re
 import os
 import datetime
+from staff import Doctors
 
 WEEK = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 WEEKDAYS = WEEK[:5]
@@ -215,6 +216,8 @@ def generate_new_structure(current, before, after):
                 post_late = prev_weekday["Call"]["2"]
                 post_holiday = None
 
+        offsite = current[today]["Offsite"]
+
         today = today.split(' ')[0]  # Remove the AM/PM suffix if present
         result[today] = {
             "OnCall": on_call,
@@ -224,6 +227,7 @@ def generate_new_structure(current, before, after):
             "Post-Late": post_late,
             "Pre-Call": pre_call,
             "Admin": admin,
+            "Offsite": offsite,
             "Day": day_type
         }
 
@@ -313,6 +317,43 @@ def valid_filename(file_path):
     return file_path
 
 
+def find_unassigned(schedule, doctors):
+    """For each day, find the doctors who are not assigned to any shift, and add them under the key 'Unassigned'."""
+    for day in schedule:
+        day_type = schedule[day]['Day']
+        if day_type == 'Weekend':
+            unassigned = list()
+        else:
+            assigned_doctors = list()
+            unassigned = doctors.everyone.copy()
+
+            for shift, values in schedule[day].items():
+                if shift == 'Day':
+                    continue
+
+                if not isinstance(values, list):
+                    values = [values]
+                assigned_doctors.extend(values)
+
+            assigned_doctors = list(set(assigned_doctors))
+
+            for assigned in assigned_doctors:
+                if assigned is None:
+                    continue
+                if assigned.startswith('Adm'):
+                    continue
+                if assigned == 'X':
+                    Warning(f"An undefined doctor {assigned} is assigned on {day}.")
+                    continue
+
+                assert assigned in doctors.everyone, f"Doctor '{assigned}' is not in the list of doctors."
+                unassigned.remove(assigned)
+
+        schedule[day]['Unassigned'] = unassigned
+
+    return schedule
+
+
 def main():
     parser = argparse.ArgumentParser(description="Process weekly JSON data and generate new structure.")
 
@@ -341,7 +382,12 @@ def main():
     week_before, week_current, week_after = verify_and_flatten_weeks(week_before, week_current, week_after)
 
     new_structure = generate_new_structure(week_current, week_before, week_after)
+    doctors = Doctors(start_date=datetime.datetime.strptime(week_range['start'], '%Y-%m-%d').date(),
+                      end_date=datetime.datetime.strptime(week_range['end'], '%Y-%m-%d').date())
+    new_structure = find_unassigned(new_structure, doctors)
     new_structure = transpose_dict(new_structure)
+
+    new_structure['Doctors'] = doctors.everyone
     new_structure['Period'] = week_range
 
     write_json(new_structure, os.path.basename(args.output), os.path.dirname(args.output), indent_level=None)
