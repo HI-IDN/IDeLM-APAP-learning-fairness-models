@@ -2,9 +2,14 @@ import pandas as pd
 from utils import write_json
 import argparse
 import re
+from staff import Doctors
+
+# Global variable for staff
+staff = Doctors()
+ADMIN_IDENTIFIER = ['Admin', 'Adm', 'AD']
 
 
-def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
+def format_sheet(records, prev_month, this_month, simple_mode):
     current_day = 0
     next_month = {}
     month = None
@@ -38,20 +43,25 @@ def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
     records.rename(columns=col_mapping, inplace=True)
     records = records.applymap(lambda x: x.strip() if isinstance(x, str) else x)
 
-    def cleanup_request_string(request_string, mapping=name_to_anst):
+    def cleanup_request_string(request_string):
         # Replace all names with corresponding initials
-        for name, initials in mapping.items():
-            request_string = re.sub(re.escape(name), initials, request_string)
+        for doctor in staff:
+            request_string = re.sub(re.escape(doctor.name), doctor.ID, request_string)
+            for alias in [alias for alias in doctor.alias if alias is not None]:
+                request_string = re.sub(re.escape(alias), doctor.ID, request_string)
 
         return request_string
 
-    def replace_name_with_initials(data, mapping=name_to_anst):
+    def replace_name_with_initials(data):
         if isinstance(data, dict):
-            return {k: replace_name_with_initials(v, mapping) for k, v in data.items()}
+            return {k: replace_name_with_initials(v) for k, v in data.items()}
         elif isinstance(data, list):
-            return [replace_name_with_initials(item, mapping) for item in data]
+            return [replace_name_with_initials(item) for item in data]
+        elif isinstance(data, str):
+            initial = staff.find_doctor_identifier(data)
+            return initial if initial is not None else data
         else:
-            return mapping.get(data, data)
+            assert False, f"Unexpected type: {type(data)}"
 
     for index, row in records.iterrows():
         day = int(row['Day'])
@@ -74,18 +84,19 @@ def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
 
         shift = transform_shift(row[1])
         vacations = [item.strip() for item in row['Vacation'].split(',')] if not pd.isna(row['Vacation']) else []
+        vacations = [item for item in vacations if item != '']  # remove empty strings from vacations
         record = {
             'Call': {
-                1: row['Call1st'].strip() if not pd.isna(row['Call1st']) else None,
-                2: row['Call2nd'].strip() if not pd.isna(row['Call2nd']) else None
+                1: row['Call1st'].strip() if not pd.isna(row['Call1st']) else staff.unknown.ID,
+                2: row['Call2nd'].strip() if not pd.isna(row['Call2nd']) else staff.unknown.ID
             },
             'Gillette': {
                 'G1': row['G1'] if not pd.isna(row['G1']) else None,
                 '4G': [item.strip() for item in row['4G'].split(',')] if not pd.isna(row['4G']) else None
             },
             'CVCC': row['CVCC'] if not pd.isna(row['CVCC']) else None,
-            'Vacation': [item for item in vacations if item != 'Adm'] if len(vacations) > 0 else None,
-            'Admin': len([item for item in vacations if item == 'Adm']),
+            'Vacation': [item for item in vacations if item not in ADMIN_IDENTIFIER] if len(vacations) > 0 else None,
+            'Admin': len([item for item in vacations if item in ADMIN_IDENTIFIER]),
             'Requests': cleanup_request_string(row['Requests']) if not pd.isna(row['Requests']) else None
         }
         if 'Sedation' in records.columns:
@@ -109,17 +120,14 @@ def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
                 offsite.extend(record['Vacation'])
 
             record = {
-                'Call': record['Call'],
+                'Call': replace_name_with_initials(record['Call']),
                 'Admin': record['Admin'],
                 'Requests': record['Requests'],
-                'Offsite': offsite
+                'Offsite': replace_name_with_initials(offsite)
             }
 
         # Remove None values from record - they are not needed
         record = {k: v for k, v in record.items() if v is not None}
-
-        # Then use the function:
-        record = replace_name_with_initials(record)
 
         if day < current_day:
             month = next_month if month is this_month else this_month
@@ -136,7 +144,7 @@ def format_sheet(records, prev_month, this_month, simple_mode, name_to_anst):
     return prev_month, this_month, next_month
 
 
-def xls_to_data(filename, name_to_anst, simple_mode=False):
+def xls_to_data(filename, staff, simple_mode=False):
     # Extract filename from path to get year and quarter
     filename_only = filename.split('/')[-1]
     year = int(filename_only.split('_')[0])
@@ -173,7 +181,7 @@ def xls_to_data(filename, name_to_anst, simple_mode=False):
     for month_index, sheet_name in enumerate(xls.sheet_names):
         df = xls.parse(sheet_name)
 
-        prev_month, this_month, next_month = format_sheet(df, prev_month, this_month, simple_mode, name_to_anst)
+        prev_month, this_month, next_month = format_sheet(df, prev_month, this_month, simple_mode)
 
         # concatenate this month and data['months'][month]
         month = months_map[quarter][month_index]
@@ -250,9 +258,5 @@ assert args.filename.lower().endswith('.xls'), "Input filename must end with .xl
 output_filename = args.output if args.output else args.filename.replace('.xls', '.json')
 assert output_filename.lower().endswith('.json'), "Output filename must end with .json"
 
-# Create a dictionary to map names to initials
-staff_df = pd.read_csv("../data/staff.csv")
-name_to_anst = {row['name']: row['anst'] for index, row in staff_df.iterrows() if not pd.isna(row['name'])}
-
-data = xls_to_data(args.filename, name_to_anst, args.simple)
+data = xls_to_data(args.filename, staff, args.simple)
 write_json(data, output_filename, overwrite=True)
