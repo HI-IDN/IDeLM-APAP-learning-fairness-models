@@ -1,22 +1,12 @@
-from data.utils import read_json
+import datetime
+
 import pandas as pd
+from staff import Doctors
 
 
 class DataHandler:
     # Week-days:
     days = ['MON', 'TUE', 'WED', 'THU', 'FRI']
-
-    # All anesthesiologists:
-    doctors = ['AY', 'BK', 'CA', 'CC', 'CM', 'DD', 'DN', 'ES', 'FM', 'JJ', 'JM', 'JT', 'KC', 'KK', 'MA', 'MC',
-               'MI', 'RR', 'SK', 'SL', 'TI', 'TT']
-
-    # Cardiac anesthesiologists:
-    cardiac_doctors = ['BK', 'CA', 'CC', 'DD', 'ES', 'FM', 'JJ', 'JM', 'JT', 'KC', 'RR', 'SK', 'SL']
-    assert set(cardiac_doctors).issubset(set(doctors))
-
-    # Charge anesthesiologists:
-    charge_doctors = ['CA', 'CC', 'DN', 'JJ', 'JM', 'KC', 'MC', 'TI', 'BK']
-    assert set(charge_doctors).issubset(set(doctors))
 
     # Other sets of doctors:
     Whine = {}
@@ -30,7 +20,15 @@ class DataHandler:
     preassigned_doctors = []
     whine_doctors = []
 
-    def __init__(self, filepath):
+    def __init__(self, filepath, start_date=None, end_date=None):
+        start_date = (datetime.date.today() - datetime.timedelta(days=7) if start_date is None
+                      else datetime.datetime.strptime(start_date, '%Y-%m-%d').date())
+
+        end_date = (datetime.date.today() + datetime.timedelta(days=7) if end_date is None
+                    else datetime.datetime.strptime(end_date, '%Y-%m-%d').date())
+
+        self.staff = Doctors(start_date=start_date, end_date=end_date)
+
         # if the file is a csv
         if filepath.endswith('.csv'):
             self.load_csv(filepath)
@@ -50,7 +48,7 @@ class DataHandler:
 
         for day in self.days:
             assigned_doctors = df[day].iloc[idx].dropna().values.tolist()
-            self.Whine[day] = sorted(list(set(self.doctors) - set(assigned_doctors)))
+            self.Whine[day] = sorted(list(set(self.staff.everyone) - set(assigned_doctors)))
 
         # Extract preassigned doctors
 
@@ -82,10 +80,10 @@ class DataHandler:
             self.charge_order_dict[day] = len(self.Whine[day]) + len([o for o in self.preassigned[day]
                                                                       if o < len(self.Whine[day]) + 2])
             self.potential_charge_doctors[day] = sorted(
-                list(set(self.Whine[day] + self.call_and_late_call_doctors[day]) & set(self.charge_doctors)))
+                list(set(self.Whine[day] + self.call_and_late_call_doctors[day]) & set(self.staff.charge_doctors)))
 
             self.potential_cardiac_doctors[day] = sorted(
-                list(set(self.call_and_late_call_doctors[day]) & set(self.cardiac_doctors))
+                list(set(self.call_and_late_call_doctors[day]) & set(self.staff.cardiac_doctors))
             )
 
         # Extracts the admin doctors for each day.
@@ -110,3 +108,21 @@ class DataHandler:
 
         # Roles, that match the order of the orders
         self.roles = {i: df['Role'].iloc[i + start_row] for i in self.orders}
+
+
+if __name__ == '__main__':
+    data = DataHandler('data/input.csv')
+    print(data.Whine)
+    print(data.preassigned)
+    print(data.charge_order_dict)
+    print(data.potential_charge_doctors)
+    print(data.potential_cardiac_doctors)
+    print(data.call_and_late_call_doctors)
+    print(data.Admin)
+    print(data.orders)
+    print(data.roles)
+    print(data.preassigned_doctors)
+    print(data.whine_doctors)
+    print(data.staff.everyone)
+    print(data.staff.cardiac_doctors)
+    print(data.staff.charge_doctors)

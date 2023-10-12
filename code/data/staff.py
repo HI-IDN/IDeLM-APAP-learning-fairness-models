@@ -1,4 +1,5 @@
 import csv
+import datetime
 import datetime as dt
 
 
@@ -9,9 +10,9 @@ class Doctors:
 
     def __init__(self, file='../data/staff.csv', start_date=None, end_date=None):
         if end_date is None:
-            end_date = dt.date.max
+            end_date = datetime.date.max
         if start_date is None:
-            start_date = dt.date.min
+            start_date = datetime.date.today()
         assert end_date >= start_date, "End date must be after start date."
         self.unknown = Doctor('X', 'Placeholder', False, False, [])
 
