@@ -92,14 +92,19 @@ def format_sheet(records, prev_month, this_month, simple_mode):
                 2: row['Call2nd'].strip() if not pd.isna(row['Call2nd']) else staff.unknown.ID
             },
             'Gillette': {
-                'G1': row['G1'] if not pd.isna(row['G1']) else None,
-                '4G': [item.strip() for item in row['4G'].split(',')] if not pd.isna(row['4G']) else None
+                'G1': staff.find_doctor_identifier(row['G1']) if not pd.isna(row['G1']) else None,
+                '4G': [staff.find_doctor_identifier(item.strip()) for item in row['4G'].split(',')] if not pd.isna(
+                    row['4G']) else None
             },
             'CVCC': row['CVCC'] if not pd.isna(row['CVCC']) else None,
             'Vacation': [item for item in vacations if item not in ADMIN_IDENTIFIERS] if len(vacations) > 0 else None,
             'Admin': len([item for item in vacations if item in ADMIN_IDENTIFIERS]),
             'Requests': cleanup_request_string(row['Requests']) if not pd.isna(row['Requests']) else None
         }
+        # Remove duplicates in Gillette 4G if they are already in G1
+        if record['Gillette']['G1'] is not None and record['Gillette']['4G'] is not None:
+            record['Gillette']['4G'] = [item for item in record['Gillette']['4G'] if
+                                        item != record['Gillette']['G1']]
         if 'Sedation' in records.columns:
             record['Sedation'] = row['Sedation'] if not pd.isna(row['Sedation']) else None
         if 'CHC' in records.columns and not pd.isna(row['CHC']):
@@ -126,6 +131,16 @@ def format_sheet(records, prev_month, this_month, simple_mode):
                 'Requests': record['Requests'],
                 'Offsite': replace_name_with_initials(offsite)
             }
+
+        # Remove duplicate X's from offsite doctors, but keep the first one
+        if 'Offsite' in record and record['Offsite'] is not None:
+            record['Offsite'] = [item for index, item in enumerate(record['Offsite']) if
+                                 item != staff.unknown.ID or index == 0]
+
+        assert len(record['Offsite']) == len(set(record['Offsite'])), f"Duplicate offsite doctors found on {day}"
+        assert len(record['Call']) == len(set(record['Call'])), f"Duplicate call doctors found on {day}"
+        assert len(set(record['Call']) - set(record['Offsite'])) == len(record['Call']), \
+            f"Call doctors are subset of offsite doctors on {day}"
 
         # Remove None values from record - they are not needed
         record = {k: v for k, v in record.items() if v is not None}
