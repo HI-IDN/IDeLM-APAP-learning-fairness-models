@@ -151,7 +151,6 @@ class DoctorSchedule:
             elif turn_order == "Admin":
                 output.append(separator)
                 print_nested_list(turn_order, self.data[turn_order])
-                output.append(separator)
             else:
                 row = [turn_order] + [apply_color(item) if item is not None else ''
                                       for item in self.data[turn_order]]
