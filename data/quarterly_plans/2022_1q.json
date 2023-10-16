@@ -13,7 +13,6 @@
                     "Admin": 1,
                     "Offsite": [
                         "RR",
-                        "RR",
                         "KK",
                         "CA",
                         "TI",
@@ -151,13 +150,13 @@
                     "Offsite": [
                         "MA",
                         "RR",
-                        "X",
                         "DD",
                         "JJ",
                         "TT",
                         "MI",
                         "DN",
-                        "KK"
+                        "KK",
+                        "X"
                     ]
                 }
             },
@@ -425,14 +424,13 @@
                     "Offsite": [
                         "JJ",
                         "KC",
-                        "JJ",
-                        "X",
                         "RR",
                         "SL",
                         "CC",
                         "MA",
                         "CM",
-                        "KK"
+                        "KK",
+                        "X"
                     ]
                 }
             },
@@ -843,7 +841,6 @@
                     "Offsite": [
                         "MA",
                         "TI",
-                        "X",
                         "KK",
                         "JM",
                         "JT",
@@ -1121,14 +1118,13 @@
                     "Offsite": [
                         "JJ",
                         "MC",
-                        "JJ",
-                        "X",
                         "KK",
                         "RK",
                         "CM",
                         "KC",
                         "MA",
-                        "MI"
+                        "MI",
+                        "X"
                     ]
                 }
             }
@@ -1677,7 +1673,6 @@
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "TI",
                         "TI",
                         "ES",
                         "RR",

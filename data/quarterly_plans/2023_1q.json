@@ -164,11 +164,11 @@
                     "Offsite": [
                         "MA",
                         "ES",
-                        "X",
                         "TT",
                         "DN",
                         "MI",
-                        "CM"
+                        "CM",
+                        "X"
                     ]
                 }
             },
@@ -291,11 +291,11 @@
                     "Requests": "One admin spot for week",
                     "Offsite": [
                         "MA",
-                        "X",
                         "DD",
                         "BK",
                         "CM",
-                        "MI"
+                        "MI",
+                        "X"
                     ]
                 }
             },
@@ -418,11 +418,11 @@
                     "Requests": "One admin spot for week",
                     "Offsite": [
                         "TI",
-                        "X",
                         "SL",
                         "CA",
                         "JM",
-                        "KK"
+                        "KK",
+                        "X"
                     ]
                 }
             },
@@ -545,13 +545,12 @@
                     "Requests": "No admin for week",
                     "Offsite": [
                         "ES",
-                        "ES",
-                        "X",
                         "SL",
                         "CC",
                         "MC",
                         "DD",
-                        "TI"
+                        "TI",
+                        "X"
                     ]
                 }
             },
@@ -679,12 +678,12 @@
                     "Offsite": [
                         "TI",
                         "MI",
-                        "X",
                         "ES",
                         "RR",
                         "KC",
                         "MA",
-                        "CM"
+                        "CM",
+                        "X"
                     ]
                 }
             },
@@ -813,12 +812,12 @@
                         "MA",
                         "CM",
                         "BK",
-                        "X",
                         "TI",
                         "JT",
                         "JJ",
                         "KK",
-                        "DN"
+                        "DN",
+                        "X"
                     ]
                 }
             },
@@ -1078,12 +1077,12 @@
                     "Offsite": [
                         "DN",
                         "JJ",
-                        "X",
                         "AY",
                         "MA",
                         "JM",
                         "KC",
-                        "KK"
+                        "KK",
+                        "X"
                     ]
                 }
             },
@@ -1213,12 +1212,12 @@
                     "Offsite": [
                         "DN",
                         "JJ",
-                        "X",
                         "ES",
                         "AY",
                         "TI",
                         "SL",
-                        "KK"
+                        "KK",
+                        "X"
                     ]
                 }
             },
@@ -1345,12 +1344,12 @@
                     "Admin": 1,
                     "Offsite": [
                         "TI",
-                        "X",
                         "DD",
                         "MI",
                         "CC",
                         "JT",
-                        "BK"
+                        "BK",
+                        "X"
                     ]
                 }
             },
@@ -1476,13 +1475,13 @@
                     "Admin": 0,
                     "Offsite": [
                         "TI",
-                        "X",
                         "TT",
                         "RR",
                         "SK",
                         "FM",
                         "CA",
-                        "MI"
+                        "MI",
+                        "X"
                     ]
                 }
             },

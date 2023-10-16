@@ -148,14 +148,14 @@
                     "Admin": 1,
                     "Offsite": [
                         "RK",
-                        "X",
                         "KK",
                         "DN",
                         "JT",
                         "JM",
                         "DD",
                         "CA",
-                        "PM"
+                        "PM",
+                        "X"
                     ]
                 }
             },
@@ -289,14 +289,14 @@
                     "Offsite": [
                         "MA",
                         "MI",
-                        "X",
                         "SL",
                         "JM",
                         "RR",
                         "CA",
                         "DN",
                         "RK",
-                        "CM"
+                        "CM",
+                        "X"
                     ]
                 }
             },
@@ -430,7 +430,6 @@
                     "Offsite": [
                         "MA",
                         "MI",
-                        "X",
                         "SK",
                         "DD",
                         "JT",
@@ -438,7 +437,8 @@
                         "CM",
                         "TI",
                         "KC",
-                        "DN"
+                        "DN",
+                        "X"
                     ]
                 }
             },
@@ -574,14 +574,14 @@
                     "Offsite": [
                         "TI",
                         "CM",
-                        "X",
                         "SK",
                         "KC",
                         "MA",
                         "JJ",
                         "JT",
                         "JM",
-                        "KK"
+                        "KK",
+                        "X"
                     ]
                 }
             },
@@ -717,7 +717,6 @@
                     "Offsite": [
                         "MA",
                         "JJ",
-                        "X",
                         "RR",
                         "CM",
                         "SK",
@@ -725,7 +724,8 @@
                         "PM",
                         "KK",
                         "ES",
-                        "DN"
+                        "DN",
+                        "X"
                     ]
                 }
             },
@@ -861,14 +861,14 @@
                     "Offsite": [
                         "TI",
                         "RR",
-                        "X",
                         "SK",
                         "KC",
                         "DD",
                         "PM",
                         "CC",
                         "TT",
-                        "DN"
+                        "DN",
+                        "X"
                     ]
                 }
             },
@@ -1142,8 +1142,6 @@
                     "Offsite": [
                         "KC",
                         "JJ",
-                        "KC",
-                        "X",
                         "SL",
                         "TI",
                         "RR",
@@ -1151,7 +1149,8 @@
                         "CA",
                         "KK",
                         "MI",
-                        "RK"
+                        "RK",
+                        "X"
                     ]
                 }
             },
@@ -1288,14 +1287,13 @@
                     "Admin": 1,
                     "Offsite": [
                         "JJ",
-                        "JJ",
-                        "X",
                         "KK",
                         "MC",
                         "CC",
                         "SK",
                         "FM",
-                        "DN"
+                        "DN",
+                        "X"
                     ]
                 },
                 "Mon PM": {
@@ -1442,14 +1440,14 @@
                     "Admin": 1,
                     "Offsite": [
                         "TI",
-                        "X",
                         "SK",
                         "DD",
                         "ES",
                         "JJ",
                         "CM",
                         "TT",
-                        "PM"
+                        "PM",
+                        "X"
                     ]
                 }
             },
@@ -1720,14 +1718,14 @@
                     "Offsite": [
                         "RK",
                         "DN",
-                        "X",
                         "PM",
                         "CM",
                         "MA",
                         "DD",
                         "MI",
                         "SL",
-                        "KK"
+                        "KK",
+                        "X"
                     ]
                 }
             },

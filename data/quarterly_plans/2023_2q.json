@@ -12,12 +12,12 @@
                     "Offsite": [
                         "MC",
                         "ES",
-                        "X",
                         "JM",
                         "KC",
                         "MA",
                         "MI",
-                        "DN"
+                        "DN",
+                        "X"
                     ]
                 }
             },
@@ -149,12 +149,12 @@
                     "Admin": 1,
                     "Offsite": [
                         "MC",
-                        "X",
                         "KK",
                         "DN",
                         "AY",
                         "JJ",
-                        "MI"
+                        "MI",
+                        "X"
                     ]
                 }
             },
@@ -285,7 +285,6 @@
                     },
                     "Admin": 1,
                     "Offsite": [
-                        "TI",
                         "TI",
                         "DN",
                         "DD",
@@ -697,12 +696,12 @@
                     "Offsite": [
                         "MA",
                         "TT",
-                        "X",
                         "JJ",
                         "MC",
                         "DN",
                         "BK",
-                        "MI"
+                        "MI",
+                        "X"
                     ]
                 }
             },
@@ -833,13 +832,13 @@
                     "Offsite": [
                         "MA",
                         "TT",
-                        "X",
                         "JT",
                         "SL",
                         "KC",
                         "CM",
                         "ES",
-                        "DN"
+                        "DN",
+                        "X"
                     ]
                 }
             },
@@ -974,7 +973,6 @@
                     "Admin": 1,
                     "Offsite": [
                         "DN",
-                        "DN",
                         "DD",
                         "SL",
                         "CA",
@@ -1107,7 +1105,6 @@
                     },
                     "Admin": 0,
                     "Offsite": [
-                        "DN",
                         "DN",
                         "MI",
                         "X"
@@ -1258,13 +1255,12 @@
                     "Admin": 1,
                     "Offsite": [
                         "KC",
-                        "KC",
-                        "X",
                         "MA",
                         "DN",
                         "TT",
                         "CA",
-                        "KK"
+                        "KK",
+                        "X"
                     ]
                 }
             },
@@ -1394,12 +1390,12 @@
                     "Offsite": [
                         "MA",
                         "JJ",
-                        "X",
                         "MC",
                         "TI",
                         "TT",
                         "KC",
-                        "KK"
+                        "KK",
+                        "X"
                     ]
                 }
             },
@@ -1531,13 +1527,12 @@
                     "Offsite": [
                         "DN",
                         "JJ",
-                        "DN",
-                        "X",
                         "MA",
                         "RR",
                         "CC",
                         "MI",
-                        "CM"
+                        "CM",
+                        "X"
                     ]
                 }
             },
@@ -1666,13 +1661,13 @@
                     "Admin": 0,
                     "Offsite": [
                         "CM",
-                        "X",
                         "DD",
                         "JJ",
                         "ES",
                         "FM",
                         "SK",
-                        "MI"
+                        "MI",
+                        "X"
                     ]
                 }
             },

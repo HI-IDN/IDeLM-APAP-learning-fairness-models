@@ -132,10 +132,14 @@ def format_sheet(records, prev_month, this_month, simple_mode):
                 'Offsite': replace_name_with_initials(offsite)
             }
 
-        # Remove duplicate X's from offsite doctors, but keep the first one
-        if 'Offsite' in record and record['Offsite'] is not None:
-            record['Offsite'] = [item for index, item in enumerate(record['Offsite']) if
-                                 item != staff.unknown.ID or index == 0]
+        # Remove duplicate X's from offsite doctors
+        if 'Offsite' in record and staff.unknown.ID in record['Offsite']:
+            # Remove all instances of staff.unknown.ID from record['Offsite']
+            record['Offsite'] = [item for item in record['Offsite'] if item != staff.unknown.ID]
+
+            # Add a single instance of staff.unknown.ID to the end
+            record['Offsite'].append(staff.unknown.ID)
+            assert staff.unknown.ID in record['Offsite'], "Placeholder doctor found in offsite doctors"
 
         assert len(record['Offsite']) == len(set(record['Offsite'])), f"Duplicate offsite doctors found on {day}"
         assert len(record['Call']) == len(set(record['Call'])), f"Duplicate call doctors found on {day}"
