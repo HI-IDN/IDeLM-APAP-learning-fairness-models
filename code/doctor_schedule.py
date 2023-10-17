@@ -78,17 +78,25 @@ class DoctorSchedule:
         for ix, day in enumerate(self.data['Order']):
             order = []
             points = []
+            current_tally = 1
             for turn_order in self.TURN_ORDER:
                 items = self.data[turn_order][ix]
                 if isinstance(items, list):
-                    order.extend(items)
-                    points.extend([turn_order] * len(items))
-                else:
                     order.append(items)
-                    points.append(turn_order)
+                    if turn_order == 'Admin':
+                        points.append([ADMIN_POINTS] * len(items))
+                    else:
+                        points.append(list(range(current_tally, current_tally + len(items))))
+                    current_tally += len(items)
+                elif items is not None:
+                    order.append([items])
+                    points.append([current_tally])
+                    current_tally += 1
+                else:
+                    order.append([])
+                    points.append([])
             all_order.append(order)
             all_points.append(points)
-
         return working, offsite, assigment, all_order, all_points
 
     @property
@@ -118,7 +126,7 @@ class DoctorSchedule:
             item = color + doctor + default_color
             return f"  {item}"
 
-        def print_nested_list(key, values):
+        def print_nested_list(key, values, t):
             nonlocal output
             max_rows = max(len(item) for item in values)
             # Iterate for each row and print
@@ -130,42 +138,51 @@ class DoctorSchedule:
                         items_to_print.append(apply_color(col[row]))
                     else:
                         items_to_print.append('')
-
+                items_to_print = ([key] +
+                                  [apply_color(col[row]) if row < len(col) and col[row] else '' for col in values] +
+                                  [self.points[d][t][row] if len(self.points[d][t]) > row and self.points[d][t] else ''
+                                   for d, day in enumerate(self.data['Order'])]
+                                  )
+                print(row_format.format(*items_to_print))
                 output.append(row_format.format(*items_to_print))
 
         # Define the row format.
         # The first placeholder reserves 10 spaces and the rest reserve 4 spaces each.
-        row_format = "{:<12}" + "{:>4}" * len(self.data["Order"])
-        header = [""] + self.data["Order"]
+        row_format_short = "{:<12}" + "{:>4}" * len(self.data["Order"]) + "  | "
+        row_format = row_format_short + "{:>4}" * len(self.data["Order"])
+        header = [""] + self.data["Order"] + self.data["Order"]
         header = row_format.format(*header)
+        print(header)
         output.append(header)
         separator = '-' * len(header)
 
-        for turn_order in self.TURN_ORDER:
+        for t, turn_order in enumerate(self.TURN_ORDER):
             if turn_order == "Unassigned":
                 output.append(separator)
                 if not self.assigned:
-                    print_nested_list('Assigned', self.assigment)
+                    print_nested_list('Assigned', self.assigment, t)
                 else:
-                    print_nested_list(turn_order, self.data[turn_order])
+                    print_nested_list(turn_order, self.data[turn_order], t)
             elif turn_order == "Admin":
                 output.append(separator)
-                print_nested_list(turn_order, self.data[turn_order])
+                print_nested_list(turn_order, self.data[turn_order], t)
             else:
-                row = [turn_order] + [apply_color(item) if item is not None else ''
-                                      for item in self.data[turn_order]]
+                row = ([turn_order] + [apply_color(item) if item is not None else '' for item in self.data[turn_order]]
+                       + [",".join([str(x) for x in self.points[d][t]]) for d, day in enumerate(self.data['Order'])])
                 output.append(row_format.format(*row))
 
         output.append(separator)
         working = [len(self.working[day]) for day in self.data['Order']]
-        row = ['Working'] + working
+        sums = [sum(sum(turn_list) for turn_list in day_list) for day_list in self.points]
+        row = ['Working'] + working + sums
         output.append(row_format.format(*row))
         offsite = [len(self.offsite[day]) for day in self.data['Order']]
         row = ['Offsite'] + offsite
-        output.append(row_format.format(*row))
+        output.append(row_format_short.format(*row))
         total = [working[i] + offsite[i] for i in range(len(working))]
         row = ['Total'] + total
-        output.append(row_format.format(*row))
+        output.append(row_format_short.format(*row))
+
         return "\n".join(output)
 
 
@@ -179,6 +196,7 @@ def main():
     args = parser.parse_args()
     schedule = DoctorSchedule(args.input_filename)
     print(schedule.print(color_cardiac=True, color_charge=True))
+
     if args.output_filename is not None:
         with open(args.output_filename, 'w') as f:
             f.write(schedule.print())

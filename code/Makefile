@@ -36,6 +36,10 @@ move-weekly-json-files-to-tmp:
 $(WEEKLY_PLANS): move-weekly-json-files-to-tmp data/derive_shifts_from_schedule.py
 	rm -rf $(WEEKLY_PLANS) && mv $(WEEKLY_PLANS).tmp $(WEEKLY_PLANS)
 
+../data/weekly_plans_solved/%.txt: ../data/weekly_plans/%.json doctor_schedule.py
+	python3 doctor_schedule.py $< -o $@
+
+
 # Default target
 all:
 	make $(QUARTER_JSON)
