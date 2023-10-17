@@ -181,7 +181,7 @@ def generate_new_structure(current, before, after):
         if current[today]["Admin"] and current[today]["Admin"] > 0:
             admin = [ADMIN_IDENTIFIER for _ in range(current[today]["Admin"])]
         else:
-            admin = [None]
+            admin = None
 
         on_call = current[today]["Call"]["1"]
         on_late = current[today]["Call"]["2"]
