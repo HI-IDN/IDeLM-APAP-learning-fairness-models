@@ -4,6 +4,8 @@ import datetime as dt
 
 ADMIN_IDENTIFIER = 'AD'
 ADMIN_IDENTIFIERS = ['AD', 'Admin', 'Adm']
+CARDIAC_IDENTIFIER = "\u2764\u205F"  # Heart symbol
+CHARGE_IDENTIFIER = "\u2699\u205F"  # Gear symbol
 
 
 class Doctors:
@@ -41,6 +43,10 @@ class Doctors:
     def __str__(self):
         """Returns a string representation of all doctors."""
         return "\n".join([str(doc) for doc in self._doctors])
+
+    def get_name(self, doctor_info):
+        """Returns the name of the doctor with the given ID."""
+        return [doc.name for doc in self._doctors if doc.ID == doctor_info][0]
 
     @property
     def cardiac_doctors(self):
@@ -85,8 +91,8 @@ class Doctor:
         self.alias = alias
 
     def __str__(self):
-        heart = "\u2764" if self.can_be_cardiac else ""
-        gear = "\u2699" if self.can_be_charge else ""
+        heart = CARDIAC_IDENTIFIER if self.can_be_cardiac else ""
+        gear = CHARGE_IDENTIFIER if self.can_be_charge else ""
         # This will ensure no extra spaces between name, heart, and gear
         return f"{self.ID} {heart}{gear}".strip()
 
