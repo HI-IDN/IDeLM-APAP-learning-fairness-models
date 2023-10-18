@@ -165,7 +165,6 @@ class DoctorSchedule:
                                   [self.points[d][t][row] if len(self.points[d][t]) > row and self.points[d][t] else ''
                                    for d, day in enumerate(self.data['Order'])]
                                   )
-                print(row_format.format(*items_to_print))
                 output.append(row_format.format(*items_to_print))
 
         # Define the row format.
@@ -174,7 +173,6 @@ class DoctorSchedule:
         row_format = row_format_short + "{:>4}" * len(self.data["Order"])
         header = [""] + self.data["Order"] + self.data["Order"]
         header = row_format.format(*header)
-        print(header)
         output.append(header)
         separator = '-' * len(header)
 
