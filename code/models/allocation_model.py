@@ -87,14 +87,16 @@ class AllocationModel:
         """
 
         # Binary variables to indicate if a doctor is in charge for a particular day
-        self.z = self.m.addVars(self.data.charge_doctors, self.data.days, vtype=GRB.BINARY, name="InChargeDoctor_z")
+        self.z = self.m.addVars(self.data.staff.charge_doctors, self.data.days, vtype=GRB.BINARY,
+                                name="InChargeDoctor_z")
         """
         z[doctor, day]: 
         1 if the doctor is in charge on the specified day; 0 otherwise.
         """
 
         # Binary variables to indicate if a doctor is the Cardiac doctor for the day
-        self.w = self.m.addVars(self.data.cardiac_doctors, self.data.days, vtype=GRB.BINARY, name="CardiacDoctor_w")
+        self.w = self.m.addVars(self.data.staff.cardiac_doctors, self.data.days, vtype=GRB.BINARY,
+                                name="CardiacDoctor_w")
         """
         w[doctor, day]: 
         1 if the doctor is assigned as the Cardiac doctor on the specified day; 0 otherwise.
@@ -184,7 +186,7 @@ class AllocationModel:
 
         priority_charge_obj = sum(
             self.z[doctor, day] for day in self.data.days
-            for doctor in self.data.charge_doctors
+            for doctor in self.data.staff.charge_doctors
             if doctor in self.data.call_and_late_call_doctors[day]
         )
 
@@ -314,12 +316,12 @@ class AllocationModel:
         total_in_cardiac = {
             doctor: sum(
                 self.w[doctor, day] for day in self.data.days if doctor in self.data.call_and_late_call_doctors[day])
-            for doctor in self.data.cardiac_doctors
+            for doctor in self.data.staff.cardiac_doctors
         }
 
         # Ensure no doctor is assigned the "Cardiac" role more than the maximum allowed times
         self.m.addConstrs(
-            total_in_cardiac[doctor] <= self.max_w for doctor in self.data.cardiac_doctors
+            total_in_cardiac[doctor] <= self.max_w for doctor in self.data.staff.cardiac_doctors
         )
 
         return total_in_cardiac
@@ -350,18 +352,18 @@ class AllocationModel:
         # Ensure that if a doctor is in charge, they have the corresponding order for the day
         self.m.addConstrs(
             (self.x[doctor, day, self.data.charge_order_dict[day]] >= self.z[doctor, day]
-             for day in self.data.days for doctor in self.data.charge_doctors if doctor in self.data.Whine[day]),
+             for day in self.data.days for doctor in self.data.staff.charge_doctors if doctor in self.data.Whine[day]),
             name="charge_order_constr"
         )
 
         # Calculate total times each doctor is in charge over the week
         total_in_charge = {
-            doctor: sum(self.z[doctor, day] for day in self.data.days) for doctor in self.data.charge_doctors
+            doctor: sum(self.z[doctor, day] for day in self.data.days) for doctor in self.data.staff.charge_doctors
         }
 
         # Ensure no doctor is in charge more than the maximum allowed times
         self.m.addConstrs(
-            total_in_charge[doctor] <= self.max_z for doctor in self.data.charge_doctors
+            total_in_charge[doctor] <= self.max_z for doctor in self.data.staff.charge_doctors
         )
 
         return total_in_charge
@@ -387,7 +389,7 @@ class AllocationModel:
         """
 
         # Identify doctors who can assume both the Cardiac and Charge roles
-        common_doctors = set(self.data.charge_doctors) & set(self.data.cardiac_doctors)
+        common_doctors = set(self.data.staff.charge_doctors) & set(self.data.staff.cardiac_doctors)
 
         # Ensure that doctors in the common_doctors set cannot take on both roles simultaneously for each day
         self.m.addConstrs(
@@ -454,7 +456,7 @@ class AllocationModel:
         consecutive days, a constraint is added to ensure that the doctor isn't
         assigned the "Charge" role on both of those days.
         """
-        for doctor in self.data.charge_doctors:
+        for doctor in self.data.staff.charge_doctors:
             for i in range(len(self.data.days) - 1):  # -1 because we're looking at pairs of days
                 day1 = self.data.days[i]
                 day2 = self.data.days[i + 1]
@@ -495,9 +497,9 @@ class AllocationModel:
         for doctor in self.data.doctors:
             offset[doctor] = self.points[doctor] - target
             charge_cnt = sum([1 for day in self.data.days if
-                              self.z[doctor, day].X == 1]) if doctor in self.data.charge_doctors else 0
+                              self.z[doctor, day].X == 1]) if doctor in self.data.staff.charge_doctors else 0
             cardiac_cnt = sum([1 for day in self.data.days if
-                               self.w[doctor, day].X == 1]) if doctor in self.data.cardiac_doctors else 0
+                               self.w[doctor, day].X == 1]) if doctor in self.data.staff.cardiac_doctors else 0
 
             row = [self.points[doctor], offset[doctor],
                    charge_cnt if charge_cnt > 0 else '',

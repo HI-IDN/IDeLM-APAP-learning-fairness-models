@@ -1,7 +1,7 @@
 import datetime
 
 import pandas as pd
-from staff import Doctors
+from data.staff import Doctors
 
 
 class DataHandler:
