@@ -46,7 +46,7 @@ class AllocationModel:
         for day in self.data.days:
             self.solution[day] = []
             for order in self.data.orders:
-                for doctor in self.data.doctors:
+                for doctor in self.data.working_doctors:
                     if self.x[doctor, day, order].X > 0.5:  # If this doctor is assigned to this order on this day
                         self.solution[day].append(doctor)
                         break  # Move to the next order once a doctor is found
@@ -65,12 +65,17 @@ class AllocationModel:
         """Create decision variables for the model."""
 
         # Binary variables to indicate if a doctor is assigned to a particular order on a particular day
-        self.x = self.m.addVars(self.data.doctors, self.data.days, self.data.orders, vtype=GRB.BINARY,
+        self.x = self.m.addVars(self.data.working_doctors, self.data.days, self.data.orders, vtype=GRB.BINARY,
                                 name="DoctorOrderAssignment_x")
         """
         x[doctor, day, order]: 
         1 if the doctor is assigned to a particular order on the specified day; 0 otherwise.
         """
+        print(self.data.working_doctors)
+        print(self.data.days)
+        print(self.data.orders)
+        assert 1==2
+
 
         # Variable representing the target total_order value for all doctors
         self.central_value = self.m.addVar(vtype=GRB.INTEGER, name="TargetTotalOrderValue_central_value")
@@ -80,7 +85,7 @@ class AllocationModel:
         """
 
         # Binary variables to capture specific doctor conditions
-        self.y = self.m.addVars(self.data.doctors, vtype=GRB.BINARY, name="DoctorCondition_y")
+        self.y = self.m.addVars(self.data.working_doctors, vtype=GRB.BINARY, name="DoctorCondition_y")
         """
         y[doctor]: 
         1 if specific conditions (defined elsewhere in the code) are met for the doctor; 0 otherwise.
@@ -180,7 +185,7 @@ class AllocationModel:
         gamma = 0.001  # Weight to prioritize certain doctors for "In Charge" role on specific days
 
         # Define individual objectives
-        equity_obj = sum(self.y[doctor] for doctor in self.data.doctors)
+        equity_obj = sum(self.y[doctor] for doctor in self.data.working_doctors)
 
         cardiac_charge_obj = self.max_w + self.max_z + self.max_wz
 
@@ -201,7 +206,7 @@ class AllocationModel:
         Ensure that each order on a given day is assigned to at most one doctor.
         """
         self.m.addConstrs(
-            (sum(self.x[doctor, day, order] for doctor in self.data.doctors) <= 1
+            (sum(self.x[doctor, day, order] for doctor in self.data.working_doctors) <= 1
              for day in self.data.days for order in self.data.orders),
             name="unique_order_assignment"
         )
@@ -244,7 +249,7 @@ class AllocationModel:
             scheduled_doctors = set(self.data.Whine[day] + list(self.data.preassigned[day].values()))
 
             # Identify doctors who are not scheduled
-            not_scheduled = [doctor for doctor in self.data.doctors if doctor not in scheduled_doctors]
+            not_scheduled = [doctor for doctor in self.data.working_doctors if doctor not in scheduled_doctors]
 
             # Set x values to zero for these doctors
             self.m.addConstrs(self.x[doctor, day, order] == 0 for order in self.data.orders for doctor in not_scheduled)
@@ -259,7 +264,7 @@ class AllocationModel:
             # Ensure no doctor is assigned an order beyond the last preassigned one
             self.m.addConstrs(
                 self.x[doctor, day, order] == 0
-                for doctor in self.data.doctors
+                for doctor in self.data.working_doctors
                 for order in self.data.orders
                 if order > list(self.data.preassigned[day].keys())[-1]
             )
@@ -282,12 +287,12 @@ class AllocationModel:
         # the corresponding self.y[doctor] variable will be set to 1.
         self.m.addConstrs(
             (self.total_order[doctor] - (self.central_value - 1) >= -M * (1 - self.y[doctor])
-             for doctor in self.data.doctors),
+             for doctor in self.data.working_doctors),
             name="lower_bound_order_constraint"
         )
         self.m.addConstrs(
             ((self.central_value + 1) - self.total_order[doctor] >= -M * (1 - self.y[doctor])
-             for doctor in self.data.doctors),
+             for doctor in self.data.working_doctors),
             name="upper_bound_order_constraint"
         )
 
@@ -351,7 +356,7 @@ class AllocationModel:
 
         # Ensure that if a doctor is in charge, they have the corresponding order for the day
         self.m.addConstrs(
-            (self.x[doctor, day, self.data.charge_order_dict[day]] >= self.z[doctor, day]
+            (self.x[doctor, day, self.data.charge_order[day]] >= self.z[doctor, day]
              for day in self.data.days for doctor in self.data.staff.charge_doctors if doctor in self.data.Whine[day]),
             name="charge_order_constr"
         )
@@ -416,7 +421,7 @@ class AllocationModel:
         # Calculate the Total Order for Each Doctor based on their assignments over all days and orders
         total_order = {
             doctor: sum(order * self.x[doctor, day, order] for day in self.data.days for order in self.data.orders)
-            for doctor in self.data.doctors
+            for doctor in self.data.working_doctors
         }
 
         # Adjust the total_order values based on administrative duties
@@ -494,7 +499,7 @@ class AllocationModel:
         # Calculate offset and print rows
         target = int(self.central_value.X)
         offset = {}
-        for doctor in self.data.doctors:
+        for doctor in self.data.working_doctors:
             offset[doctor] = self.points[doctor] - target
             charge_cnt = sum([1 for day in self.data.days if
                               self.z[doctor, day].X == 1]) if doctor in self.data.staff.charge_doctors else 0
@@ -518,13 +523,13 @@ class AllocationModel:
         print(separator)
         for i in range(3):
             print(row_format.format(f"{i}:",
-                                    len([doctor for doctor in self.data.doctors if abs(offset[doctor]) == i])))
+                                    len([doctor for doctor in self.data.working_doctors if abs(offset[doctor]) == i])))
         print(row_format.format(f"{i + 1}+:",
-                                len([doctor for doctor in self.data.doctors if abs(offset[doctor]) > i])))
+                                len([doctor for doctor in self.data.working_doctors if abs(offset[doctor]) > i])))
 
         # Total doctor count
         print(separator)
-        print(f'Total Doctors: {len(self.data.doctors)}')
+        print(f'Total Doctors: {len(self.data.working_doctors)}')
 
     def debug_constraints(self):
         """ Warn if any constraints will definitely be violated."""

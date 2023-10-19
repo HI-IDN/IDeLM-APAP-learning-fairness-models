@@ -1,4 +1,4 @@
-from data.data_handler import DataHandler
+from data.schedule import DoctorSchedule
 from models.allocation_model import AllocationModel
 
 
@@ -6,13 +6,10 @@ def main():
     # Constants
 
     # Step 1: Fetch the data
-    df = DataHandler('data/input.csv')
+    data = DoctorSchedule('data/input.json')
 
-    # Step 2: Preprocess the data (if needed)
-    # df = some_preprocessing_function(df)
-
-    # Step 3: Apply the scheduling algorithm
-    model = AllocationModel(df, simple=False)
+    # Step 2: Apply the scheduling algorithm
+    model = AllocationModel(data, simple=False)
     if not model.solve():
         print("No solution found")
         model.debug_constraints()
