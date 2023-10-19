@@ -317,7 +317,7 @@ def valid_filename(file_path):
     return file_path
 
 
-def find_unassigned(schedule, doctors):
+def find_unassigned(schedule, staff):
     """For each day, find the doctors who are not assigned to any shift, and add them under the key 'Unassigned'."""
     for day in schedule:
         day_type = schedule[day]['Day']
@@ -325,7 +325,7 @@ def find_unassigned(schedule, doctors):
             unassigned = list()
         else:
             assigned_doctors = list()
-            unassigned = doctors.doctors.copy()
+            unassigned = staff.doctors.copy()
 
             for shift, values in schedule[day].items():
                 if shift == 'Day':
@@ -342,11 +342,11 @@ def find_unassigned(schedule, doctors):
                     continue
                 if assigned == ADMIN_IDENTIFIER:
                     continue
-                if assigned == doctors.unknown.ID:
+                if assigned == staff.unknown.ID:
                     Warning(f"An undefined doctor {assigned} is assigned on {day}.")
                     continue
 
-                assert assigned in doctors.doctors, f"Doctor '{assigned}' is not in the list of doctors."
+                assert assigned in staff.doctors, f"Doctor '{assigned}' is not in the list of doctors."
                 unassigned.remove(assigned)
 
         schedule[day]['Unassigned'] = unassigned
