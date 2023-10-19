@@ -71,11 +71,6 @@ class AllocationModel:
         x[doctor, day, order]: 
         1 if the doctor is assigned to a particular order on the specified day; 0 otherwise.
         """
-        print(self.data.working_doctors)
-        print(self.data.days)
-        print(self.data.orders)
-        assert 1==2
-
 
         # Variable representing the target total_order value for all doctors
         self.central_value = self.m.addVar(vtype=GRB.INTEGER, name="TargetTotalOrderValue_central_value")
