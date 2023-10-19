@@ -1,5 +1,6 @@
 from gurobipy import Model, GRB
 from data.utils import read_and_remove_file, extract_values_from_text
+from data.schedule import ADMIN_POINTS, Assignment
 
 
 class AllocationModel:
@@ -35,37 +36,42 @@ class AllocationModel:
         self.m.optimize()
 
         if self.m.status == GRB.OPTIMAL:
-            self._get_solution()
+            self.solution, self.points = self._get_solution()
             return True
         else:
             return False
 
     def _get_solution(self):
         """Get the solution to the model."""
-        self.solution = {}
+        whine_zone = {}
         for day in self.data.days:
-            self.solution[day] = []
+            whine_zone[day] = []
             for order in self.data.orders:
-                for doctor in self.data.working_doctors:
+                for doctor in self.data.doctors:
                     if self.x[doctor, day, order].X > 0.5:  # If this doctor is assigned to this order on this day
-                        self.solution[day].append(doctor)
+                        whine_zone[day].append(Assignment(doctor, order, 'Assigned'))
                         break  # Move to the next order once a doctor is found
 
-        # Pad the lists in schedule_dict to ensure they are of the same length
-        max_length = max(len(v) for v in self.solution.values())
-        for day, doctors_list in self.solution.items():
-            while len(doctors_list) < max_length:
-                doctors_list.append(None)
+        charge = {day: [doctor] for day in self.data.days for doctor in self.data.doctors
+                  if doctor in self.data.staff.charge_doctors and self.z[doctor, day].X == 1}
+        cardiac = {day: [doctor] for day in self.data.days for doctor in self.data.doctors
+                   if doctor in self.data.staff.cardiac_doctors and self.w[doctor, day].X == 1}
 
-        self.points = {}
-        for doctor in self.total_order.keys():
-            self.points[doctor] = int(self.total_order[doctor].getValue())
+        # Sanity checks
+        for day in self.data.days:
+            assert len(charge[day]) == 1, f"Only one doctor can be assigned to charge on {day}: {charge[day]}"
+            assert len(cardiac[day]) == 1, f"Only one doctor can be assigned to cardiac on {day}: {cardiac[day]}"
+            charge[day] = charge[day][0]
+            cardiac[day] = cardiac[day][0]
+
+        points = {doctor: int(total_order.getValue()) for doctor, total_order in self.total_order.items()}
+        return {'Whine': whine_zone, 'Charge': charge, 'Cardiac': cardiac}, points
 
     def _set_decision_variables(self):
         """Create decision variables for the model."""
 
         # Binary variables to indicate if a doctor is assigned to a particular order on a particular day
-        self.x = self.m.addVars(self.data.working_doctors, self.data.days, self.data.orders, vtype=GRB.BINARY,
+        self.x = self.m.addVars(self.data.doctors, self.data.days, self.data.orders, vtype=GRB.BINARY,
                                 name="DoctorOrderAssignment_x")
         """
         x[doctor, day, order]: 
@@ -80,7 +86,7 @@ class AllocationModel:
         """
 
         # Binary variables to capture specific doctor conditions
-        self.y = self.m.addVars(self.data.working_doctors, vtype=GRB.BINARY, name="DoctorCondition_y")
+        self.y = self.m.addVars(self.data.doctors, vtype=GRB.BINARY, name="DoctorCondition_y")
         """
         y[doctor]: 
         1 if specific conditions (defined elsewhere in the code) are met for the doctor; 0 otherwise.
@@ -180,7 +186,7 @@ class AllocationModel:
         gamma = 0.001  # Weight to prioritize certain doctors for "In Charge" role on specific days
 
         # Define individual objectives
-        equity_obj = sum(self.y[doctor] for doctor in self.data.working_doctors)
+        equity_obj = sum(self.y[doctor] for doctor in self.data.doctors)
 
         cardiac_charge_obj = self.max_w + self.max_z + self.max_wz
 
@@ -201,7 +207,7 @@ class AllocationModel:
         Ensure that each order on a given day is assigned to at most one doctor.
         """
         self.m.addConstrs(
-            (sum(self.x[doctor, day, order] for doctor in self.data.working_doctors) <= 1
+            (sum(self.x[doctor, day, order] for doctor in self.data.doctors) <= 1
              for day in self.data.days for order in self.data.orders),
             name="unique_order_assignment"
         )
@@ -244,7 +250,7 @@ class AllocationModel:
             scheduled_doctors = set(self.data.Whine[day] + list(self.data.preassigned[day].values()))
 
             # Identify doctors who are not scheduled
-            not_scheduled = [doctor for doctor in self.data.working_doctors if doctor not in scheduled_doctors]
+            not_scheduled = [doctor for doctor in self.data.doctors if doctor not in scheduled_doctors]
 
             # Set x values to zero for these doctors
             self.m.addConstrs(self.x[doctor, day, order] == 0 for order in self.data.orders for doctor in not_scheduled)
@@ -259,7 +265,7 @@ class AllocationModel:
             # Ensure no doctor is assigned an order beyond the last preassigned one
             self.m.addConstrs(
                 self.x[doctor, day, order] == 0
-                for doctor in self.data.working_doctors
+                for doctor in self.data.doctors
                 for order in self.data.orders
                 if order > list(self.data.preassigned[day].keys())[-1]
             )
@@ -282,12 +288,12 @@ class AllocationModel:
         # the corresponding self.y[doctor] variable will be set to 1.
         self.m.addConstrs(
             (self.total_order[doctor] - (self.central_value - 1) >= -M * (1 - self.y[doctor])
-             for doctor in self.data.working_doctors),
+             for doctor in self.data.doctors),
             name="lower_bound_order_constraint"
         )
         self.m.addConstrs(
             ((self.central_value + 1) - self.total_order[doctor] >= -M * (1 - self.y[doctor])
-             for doctor in self.data.working_doctors),
+             for doctor in self.data.doctors),
             name="upper_bound_order_constraint"
         )
 
@@ -416,7 +422,7 @@ class AllocationModel:
         # Calculate the Total Order for Each Doctor based on their assignments over all days and orders
         total_order = {
             doctor: sum(order * self.x[doctor, day, order] for day in self.data.days for order in self.data.orders)
-            for doctor in self.data.working_doctors
+            for doctor in self.data.doctors
         }
 
         # Adjust the total_order values based on administrative duties
@@ -435,14 +441,13 @@ class AllocationModel:
             dict: Updated total_order values after accounting for administrative duties.
         """
         # the number of points given to admin roles
-        q = 8  # Set to eight as default
 
         # Loop through each day's administrative doctors
         for day, admin_doctors in self.data.Admin.items():
             for doctor in admin_doctors:
                 # Ensure a valid doctor name and check if the doctor is also in the 'Whine' list for the day
                 if doctor != '' and doctor in self.data.Whine[day]:
-                    total_order[doctor] += q  # When a doctor is in an admin position they are given q points
+                    total_order[doctor] += ADMIN_POINTS
 
         return total_order
 
@@ -465,21 +470,11 @@ class AllocationModel:
 
     def print(self):
         """ Print the solution to the model. """
-        self._print_schedule()
+        self.data.set_solution(self.solution)
+        print(self.data.print_schedule(color_charge=True, color_cardiac=True))
         print()
-        self._print_points()
-
-    def _print_schedule(self):
-        """ Print the schedule in a readable table format. """
-        days = len(self.data.days)
-
-        header = "{:<6}" + "{:<4}" * days
-        row_format = "{:>6}" + "{:<4}" * days
-
-        print(header.format("Order", *self.data.days))
-        for i in range(len(self.solution[self.data.days[0]])):
-            row = [self.solution[day][i] if self.solution[day][i] else '' for day in self.data.days]
-            print(row_format.format(f'{i} ', *row))
+        print(self.data.print_doctors(self.points))
+        #self._print_points()
 
     def _print_points(self):
         """ Print the points for each doctor. """
@@ -494,7 +489,7 @@ class AllocationModel:
         # Calculate offset and print rows
         target = int(self.central_value.X)
         offset = {}
-        for doctor in self.data.working_doctors:
+        for doctor in self.data.doctors:
             offset[doctor] = self.points[doctor] - target
             charge_cnt = sum([1 for day in self.data.days if
                               self.z[doctor, day].X == 1]) if doctor in self.data.staff.charge_doctors else 0
@@ -518,13 +513,13 @@ class AllocationModel:
         print(separator)
         for i in range(3):
             print(row_format.format(f"{i}:",
-                                    len([doctor for doctor in self.data.working_doctors if abs(offset[doctor]) == i])))
+                                    len([doctor for doctor in self.data.doctors if abs(offset[doctor]) == i])))
         print(row_format.format(f"{i + 1}+:",
-                                len([doctor for doctor in self.data.working_doctors if abs(offset[doctor]) > i])))
+                                len([doctor for doctor in self.data.doctors if abs(offset[doctor]) > i])))
 
         # Total doctor count
         print(separator)
-        print(f'Total Doctors: {len(self.data.working_doctors)}')
+        print(f'Total Doctors: {len(self.data.doctors)}')
 
     def debug_constraints(self):
         """ Warn if any constraints will definitely be violated."""
