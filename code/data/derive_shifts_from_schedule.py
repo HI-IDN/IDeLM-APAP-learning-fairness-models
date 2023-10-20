@@ -325,7 +325,7 @@ def find_unassigned(schedule, staff):
             unassigned = list()
         else:
             assigned_doctors = list()
-            unassigned = staff.doctors.copy()
+            unassigned = staff.everyone.copy()
 
             for shift, values in schedule[day].items():
                 if shift == 'Day':
@@ -346,7 +346,7 @@ def find_unassigned(schedule, staff):
                     Warning(f"An undefined doctor {assigned} is assigned on {day}.")
                     continue
 
-                assert assigned in staff.doctors, f"Doctor '{assigned}' is not in the list of doctors."
+                assert assigned in staff.everyone, f"Doctor '{assigned}' is not in the list of doctors."
                 unassigned.remove(assigned)
 
         schedule[day]['Unassigned'] = unassigned
