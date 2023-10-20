@@ -384,41 +384,10 @@ def main():
 
     args = parser.parse_args()
     schedule = DoctorSchedule(args.input_filename)
-    sol = {'Whine': {
-        'Mon': [Assignment('SL', 1), Assignment('FM', 2), Assignment('SK', 3),
-                Assignment('AY', 4), Assignment('KC', 5), Assignment('ES', 6),
-                Assignment('TT', 7), Assignment('CC', 8), Assignment('JT', 9),
-                Assignment('MC', 10), Assignment('DN', 11), Assignment('RR', 12),
-                Assignment('CA', 13)],
-        'Tue': [Assignment('CA', 1), Assignment('RR', 2), Assignment('KC', 3),
-                Assignment('DN', 4), Assignment('CC', 5), Assignment('SK', 6),
-                Assignment('FM', 7), Assignment('TT', 8), Assignment('ES', 9),
-                Assignment('JT', 10), Assignment('SL', 11), Assignment('MC', 12),
-                Assignment('JM', 13), Assignment('AY', 14)],
-        'Wed': [Assignment('AY', 1), Assignment('JM', 2), Assignment('TT', 3),
-                Assignment('CC', 4), Assignment('FM', 5), Assignment('ES', 6),
-                Assignment('CA', 7), Assignment('SL', 8), Assignment('SK', 9),
-                Assignment('MC', 10), Assignment('DN', 11), Assignment('KC', 12)],
-        'Thu': [Assignment('KC', 1), Assignment('DN', 2), Assignment('RR', 3),
-                Assignment('AY', 4), Assignment('SL', 5), Assignment('ES', 6),
-                Assignment('SK', 7), Assignment('FM', 8), Assignment('MC', 9),
-                Assignment('CC', 10), Assignment('JT', 11), Assignment('TT', 12)],
-        'Fri': [Assignment('TT', 1), Assignment('JT', 2), Assignment('CC', 3),
-                Assignment('DN', 4), Assignment('ES', 5), Assignment('SK', 6),
-                Assignment('SL', 7), Assignment('AY', 8), Assignment('FM', 9),
-                Assignment('KC', 10), Assignment('CA', 11), Assignment('MC', 12),
-                Assignment('RR', 13)]},
-        'Charge': {'Mon': 'DN', 'Tue': 'MC', 'Wed': 'DN', 'Thu': 'CC', 'Fri': 'MC'},
-        'Cardiac': {'Mon': 'CA', 'Tue': 'JM', 'Wed': 'KC', 'Thu': 'JT', 'Fri': 'RR'}}
 
-    schedule.set_solution(sol)
     print(schedule.print_schedule(color_cardiac=True, color_charge=True))
     print()
-
-    points = {'AY': 30, 'CA': 31, 'CC': 31, 'DN': 32, 'ES': 32, 'FM': 32, 'JM': 15, 'JT': 31, 'KC': 32, 'MA': 0,
-              'MC': 52, 'RR': 30, 'SK': 32, 'SL': 31, 'TT': 32}
-
-    print(schedule.print_doctors(points))
+    print(schedule.print_doctors())
 
     if args.output_filename is not None:
         with open(args.output_filename, 'w') as f:
