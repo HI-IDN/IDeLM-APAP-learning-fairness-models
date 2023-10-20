@@ -78,7 +78,8 @@ class DoctorSchedule:
                             enumerate(self.assignments['Unassigned'][day])] for day in self.days},
             'Charge': {day: self.staff.unknown.ID for day in self.days},
             'Cardiac': {day: self.staff.unknown.ID for day in self.days},
-            'Points': {doc: None for doc in self.doctors}
+            'Points': {doc: None for doc in self.doctors},
+            'Target': None
         }
 
         # Sanity checks
@@ -216,7 +217,7 @@ class DoctorSchedule:
         """ Set the solution to the given solution. """
         for day, assignments in solution['Whine'].items():
             for assignment in assignments:
-                # assert assignment.shift == 'Assigned', f'Invalid shift {assignment.shift} found in solution.'
+                assert assignment.shift == 'Assigned', f'Invalid shift {assignment.shift} found in solution.'
                 if assignment.doctor in self.preassigned[day].values():
                     continue
                 else:
@@ -236,6 +237,8 @@ class DoctorSchedule:
         self.solution['Charge'] = solution['Charge']
         self.solution['Cardiac'] = solution['Cardiac']
         self.solution['Points'] = solution['Points']
+        self.solution['Target'] = solution['Target']
+        self.solution['Objective'] = solution['Objective']
 
     def _print_schedule(self, color_cardiac=False, color_charge=False):
         output = []
@@ -338,8 +341,8 @@ class DoctorSchedule:
         charge = {doc: sum([1 for c in self.solution['Charge'].values() if c == doc]) for doc in self.doctors}
         cardiac = {doc: sum([1 for c in self.solution['Cardiac'].values() if c == doc]) for doc in self.doctors}
 
-        row_format = "{:>10}{:>6}" + "{:>6}" * 4
-        header = ["Name", "ID", "Pt0", "Pt", CHARGE_IDENTIFIER, CARDIAC_IDENTIFIER]
+        row_format = "{:>10}{:>6}" + "{:>6}" * 5
+        header = ["Name", "ID", "Pt0", "Pt", "Delta", CHARGE_IDENTIFIER, CARDIAC_IDENTIFIER]
         header = row_format.format(*header)
         separator = '-' * len(header)
         output = [header, separator]
@@ -348,6 +351,8 @@ class DoctorSchedule:
             row = [self.staff.get_name(doc), doc,
                    preassigned_points[doc] if preassigned_points[doc] > 0 else '',
                    points_per_doctor[doc] if points_per_doctor[doc] > 0 else '',
+                   points_per_doctor[doc] - self.solution['Target'] if points_per_doctor[doc] > 0
+                                                                       and self.solution['Target'] is not None else '',
                    charge[doc] if charge[doc] > 0 else '',
                    cardiac[doc] if cardiac[doc] > 0 else ''
                    ]
@@ -356,6 +361,7 @@ class DoctorSchedule:
 
         pre_points = pd.Series([preassigned_points[doc] for doc in self.doctors if preassigned_points[doc] > 0])
         post_points = pd.Series([points_per_doctor[doc] for doc in self.doctors if points_per_doctor[doc] > 0])
+        offset = (post_points - self.solution['Target']) if self.solution['Target'] is not None else pd.Series([])
 
         # Calc and post points should match, but just in case...
         for doc in self.doctors:
@@ -366,18 +372,38 @@ class DoctorSchedule:
         charge = pd.Series([charge[doc] for doc in self.doctors])
         cardiac = pd.Series([cardiac[doc] for doc in self.doctors])
 
-        row = ['Average', '', round(pre_points.mean(), 1), round(post_points.mean(), 1),
+        row = ['Average', '', round(pre_points.mean(), 1), round(post_points.mean(), 1), round(offset.mean(), 1),
                round(charge.mean(), 1), round(cardiac.mean(), 1)]
         output.append(row_format.format(*row))
-        row = ['Median', '', round(pre_points.median(), 1), round(post_points.median(), 1),
+        row = ['Median', '', round(pre_points.median(), 1), round(post_points.median(), 1), round(offset.median(), 1),
                round(charge.median(), 1), round(cardiac.median(), 1)]
         output.append(row_format.format(*row))
-        row = ['Min', '', round(pre_points.min(), 1), round(post_points.min(), 1),
+        row = ['Min', '', round(pre_points.min(), 1), round(post_points.min(), 1), round(offset.min(), 1),
                round(charge.min(), 1), round(cardiac.min(), 1)]
         output.append(row_format.format(*row))
-        row = ['Max', '', round(pre_points.max(), 1), round(post_points.max(), 1),
+        row = ['Max', '', round(pre_points.max(), 1), round(post_points.max(), 1), round(offset.max(), 1),
                round(charge.max(), 1), round(cardiac.max(), 1)]
         output.append(row_format.format(*row))
+        output.append(separator)
+
+        if self.solution['Target'] is not None:
+            row_format = "{:>10}{:>7}{:>7}"
+            output.append(row_format.format('Delta', 'Count', 'AbsSum'))
+            for i in range(3):
+                in_band = (offset.abs() == i)
+                output.append(row_format.format(f"{i}:", in_band.sum(), offset[in_band].abs().sum()))
+            in_band = (offset.abs() > i)
+            output.append(row_format.format(f"{i + 1}+:", in_band.sum(), offset[in_band].abs().sum()))
+            output.append(separator)
+            row_format = "{:>15}{:>7}"
+            output.append(row_format.format('Objective', 'Value'))
+            for obj_var, obj_val in self.solution['Objective'].items():
+                output.append(row_format.format(obj_var, obj_val))
+            output.append(separator)
+            output.append(f'Target: {self.solution["Target"]} points per doctor.')
+
+        output.append(f'Count: {len(self.doctors)} doctors.')
+
         return "\n".join(output)
 
     def print(self, filename=None):

@@ -10,16 +10,6 @@ class AllocationModel:
         self.m = Model("DoctorScheduling")
         self.data = data  # DataHandler object, known parameters
 
-        # Decision variables
-        self.x = None  # DoctorOrderAssignment_x[doctor, day, order]
-        self.y = None  # DoctorCondition_y[doctor]
-        self.z = None  # InChargeDoctor_z[doctor, day]
-        self.w = None  # CardiacDoctor_w[doctor, day]
-        self.central_value = None  # TargetTotalOrderValue_central_value
-        self.max_w = None  # MaxAssignmentsAsCardiac_max_w
-        self.max_z = None  # MaxAssignmentsInCharge_max_z
-        self.max_wz = None  # MaxAssignmentsBothRoles_max_wz
-
         # Derived variables
         self.solution = None  # Dictionary containing the solution to the model
 
@@ -43,29 +33,38 @@ class AllocationModel:
 
     def _get_solution(self):
         """Get the solution to the model."""
-        whine_zone = {}
+        whine = {}
         for day in self.data.days:
-            whine_zone[day] = []
+            whine[day] = []
             for order in self.data.orders:
                 for doctor in self.data.doctors:
                     if self.x[doctor, day, order].X > 0.5:  # If this doctor is assigned to this order on this day
-                        whine_zone[day].append(Assignment(doctor, order, 'Assigned'))
+                        whine[day].append(Assignment(doctor, order, 'Assigned'))
                         break  # Move to the next order once a doctor is found
 
-        charge = {day: [doctor] for day in self.data.days for doctor in self.data.doctors
-                  if doctor in self.data.staff.charge_doctors and self.z[doctor, day].X == 1}
-        cardiac = {day: [doctor] for day in self.data.days for doctor in self.data.doctors
-                   if doctor in self.data.staff.cardiac_doctors and self.w[doctor, day].X == 1}
+        chrg = {day: [doctor] for day in self.data.days for doctor in self.data.doctors
+                if doctor in self.data.staff.charge_doctors and self.z[doctor, day].X == 1}
+        diac = {day: [doctor] for day in self.data.days for doctor in self.data.doctors
+                if doctor in self.data.staff.cardiac_doctors and self.w[doctor, day].X == 1}
 
         # Sanity checks
         for day in self.data.days:
-            assert len(charge[day]) == 1, f"Only one doctor can be assigned to charge on {day}: {charge[day]}"
-            assert len(cardiac[day]) == 1, f"Only one doctor can be assigned to cardiac on {day}: {cardiac[day]}"
-            charge[day] = charge[day][0]
-            cardiac[day] = cardiac[day][0]
+            assert len(chrg[day]) == 1, f"Only one doctor can be assigned to charge on {day}: {chrg[day]}"
+            assert len(diac[day]) == 1, f"Only one doctor can be assigned to cardiac on {day}: {diac[day]}"
+            chrg[day] = chrg[day][0]
+            diac[day] = diac[day][0]
 
         points = {doctor: int(total_order.getValue()) for doctor, total_order in self.total_order.items()}
-        return {'Whine': whine_zone, 'Charge': charge, 'Cardiac': cardiac, 'Points': points}
+        target = int(self.central_value.X)
+
+        # Objective values
+        obj = {
+            'equity': self.obj_var['equity'].X,
+            'cardiac_charge': self.obj_var['cardiac_charge'].X,
+            'priority_charge': self.obj_var['priority_charge'].X,
+            'total': self.obj_var['total'].X
+        }
+        return {'Whine': whine, 'Charge': chrg, 'Cardiac': diac, 'Points': points, 'Target': target, 'Objective': obj}
 
     def _set_decision_variables(self):
         """Create decision variables for the model."""
@@ -186,21 +185,37 @@ class AllocationModel:
         gamma = 0.001  # Weight to prioritize certain doctors for "In Charge" role on specific days
 
         # Define individual objectives
-        equity_obj = sum(self.y[doctor] for doctor in self.data.doctors)
+        self.obj_var = {
+            'equity': self.m.addVar(name="equity_obj"),
+            'cardiac_charge': self.m.addVar(name="cardiac_charge_obj"),
+            'priority_charge': self.m.addVar(name="priority_charge_obj"),
+            'total': self.m.addVar(name="total_obj")  # Dummy variable to combine the objectives
+        }
 
-        cardiac_charge_obj = self.max_w + self.max_z + self.max_wz
+        # Linking the equity objective to the dummy variable
+        self.m.addConstr(self.obj_var['equity'] == sum(self.y[doctor] for doctor in self.data.doctors))
 
-        priority_charge_obj = sum(
-            self.z[doctor, day] for day in self.data.days
-            for doctor in self.data.staff.charge_doctors
-            if doctor in self.data.call_and_late_call_doctors[day]
+        # Linking the cardiac charge objective to the dummy variable
+        self.m.addConstr(self.obj_var['cardiac_charge'] == self.max_w + self.max_z + self.max_wz)
+
+        # Linking the priority charge objective to the dummy variable
+        self.m.addConstr(
+            self.obj_var['priority_charge'] == sum(
+                self.z[doctor, day] for day in self.data.days
+                for doctor in self.data.staff.charge_doctors
+                if doctor in self.data.call_and_late_call_doctors[day]
+            )
         )
 
         # Combine the objectives using the weights
-        total_obj = alpha * equity_obj - beta * cardiac_charge_obj + gamma * priority_charge_obj
+        self.m.addConstr(self.obj_var['total'] ==
+                         + alpha * self.obj_var['equity']
+                         - beta * self.obj_var['cardiac_charge']
+                         + gamma * self.obj_var['priority_charge']
+                         )
 
         # Set the objective to maximize
-        self.m.setObjective(total_obj, GRB.MAXIMIZE)
+        self.m.setObjective(self.obj_var['total'], GRB.MAXIMIZE)
 
     def _add_order_uniqueness_constraint(self):
         """
@@ -468,52 +483,6 @@ class AllocationModel:
         """ Print the solution to the model. """
         self.data.set_solution(self.solution)
         self.data.print()
-        # self._print_points()
-
-    def _print_points(self):
-        """ Print the points for each doctor. """
-        stats = ["Points", "Offset", "Charge", "Cardiac"]
-        header = "{:<7}" + "{:>8}" * len(stats)
-        row_format = "{:<7}" + "{:>8}" * len(stats)
-
-        # Print header
-        print(header.format("Doctor", *stats))
-        print("-" * len(header.format("", *stats)))  # Separator
-
-        # Calculate offset and print rows
-        target = int(self.central_value.X)
-        offset = {}
-        for doctor in self.data.doctors:
-            offset[doctor] = self.points[doctor] - target
-            charge_cnt = sum([1 for day in self.data.days if
-                              self.z[doctor, day].X == 1]) if doctor in self.data.staff.charge_doctors else 0
-            cardiac_cnt = sum([1 for day in self.data.days if
-                               self.w[doctor, day].X == 1]) if doctor in self.data.staff.cardiac_doctors else 0
-
-            row = [self.points[doctor], offset[doctor],
-                   charge_cnt if charge_cnt > 0 else '',
-                   cardiac_cnt if cardiac_cnt > 0 else '']
-            print(row_format.format(doctor, *row))
-
-        # Print additional stats
-        separator = "-" * len(header.format("", *stats))
-        print(separator)
-        print(f"Target: {target} points per doctor")
-
-        # Offset table
-        header = "{:<6}{:>7}"
-        row_format = "{:>6}{:>7}"
-        print(header.format("Offset", "Count"))
-        print(separator)
-        for i in range(3):
-            print(row_format.format(f"{i}:",
-                                    len([doctor for doctor in self.data.doctors if abs(offset[doctor]) == i])))
-        print(row_format.format(f"{i + 1}+:",
-                                len([doctor for doctor in self.data.doctors if abs(offset[doctor]) > i])))
-
-        # Total doctor count
-        print(separator)
-        print(f'Total Doctors: {len(self.data.doctors)}')
 
     def debug_constraints(self):
         """ Warn if any constraints will definitely be violated."""
