@@ -2,7 +2,7 @@ import argparse
 import pandas as pd  # Assuming you're using pandas for file reading in your class.
 from data.utils import read_json
 import datetime
-from data.staff import Doctors, ADMIN_IDENTIFIER, CHARGE_IDENTIFIER, CARDIAC_IDENTIFIER
+from data.staff import Doctors, ADMIN_IDENTIFIER
 
 ADMIN_POINTS = 8
 
@@ -47,8 +47,7 @@ class DoctorSchedule:
         self.working, self.offsite, self.assignments = self.transform_rawdata(rawdata)
         self.doctors = sorted(set().union(*self.working.values()))
 
-        self.call_and_late_call_doctors = {day: [rawdata['OnCall'][i], rawdata['OnLate'][i]]
-                                           for i, day in enumerate(self.days)}
+        self.call_doctors = {day: [rawdata['OnCall'][i], rawdata['OnLate'][i]] for i, day in enumerate(self.days)}
 
         self.preassigned = {day: {} for day in self.days}
         for turn_order in self.TURN_ORDER:
@@ -61,14 +60,14 @@ class DoctorSchedule:
 
         # Potential charge doctors must be working on the day and capable of being in charge
         self.potential_charge_doctors = {
-            day: list(set(self.call_and_late_call_doctors[day]).union(self.Whine[day])
+            day: list(set(self.call_doctors[day]).union(self.Whine[day])
                       & set(self.staff.charge_doctors))
             for day in self.days
         }
 
         # Potential cardiac doctors must be working as either call or late call, and capable of being cardiac
         self.potential_cardiac_doctors = {
-            day: list(set(self.call_and_late_call_doctors[day])
+            day: list(set(self.call_doctors[day])
                       & set(self.staff.cardiac_doctors))
             for d, day in enumerate(self.days)
         }
@@ -85,8 +84,9 @@ class DoctorSchedule:
         # Sanity checks
         missing_shifts = [shift for shift in self.TURN_ORDER if shift not in rawdata]
         assert not missing_shifts, f"Shift {missing_shifts[0]} not found in schedule."
-        assert rawdata['Doctors'] == self.staff.everyone, ("Doctor list in schedule does not match doctor list in "
-                                                           "staff file.")
+        assert sorted(rawdata['Doctors']) == self.staff.everyone, ("Doctor list in schedule does not match doctor list "
+                                                                   "in staff file.")
+        # Sanity checks for each working day
         for ix, day in enumerate(self.days):
             if rawdata['Day'][ix] == 'Weekend':
                 continue
@@ -95,12 +95,14 @@ class DoctorSchedule:
             assert len(self.offsite[day]) == len(set(self.offsite[day])), f"Duplicate doctors found on {day}"
             assert (self.staff.everyone ==
                     sorted(self.working[day] + self.offsite[day])), f"Missing doctors found on {day}"
-            print(f"Day {day} passed sanity checks.")
-        print("All days passed sanity checks.\n")
 
     @property
     def days(self):
         return self.rawdata['Order']
+
+    @property
+    def weekdays(self):
+        return [day for d, day in enumerate(self.days) if self.rawdata['Day'][d] == 'Weekday']
 
     @property
     def orders(self):
@@ -109,7 +111,7 @@ class DoctorSchedule:
 
     @property
     def Admin(self):
-        return {day: self.rawdata['Admin'][d] for d, day in enumerate(self.days)}
+        return {day: self.rawdata['Admin'][d] if self.rawdata['Admin'][d] else [] for d, day in enumerate(self.days)}
 
     @property
     def charge_order(self):
@@ -227,7 +229,7 @@ class DoctorSchedule:
                             break
 
         # Check that the solution matches the original unassigned pool of doctors
-        for day in self.days:
+        for day in self.weekdays:
             assert set(assignment.doctor for assignment in self.solution['Whine'][day]) == set(self.Whine[day]), \
                 f"Whine zone on {day} does not match the solution."
             assert solution['Charge'][day] in self.working[day], f"Charge doctor not working on {day}"
@@ -302,12 +304,14 @@ class DoctorSchedule:
 
         output.append(separator)
         # Print the charge doctors
-        charge = [apply_color(item) for item in self.solution['Charge'].values()]
+        charge = [apply_color(self.solution['Charge'][day]) if day in self.solution['Charge']
+                  else '' for day in self.days]
         row = ['Charge'] + charge
         output.append(row_format_short.format(*row))
 
         # Print the cardiac doctors
-        cardiac = [apply_color(item) for item in self.solution['Cardiac'].values()]
+        cardiac = [apply_color(self.solution['Cardiac'][day]) if day in self.solution['Cardiac']
+                   else '' for day in self.days]
         row = ['Cardiac'] + cardiac
         output.append(row_format_short.format(*row))
 
@@ -342,7 +346,7 @@ class DoctorSchedule:
         cardiac = {doc: sum([1 for c in self.solution['Cardiac'].values() if c == doc]) for doc in self.doctors}
 
         row_format = "{:>10}{:>6}" + "{:>6}" * 5
-        header = ["Name", "ID", "Pt0", "Pt", "Delta", CHARGE_IDENTIFIER, CARDIAC_IDENTIFIER]
+        header = ["Name", "ID", "Pt0", "Pt", "Delta", "Chrg", "Diac"]
         header = row_format.format(*header)
         separator = '-' * len(header)
         output = [header, separator]
@@ -398,7 +402,7 @@ class DoctorSchedule:
             row_format = "{:>15}{:>7}"
             output.append(row_format.format('Objective', 'Value'))
             for obj_var, obj_val in self.solution['Objective'].items():
-                output.append(row_format.format(obj_var, obj_val))
+                output.append(row_format.format(obj_var, round(obj_val, 2)))
             output.append(separator)
             output.append(f'Target: {self.solution["Target"]} points per doctor.')
 
@@ -413,10 +417,13 @@ class DoctorSchedule:
             print('\n')
             print(self._print_doctors())
         else:
-            with open(filename, 'w') as f:
+            with open(filename, 'a') as f:
+                separator = '=' * 80
+                f.write(f"{separator}\nWritten on: {datetime.datetime.now()}\n\n")
                 f.write(self._print_schedule())
-                f.write('\n\n')
+                f.write(f'\n{separator}\n')
                 f.write(self._print_doctors())
+                f.write(f"\n{separator}\n")
 
 
 def main():

@@ -1,5 +1,5 @@
 from gurobipy import Model, GRB
-from data.utils import read_and_remove_file, extract_values_from_text
+from data.utils import read_and_remove_file, extract_values_from_text, write_json
 from data.schedule import ADMIN_POINTS, Assignment
 
 
@@ -27,6 +27,7 @@ class AllocationModel:
 
         if self.m.status == GRB.OPTIMAL:
             self.solution = self._get_solution()
+            self.data.set_solution(self.solution)
             return True
         else:
             return False
@@ -34,7 +35,7 @@ class AllocationModel:
     def _get_solution(self):
         """Get the solution to the model."""
         whine = {}
-        for day in self.data.days:
+        for day in self.data.weekdays:
             whine[day] = []
             for order in self.data.orders:
                 for doctor in self.data.doctors:
@@ -42,13 +43,13 @@ class AllocationModel:
                         whine[day].append(Assignment(doctor, order, 'Assigned'))
                         break  # Move to the next order once a doctor is found
 
-        chrg = {day: [doctor] for day in self.data.days for doctor in self.data.doctors
+        chrg = {day: [doctor] for day in self.data.weekdays for doctor in self.data.doctors
                 if doctor in self.data.staff.charge_doctors and self.z[doctor, day].X == 1}
-        diac = {day: [doctor] for day in self.data.days for doctor in self.data.doctors
+        diac = {day: [doctor] for day in self.data.weekdays for doctor in self.data.doctors
                 if doctor in self.data.staff.cardiac_doctors and self.w[doctor, day].X == 1}
 
         # Sanity checks
-        for day in self.data.days:
+        for day in self.data.weekdays:
             assert len(chrg[day]) == 1, f"Only one doctor can be assigned to charge on {day}: {chrg[day]}"
             assert len(diac[day]) == 1, f"Only one doctor can be assigned to cardiac on {day}: {diac[day]}"
             chrg[day] = chrg[day][0]
@@ -92,7 +93,7 @@ class AllocationModel:
         """
 
         # Binary variables to indicate if a doctor is in charge for a particular day
-        self.z = self.m.addVars(self.data.staff.charge_doctors, self.data.days, vtype=GRB.BINARY,
+        self.z = self.m.addVars(self.data.staff.charge_doctors, self.data.weekdays, vtype=GRB.BINARY,
                                 name="InChargeDoctor_z")
         """
         z[doctor, day]: 
@@ -100,7 +101,7 @@ class AllocationModel:
         """
 
         # Binary variables to indicate if a doctor is the Cardiac doctor for the day
-        self.w = self.m.addVars(self.data.staff.cardiac_doctors, self.data.days, vtype=GRB.BINARY,
+        self.w = self.m.addVars(self.data.staff.cardiac_doctors, self.data.weekdays, vtype=GRB.BINARY,
                                 name="CardiacDoctor_w")
         """
         w[doctor, day]: 
@@ -201,9 +202,9 @@ class AllocationModel:
         # Linking the priority charge objective to the dummy variable
         self.m.addConstr(
             self.obj_var['priority_charge'] == sum(
-                self.z[doctor, day] for day in self.data.days
+                self.z[doctor, day] for day in self.data.weekdays
                 for doctor in self.data.staff.charge_doctors
-                if doctor in self.data.call_and_late_call_doctors[day]
+                if doctor in self.data.call_doctors[day]
             )
         )
 
@@ -234,7 +235,7 @@ class AllocationModel:
         # Each doctor in Whine[day] is assigned to one order per day
         self.m.addConstrs(
             (sum(self.x[doctor, day, order] for order in self.data.orders) == 1
-             for day in self.data.days for doctor in self.data.Whine[day]),
+             for day in self.data.weekdays for doctor in self.data.Whine[day]),
             name="whine_doctor_order_assignment"
         )
 
@@ -260,7 +261,7 @@ class AllocationModel:
         who are not scheduled. This ensures that doctors who are not available for the day
         are not assigned any orders.
         """
-        for day in self.data.days:
+        for day in self.data.weekdays:
             # Get the set of doctors who are scheduled for the day
             scheduled_doctors = set(self.data.Whine[day] + list(self.data.preassigned[day].values()))
 
@@ -330,13 +331,13 @@ class AllocationModel:
         # Ensure each day has exactly one Cardiac doctor
         self.m.addConstrs(
             (sum(self.w[doctor, day] for doctor in self.data.potential_cardiac_doctors[day]) == 1
-             for day in self.data.days), name="one_cardiac"
+             for day in self.data.weekdays), name="one_cardiac"
         )
 
         # Calculate total times each doctor is assigned the "Cardiac" role over the week
         total_in_cardiac = {
             doctor: sum(
-                self.w[doctor, day] for day in self.data.days if doctor in self.data.call_and_late_call_doctors[day])
+                self.w[doctor, day] for day in self.data.weekdays if doctor in self.data.call_doctors[day])
             for doctor in self.data.staff.cardiac_doctors
         }
 
@@ -367,19 +368,19 @@ class AllocationModel:
         # Ensure only one potential charge doctor is in charge each day
         self.m.addConstrs(
             (sum(self.z[doctor, day] for doctor in self.data.potential_charge_doctors[day]) == 1
-             for day in self.data.days), name="one_in_charge"
+             for day in self.data.weekdays), name="one_in_charge"
         )
 
         # Ensure that if a doctor is in charge, they have the corresponding order for the day
         self.m.addConstrs(
-            (self.x[doctor, day, self.data.charge_order[day]] >= self.z[doctor, day]
-             for day in self.data.days for doctor in self.data.staff.charge_doctors if doctor in self.data.Whine[day]),
+            (self.x[doc, day, self.data.charge_order[day]] >= self.z[doc, day]
+             for day in self.data.weekdays for doc in self.data.staff.charge_doctors if doc in self.data.Whine[day]),
             name="charge_order_constr"
         )
 
         # Calculate total times each doctor is in charge over the week
         total_in_charge = {
-            doctor: sum(self.z[doctor, day] for day in self.data.days) for doctor in self.data.staff.charge_doctors
+            doctor: sum(self.z[doctor, day] for day in self.data.weekdays) for doctor in self.data.staff.charge_doctors
         }
 
         # Ensure no doctor is in charge more than the maximum allowed times
@@ -414,7 +415,7 @@ class AllocationModel:
 
         # Ensure that doctors in the common_doctors set cannot take on both roles simultaneously for each day
         self.m.addConstrs(
-            (self.w[doctor, day] + self.z[doctor, day] <= 1 for doctor in common_doctors for day in self.data.days),
+            (self.w[doctor, day] + self.z[doctor, day] <= 1 for doctor in common_doctors for day in self.data.weekdays),
             name="cardiac_charge_conflict"
         )
 
@@ -476,13 +477,26 @@ class AllocationModel:
             for i in range(len(self.data.days) - 1):  # -1 because we're looking at pairs of days
                 day1 = self.data.days[i]
                 day2 = self.data.days[i + 1]
-                self.m.addConstr(self.z[doctor, day1] + self.z[doctor, day2] <= 1,
-                                 name=f"no_consecutive_charge_{doctor}_{day1}_{day2}")
+                if day1 in self.data.weekdays and day2 in self.data.weekdays:
+                    self.m.addConstr(self.z[doctor, day1] + self.z[doctor, day2] <= 1,
+                                     name=f"no_consecutive_charge_{doctor}_{day1}_{day2}")
 
     def print(self, filename=None):
         """ Print the solution to the model. """
-        self.data.set_solution(self.solution)
-        self.data.print()
+        self.data.print(filename)
+
+    def save(self, filename):
+        """ Save the solution to the model. """
+        data = self.data.rawdata
+        data['Solution'] = {
+            'Assignment': [[(a.doctor, a.points) for a in self.solution['Whine'][day]] if day in self.data.weekdays
+                           else None for day in self.data.days],
+            'Charge': [self.solution['Charge'][day] if day in self.data.weekdays else None for day in self.data.days],
+            'Cardiac': [self.solution['Cardiac'][day] if day in self.data.weekdays else None for day in self.data.days],
+            'Points': self.solution['Points'],
+            'Target': self.solution['Target'],
+        }
+        write_json(data, filename, overwrite=True)
 
     def debug_constraints(self):
         """ Warn if any constraints will definitely be violated."""
@@ -495,8 +509,10 @@ class AllocationModel:
         self.m.write(temp_file)
         error_message = read_and_remove_file(temp_file)
         print(error_message)
-        days = extract_values_from_text(error_message, self.data.days)
+
         # Print staff for troublesome days
+        days = extract_values_from_text(error_message, self.data.days)
+        print("Staff for troublesome days:")
         for day in days:
             print(f"Day {day}:")
             print(f"Potential Charge Doctors: {self.data.potential_charge_doctors[day]}")
@@ -505,7 +521,7 @@ class AllocationModel:
             print(f'Admin Doctors: {self.data.Admin[day]}')
             print(f'Preassigned Doctors: {self.data.preassigned[day]}')
 
-        for day in self.data.days:
+        for day in self.data.weekdays:
             if day not in self.data.potential_charge_doctors:
                 raise ValueError(f"'potential_charge_doctors' does not have the day {day}")
             if day not in self.data.potential_cardiac_doctors:
@@ -513,15 +529,15 @@ class AllocationModel:
 
         # Check if the length of the list of doctors for each day is >= 1
         for day, doctors_list in self.data.potential_charge_doctors.items():
-            if len(doctors_list) < 1:
+            if day in self.data.weekdays and len(doctors_list) < 1:
                 raise ValueError(f"There are less than 1 doctor(s) for day {day} in 'potential_charge_doctors'")
 
         for day, doctors_list in self.data.potential_cardiac_doctors.items():
-            if len(doctors_list) < 1:
+            if day in self.data.weekdays and len(doctors_list) < 1:
                 raise ValueError(f"There are less than 1 doctor(s) for day {day} in 'potential_cardiac_doctors'")
 
         # If it's exactly 1 doctor for both, check if they are different
-        for day in self.data.days:
+        for day in self.data.weekdays:
             if len(self.data.potential_charge_doctors[day]) == 1 and len(self.data.potential_cardiac_doctors[day]) == 1:
                 if self.data.potential_charge_doctors[day][0] == self.data.potential_cardiac_doctors[day][0]:
                     raise ValueError(
@@ -529,7 +545,7 @@ class AllocationModel:
                         f"is listed as the only option for both charge and cardiac on day {day}")
 
         # Check if the union of the doctors from both dictionaries for each day is >= 2
-        for day in self.data.days:
+        for day in self.data.weekdays:
             unique_doctors = set(self.data.potential_charge_doctors[day]) | set(
                 self.data.potential_cardiac_doctors[day])
             if len(unique_doctors) < 2:

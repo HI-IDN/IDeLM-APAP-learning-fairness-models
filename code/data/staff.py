@@ -36,7 +36,7 @@ class Doctors:
                 name = row[3]
                 alias = row[4].split(";")
                 self._doctors.append(Doctor(initial, name, diac, charge, alias if alias != [''] else []))
-        self._everyone = [doc.ID for doc in self._doctors]
+        self._everyone = sorted([doc.ID for doc in self._doctors])
         self._cardiac_doctors = [doc.ID for doc in self._doctors if doc.can_be_cardiac]
         self._charge_doctors = [doc.ID for doc in self._doctors if doc.can_be_charge]
 
