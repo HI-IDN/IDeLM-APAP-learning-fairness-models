@@ -77,7 +77,8 @@ class DoctorSchedule:
             'Whine': {day: [Assignment(self.staff.unknown.ID, list(a.points)[i]) for i, a in
                             enumerate(self.assignments['Unassigned'][day])] for day in self.days},
             'Charge': {day: self.staff.unknown.ID for day in self.days},
-            'Cardiac': {day: self.staff.unknown.ID for day in self.days}
+            'Cardiac': {day: self.staff.unknown.ID for day in self.days},
+            'Points': {doc: None for doc in self.doctors}
         }
 
         # Sanity checks
@@ -234,8 +235,9 @@ class DoctorSchedule:
 
         self.solution['Charge'] = solution['Charge']
         self.solution['Cardiac'] = solution['Cardiac']
+        self.solution['Points'] = solution['Points']
 
-    def print_schedule(self, color_cardiac=False, color_charge=False):
+    def _print_schedule(self, color_cardiac=False, color_charge=False):
         output = []
 
         def apply_color(doctor):
@@ -328,7 +330,7 @@ class DoctorSchedule:
 
         return "\n".join(output)
 
-    def print_doctors(self, precalculated_points=None):
+    def _print_doctors(self):
         """ Print information per doctor. """
         preassigned_points = {doc: self.get_points_per_doctor(doc, add_assigned=False) for doc in self.doctors}
         points_per_doctor = {doc: self.get_points_per_doctor(doc, add_assigned=True) for doc in self.doctors}
@@ -336,8 +338,8 @@ class DoctorSchedule:
         charge = {doc: sum([1 for c in self.solution['Charge'].values() if c == doc]) for doc in self.doctors}
         cardiac = {doc: sum([1 for c in self.solution['Cardiac'].values() if c == doc]) for doc in self.doctors}
 
-        row_format = "{:>10}{:>6}" + "{:>6}" * 5
-        header = ["Name", "ID", "Pt0", "Pt", "Calc", CHARGE_IDENTIFIER, CARDIAC_IDENTIFIER]
+        row_format = "{:>10}{:>6}" + "{:>6}" * 4
+        header = ["Name", "ID", "Pt0", "Pt", CHARGE_IDENTIFIER, CARDIAC_IDENTIFIER]
         header = row_format.format(*header)
         separator = '-' * len(header)
         output = [header, separator]
@@ -346,8 +348,6 @@ class DoctorSchedule:
             row = [self.staff.get_name(doc), doc,
                    preassigned_points[doc] if preassigned_points[doc] > 0 else '',
                    points_per_doctor[doc] if points_per_doctor[doc] > 0 else '',
-                   precalculated_points[
-                       doc] if precalculated_points is not None and doc in precalculated_points else '',
                    charge[doc] if charge[doc] > 0 else '',
                    cardiac[doc] if cardiac[doc] > 0 else ''
                    ]
@@ -357,22 +357,40 @@ class DoctorSchedule:
         pre_points = pd.Series([preassigned_points[doc] for doc in self.doctors if preassigned_points[doc] > 0])
         post_points = pd.Series([points_per_doctor[doc] for doc in self.doctors if points_per_doctor[doc] > 0])
 
-        charge = pd.Series([charge[doc] for doc in self.doctors if charge[doc] > 0])
-        cardiac = pd.Series([cardiac[doc] for doc in self.doctors if cardiac[doc] > 0])
+        # Calc and post points should match, but just in case...
+        for doc in self.doctors:
+            if doc in self.solution['Points'] and self.solution['Points'][doc] is not None:
+                assert self.solution['Points'][doc] == points_per_doctor[doc], \
+                    f'Calc points for {doc} does not match post points.'
 
-        row = ['Average', '', round(pre_points.mean(), 1), round(post_points.mean(), 1), '',
+        charge = pd.Series([charge[doc] for doc in self.doctors])
+        cardiac = pd.Series([cardiac[doc] for doc in self.doctors])
+
+        row = ['Average', '', round(pre_points.mean(), 1), round(post_points.mean(), 1),
                round(charge.mean(), 1), round(cardiac.mean(), 1)]
         output.append(row_format.format(*row))
-        row = ['Median', '', round(pre_points.median(), 1), round(post_points.median(), 1), '',
+        row = ['Median', '', round(pre_points.median(), 1), round(post_points.median(), 1),
                round(charge.median(), 1), round(cardiac.median(), 1)]
         output.append(row_format.format(*row))
-        row = ['Min', '', round(pre_points.min(), 1), round(post_points.min(), 1), '',
+        row = ['Min', '', round(pre_points.min(), 1), round(post_points.min(), 1),
                round(charge.min(), 1), round(cardiac.min(), 1)]
         output.append(row_format.format(*row))
-        row = ['Max', '', round(pre_points.max(), 1), round(post_points.max(), 1), '',
+        row = ['Max', '', round(pre_points.max(), 1), round(post_points.max(), 1),
                round(charge.max(), 1), round(cardiac.max(), 1)]
         output.append(row_format.format(*row))
         return "\n".join(output)
+
+    def print(self, filename=None):
+        """ Write the schedule and doctor information. If filename is None, print to stdout."""
+        if filename is None:
+            print(self._print_schedule(color_cardiac=True, color_charge=True))
+            print('\n')
+            print(self._print_doctors())
+        else:
+            with open(filename, 'w') as f:
+                f.write(self._print_schedule())
+                f.write('\n\n')
+                f.write(self._print_doctors())
 
 
 def main():
@@ -385,13 +403,10 @@ def main():
     args = parser.parse_args()
     schedule = DoctorSchedule(args.input_filename)
 
-    print(schedule.print_schedule(color_cardiac=True, color_charge=True))
-    print()
-    print(schedule.print_doctors())
+    schedule.print()  # Print to stdout
 
     if args.output_filename is not None:
-        with open(args.output_filename, 'w') as f:
-            f.write(schedule.print_schedule())
+        schedule.print(args.output_filename)
 
 
 if __name__ == "__main__":

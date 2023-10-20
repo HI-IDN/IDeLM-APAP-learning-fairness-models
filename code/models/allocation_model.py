@@ -36,7 +36,7 @@ class AllocationModel:
         self.m.optimize()
 
         if self.m.status == GRB.OPTIMAL:
-            self.solution, self.points = self._get_solution()
+            self.solution = self._get_solution()
             return True
         else:
             return False
@@ -65,7 +65,7 @@ class AllocationModel:
             cardiac[day] = cardiac[day][0]
 
         points = {doctor: int(total_order.getValue()) for doctor, total_order in self.total_order.items()}
-        return {'Whine': whine_zone, 'Charge': charge, 'Cardiac': cardiac}, points
+        return {'Whine': whine_zone, 'Charge': charge, 'Cardiac': cardiac, 'Points': points}
 
     def _set_decision_variables(self):
         """Create decision variables for the model."""
@@ -440,14 +440,10 @@ class AllocationModel:
         Returns:
             dict: Updated total_order values after accounting for administrative duties.
         """
-        # the number of points given to admin roles
-
         # Loop through each day's administrative doctors
-        for day, admin_doctors in self.data.Admin.items():
+        for admin_doctors in self.data.Admin.values():
             for doctor in admin_doctors:
-                # Ensure a valid doctor name and check if the doctor is also in the 'Whine' list for the day
-                if doctor != '' and doctor in self.data.Whine[day]:
-                    total_order[doctor] += ADMIN_POINTS
+                total_order[doctor] += ADMIN_POINTS
 
         return total_order
 
@@ -468,13 +464,11 @@ class AllocationModel:
                 self.m.addConstr(self.z[doctor, day1] + self.z[doctor, day2] <= 1,
                                  name=f"no_consecutive_charge_{doctor}_{day1}_{day2}")
 
-    def print(self):
+    def print(self, filename=None):
         """ Print the solution to the model. """
         self.data.set_solution(self.solution)
-        print(self.data.print_schedule(color_charge=True, color_cardiac=True))
-        print()
-        print(self.data.print_doctors(self.points))
-        #self._print_points()
+        self.data.print()
+        # self._print_points()
 
     def _print_points(self):
         """ Print the points for each doctor. """
