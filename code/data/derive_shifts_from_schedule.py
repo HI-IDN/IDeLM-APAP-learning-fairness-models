@@ -395,19 +395,20 @@ def main():
     new_structure['Doctors'] = doctors.everyone
     new_structure['Period'] = week_range
 
-    filename = os.path.basename(args.output)
+    filename = args.output
+    illegal = filename.replace(".json", "_ILLEGAL.json")
+    if os.path.exists(illegal):
+        os.remove(illegal)
 
     # Verify the output structure is valid
     try:
         schedule = DoctorSchedule(new_structure)
         schedule.print()
-        overwrite = False
     except Exception as e:
         print(f"Error while generating the new schedule: {e}")
-        filename = filename.replace(".json", "_ILLEGAL.json")
-        overwrite = True
+        filename = illegal
 
-    write_json(new_structure, filename, os.path.dirname(args.output), indent_level=None, overwrite=overwrite)
+    write_json(new_structure, filename, indent_level=None)
 
 
 if __name__ == "__main__":

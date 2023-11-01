@@ -74,6 +74,8 @@ class DoctorSchedule:
                       & set(self.staff.charge_doctors))
             for day in self.days
         }
+        assert all(self.potential_charge_doctors[day] for day in self.weekdays), \
+            "No potential charge doctors found for at least one day."
 
         # Potential cardiac doctors must be working as either call or late call, and capable of being cardiac
         self.potential_cardiac_doctors = {
@@ -81,6 +83,8 @@ class DoctorSchedule:
                       & set(self.staff.cardiac_doctors))
             for d, day in enumerate(self.days)
         }
+        assert all(self.potential_cardiac_doctors[day] for day in self.weekdays), \
+            "No potential cardiac doctors found for at least one day."
 
         self.solution = {
             'Whine': {day: [Assignment(self.staff.unknown.ID, list(a.points)[i]) for i, a in
@@ -130,7 +134,10 @@ class DoctorSchedule:
 
     @property
     def Admin(self):
-        return {day: self.rawdata['Admin'][d] if self.rawdata['Admin'][d] else [] for d, day in enumerate(self.days)}
+        return {
+            day: [item for item in self.rawdata['Admin'][d] if item != ADMIN_IDENTIFIER
+                  ] if self.rawdata['Admin'][d] else [] for d, day in enumerate(self.days)
+        }
 
     @property
     def charge_order(self):

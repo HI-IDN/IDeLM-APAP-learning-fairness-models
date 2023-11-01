@@ -25,9 +25,12 @@ def write_json(data, filepath, directory=None, indent_level=4, overwrite=False):
 
     if directory is not None:
         assert isinstance(directory, str)
-        if not os.path.exists(directory):
-            os.makedirs(directory)
         filepath = os.path.join(directory, filepath)
+    else:
+        directory = os.path.dirname(filepath)
+
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
     if os.path.exists(filepath) and not overwrite:
         raise FileExistsError(f"File already exists: {filepath}")
