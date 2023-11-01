@@ -1,12 +1,13 @@
-from utils import read_json, write_json, read_and_remove_file
-from utils import transpose_dict
-from utils import are_dates_separated_by_delta
-from utils import search_for_file
+from .utils import read_json, write_json
+from .utils import transpose_dict
+from .utils import are_dates_separated_by_delta
+from .utils import search_for_file
 import argparse
 import re
 import os
 import datetime
-from staff import Doctors, ADMIN_IDENTIFIER
+from .staff import Doctors, ADMIN_IDENTIFIER
+from .schedule import DoctorSchedule
 
 WEEK = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 WEEKDAYS = WEEK[:5]
@@ -190,11 +191,10 @@ def generate_new_structure(current, before, after):
             # Ignore the AM shifts
             continue
         elif 'PM' in today:
-            next_day = get_next_shift(today, current, after)
             post_call = None
             post_late = None
             post_holiday = None
-            pre_call = next_day["Call"]["1"]
+            pre_call = None
         else:
             # General case: weekday
             next_weekday, is_tomorrow = get_next_weekday(today, current, after, weekdays, weekdays_after)
@@ -211,10 +211,15 @@ def generate_new_structure(current, before, after):
                 post_call = pm_shift["Call"]["1"]
                 post_late = pm_shift["Call"]["2"]
                 post_holiday = am_shift["Call"]["1"]
+                if post_holiday == post_call or post_holiday == post_late:
+                    post_holiday = None
             else:
                 post_call = prev_weekday["Call"]["1"]
                 post_late = prev_weekday["Call"]["2"]
                 post_holiday = None
+
+            if post_late == pre_call:
+                pre_call = None  # Can be an issue immediately after a holiday (e.g. Monday after a long weekend)
 
         offsite = current[today]["Offsite"]
 
@@ -390,7 +395,19 @@ def main():
     new_structure['Doctors'] = doctors.everyone
     new_structure['Period'] = week_range
 
-    write_json(new_structure, os.path.basename(args.output), os.path.dirname(args.output), indent_level=None)
+    filename = os.path.basename(args.output)
+
+    # Verify the output structure is valid
+    try:
+        schedule = DoctorSchedule(new_structure)
+        schedule.print()
+        overwrite = False
+    except Exception as e:
+        print(f"Error while generating the new schedule: {e}")
+        filename = filename.replace(".json", "_ILLEGAL.json")
+        overwrite = True
+
+    write_json(new_structure, filename, os.path.dirname(args.output), indent_level=None, overwrite=overwrite)
 
 
 if __name__ == "__main__":

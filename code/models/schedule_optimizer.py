@@ -1,9 +1,9 @@
 import argparse
 import logging
-import sys
 
 from data.schedule import DoctorSchedule
 from models.allocation_model import AllocationModel
+
 import os
 
 

@@ -263,10 +263,10 @@ class AllocationModel:
         """
         for day in self.data.weekdays:
             # Get the set of doctors who are scheduled for the day
-            scheduled_doctors = set(self.data.Whine[day] + list(self.data.preassigned[day].values()))
+            scheduled_doctors = set(self.data.working[day])
 
             # Identify doctors who are not scheduled
-            not_scheduled = [doctor for doctor in self.data.doctors if doctor not in scheduled_doctors]
+            not_scheduled = self.data.doctors - scheduled_doctors
 
             # Set x values to zero for these doctors
             self.m.addConstrs(self.x[doctor, day, order] == 0 for order in self.data.orders for doctor in not_scheduled)

@@ -1,9 +1,8 @@
 from collections import OrderedDict
 import datetime
 import argparse
-import os
 import math
-from utils import read_json, write_json
+from .utils import read_json, write_json
 
 
 def split_into_weeks(data):

@@ -1,8 +1,9 @@
 import argparse
 import pandas as pd  # Assuming you're using pandas for file reading in your class.
-from data.utils import read_json
+from .utils import read_json
 import datetime
-from data.staff import Doctors, ADMIN_IDENTIFIER
+from .staff import Doctors, ADMIN_IDENTIFIER
+from collections import Counter
 
 ADMIN_POINTS = 8
 
@@ -34,8 +35,17 @@ class DoctorSchedule:
         'Admin'
     ]
 
-    def __init__(self, filepath):
-        rawdata = read_json(filepath)
+    def __init__(self, data_source):
+        # Determine if data_source is a filepath or raw data
+        if isinstance(data_source, str):  # It's a filepath
+            rawdata = read_json(data_source)
+        else:  # Assume it's raw data
+            rawdata = data_source
+        self._process_data(rawdata)
+
+    def _process_data(self, rawdata):
+        """ Process the raw data from the JSON file. """
+
         # Extract 'start' and 'end' values and convert to date format
         start_date = datetime.datetime.strptime(rawdata['Period']['start'], '%Y-%m-%d').date()
         end_date = datetime.datetime.strptime(rawdata['Period']['end'], '%Y-%m-%d').date()
@@ -45,7 +55,7 @@ class DoctorSchedule:
         self.Whine = {day: rawdata['Unassigned'][i] for i, day in enumerate(self.days)}
 
         self.working, self.offsite, self.assignments = self.transform_rawdata(rawdata)
-        self.doctors = sorted(set().union(*self.working.values()))
+        self.doctors = set().union(*self.working.values())
 
         self.call_doctors = {day: [rawdata['OnCall'][i], rawdata['OnLate'][i]] for i, day in enumerate(self.days)}
 
@@ -87,14 +97,23 @@ class DoctorSchedule:
         assert sorted(rawdata['Doctors']) == self.staff.everyone, ("Doctor list in schedule does not match doctor list "
                                                                    "in staff file.")
         # Sanity checks for each working day
-        for ix, day in enumerate(self.days):
-            if rawdata['Day'][ix] == 'Weekend':
-                continue
+        for day in self.days:
 
-            assert len(self.working[day]) == len(set(self.working[day])), f"Duplicate doctors found on {day}"
-            assert len(self.offsite[day]) == len(set(self.offsite[day])), f"Duplicate doctors found on {day}"
-            assert (self.staff.everyone ==
-                    sorted(self.working[day] + self.offsite[day])), f"Missing doctors found on {day}"
+            working_counts = Counter(self.working[day])
+            offsite_counts = Counter(self.offsite[day])
+
+            duplicate_working_doctors = [doc for doc, count in working_counts.items() if count > 1]
+            duplicate_offsite_doctors = [doc for doc, count in offsite_counts.items() if count > 1]
+
+            assert not duplicate_working_doctors, f"Duplicate doctors found working on {day}: {', '.join(duplicate_working_doctors)}"
+            assert not duplicate_offsite_doctors, f"Duplicate doctors found offsite on {day}: {', '.join(duplicate_offsite_doctors)}"
+
+            overlapping_doctors = set(self.working[day]) & set(self.offsite[day])
+            assert not overlapping_doctors, f"Offsite doctors {overlapping_doctors} found working on {day}"
+
+            if day in self.weekdays:
+                assert (sorted(self.staff.everyone) == sorted(
+                    self.working[day] + self.offsite[day])), f"Missing doctors found on {day}"
 
     @property
     def days(self):
