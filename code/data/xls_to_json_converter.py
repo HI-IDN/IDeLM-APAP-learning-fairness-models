@@ -132,6 +132,9 @@ def format_sheet(records, prev_month, this_month, simple_mode):
                 'Offsite': replace_name_with_initials(offsite)
             }
 
+        # Remove call doctors from offsite doctors (they are not offsite)
+        record['Offsite'] = [item for item in record['Offsite'] if item not in record['Call']]
+
         # Remove duplicate X's from offsite doctors
         if 'Offsite' in record and staff.unknown.ID in record['Offsite']:
             # Remove all instances of staff.unknown.ID from record['Offsite']
@@ -164,7 +167,7 @@ def format_sheet(records, prev_month, this_month, simple_mode):
     return prev_month, this_month, next_month
 
 
-def xls_to_data(filename, staff, simple_mode=False):
+def xls_to_data(filename, simple_mode=False):
     # Extract filename from path to get year and quarter
     filename_only = filename.split('/')[-1]
     year = int(filename_only.split('_')[0])
@@ -278,5 +281,5 @@ assert args.filename.lower().endswith('.xls'), "Input filename must end with .xl
 output_filename = args.output if args.output else args.filename.replace('.xls', '.json')
 assert output_filename.lower().endswith('.json'), "Output filename must end with .json"
 
-data = xls_to_data(args.filename, staff, args.simple)
+data = xls_to_data(args.filename, args.simple)
 write_json(data, output_filename, overwrite=True)

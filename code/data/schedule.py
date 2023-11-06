@@ -1,6 +1,6 @@
 import argparse
 import pandas as pd  # Assuming you're using pandas for file reading in your class.
-from .utils import read_json
+from .utils import read_json, is_workday, generate_dates
 import datetime
 from .staff import Doctors, ADMIN_IDENTIFIER
 from collections import Counter
@@ -42,6 +42,7 @@ class DoctorSchedule:
         else:  # Assume it's raw data
             rawdata = data_source
         self._process_data(rawdata)
+        self.validate()
 
     def _process_data(self, rawdata):
         """ Process the raw data from the JSON file. """
@@ -74,8 +75,6 @@ class DoctorSchedule:
                       & set(self.staff.charge_doctors))
             for day in self.days
         }
-        assert all(self.potential_charge_doctors[day] for day in self.weekdays), \
-            "No potential charge doctors found for at least one day."
 
         # Potential cardiac doctors must be working as either call or late call, and capable of being cardiac
         self.potential_cardiac_doctors = {
@@ -83,8 +82,6 @@ class DoctorSchedule:
                       & set(self.staff.cardiac_doctors))
             for d, day in enumerate(self.days)
         }
-        assert all(self.potential_cardiac_doctors[day] for day in self.weekdays), \
-            "No potential cardiac doctors found for at least one day."
 
         self.solution = {
             'Whine': {day: [Assignment(self.staff.unknown.ID, list(a.points)[i]) for i, a in
@@ -95,11 +92,25 @@ class DoctorSchedule:
             'Target': None
         }
 
+    def validate(self):
+        """ Validate the schedule. """
+        errors = []
+
+        # Check for potential charge doctors
+        if not all(self.potential_charge_doctors[day] for day in self.weekdays):
+            errors.append("No potential charge doctors found for at least one day.")
+
+        # Check for potential cardiac doctors
+        if not all(self.potential_cardiac_doctors[day] for day in self.weekdays):
+            errors.append("No potential cardiac doctors found for at least one day.")
+
         # Sanity checks
-        missing_shifts = [shift for shift in self.TURN_ORDER if shift not in rawdata]
-        assert not missing_shifts, f"Shift {missing_shifts[0]} not found in schedule."
-        assert sorted(rawdata['Doctors']) == self.staff.everyone, ("Doctor list in schedule does not match doctor list "
-                                                                   "in staff file.")
+        missing_shifts = [shift for shift in self.TURN_ORDER if shift not in self.rawdata]
+        if missing_shifts:
+            errors.append(f"Shift {missing_shifts[0]} not found in schedule.")
+        if sorted(self.rawdata['Doctors']) != self.staff.everyone:
+            errors.append("Doctor list in schedule does not match doctor list in staff file.")
+
         # Sanity checks for each working day
         for day in self.days:
 
@@ -109,15 +120,37 @@ class DoctorSchedule:
             duplicate_working_doctors = [doc for doc, count in working_counts.items() if count > 1]
             duplicate_offsite_doctors = [doc for doc, count in offsite_counts.items() if count > 1]
 
-            assert not duplicate_working_doctors, f"Duplicate doctors found working on {day}: {', '.join(duplicate_working_doctors)}"
-            assert not duplicate_offsite_doctors, f"Duplicate doctors found offsite on {day}: {', '.join(duplicate_offsite_doctors)}"
+            if duplicate_working_doctors:
+                errors.append(f"Duplicate doctors found working on {day}: {', '.join(duplicate_working_doctors)}")
+            if duplicate_offsite_doctors:
+                errors.append(f"Duplicate doctors found offsite on {day}: {', '.join(duplicate_offsite_doctors)}")
 
             overlapping_doctors = set(self.working[day]) & set(self.offsite[day])
-            assert not overlapping_doctors, f"Offsite doctors {overlapping_doctors} found working on {day}"
+            if overlapping_doctors:
+                errors.append(f"Offsite doctors {overlapping_doctors} found working on {day}")
 
             if day in self.weekdays:
-                assert (sorted(self.staff.everyone) == sorted(
-                    self.working[day] + self.offsite[day])), f"Missing doctors found on {day}"
+                if sorted(self.staff.everyone) != sorted(self.working[day] + self.offsite[day]):
+                    errors.append(f"Missing doctors found on {day}")
+
+        # Check if the workdays are not weekends or public holidays
+        for d, day in enumerate(self.days):
+            date = datetime.datetime.strptime(self.rawdata['Period']['start'], '%Y-%m-%d').date() + datetime.timedelta(
+                days=d)
+            not_weekend, workday = is_workday(date)
+
+            if day in self.weekdays:
+                if not not_weekend:
+                    errors.append(f"{date}:{day} is a workday but {workday}")
+            else:
+                if not_weekend:
+                    errors.append(f"{date}:{day} is not a weekday but is {workday}")
+
+        # Return the result
+        if errors:
+            return False, errors
+        else:
+            return True, None
 
     @property
     def days(self):
@@ -310,6 +343,12 @@ class DoctorSchedule:
         # The first placeholder reserves 10 spaces and the rest reserve 4 spaces each.
         row_format_short = "{:<12}" + "{:>4}" * len(self.days) + "  | "
         row_format = row_format_short + "{:>4}" * len(self.days)
+        dates = generate_dates(self.rawdata['Period']['start'], self.rawdata['Period']['end'])
+        formatted_dates = [date.strftime('%d') for date in dates]
+        header = [dates[0].strftime('%B %y')] + formatted_dates + formatted_dates
+        header = row_format.format(*header)
+        output.append(header)
+
         header = [""] + self.days + self.days
         header = row_format.format(*header)
         output.append(header)

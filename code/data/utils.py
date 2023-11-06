@@ -118,3 +118,143 @@ def search_for_file(directory, basename):
     if not files:
         raise ValueError(f"File for {basename} not found in {directory}.")
     return files[0]
+
+
+def holidays_that_year(year):
+    from datetime import datetime, timedelta
+
+    def memorial_day_weekend():
+        last_day_of_may = datetime(year, 5, 31)  # May 31st
+        days_to_subtract = last_day_of_may.weekday()  # weekday() returns 0 for Monday
+        end = last_day_of_may - timedelta(days=days_to_subtract)
+        start = end - timedelta(days=2)  # from Saturday to Monday
+        return start, end
+
+    def labor_day_weekend():
+        first = datetime(year, 9, 1)  # September 1st
+        day_of_week = first.weekday()  # Monday is 0, Sunday is 6
+        days_to_add = (7 - day_of_week) % 7
+        first_monday_of_september = 1 + days_to_add
+        end = datetime(year, 9, first_monday_of_september)
+        start = datetime(year, 9, first_monday_of_september) - timedelta(days=2)  # from Saturday to Monday
+        return start, end
+
+    def thanksgiving_weekend():
+        first = datetime(year, 11, 1)  # November 1st
+        day_of_week = first.weekday()  # Monday is 0, Sunday is 6
+        fourth_thursday_of_november = 22 + (3 - day_of_week) % 7
+        start = datetime(year, 11, fourth_thursday_of_november)
+        return start, start
+
+    def fixed_date_holidays(holiday):
+        # Check the day of the week
+        day_of_week = holiday.weekday()
+
+        # Tuesday to Thursday: No change, holiday is just one day
+        if day_of_week in range(1, 4):
+            start = holiday
+            end = holiday
+
+        # Monday: Long weekend from Saturday to Monday
+        elif day_of_week == 0:
+            start = holiday - timedelta(days=2)
+            end = holiday
+
+        # Friday: Long weekend from Friday to Sunday
+        elif day_of_week == 4:
+            start = holiday
+            end = holiday + timedelta(days=2)
+
+        # Saturday: Observed holiday on Friday, weekend is Friday to Sunday
+        elif day_of_week == 5:
+            start = holiday - timedelta(days=1)
+            end = holiday + timedelta(days=1)
+
+        # Sunday: Long weekend from Saturday to Monday (observed holiday)
+        elif day_of_week == 6:
+            start = holiday - timedelta(days=1)
+            end = holiday + timedelta(days=1)
+
+        return start, end
+
+    def independence_day_weekend():
+        # Independence Day is always on July 4th
+        independence_day = datetime(year, 7, 4)
+        return fixed_date_holidays(independence_day)
+
+    def christmas_weekend():
+        christmas = datetime(year, 12, 25)
+        return fixed_date_holidays(christmas)
+
+    def new_year_weekend():
+        new_years_day = datetime(year, 1, 1)
+        return fixed_date_holidays(new_years_day)
+
+    # Define the holidays
+    holidays = {
+        "New Years": new_year_weekend(),
+        "Memorial Day": memorial_day_weekend(),
+        "Independence Day": independence_day_weekend(),
+        "Labor Day": labor_day_weekend(),
+        "Thanksgiving": thanksgiving_weekend(),
+        "Christmas": christmas_weekend(),
+    }
+    holidays = {key: generate_dates(start.date(), end.date()) for key, (start, end) in holidays.items()}
+
+    return holidays
+
+
+def custom_holidays(input_date):
+    """ Get the list of US holidays for the given year. """
+    import datetime
+
+    special_holidays = {}
+    special = read_csv('../data/special_holidays.csv')
+    for date_str, holiday_name in special[1:]:
+        date = datetime.datetime.strptime(date_str, '%Y-%m-%d').date()
+        if date.year == input_date.year:
+            special_holidays[date] = holiday_name
+
+    holidays = holidays_that_year(input_date.year)
+    # convert to a dictionary of {date: holiday_name}
+    holidays = {date: holiday_name for holiday_name, dates in holidays.items() for date in dates}
+    # append any special holidays that are not already in the list
+    holidays = {**holidays, **special_holidays}
+    return holidays
+
+
+def is_workday(input_date):
+    """ Check if the given date is a workday. Assumes that known US holidays are not workdays. """
+    import datetime
+
+    assert isinstance(input_date, datetime.date)
+
+    # Check if the date is a public holiday in the USA
+    holidays = custom_holidays(input_date)
+    if input_date in holidays:
+        return False, holidays[input_date]
+
+    # Check if the date is a weekend
+    if input_date.weekday() >= 5:  # 5 and 6 correspond to Saturday and Sunday respectively
+        return False, "Weekend"
+
+    # If it's neither weekend nor a public holiday
+    return True, "Workday"
+
+
+def generate_dates(start, end):
+    """ Generate a list of dates within the given range. """
+    import datetime as dt
+    if isinstance(start, str):
+        start = dt.datetime.strptime(start, '%Y-%m-%d').date()
+    else:
+        assert isinstance(start, dt.date)
+    if isinstance(end, str):
+        end = dt.datetime.strptime(end, '%Y-%m-%d').date()
+    else:
+        assert isinstance(end, dt.date)
+
+    if start == end:
+        return [start]
+
+    return [(start + dt.timedelta(days=i)) for i in range((end - start).days + 1)]
