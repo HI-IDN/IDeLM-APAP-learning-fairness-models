@@ -144,7 +144,8 @@ def holidays_that_year(year):
         day_of_week = first.weekday()  # Monday is 0, Sunday is 6
         fourth_thursday_of_november = 22 + (3 - day_of_week) % 7
         start = datetime(year, 11, fourth_thursday_of_november)
-        return start, start
+        end = start + timedelta(days=3)  # from Thursday to Sunday
+        return start, end
 
     def fixed_date_holidays(holiday):
         # Check the day of the week

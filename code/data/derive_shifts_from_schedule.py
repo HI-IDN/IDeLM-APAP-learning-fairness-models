@@ -73,17 +73,6 @@ class WeeklySchedule:
 
         if len(values) < 2:
             # TODO: Not sure if this is the best way to handle this case
-            if date not in (
-                    datetime.date(2019, 7, 4),
-                    datetime.date(2019, 12, 25),
-                    datetime.date(2020, 7, 3),
-                    datetime.date(2018, 12, 24),
-                    datetime.date(2018, 12, 25),
-                    datetime.date(2023, 7, 4),
-                    datetime.date(2021, 12, 24),
-                    datetime.date(2019, 1, 1),
-                    datetime.date(2020, 1, 1)):
-                assert 1 == 2, f'{date} has only one shift: {values}'
             am_shift = values[0][1]
             pm_shift = values[0][1]
         else:
@@ -210,16 +199,25 @@ def generate_new_structure(current, before, after, start_date, end_date):
             if post_late == pre_call:
                 pre_call = None  # Can be an issue immediately after a holiday (e.g. Monday after a long weekend)
 
-        offsite = today["Offsite"]
+            # Rare case a doctor is on call with only a day off in between - but it happens cf. 2019-Week31
+            pre_call = pre_call if pre_call not in (post_call, post_late, post_holiday) else None  # Rare case
+            # TODO Rare case a doctor is on late then on call the next day (and not a weekend) - cf. 2021-Week29
+            # then ignore pre_call and post_late for those cases
+
+        offsite = [
+            doc for doc in today['Offsite']
+            if (admin is not None and doc in admin) or (doc not in (on_call, on_late))
+        ]
 
         weekday_name = this_week.get_weekday_name(date)
         result[weekday_name] = {
             "OnCall": on_call,
             "OnLate": on_late,
             "Post-Call": post_call if post_call not in offsite else None,
-            "Post-Holiday": post_holiday if post_holiday not in offsite else None,
-            "Post-Late": post_late if post_late not in offsite else None,
-            "Pre-Call": pre_call if pre_call not in offsite else None,
+            "Post-Holiday": post_holiday if post_holiday and post_holiday not in offsite and post_holiday not in (
+                on_call, on_late) else None,
+            "Post-Late": post_late if post_late not in offsite and post_late not in (on_call, on_late) else None,
+            "Pre-Call": pre_call if pre_call not in offsite and pre_call not in (on_call, on_late) else None,
             "Admin": admin,
             "Offsite": offsite,
             "Day": day_type

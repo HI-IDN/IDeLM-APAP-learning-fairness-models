@@ -140,14 +140,14 @@ class DoctorSchedule:
         for d, day in enumerate(self.days):
             date = datetime.datetime.strptime(self.rawdata['Period']['start'], '%Y-%m-%d').date() + datetime.timedelta(
                 days=d)
-            not_weekend, workday = is_workday(date)
+            not_weekend, weekday = is_workday(date)
 
             if day in self.weekdays:
                 if not not_weekend:
-                    errors.append(f"{date}:{day} is a workday but {workday}")
+                    errors.append(f"{date}:{day} is a workday but {weekday}")
             else:
                 if not_weekend:
-                    errors.append(f"{date}:{day} is not a weekday but is {workday}")
+                    errors.append(f"{date}:{day} is not a weekend but is {weekday}")
 
         # Return the result
         if errors:
@@ -348,7 +348,7 @@ class DoctorSchedule:
         row_format = row_format_short + "{:>4}" * len(self.days)
         dates = generate_dates(self.rawdata['Period']['start'], self.rawdata['Period']['end'])
         formatted_dates = [date.strftime('%d') for date in dates]
-        header = [dates[0].strftime('%B %y')] + formatted_dates + formatted_dates
+        header = [dates[0].strftime("%B '%y")] + formatted_dates + formatted_dates
         header = row_format.format(*header)
         output.append(header)
 
