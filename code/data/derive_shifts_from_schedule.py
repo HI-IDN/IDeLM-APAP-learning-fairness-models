@@ -1,6 +1,3 @@
-import holidays
-import warnings
-
 from data.utils import (read_json, write_json, transpose_dict, are_dates_separated_by_delta, search_for_file,
                         is_workday, generate_dates)
 import argparse
@@ -8,7 +5,7 @@ import re
 import os
 import datetime
 from data.staff import Doctors, ADMIN_IDENTIFIER
-from data.schedule import DoctorSchedule
+from data.schedule import DoctorSchedule, WORKDAY, WEEKEND
 
 
 class WeeklySchedule:
@@ -27,18 +24,19 @@ class WeeklySchedule:
             keys = [key for key in week_dict if key.startswith(name_of_day)]
             if is_holiday(date):
                 weekend.extend(keys)
-                week[date] = 'Weekend'
+                week[date] = WEEKEND
             else:
                 workday.extend(keys)
-                week[date] = 'Weekday'
+                week[date] = WORKDAY
 
-        self.weekday = workday
+        self.workday = workday
         self.weekend = weekend
         self.week = week
         self.values = week_dict
 
-    def get_next_day_type(self, given_date, given_day_type='Weekday'):
+    def get_next_day_type(self, given_date, given_day_type):
         """Get the value of the next day of a given type following a given day, along with the associated values."""
+        assert given_day_type in (WEEKEND, WORKDAY), f"Invalid day type: {given_day_type}"
         next_dates = [(date, day_type) for date, day_type in self.week.items() if date > given_date]
         for next_day, day_type in next_dates:
             if day_type == given_day_type:
@@ -46,8 +44,9 @@ class WeeklySchedule:
                 return next_day, day_values
         return None, None  # No next weekday found
 
-    def get_prev_day_type(self, given_date, given_day_type='Weekday'):
+    def get_prev_day_type(self, given_date, given_day_type):
         """Get the value of the previous day of a given type before a given day, along with the associated values."""
+        assert given_day_type in (WEEKEND, WORKDAY), f"Invalid day type: {given_day_type}"
         prev_dates = [(date, day_type) for date, day_type in self.week.items() if date < given_date]
         for next_day, day_type in reversed(prev_dates):
             if day_type == given_day_type:
@@ -68,7 +67,7 @@ class WeeklySchedule:
         """Get the values for a given date."""
         name = self.get_weekday_name(date)
         values = [(key, values) for key, values in self.values.items() if key.startswith(name)]
-        if self.get_day_type(date) == 'Weekday':
+        if self.get_day_type(date) == WORKDAY:
             assert len(values) == 1, f"Multiple values found for {date}: {values}"
             return values[0][1]
 
@@ -80,7 +79,8 @@ class WeeklySchedule:
                     datetime.date(2020, 7, 3),
                     datetime.date(2018, 12, 24),
                     datetime.date(2018, 12, 25),
-                        datetime.date(2021,12,24),
+                    datetime.date(2023, 7, 4),
+                    datetime.date(2021, 12, 24),
                     datetime.date(2019, 1, 1),
                     datetime.date(2020, 1, 1)):
                 assert 1 == 2, f'{date} has only one shift: {values}'
@@ -101,13 +101,14 @@ def get_next_day_type(given_date, this_week, next_week, given_day_type):
     - given_date (datetime.date): The date from which to start searching.
     - this_week (dict): A WeeklySchedule object containing the current week's data.
     - next_week (dict): A WeeklySchedule object containing the following week's data.
-    - given_day_type (str): The type of day to find (e.g., 'Weekday' or 'Weekend').
+    - given_day_type (str): The type of day to find (e.g., 'workday' or 'weekend').
 
     Returns:
     - A tuple containing:
         (1) The value associated with the next weekday following the given date.
         (2) A boolean indicating whether the next weekday is tomorrow.
     """
+    assert given_day_type in (WEEKEND, WORKDAY), f"Invalid day type: {given_day_type}"
     # Check the current week first
     next_weekday, values = this_week.get_next_day_type(given_date, given_day_type)
     if next_weekday is None:
@@ -126,13 +127,14 @@ def get_prev_day_type(given_date, this_week, prev_week, given_day_type):
     - given_date (datetime.date): The date from which to find the next weekday.
     - this_week (dict): A WeeklySchedule object containing the current week's data.
     - prev_week (dict): A WeeklySchedule object containing the previous week's data.
-    - given_day_type (str): The type of day to find (e.g., 'Weekday' or 'Weekend').
+    - given_day_type (str): The type of day to find (e.g., 'workday' or 'weekend').
 
     Returns:
     - A tuple containing:
         (1) The value associated with the previous weekday before the given date.
         (2) A boolean indicating whether the previous weekday is yesterday.
     """
+    assert given_day_type in (WEEKEND, WORKDAY), f"Invalid day type: {given_day_type}"
     # Check the current week first
     prev_weekday, values = this_week.get_prev_day_type(given_date, given_day_type)
     if prev_weekday is None:
@@ -147,7 +149,7 @@ def is_holiday(date):
     """Check if the given date is a holiday in the USA."""
     workday, holiday = is_workday(date)
     if not workday:
-        if holiday != 'Weekend':
+        if holiday != WEEKEND:
             print(f"Found a holiday {holiday} on {date} {date.strftime('%a')[:3]}.")
         return True
     else:
@@ -165,7 +167,7 @@ def generate_new_structure(current, before, after, start_date, end_date):
     for date in this_week.dates:
         day_type = this_week.get_day_type(date)
         today = this_week.get_values(date)
-        if day_type == 'Weekend':
+        if day_type == WEEKEND:
             today = today['PM']
 
         if today["Admin"] and today["Admin"] > 0:
@@ -176,7 +178,7 @@ def generate_new_structure(current, before, after, start_date, end_date):
         on_call = today["Call"]["1"]
         on_late = today["Call"]["2"]
 
-        if day_type == 'Weekend':
+        if day_type == WEEKEND:
             # Holiday
             post_call = None
             post_late = None
@@ -184,17 +186,17 @@ def generate_new_structure(current, before, after, start_date, end_date):
             pre_call = None
         else:
             # General case: weekday
-            next_weekday, is_tomorrow = get_next_day_type(date, this_week, next_week, 'Weekday')
-            prev_weekday, is_yesterday = get_prev_day_type(date, this_week, prev_week, 'Weekday')
+            next_weekday, is_tomorrow = get_next_day_type(date, this_week, next_week, WORKDAY)
+            prev_weekday, is_yesterday = get_prev_day_type(date, this_week, prev_week, WORKDAY)
 
             if not is_tomorrow:
-                next_weekend, _ = get_next_day_type(date, this_week, next_week, 'Weekend')
+                next_weekend, _ = get_next_day_type(date, this_week, next_week, WEEKEND)
                 pre_call = next_weekend['AM']["Call"]["1"]
             else:
                 pre_call = next_weekday["Call"]["1"]
 
             if not is_yesterday:
-                prev_weekend, _ = get_prev_day_type(date, this_week, prev_week, 'Weekend')
+                prev_weekend, _ = get_prev_day_type(date, this_week, prev_week, WEEKEND)
                 post_call = prev_weekend['PM']["Call"]["1"]
                 post_late = prev_weekend['PM']["Call"]["2"]
                 post_holiday = prev_weekend['AM']["Call"]["1"]
@@ -313,7 +315,7 @@ def find_unassigned(schedule, staff):
     """For each day, find the doctors who are not assigned to any shift, and add them under the key 'Unassigned'."""
     for day in schedule:
         day_type = schedule[day]['Day']
-        if day_type == 'Weekend':
+        if day_type == WEEKEND:
             unassigned = list()
         else:
             assigned_doctors = list()
@@ -391,6 +393,7 @@ def main():
     err_filename = filename.replace('.json', '.err')
     if os.path.exists(err_filename):
         os.remove(err_filename)
+    write_json(new_structure, filename, overwrite=True, indent_level=None)
 
     schedule = DoctorSchedule(new_structure)
     schedule.print()
@@ -404,10 +407,9 @@ def main():
             for error in errors:
                 err_file.write(error + '\n')
 
-        filename = illegal
         print("\n".join(errors))
-
-    write_json(new_structure, filename, overwrite=True, indent_level=None)
+        # move the file to the illegal folder
+        os.rename(filename, illegal)
 
 
 if __name__ == "__main__":

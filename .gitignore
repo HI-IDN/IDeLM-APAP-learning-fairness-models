@@ -165,3 +165,4 @@ config.ini
 .idea/
 code/web/font-awesome-4.7.0/
 code/web/data
+*.err

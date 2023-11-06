@@ -5,6 +5,9 @@ import datetime
 from .staff import Doctors, ADMIN_IDENTIFIER
 from collections import Counter
 
+WEEKEND = 'Weekend'
+WORKDAY = 'Workday'
+
 ADMIN_POINTS = 8
 
 
@@ -40,7 +43,7 @@ class DoctorSchedule:
         if isinstance(data_source, str):  # It's a filepath
             rawdata = read_json(data_source)
         else:  # Assume it's raw data
-            rawdata = data_source
+            rawdata = data_source.copy()
         self._process_data(rawdata)
         self.validate()
 
@@ -158,7 +161,7 @@ class DoctorSchedule:
 
     @property
     def weekdays(self):
-        return [day for d, day in enumerate(self.days) if self.rawdata['Day'][d] == 'Weekday']
+        return [day for d, day in enumerate(self.days) if self.rawdata['Day'][d] == WORKDAY]
 
     @property
     def orders(self):

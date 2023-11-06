@@ -45,13 +45,13 @@
     null
   ],
   "Pre-Call": [
-    "SL",
+    null,
     "MC",
     "TT",
     "FM",
     "SL",
-    "SL",
-    "SL"
+    null,
+    null
   ],
   "Admin": [
     [
@@ -126,10 +126,10 @@
   ],
   "Day": [
     "Weekend",
-    "Weekday",
-    "Weekday",
-    "Weekday",
-    "Weekday",
+    "Workday",
+    "Workday",
+    "Workday",
+    "Workday",
     "Weekend",
     "Weekend"
   ],

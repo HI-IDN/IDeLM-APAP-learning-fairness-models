@@ -50,8 +50,8 @@
     "CC",
     "MI",
     "TI",
-    "MI",
-    "MI"
+    null,
+    null
   ],
   "Admin": [
     null,
@@ -122,11 +122,11 @@
     ]
   ],
   "Day": [
-    "Weekday",
-    "Weekday",
-    "Weekday",
-    "Weekday",
-    "Weekday",
+    "Workday",
+    "Workday",
+    "Workday",
+    "Workday",
+    "Workday",
     "Weekend",
     "Weekend"
   ],

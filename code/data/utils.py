@@ -236,10 +236,10 @@ def is_workday(input_date):
 
     # Check if the date is a weekend
     if input_date.weekday() >= 5:  # 5 and 6 correspond to Saturday and Sunday respectively
-        return False, "Weekend"
+        return False, None
 
     # If it's neither weekend nor a public holiday
-    return True, "Workday"
+    return True, None
 
 
 def generate_dates(start, end):

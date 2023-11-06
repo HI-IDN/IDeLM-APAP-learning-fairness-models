@@ -50,8 +50,8 @@
     "AY",
     "MC",
     "TT",
-    "FM",
-    "FM"
+    null,
+    null
   ],
   "Admin": [
     [
@@ -127,11 +127,11 @@
     ]
   ],
   "Day": [
-    "Weekday",
-    "Weekday",
-    "Weekday",
-    "Weekday",
-    "Weekday",
+    "Workday",
+    "Workday",
+    "Workday",
+    "Workday",
+    "Workday",
     "Weekend",
     "Weekend"
   ],

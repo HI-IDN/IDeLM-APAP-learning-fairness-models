@@ -50,8 +50,8 @@
     "SK",
     "BK",
     "KC",
-    "CA",
-    "CA"
+    null,
+    null
   ],
   "Admin": [
     [
@@ -127,11 +127,11 @@
     ]
   ],
   "Day": [
-    "Weekday",
-    "Weekday",
-    "Weekday",
-    "Weekday",
-    "Weekday",
+    "Workday",
+    "Workday",
+    "Workday",
+    "Workday",
+    "Workday",
     "Weekend",
     "Weekend"
   ],
