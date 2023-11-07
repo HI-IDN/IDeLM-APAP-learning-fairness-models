@@ -15,7 +15,7 @@ KC,TRUE,TRUE,Clark,,2018-10-22,
 KK,,,Kromer,,2018-07-02,
 MA,,,Angel,MA@MCH,2018-07-02,
 MC,,TRUE,Collins,,2018-07-02,
-MI,,,Miller,BRM,2018-07-02,
+MI,TRUE,,Miller,BRM,2018-07-02,
 RR,TRUE,,Rekuski,,2018-07-02,
 SK,TRUE,,Kaus,,2018-07-02,
 SL,TRUE,,LeBard,,2018-07-02,
@@ -23,4 +23,4 @@ TI,,TRUE,Ion,,2018-07-02,
 TK,,,Klobucher,,2023-10-09,2023-12-31
 TT,,,Tanaka,,2018-07-02,
 RK,,,Kowalsky,,2018-07-02,2022-12-31
-PM,,,McCormick,,2018-07-02,2021-12-31
+PM,TRUE,,McCormick,,2018-07-02,2021-12-31
