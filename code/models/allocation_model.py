@@ -55,7 +55,10 @@ class AllocationModel:
             chrg[day] = chrg[day][0]
             diac[day] = diac[day][0]
 
-        points = {doctor: int(total_order.getValue()) for doctor, total_order in self.total_order.items()}
+        total_points = {doctor: int(total_order.getValue()) for doctor, total_order in self.total_order.items()}
+        preassigned_points = {doctor: self.data.get_points_per_doctor(doctor, add_assigned=False) for doctor in
+                              self.data.doctors}
+        points = {'Total': total_points, 'Fixed': preassigned_points}
         target = int(self.central_value.X)
 
         # Objective values
@@ -65,6 +68,7 @@ class AllocationModel:
             'priority_charge': self.obj_var['priority_charge'].X,
             'total': self.obj_var['total'].X
         }
+
         return {'Whine': whine, 'Charge': chrg, 'Cardiac': diac, 'Points': points, 'Target': target, 'Objective': obj}
 
     def _set_decision_variables(self):
@@ -495,6 +499,7 @@ class AllocationModel:
             'Cardiac': [self.solution['Cardiac'][day] if day in self.data.weekdays else None for day in self.data.days],
             'Points': self.solution['Points'],
             'Target': self.solution['Target'],
+            'Objective': self.solution['Objective'],
         }
         write_json(data, filename, overwrite=True)
 

@@ -11,6 +11,7 @@ FIRST_WEEKLY_JSON = $(firstword $(WEEKLY_JSON_ALL))
 LAST_WEEKLY_JSON = $(lastword $(WEEKLY_JSON_ALL))
 WEEKLY_JSON = $(filter-out $(FIRST_WEEKLY_JSON) $(LAST_WEEKLY_JSON),$(WEEKLY_JSON_ALL))
 UNASSIGNED_JSON = $(notdir $(filter-out %_ILLEGAL.json, $(wildcard $(WEEKLY_UNASSIGNED_DATA)/*.json)))
+DB_FILE = $(WEEKLY_ASSIGNED_DATA)/database.sqlite
 
 # Convert .xls to .json
 $(QUARTERLY_DATA)/%.json: $(QUARTERLY_DATA)/%.xls data/xls_to_json_converter.py ../data/staff.csv
@@ -23,7 +24,7 @@ $(WEEKLY_CALL_DATA): data/quarterly_json_week_splitter.py $(QUARTER_JSON)
 	rm -rf $@ && mv $@.tmp $@
 
 # Derive unassigned weekly plans from the weekly call plans
-$(WEEKLY_UNASSIGNED_DATA)/%.json: $(WEEKLY_CALL_DATA)/%.json data/derive_shifts_from_schedule.py
+$(WEEKLY_UNASSIGNED_DATA)/%.json: $(WEEKLY_CALL_DATA)/%.json
 	python3 -m data.derive_shifts_from_schedule -i $< -o $@
 
 # Generate the solved/assigned plans
@@ -43,10 +44,14 @@ assigned:
 	make $(foreach w,$(UNASSIGNED_JSON),$(WEEKLY_ASSIGNED_DATA)/$(w))
 
 
-
 # Default target
 all:
 	make quarterly
 	make weekly
 	make unassigned
 	make assigned
+
+.PHONY: import
+import:
+	@echo "Importing JSON files from $(WEEKLY_ASSIGNED_DATA) into $(DB_FILE):"
+	./import_json_to_sqlite.sh "$(DB_FILE)" $(WEEKLY_ASSIGNED_DATA)
