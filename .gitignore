@@ -166,3 +166,4 @@ config.ini
 code/web/font-awesome-4.7.0/
 code/web/data
 *.err
+.Rhistory

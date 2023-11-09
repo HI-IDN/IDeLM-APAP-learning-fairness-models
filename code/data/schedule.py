@@ -438,7 +438,7 @@ class DoctorSchedule:
         # Calc and post points should match, but just in case...
         for doc in self.doctors:
             if doc in self.solution['Points'] and self.solution['Points'][doc] is not None:
-                assert self.solution['Points'][doc] == points_per_doctor[doc], \
+                assert self.solution['Points'][doc][0] == points_per_doctor[doc], \
                     f'Calc points for {doc} does not match post points.'
 
         charge = pd.Series([charge[doc] for doc in self.doctors])

@@ -17,6 +17,7 @@
                         "MA",
                         "MI",
                         "DN",
+                        "CM",
                         "X"
                     ]
                 }
@@ -35,7 +36,9 @@
                         "KC",
                         "MA",
                         "MI",
-                        "DN"
+                        "DN",
+                        "MC",
+                        "ES"
                     ]
                 }
             },
@@ -47,6 +50,7 @@
                     },
                     "Admin": 0,
                     "Offsite": [
+                        "CM",
                         "ES",
                         "JJ",
                         "JM",
@@ -54,7 +58,8 @@
                         "MA",
                         "MI",
                         "DN",
-                        "TI"
+                        "TI",
+                        "MC"
                     ]
                 }
             },
@@ -66,6 +71,8 @@
                     },
                     "Admin": 0,
                     "Offsite": [
+                        "CM",
+                        "ES",
                         "MC",
                         "JJ",
                         "JM",
@@ -86,6 +93,8 @@
                     "Admin": 0,
                     "Offsite": [
                         "CM",
+                        "MC",
+                        "ES",
                         "JJ",
                         "JM",
                         "KC",
