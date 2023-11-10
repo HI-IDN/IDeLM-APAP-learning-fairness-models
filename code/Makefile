@@ -3,6 +3,7 @@ QUARTERLY_DATA=../data/quarterly_data
 WEEKLY_CALL_DATA=../data/weekly_call_data
 WEEKLY_UNASSIGNED_DATA=../data/weekly_unassigned_data
 WEEKLY_ASSIGNED_DATA=../data/weekly_assigned_data
+WEEKLY_REQUEST_DATA=../data/weekly_request_data
 
 QUARTER_XLS=$(wildcard $(QUARTERLY_DATA)/*.xls)
 QUARTER_JSON=$(subst .xls,.json,$(QUARTER_XLS))
@@ -25,7 +26,7 @@ $(WEEKLY_CALL_DATA): data/quarterly_json_week_splitter.py $(QUARTER_JSON)
 
 # Derive unassigned weekly plans from the weekly call plans
 $(WEEKLY_UNASSIGNED_DATA)/%.json: $(WEEKLY_CALL_DATA)/%.json
-	python3 -m data.derive_shifts_from_schedule -i $< -o $@
+	python3 -m data.derive_shifts_from_schedule -i $< -o $@ -r $(WEEKLY_REQUEST_DATA)/$(notdir $@)
 
 # Generate the solved/assigned plans
 $(WEEKLY_ASSIGNED_DATA)/%.json: $(WEEKLY_UNASSIGNED_DATA)/%.json models/schedule_optimizer.py
@@ -41,7 +42,25 @@ unassigned: $(foreach w,$(WEEKLY_JSON),$(WEEKLY_CALL_DATA)/$(w))
 	make $(foreach w,$(WEEKLY_JSON),$(WEEKLY_UNASSIGNED_DATA)/$(w))
 
 assigned:
-	make $(foreach w,$(UNASSIGNED_JSON),$(WEEKLY_ASSIGNED_DATA)/$(w))
+	$(foreach w,$(UNASSIGNED_JSON),make $(WEEKLY_ASSIGNED_DATA)/$(w);)
+
+.PHONY: import
+import:
+	@echo "Importing JSON files from $(WEEKLY_ASSIGNED_DATA) into $(DB_FILE):"
+	./import_json_to_sqlite.sh "$(DB_FILE)" $(WEEKLY_ASSIGNED_DATA)
+
+clean:
+	@echo Removing quarterly JSON files
+	rm -f $(QUARTERLY_DATA)/[1-2][0-9][0-9][0-9]_[1-4]q.json
+	@echo Removing weekly call data
+	rm -rf $(WEEKLY_CALL_DATA)/
+	@echo Removing unassigned JSON files
+	rm -f $(WEEKLY_UNASSIGNED_DATA)/[1-2][0-9][0-9][0-9]-week[0-5][0-9].json
+	@echo Removing assigned JSON files
+	rm -f $(WEEKLY_ASSIGNED_DATA)/[1-2][0-9][0-9][0-9]-week[0-5][0-9].json
+	rm -f $(WEEKLY_ASSIGNED_DATA)/*.err $(WEEKLY_ASSIGNED_DATA)/*.log
+	@echo Remove any placeholder requests
+	rm -rf $(WEEKLY_REQUEST_DATA)/[1-2][0-9][0-9][0-9]-week[0-5][0-9].json
 
 
 # Default target
@@ -50,8 +69,4 @@ all:
 	make weekly
 	make unassigned
 	make assigned
-
-.PHONY: import
-import:
-	@echo "Importing JSON files from $(WEEKLY_ASSIGNED_DATA) into $(DB_FILE):"
-	./import_json_to_sqlite.sh "$(DB_FILE)" $(WEEKLY_ASSIGNED_DATA)
+	make import

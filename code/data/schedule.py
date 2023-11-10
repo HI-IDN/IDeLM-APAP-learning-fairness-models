@@ -45,7 +45,6 @@ class DoctorSchedule:
         else:  # Assume it's raw data
             rawdata = data_source.copy()
         self._process_data(rawdata)
-        self.validate()
 
     def _process_data(self, rawdata):
         """ Process the raw data from the JSON file. """
@@ -148,6 +147,12 @@ class DoctorSchedule:
             else:
                 if not_weekend:
                     errors.append(f"{date}:{day} is not a weekend but is {weekday}")
+
+        # Check for Admin assignments are not also in the Whine zone
+        for d, day in enumerate(self.days):
+            for assignment in self.assignments['Admin'][day]:
+                if assignment.doctor in self.Whine[day]:
+                    errors.append(f"Admin doctor {assignment.doctor} also in Whine zone on {day}")
 
         # Return the result
         if errors:
@@ -419,7 +424,7 @@ class DoctorSchedule:
         separator = '-' * len(header)
         output = [header, separator]
 
-        for doc in self.doctors:
+        for doc in sorted(self.doctors):
             row = [self.staff.get_name(doc), doc,
                    preassigned_points[doc] if preassigned_points[doc] > 0 else '',
                    points_per_doctor[doc] if points_per_doctor[doc] > 0 else '',
