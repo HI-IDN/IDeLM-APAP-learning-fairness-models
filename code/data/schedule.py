@@ -436,7 +436,7 @@ class DoctorSchedule:
         offset = (post_points - self.solution['Target']) if self.solution['Target'] is not None else pd.Series([])
 
         # Calc and post points should match, but just in case...
-        for doc in self.doctors:
+        for doc in sorted(self.doctors):
             if doc in self.solution['Points'] and self.solution['Points'][doc] is not None:
                 assert self.solution['Points'][doc][0] == points_per_doctor[doc], \
                     f'Calc points for {doc} does not match post points.'

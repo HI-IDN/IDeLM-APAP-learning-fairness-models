@@ -357,6 +357,10 @@ def main():
     parser.add_argument('-o', '--output', type=valid_filename, required=True,
                         help='Output file to save processed schedule.')
 
+    # Requests file
+    parser.add_argument('-r', '--requests', type=valid_filename, required=False,
+                        help='Requests file to save processed schedule.')
+
     args = parser.parse_args()
 
     # Get the current week's data
@@ -393,10 +397,15 @@ def main():
         os.remove(err_filename)
     write_json(new_structure, filename, overwrite=True, indent_level=None)
 
-    schedule = DoctorSchedule(new_structure)
-    schedule.print()
+    if args.requests:
+        requests = {'Admin': new_structure['Admin'],
+                    'Whine': [None if day == WEEKEND else [] for day in new_structure['Day']]
+                    }
+        write_json(requests, args.requests, overwrite=False, indent_level=4)
 
     # Verify the output structure is valid
+    schedule = DoctorSchedule(new_structure)
+    schedule.print()
     valid, errors = schedule.validate()
     if not valid:
         print("The generated schedule is not valid.")
