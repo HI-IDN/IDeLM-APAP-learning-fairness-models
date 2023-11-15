@@ -46,6 +46,40 @@ class DoctorSchedule:
             rawdata = data_source.copy()
         self._process_data(rawdata)
 
+    def load_requirements(self, data_source):
+        """ Load any requirements from the data source. """
+        if isinstance(data_source, str):  # It's a filepath
+            requirements = read_json(data_source)
+        else:  # Assume it's raw data
+            requirements = data_source.copy()
+        assert isinstance(requirements, dict), f"Requirements must be a dictionary. Got {type(requirements)} instead."
+
+        assert 'Admin' in requirements, f"Requirements must contain 'Admin' key. Got {requirements.keys()} instead."
+        for d, day in enumerate(self.days):
+            if not requirements['Admin'][d]:
+                continue
+            # Overwrite the admin assignments as requested
+            self.rawdata['Admin'][d] = requirements['Admin'][d]
+            # remove any admin doctors from the unassigned pool
+            self.rawdata['Unassigned'][d] = [doc for doc in self.rawdata['Unassigned'][d] if doc not in
+                                             requirements['Admin'][d]]
+            # could be they are allocated to an offsite shift, so remove them from there too
+            self.rawdata['Offsite'][d] = [doc for doc in self.rawdata['Offsite'][d] if doc not in
+                                          requirements['Admin'][d]]
+
+        self._process_data(self.rawdata)
+
+        assert 'Whine' in requirements, f"Requirements must contain 'Whine' key. Got {requirements.keys()} instead."
+        for d, day in enumerate(self.days):
+            if requirements['Whine'][d] is None:
+                continue
+            for doctor, order in requirements['Whine'][d]:
+                assert order not in self.preassigned[day], f'Duplicate points found on {day}. {doctor} already has ' \
+                                                           f'points {order} assigned.'
+                assert doctor in self.working[day], (f'{doctor} not working on {day} but requested order {order } in '
+                                                     f'Whine zone.')
+                self.preassigned[day][order] = doctor
+
     def _process_data(self, rawdata):
         """ Process the raw data from the JSON file. """
 

@@ -257,7 +257,7 @@ class AllocationModel:
         # Pre-assigned doctors
         for day, order_doctor_dict in self.data.preassigned.items():
             for order, doctor in order_doctor_dict.items():
-                self.m.addConstr(self.x[doctor, day, order] == 1)
+                self.m.addConstr(self.x[doctor, day, order] == 1, name=f"preassigned_doctor_{doctor}_{day}_{order}")
 
     def _set_values_zero_for_unscheduled_doctors(self):
         """

@@ -20,6 +20,11 @@ def main(args):
     try:
         data = DoctorSchedule(args.input_filename)
         logging.info(f"Data fetched successfully from {args.input_filename}")
+        valid, errors = data.validate()
+        assert valid, f"Errors found in schedule: {errors}" + "\n" + data.print()
+        data.load_requirements(args.requests)
+        valid, errors = data.validate()
+        assert valid, f"Errors found after loading requirements in schedule: {errors}" + "\n" + data.print()
     except Exception as e:
         logging.error(f"Error while fetching data: {e}")
         raise ValueError(f"Error while fetching data: {e}")
@@ -50,6 +55,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Doctor Scheduling Tool")
     parser.add_argument("input_filename", type=str, help="Input filename in JSON format")
     parser.add_argument("output_filename", type=str, help="Output filename in JSON format")
+    parser.add_argument('-r', '--requests', type=str, help='Requests file to save processed schedule.')
     parser.add_argument("--simple", action="store_true", help="Use the simple model")
     args = parser.parse_args()
 

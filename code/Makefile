@@ -29,8 +29,8 @@ $(WEEKLY_UNASSIGNED_DATA)/%.json: $(WEEKLY_CALL_DATA)/%.json
 	python3 -m data.derive_shifts_from_schedule -i $< -o $@ -r $(WEEKLY_REQUEST_DATA)/$(notdir $@)
 
 # Generate the solved/assigned plans
-$(WEEKLY_ASSIGNED_DATA)/%.json: $(WEEKLY_UNASSIGNED_DATA)/%.json models/schedule_optimizer.py
-	python3 -m models.schedule_optimizer $< $@
+$(WEEKLY_ASSIGNED_DATA)/%.json: $(WEEKLY_UNASSIGNED_DATA)/%.json $(WEEKLY_REQUEST_DATA)/%.json models/schedule_optimizer.py
+	python3 -m models.schedule_optimizer $< $@ -r $(word 2,$^)
 
 quarterly:
 	make $(QUARTER_JSON)
