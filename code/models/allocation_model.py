@@ -38,8 +38,8 @@ class AllocationModel:
         whine = {}
         for day in self.data.weekdays:
             whine[day] = []
-            for order in self.data.orders:
-                for doctor in self.data.doctors:
+            for order in self.data.orders[day]:
+                for doctor in self.data.working[day]:
                     if self.x[doctor, day, order].X > 0.5:  # If this doctor is assigned to this order on this day
                         whine[day].append(Assignment(doctor, order, 'Assigned'))
                         break  # Move to the next order once a doctor is found
@@ -76,9 +76,11 @@ class AllocationModel:
     def _set_decision_variables(self):
         """Create decision variables for the model."""
 
-        # Binary variables to indicate if a doctor is assigned to a particular order on a particular day
-        self.x = self.m.addVars(self.data.doctors, self.data.days, self.data.orders, vtype=GRB.BINARY,
-                                name="DoctorOrderAssignment_x")
+        self.x = {(doctor, day, order): self.m.addVar(vtype=GRB.BINARY,
+                                                      name=f"DoctorOrderAssignment_x[{doctor},{day},{order}]")
+                  for day in self.data.days
+                  for doctor in self.data.working[day]
+                  for order in self.data.orders[day]}
         """
         x[doctor, day, order]: 
         1 if the doctor is assigned to a particular order on the specified day; 0 otherwise.
@@ -140,12 +142,6 @@ class AllocationModel:
 
         # Ensure each order on a day is assigned to at most one doctor.
         self._add_order_uniqueness_constraint()
-
-        # Ensure unscheduled doctors are not assigned any orders.
-        self._set_values_zero_for_unscheduled_doctors()
-
-        # Ensure no doctor is assigned an order beyond the last preassigned one.
-        self._restrict_orders_beyond_last_call()
 
         # Assign constraints for doctors who have predetermined orders on specific days.
         self._add_preassigned_doctor_constraints()
@@ -229,8 +225,8 @@ class AllocationModel:
         Ensure that each order on a given day is assigned to at most one doctor.
         """
         self.m.addConstrs(
-            (sum(self.x[doctor, day, order] for doctor in self.data.doctors) <= 1
-             for day in self.data.days for order in self.data.orders),
+            (sum(self.x[doctor, day, order] for doctor in self.data.working[day]) <= 1
+             for day in self.data.days for order in self.data.orders[day]),
             name="unique_order_assignment"
         )
 
@@ -240,7 +236,7 @@ class AllocationModel:
         """
         # Each doctor in Whine[day] is assigned to one order per day
         self.m.addConstrs(
-            (sum(self.x[doctor, day, order] for order in self.data.orders) == 1
+            (sum(self.x[doctor, day, order] for order in self.data.orders[day]) == 1
              for day in self.data.weekdays for doctor in self.data.Whine[day]),
             name="whine_doctor_order_assignment"
         )
@@ -251,7 +247,7 @@ class AllocationModel:
         """
         # Ensure each pre-assigned doctor is allocated to exactly one peel-off position per pre-assigned day.
         self.m.addConstrs(
-            (sum(self.x[doctor, day, order] for order in self.data.orders) == 1
+            (sum(self.x[doctor, day, order] for order in self.data.orders[day]) == 1
              for day in self.data.days for doctor in list(self.data.preassigned[day].values())),
             name=f"unique_peel_off_position_per_preassigned_doctor"
         )
@@ -260,39 +256,6 @@ class AllocationModel:
         for day, order_doctor_dict in self.data.preassigned.items():
             for order, doctor in order_doctor_dict.items():
                 self.m.addConstr(self.x[doctor, day, order] == 1, name=f"preassigned_doctor_{doctor}_{day}_{order}")
-
-    def _set_values_zero_for_unscheduled_doctors(self):
-        """
-        For each day, set the assignment decision variables (x values) to zero for doctors
-        who are not scheduled. This ensures that doctors who are not available for the day
-        are not assigned any orders.
-        """
-        for day in self.data.weekdays:
-            # Get the set of doctors who are scheduled for the day
-            scheduled_doctors = set(self.data.working[day])
-
-            # Identify doctors who are not scheduled
-            not_scheduled = self.data.doctors - scheduled_doctors
-
-            # Set x values to zero for these doctors
-            self.m.addConstrs(
-                (self.x[doctor, day, order] == 0 for order in self.data.orders for doctor in not_scheduled),
-                name=f"unscheduled_doctor_{day}")
-
-    def _restrict_orders_beyond_last_call(self):
-        """
-        For each day, ensure that no doctor is assigned an order that surpasses the last
-        preassigned order (interpreted as the "call" or the last doctor out). This helps
-        maintain the order of assignments in accordance with the preassigned schedule.
-        """
-        for day in self.data.days:
-            # Ensure no doctor is assigned an order beyond the last preassigned one
-            self.m.addConstrs(
-                self.x[doctor, day, order] == 0
-                for doctor in self.data.doctors
-                for order in self.data.orders
-                if order > self.data.last_order(day)
-            )
 
     def _add_constraints_for_doctor_order_equity(self):
         """
@@ -445,7 +408,9 @@ class AllocationModel:
 
         # Calculate the Total Order for Each Doctor based on their assignments over all days and orders
         total_order = {
-            doctor: sum(order * self.x[doctor, day, order] for day in self.data.days for order in self.data.orders)
+            doctor: sum(order * self.x[doctor, day, order]
+                        for day in self.data.days if doctor in self.data.working[day]
+                        for order in self.data.orders[day])
             for doctor in self.data.doctors
         }
 

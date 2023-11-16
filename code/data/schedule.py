@@ -138,6 +138,9 @@ class DoctorSchedule:
             'Target': None
         }
 
+        # Create a dictionary of orders for each day
+        self.orders = {day: list(range(1, max(list(self.preassigned[day].keys())) + 1)) for day in self.days}
+
     def validate(self):
         """ Validate the schedule. """
         errors = []
@@ -211,14 +214,6 @@ class DoctorSchedule:
     @property
     def weekdays(self):
         return [day for d, day in enumerate(self.days) if self.rawdata['Day'][d] == WORKDAY]
-
-    @property
-    def orders(self):
-        highest_key = max([self.last_order(day) for day in self.days])
-        return list(range(1, highest_key + 1))
-
-    def last_order(self, day):
-        return max(list(self.preassigned[day].keys()))
 
     @property
     def Admin(self):

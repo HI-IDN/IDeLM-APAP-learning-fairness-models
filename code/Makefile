@@ -42,7 +42,7 @@ unassigned: $(foreach w,$(WEEKLY_JSON),$(WEEKLY_CALL_DATA)/$(w))
 	make $(foreach w,$(WEEKLY_JSON),$(WEEKLY_UNASSIGNED_DATA)/$(w))
 
 assigned:
-	$(foreach w,$(UNASSIGNED_JSON),make $(WEEKLY_ASSIGNED_DATA)/$(w);)
+	make $(foreach w,$(UNASSIGNED_JSON),$(WEEKLY_ASSIGNED_DATA)/$(w))
 
 .PHONY: import
 import:
