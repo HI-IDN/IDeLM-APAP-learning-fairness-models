@@ -55,30 +55,40 @@ class DoctorSchedule:
         assert isinstance(requirements, dict), f"Requirements must be a dictionary. Got {type(requirements)} instead."
 
         assert 'Admin' in requirements, f"Requirements must contain 'Admin' key. Got {requirements.keys()} instead."
+        reprocess = False
         for d, day in enumerate(self.days):
             if not requirements['Admin'][d]:
                 continue
             # Overwrite the admin assignments as requested
             self.rawdata['Admin'][d] = requirements['Admin'][d]
-            # remove any admin doctors from the unassigned pool
-            self.rawdata['Unassigned'][d] = [doc for doc in self.rawdata['Unassigned'][d] if doc not in
-                                             requirements['Admin'][d]]
-            # could be they are allocated to an offsite shift, so remove them from there too
-            self.rawdata['Offsite'][d] = [doc for doc in self.rawdata['Offsite'][d] if doc not in
-                                          requirements['Admin'][d]]
-
-        self._process_data(self.rawdata)
+            if not all([a == ADMIN_IDENTIFIER for a in requirements['Admin'][d]]):
+                # Changes have been made, so reprocess the data to update the assignments
+                reprocess = True
+                # remove any admin doctors from the unassigned pool
+                self.rawdata['Unassigned'][d] = [doc for doc in self.rawdata['Unassigned'][d] if doc not in
+                                                 requirements['Admin'][d]]
+                # could be they are allocated to an offsite shift, so remove them from there too
+                self.rawdata['Offsite'][d] = [doc for doc in self.rawdata['Offsite'][d] if doc not in
+                                              requirements['Admin'][d]]
+        if reprocess:
+            self._process_data(self.rawdata)
 
         assert 'Whine' in requirements, f"Requirements must contain 'Whine' key. Got {requirements.keys()} instead."
         for d, day in enumerate(self.days):
             if requirements['Whine'][d] is None:
                 continue
             for doctor, order in requirements['Whine'][d]:
-                assert order not in self.preassigned[day], f'Duplicate points found on {day}. {doctor} already has ' \
-                                                           f'points {order} assigned.'
-                assert doctor in self.working[day], (f'{doctor} not working on {day} but requested order {order } in '
+                assert order not in self.preassigned[day], (f'Duplicate points found on {day}. '
+                                                            f'{self.preassigned[day][order]} has order {order}')
+                assert doctor in self.working[day], (f'{doctor} not working on {day} but requested order {order} in '
                                                      f'Whine zone.')
                 self.preassigned[day][order] = doctor
+                # Need to add the assignment to the solution as well
+                for assignment in self.solution['Whine'][day]:
+                    if assignment.points == order and assignment.doctor
+                        assignment.doctor = doctor
+                        assignment.shift = 'Assigned'
+                        break
 
     def _process_data(self, rawdata):
         """ Process the raw data from the JSON file. """
@@ -204,8 +214,11 @@ class DoctorSchedule:
 
     @property
     def orders(self):
-        highest_key = max(key for inner_dict in self.preassigned.values() for key in inner_dict.keys())
+        highest_key = max([self.last_order(day) for day in self.days])
         return list(range(1, highest_key + 1))
+
+    def last_order(self, day):
+        return max(list(self.preassigned[day].keys()))
 
     @property
     def Admin(self):

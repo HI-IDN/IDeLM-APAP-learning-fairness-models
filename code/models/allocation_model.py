@@ -247,14 +247,14 @@ class AllocationModel:
         """
         Set constraints for doctors that are preassigned to specific orders and days.
         """
-        # Ensure pre-assigned doctors are only at one place
+        # Ensure each pre-assigned doctor is allocated to exactly one peel-off position per pre-assigned day.
         self.m.addConstrs(
             (sum(self.x[doctor, day, order] for order in self.data.orders) == 1
              for day in self.data.days for doctor in list(self.data.preassigned[day].values())),
-            name="preassigned_doctor_order_assignment"
+            name=f"unique_peel_off_position_per_preassigned_doctor"
         )
 
-        # Pre-assigned doctors
+        # Directly assign each pre-assigned doctor to their specific peel-off position on each pre-assigned day.
         for day, order_doctor_dict in self.data.preassigned.items():
             for order, doctor in order_doctor_dict.items():
                 self.m.addConstr(self.x[doctor, day, order] == 1, name=f"preassigned_doctor_{doctor}_{day}_{order}")
@@ -273,7 +273,9 @@ class AllocationModel:
             not_scheduled = self.data.doctors - scheduled_doctors
 
             # Set x values to zero for these doctors
-            self.m.addConstrs(self.x[doctor, day, order] == 0 for order in self.data.orders for doctor in not_scheduled)
+            self.m.addConstrs(
+                (self.x[doctor, day, order] == 0 for order in self.data.orders for doctor in not_scheduled),
+                name=f"unscheduled_doctor_{day}")
 
     def _restrict_orders_beyond_last_call(self):
         """
@@ -287,7 +289,7 @@ class AllocationModel:
                 self.x[doctor, day, order] == 0
                 for doctor in self.data.doctors
                 for order in self.data.orders
-                if order > list(self.data.preassigned[day].keys())[-1]
+                if order > self.data.last_order(day)
             )
 
     def _add_constraints_for_doctor_order_equity(self):
