@@ -85,7 +85,7 @@ class DoctorSchedule:
                 self.preassigned[day][order] = doctor
                 # Need to add the assignment to the solution as well
                 for assignment in self.solution['Whine'][day]:
-                    if assignment.points == order and assignment.doctor
+                    if assignment.points == order:
                         assignment.doctor = doctor
                         assignment.shift = 'Assigned'
                         break
