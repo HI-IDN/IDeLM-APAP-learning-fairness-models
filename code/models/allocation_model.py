@@ -24,6 +24,7 @@ class AllocationModel:
     def solve(self):
         """Optimize the model."""
         self.m.optimize()
+        self.solution = {'Params': {'Constraints': self.m.numConstrs, 'Variables': self.m.numVars}}
 
         if self.m.status == GRB.OPTIMAL:
             self.solution = self._get_solution()
@@ -69,7 +70,8 @@ class AllocationModel:
             'total': self.obj_var['total'].X
         }
 
-        return {'Whine': whine, 'Charge': chrg, 'Cardiac': diac, 'Points': points, 'Target': target, 'Objective': obj}
+        return {'Params': self.solution['Params'],
+                'Whine': whine, 'Charge': chrg, 'Cardiac': diac, 'Points': points, 'Target': target, 'Objective': obj}
 
     def _set_decision_variables(self):
         """Create decision variables for the model."""
@@ -502,6 +504,7 @@ class AllocationModel:
             'Points': self.solution['Points'],
             'Target': self.solution['Target'],
             'Objective': self.solution['Objective'],
+            'Params': self.solution['Params']
         }
         write_json(data, filename, overwrite=True)
 

@@ -355,6 +355,7 @@ class DoctorSchedule:
         self.solution['Points'] = solution['Points']
         self.solution['Target'] = solution['Target']
         self.solution['Objective'] = solution['Objective']
+        self.solution['Params'] = solution['Params']
 
     def _print_schedule(self, color_cardiac=False, color_charge=False):
         output = []
