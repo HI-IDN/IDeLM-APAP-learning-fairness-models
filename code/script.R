@@ -90,8 +90,17 @@ db$schedule %>%
 # Calculate the means, merge back with the full data, and then plot
 db$points %>%
   left_join(db$doctors, by = c("doctor_id" = "id")) %>%
-  ggplot(aes(x = reorder(doctor_id, -total_points, FUN=mean), y = total_points, fill = roles)) +
+  ggplot(aes(x = reorder(doctor_id, -total_points, FUN = mean), y = total_points, fill = roles)) +
   geom_boxplot() +
   xlab(NULL) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) # Rotate x labels for readability
 
+# Plot the cumulative points for each doctor over time 
+db$points %>%
+  mutate(cumulative_points = cumsum(total_points)) %>%
+  ungroup() %>%
+  ggplot(aes(x = period_start, y = cumulative_points, group = doctor_id, color = doctor_id)) +
+  geom_line() +
+  labs(x = "Period Start Date", y = "Cumulative Total Points", color = "Doctor ID") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) # Rotate x labels for readability
