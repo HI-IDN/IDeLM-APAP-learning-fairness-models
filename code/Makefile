@@ -48,6 +48,7 @@ assigned:
 import:
 	@echo "Importing JSON files from $(WEEKLY_ASSIGNED_DATA) into $(DB_FILE):"
 	./import_json_to_sqlite.sh "$(DB_FILE)" $(WEEKLY_ASSIGNED_DATA)
+	cp $(DB_FILE) /mnt/c/Users/hbi3/Downloads/$(notdir $(DB_FILE))
 
 clean:
 	@echo Removing quarterly JSON files

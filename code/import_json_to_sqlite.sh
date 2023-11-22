@@ -47,7 +47,7 @@ awk -F, 'NR > 1 {OFS=","; print $1, $4, ($2=="TRUE"?"1":"0"), ($3=="TRUE"?"1":"0
   sqlite3 "$DB_FILE" ".mode csv" ".import /dev/stdin doctors"
 
 # Loop over each JSON file in the directory
-for json_file in `find "$JSON_FOLDER" -name \*json`; do
+for json_file in `find "$JSON_FOLDER" -name \*json -not -name \*-jon.json|sort`; do
   filename=$(basename "$json_file")
   echo $filename
 
@@ -73,13 +73,11 @@ for json_file in `find "$JSON_FOLDER" -name \*json`; do
 
   # Extract points for each doctor as "doctor_id=points"
   declare -A doctor_points_total=()
-  while IFS="=" read -r doctor points; do
-    doctor_points_total["$doctor"]=$points
-  done < <(jq -r '.Solution.Points.Total | to_entries | .[] | "\(.key)=\(.value)"' "$json_file")
   declare -A doctor_points_fixed=()
-  while IFS="=" read -r doctor points; do
-    doctor_points_fixed["$doctor"]=$points
-  done < <(jq -r '.Solution.Points.Fixed | to_entries | .[] | "\(.key)=\(.value)"' "$json_file")
+  while IFS=" " read -r doctor total fixed; do
+    doctor_points_total["$doctor"]=$total
+    doctor_points_fixed["$doctor"]=$fixed
+  done < <(jq -r '.Solution.Points | to_entries | .[] | "\(.key) \(.value[0]) \(.value[1])"' "$json_file")
 
   # Extract doctors who have a charge role
   declare -A doctor_charge=()

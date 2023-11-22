@@ -58,4 +58,3 @@ points %>%
   geom_point(aes(group = period_start, y = off_target, color = abs(off_target))) +
   xlab(NULL) +
   facet_grid(regular_week ~ .)
-
