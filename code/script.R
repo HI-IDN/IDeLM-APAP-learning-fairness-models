@@ -96,11 +96,30 @@ db$points %>%
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) # Rotate x labels for readability
 
 # Plot the cumulative points for each doctor over time 
-db$points %>%
-  mutate(cumulative_points = cumsum(total_points)) %>%
+db$points %>% 
+  group_by(doctor_id) %>% mutate(cumulative_points = cumsum(total_points)) %>%
   ungroup() %>%
   ggplot(aes(x = period_start, y = cumulative_points, group = doctor_id, color = doctor_id)) +
   geom_line() +
-  labs(x = "Period Start Date", y = "Cumulative Total Points", color = "Doctor ID") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) # Rotate x labels for readability
+  labs(x = NULL, y = "Cumulative Total Points", color = "Doctor ID") +
+  theme_minimal()
+
+standard_workweek_days <- 5 # 5 days workweek
+db$points %>%
+  group_by(doctor_id) %>%
+  mutate(
+    cumulative_points = cumsum(total_points),
+    cumulative_workdays = cumsum(workdays),
+    points_per_week = (cumulative_points / cumulative_workdays) * standard_workweek_days # Normalize
+  ) %>%
+  ungroup() %>%
+  ggplot(aes(x = period_start, y = points_per_week, group = doctor_id, color = doctor_id)) +
+  geom_line() +
+    labs(
+    x = "Period Start Date",
+    y = paste(standard_workweek_days,"x cumulative points / cumulative workdays"),
+    title= "Normalized Points per Week",
+    color = "Doctor ID"
+  ) +
+  theme_minimal()
+  
