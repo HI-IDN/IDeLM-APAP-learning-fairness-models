@@ -96,7 +96,7 @@ db$points %>%
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) # Rotate x labels for readability
 
 # Plot the cumulative points for each doctor over time 
-db$points %>% 
+db$points %>% arrange(period_start) %>% 
   group_by(doctor_id) %>% mutate(cumulative_points = cumsum(total_points)) %>%
   ungroup() %>%
   ggplot(aes(x = period_start, y = cumulative_points, group = doctor_id, color = doctor_id)) +
@@ -105,7 +105,7 @@ db$points %>%
   theme_minimal()
 
 standard_workweek_days <- 5 # 5 days workweek
-db$points %>%
+db$points %>% arrange(period_start) %>% 
   group_by(doctor_id) %>%
   mutate(
     cumulative_points = cumsum(total_points),
