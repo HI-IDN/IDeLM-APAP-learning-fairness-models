@@ -213,11 +213,11 @@ def generate_new_structure(current, before, after, start_date, end_date):
         result[weekday_name] = {
             "OnCall": on_call,
             "OnLate": on_late,
-            "Post-Call": post_call if post_call not in offsite else None,
-            "Post-Holiday": post_holiday if post_holiday and post_holiday not in offsite and post_holiday not in (
+            "PostCall": post_call if post_call not in offsite else None,
+            "PostHoliday": post_holiday if post_holiday and post_holiday not in offsite and post_holiday not in (
                 on_call, on_late) else None,
-            "Post-Late": post_late if post_late not in offsite and post_late not in (on_call, on_late) else None,
-            "Pre-Call": pre_call if pre_call not in offsite and pre_call not in (on_call, on_late) else None,
+            "PostLate": post_late if post_late not in offsite and post_late not in (on_call, on_late) else None,
+            "PreCall": pre_call if pre_call not in offsite and pre_call not in (on_call, on_late) else None,
             "Admin": admin,
             "Offsite": offsite,
             "Day": day_type
@@ -395,13 +395,13 @@ def main():
     err_filename = filename.replace('.json', '.err')
     if os.path.exists(err_filename):
         os.remove(err_filename)
-    write_json(new_structure, filename, overwrite=True, indent_level=None)
+    write_json(new_structure, filename, overwrite=True, indent_level=4)
 
     if args.requests:
         requests = {'Admin': new_structure['Admin'],
                     'Whine': [None if day == WEEKEND else [] for day in new_structure['Day']]
                     }
-        write_json(requests, args.requests, overwrite=False, indent_level=4)
+        write_json(requests, args.requests, overwrite=True, indent_level=4)
 
     # Verify the output structure is valid
     schedule = DoctorSchedule(new_structure)

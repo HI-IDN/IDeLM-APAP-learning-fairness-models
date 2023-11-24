@@ -28,10 +28,10 @@ class Assignment:
 
 class DoctorSchedule:
     TURN_ORDER = [
-        'Post-Call',
-        'Post-Holiday',
-        'Post-Late',
-        'Pre-Call',
+        'PostCall',
+        'PostHoliday',
+        'PostLate',
+        'PreCall',
         'Unassigned',
         'OnLate',
         'OnCall',
@@ -336,6 +336,15 @@ class DoctorSchedule:
                         if whine.points == assignment.points:
                             self.solution['Whine'][day][i] = assignment
                             break
+                    for i, whine in enumerate(self.assignments['Unassigned'][day]):
+                        if whine.doctor == assignment.doctor:
+                            assert assignment.points in whine.points, f'Invalid points {assignment.points} found in ' \
+                                                                      f'solution for {whine} on {day}.'
+                            self.assignments['Unassigned'][day][i] = assignment
+                            break
+
+        self.assignments['Unassigned'] = {
+            day: sorted([a for a in self.assignments['Unassigned'][day]], key=lambda a: a.points) for day in self.days}
 
         # Check that the solution matches the original unassigned pool of doctors
         for day in self.weekdays:
@@ -408,10 +417,7 @@ class DoctorSchedule:
         for t, turn_order in enumerate(self.TURN_ORDER):
             if turn_order == "Unassigned":
                 output.append(separator)
-                if self.assigned:
-                    print_nested_list('Assigned', self.solution['Whine'].values())
-                else:
-                    print_nested_list(turn_order, self.assignments[turn_order].values())
+                print_nested_list("Assigned" if self.assigned else turn_order, self.assignments[turn_order].values())
             elif turn_order == "Admin":
                 output.append(separator)
                 print_nested_list(turn_order, self.assignments[turn_order].values())

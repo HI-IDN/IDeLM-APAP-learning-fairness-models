@@ -462,8 +462,11 @@ class AllocationModel:
         """ Save the solution to the model. """
         data = self.data.rawdata
         data['Solution'] = {
-            'Assignment': [[(a.doctor, a.points) for a in self.solution['Whine'][day]] if day in self.data.weekdays
-                           else None for day in self.data.days],
+            'Assignment': {
+                day: [(assignment.doctor, assignment.points) for turn_order in self.data.TURN_ORDER
+                      for assignment in self.data.assignments[turn_order][day]]
+                for day in self.data.days
+            },
             'Charge': [self.solution['Charge'][day] if day in self.data.weekdays else None for day in self.data.days],
             'Cardiac': [self.solution['Cardiac'][day] if day in self.data.weekdays else None for day in self.data.days],
             'Points': self.solution['Points'],

@@ -39,6 +39,20 @@ sqlite3 "$DB_FILE" "
     UNIQUE(doctor_id, schedule_id),
     FOREIGN KEY (schedule_id) REFERENCES schedule(id),
     FOREIGN KEY (doctor_id) REFERENCES doctors(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS assignments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    doctor_id TEXT,
+    date TEXT, -- Storing date as an ISO8601 string
+    points TEXT,
+    role TEXT,
+    schedule_id INTEGER,
+    is_charge BOOLEAN,
+    is_cardiac BOOLEAN,
+    UNIQUE(doctor_id, date),
+    FOREIGN KEY (schedule_id) REFERENCES schedule(id),
+    FOREIGN KEY (doctor_id) REFERENCES doctors(id)
   );"
 
 # Import the doctors from the CSV file into the database
@@ -102,6 +116,47 @@ for json_file in `find "$JSON_FOLDER" -name \*json -not -name \*-jon.json|sort`;
     sqlite3 "$DB_FILE" "INSERT INTO points (schedule_id, doctor_id, total_points, fixed_points, cardiac, charge)
                         VALUES ($schedule_id, '$doctor', $total_points, $fixed_points, $cardiac, $charge);"
   done
+
+  # Calculate dates based on period_start and day order
+  for i in {0..6}; do
+    date=$(date -I -d "$period_start + $i days")
+
+    # Pre-calculate charge and cardiac statuses for the day
+    charge_doctors=$(jq -r ".Solution.Charge[$i]" "$json_file")
+    cardiac_doctors=$(jq -r ".Solution.Cardiac[$i]" "$json_file")
+
+    # Pre-calculate roles for the day
+    declare -A roles_for_day
+    for special_role in OnCall OnLate PostCall PostHoliday PostLate PreCall Admin; do
+      roles_for_day[$special_role]=$(jq -r ".${special_role}[$i]" "$json_file")
+    done
+
+    # Extract assignments for each doctor
+    jq -r ".Solution.Assignment[$i][] | @csv" "$json_file" | while IFS=, read -r doctor points; do
+      # Remove the extra double quotes from the doctor variable
+      doctor=$(echo $doctor | sed 's/"//g')
+
+      # Determine if the doctor is on charge or cardiac for this day
+      is_charge=$(echo "$charge_doctors" | grep -cq "$doctor" && echo "1" || echo "0")
+      is_cardiac=$(echo "$cardiac_doctors" | grep -cq "$doctor" && echo "1" || echo "0")
+
+      # Identify the role of the doctor
+      role='Whine'
+      for special_role in "${!roles_for_day[@]}"; do
+      if echo "${roles_for_day[$special_role]}" | grep -cq "$doctor"; then
+        role=$special_role
+        break
+      fi
+      done
+
+      # Insert into the database
+      sqlite3 "$DB_FILE" "
+      INSERT INTO assignments (doctor_id, date, points, schedule_id, is_charge, is_cardiac, role)
+      VALUES ('$doctor', '$date', $points, $schedule_id, $is_charge, $is_cardiac, '$role');"
+
+    done
+  done
+
 done
 
 echo "Data import complete."
