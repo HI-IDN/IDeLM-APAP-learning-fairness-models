@@ -1,225 +1,225 @@
 {
-  "OnCall": [
-    "MI",
-    "SL",
-    "MC",
-    "TT",
-    "FM",
-    "SK",
-    "SL"
-  ],
-  "OnLate": [
-    "CA",
-    "JM",
-    "BK",
-    "JT",
-    "SK",
-    "SL",
-    "SK"
-  ],
-  "Post-Call": [
-    null,
-    "MI",
-    "SL",
-    "MC",
-    "TT",
-    null,
-    null
-  ],
-  "Post-Holiday": [
-    null,
-    "CM",
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "Post-Late": [
-    null,
-    "CA",
-    "JM",
-    "BK",
-    "JT",
-    null,
-    null
-  ],
-  "Pre-Call": [
-    null,
-    "MC",
-    "TT",
-    "FM",
-    "SL",
-    null,
-    null
-  ],
-  "Admin": [
-    [
-      "AD"
+    "OnCall": [
+        "MI",
+        "SL",
+        "MC",
+        "TT",
+        "FM",
+        "SK",
+        "SL"
     ],
-    [
-      "AD"
+    "OnLate": [
+        "CA",
+        "JM",
+        "BK",
+        "JT",
+        "SK",
+        "SL",
+        "SK"
     ],
-    [
-      "AD"
+    "PostCall": [
+        null,
+        "MI",
+        "SL",
+        "MC",
+        "TT",
+        null,
+        null
     ],
-    [
-      "AD"
+    "PostHoliday": [
+        null,
+        "CM",
+        null,
+        null,
+        null,
+        null,
+        null
     ],
-    [
-      "AD"
+    "PostLate": [
+        null,
+        "CA",
+        "JM",
+        "BK",
+        "JT",
+        null,
+        null
     ],
-    null,
-    null
-  ],
-  "Offsite": [
-    [
-      "CC",
-      "DD",
-      "KC",
-      "TI",
-      "RR",
-      "DN"
+    "PreCall": [
+        null,
+        "MC",
+        "TT",
+        "FM",
+        "SL",
+        null,
+        null
     ],
-    [
-      "MA",
-      "JJ",
-      "DD",
-      "KC",
-      "TI",
-      "RR",
-      "DN"
+    "Admin": [
+        [
+            "AD"
+        ],
+        [
+            "AD"
+        ],
+        [
+            "AD"
+        ],
+        [
+            "AD"
+        ],
+        [
+            "AD"
+        ],
+        null,
+        null
     ],
-    [
-      "AY",
-      "JJ",
-      "DD",
-      "KC",
-      "TI",
-      "RR",
-      "DN"
+    "Offsite": [
+        [
+            "CC",
+            "DD",
+            "KC",
+            "TI",
+            "RR",
+            "DN"
+        ],
+        [
+            "MA",
+            "JJ",
+            "DD",
+            "KC",
+            "TI",
+            "RR",
+            "DN"
+        ],
+        [
+            "AY",
+            "JJ",
+            "DD",
+            "KC",
+            "TI",
+            "RR",
+            "DN"
+        ],
+        [
+            "CC",
+            "JJ",
+            "DD",
+            "KC",
+            "TI",
+            "RR",
+            "DN"
+        ],
+        [
+            "MA",
+            "JJ",
+            "DD",
+            "KC",
+            "TI",
+            "RR",
+            "DN"
+        ],
+        [
+            "MA"
+        ],
+        [
+            "MA"
+        ]
     ],
-    [
-      "CC",
-      "JJ",
-      "DD",
-      "KC",
-      "TI",
-      "RR",
-      "DN"
+    "Day": [
+        "Weekend",
+        "Workday",
+        "Workday",
+        "Workday",
+        "Workday",
+        "Weekend",
+        "Weekend"
     ],
-    [
-      "MA",
-      "JJ",
-      "DD",
-      "KC",
-      "TI",
-      "RR",
-      "DN"
+    "Unassigned": [
+        [],
+        [
+            "AY",
+            "BK",
+            "CC",
+            "ES",
+            "FM",
+            "JT",
+            "KK",
+            "SK",
+            "TT"
+        ],
+        [
+            "CA",
+            "CC",
+            "CM",
+            "ES",
+            "FM",
+            "JT",
+            "KK",
+            "MA",
+            "MI",
+            "SK"
+        ],
+        [
+            "AY",
+            "CA",
+            "CM",
+            "ES",
+            "JM",
+            "KK",
+            "MA",
+            "MI",
+            "SK",
+            "SL"
+        ],
+        [
+            "AY",
+            "BK",
+            "CA",
+            "CC",
+            "CM",
+            "ES",
+            "JM",
+            "KK",
+            "MC",
+            "MI"
+        ],
+        [],
+        []
     ],
-    [
-      "MA"
+    "Order": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
     ],
-    [
-      "MA"
-    ]
-  ],
-  "Day": [
-    "Weekend",
-    "Workday",
-    "Workday",
-    "Workday",
-    "Workday",
-    "Weekend",
-    "Weekend"
-  ],
-  "Unassigned": [
-    [],
-    [
-      "AY",
-      "BK",
-      "CC",
-      "ES",
-      "FM",
-      "JT",
-      "KK",
-      "SK",
-      "TT"
+    "Doctors": [
+        "AY",
+        "BK",
+        "CA",
+        "CC",
+        "CM",
+        "DD",
+        "DN",
+        "ES",
+        "FM",
+        "JJ",
+        "JM",
+        "JT",
+        "KC",
+        "KK",
+        "MA",
+        "MC",
+        "MI",
+        "RR",
+        "SK",
+        "SL",
+        "TI",
+        "TT"
     ],
-    [
-      "CA",
-      "CC",
-      "CM",
-      "ES",
-      "FM",
-      "JT",
-      "KK",
-      "MA",
-      "MI",
-      "SK"
-    ],
-    [
-      "AY",
-      "CA",
-      "CM",
-      "ES",
-      "JM",
-      "KK",
-      "MA",
-      "MI",
-      "SK",
-      "SL"
-    ],
-    [
-      "AY",
-      "BK",
-      "CA",
-      "CC",
-      "CM",
-      "ES",
-      "JM",
-      "KK",
-      "MC",
-      "MI"
-    ],
-    [],
-    []
-  ],
-  "Order": [
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-    "Sun"
-  ],
-  "Doctors": [
-    "AY",
-    "BK",
-    "CA",
-    "CC",
-    "CM",
-    "DD",
-    "DN",
-    "ES",
-    "FM",
-    "JJ",
-    "JM",
-    "JT",
-    "KC",
-    "KK",
-    "MA",
-    "MC",
-    "MI",
-    "RR",
-    "SK",
-    "SL",
-    "TI",
-    "TT"
-  ],
-  "Period": {
-    "start": "2023-09-04",
-    "end": "2023-09-10"
-  }
+    "Period": {
+        "start": "2023-09-04",
+        "end": "2023-09-10"
+    }
 }
