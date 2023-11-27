@@ -118,6 +118,7 @@ for json_file in `find "$JSON_FOLDER" -name \*json -not -name \*-jon.json|sort`;
   done
 
   # Calculate dates based on period_start and day order
+  days=("Mon" "Tue" "Wed" "Thu" "Fri" "Sat" "Sun")
   for i in {0..6}; do
     date=$(date -I -d "$period_start + $i days")
 
@@ -132,7 +133,7 @@ for json_file in `find "$JSON_FOLDER" -name \*json -not -name \*-jon.json|sort`;
     done
 
     # Extract assignments for each doctor
-    jq -r ".Solution.Assignment[$i][] | @csv" "$json_file" | while IFS=, read -r doctor points; do
+    jq -r ".Solution.Assignment[\"${days[$i]}\"][] | @csv" "$json_file" | while IFS=, read -r doctor points; do
       # Remove the extra double quotes from the doctor variable
       doctor=$(echo $doctor | sed 's/"//g')
 
