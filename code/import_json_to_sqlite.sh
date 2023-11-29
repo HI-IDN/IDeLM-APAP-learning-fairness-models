@@ -45,7 +45,7 @@ sqlite3 "$DB_FILE" "
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     doctor_id TEXT,
     date TEXT, -- Storing date as an ISO8601 string
-    points TEXT,
+    points INTEGER,
     role TEXT,
     schedule_id INTEGER,
     is_charge BOOLEAN,
@@ -74,7 +74,6 @@ for json_file in `find "$JSON_FOLDER" -name \*json -not -name \*-jon.json|sort`;
   objective_cardiac_charge=$(jq -r '.Solution.Objective.cardiac_charge' $json_file)
   objective_priority_charge=$(jq -r '.Solution.Objective.priority_charge' $json_file)
   objective_total=$(jq -r '.Solution.Objective.total' $json_file)
-
 
   schedule_id=$(sqlite3 "$DB_FILE" "
     INSERT INTO schedule (file_name, period_start, period_end, target_value, workdays,
@@ -137,6 +136,11 @@ for json_file in `find "$JSON_FOLDER" -name \*json -not -name \*-jon.json|sort`;
       # Remove the extra double quotes from the doctor variable
       doctor=$(echo $doctor | sed 's/"//g')
 
+      # Skip null assignments
+      if [ -z "$doctor" ]; then
+        continue
+      fi
+
       # Determine if the doctor is on charge or cardiac for this day
       is_charge=$(echo "$charge_doctors" | grep -cq "$doctor" && echo "1" || echo "0")
       is_cardiac=$(echo "$cardiac_doctors" | grep -cq "$doctor" && echo "1" || echo "0")
@@ -153,11 +157,8 @@ for json_file in `find "$JSON_FOLDER" -name \*json -not -name \*-jon.json|sort`;
       # Insert into the database
       sqlite3 "$DB_FILE" "
       INSERT INTO assignments (doctor_id, date, points, schedule_id, is_charge, is_cardiac, role)
-      VALUES ('$doctor', '$date', $points, $schedule_id, $is_charge, $is_cardiac, '$role');"
-
+      VALUES ('$doctor', '$date', $points, $schedule_id, $is_charge, $is_cardiac, '$role');" || echo "Error inserting $doctor $date $points $schedule_id $is_charge $is_cardiac $role"
     done
   done
-
 done
-
 echo "Data import complete."
