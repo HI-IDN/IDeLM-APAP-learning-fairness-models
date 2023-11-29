@@ -5,7 +5,7 @@ from data.schedule import ADMIN_POINTS, Assignment
 
 class AllocationModel:
 
-    def __init__(self, data, simple=False):
+    def __init__(self, data):
         # Initialize the model
         self.m = Model("DoctorScheduling")
         self.data = data  # DataHandler object, known parameters
@@ -17,8 +17,6 @@ class AllocationModel:
         self._set_decision_variables()
         self._calculate_total_order()  # create a dict containing the total order for each doctor
         self._set_constraints()
-        if not simple:
-            self._set_additional_constraints()
         self._set_objective()
 
     def solve(self):
@@ -148,9 +146,6 @@ class AllocationModel:
 
         # Distribute orders among doctors in an equitable manner.
         self._add_constraints_for_doctor_order_equity()
-
-    def _set_additional_constraints(self):
-        """Create additional constraints."""
 
         # Assign constraints for doctors from the 'Whine' group for each day.
         self._add_whine_doctor_constraints()
