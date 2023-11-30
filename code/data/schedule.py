@@ -103,6 +103,12 @@ class DoctorSchedule:
 
         self.working, self.offsite, self.assignments = self.transform_rawdata(rawdata)
         self.doctors = set().union(*self.working.values())
+        self.working_doctors = {
+            doc: {
+                'Total': len([day for day in self.days if doc in self.working[day]]),
+                'Weekdays': len([day for day in self.weekdays if doc in self.working[day]])
+            } for doc in self.doctors
+        }
 
         self.call_doctors = {day: [rawdata['OnCall'][i], rawdata['OnLate'][i]] for i, day in enumerate(self.days)}
 

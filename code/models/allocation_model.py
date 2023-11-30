@@ -85,10 +85,10 @@ class AllocationModel:
         """
 
         # Variable representing the target total_order value for all doctors
-        self.central_value = self.m.addVar(vtype=GRB.INTEGER, name="TargetTotalOrderValue_central_value")
+        self.central_value = self.m.addVar(lb=0.0, vtype=GRB.CONTINUOUS, name="TargetTotalOrderValue_central_value")
         """
         central_value:
-        Represents the target value for total orders across all doctors.
+        Represents the target value for average orders across all doctors (total orders / working days).
         """
 
         # Binary variables to capture specific doctor conditions
@@ -179,7 +179,7 @@ class AllocationModel:
         """
         # Weights for different objectives
         alpha = 1  # Weight for the equity objective
-        beta = 0.1  # Weight for the "In Charge" and "Cardiac" objectives
+        beta = 0.01  # Weight for the "In Charge" and "Cardiac" objectives
         gamma = 0.001  # Weight to prioritize certain doctors for "In Charge" role on specific days
 
         # Define individual objectives
@@ -265,17 +265,19 @@ class AllocationModel:
         # Large constant for big-M method; used for linearizing the constraints
         M = len(self.data.days) * len(self.data.orders)
 
-        # Constraints to ensure the total order for each doctor is around the central_value.
-        # If a doctor's total order is not within the range (central_value - 1, central_value + 1),
+        # Constraints to ensure the mean order for each doctor is around the central_value.
+        # If a doctor's mean order is not within the range (central_value - 1, central_value + 1),
         # the corresponding self.y[doctor] variable will be set to 1.
         self.m.addConstrs(
-            (self.total_order[doctor] - (self.central_value - 1) >= -M * (1 - self.y[doctor])
-             for doctor in self.data.doctors),
+            (self.total_order[doctor] / self.data.working_doctors[doctor]['Weekdays'] - (self.central_value - 1)
+             >= -M * (1 - self.y[doctor])
+             for doctor in self.data.doctors if self.data.working_doctors[doctor]['Weekdays'] > 0),
             name="lower_bound_order_constraint"
         )
         self.m.addConstrs(
-            ((self.central_value + 1) - self.total_order[doctor] >= -M * (1 - self.y[doctor])
-             for doctor in self.data.doctors),
+            ((self.central_value + 1) - self.total_order[doctor] / self.data.working_doctors[doctor][
+                'Weekdays'] >= -M * (1 - self.y[doctor])
+             for doctor in self.data.doctors if self.data.working_doctors[doctor]['Weekdays'] > 0),
             name="upper_bound_order_constraint"
         )
 
