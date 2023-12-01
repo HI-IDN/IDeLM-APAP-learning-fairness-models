@@ -5,7 +5,7 @@ import os  # OS module provides functions for interacting with the operating sys
 import csv  # CSV module is used to read/write CSV files
 from datetime import datetime, timedelta
 import argparse
-
+from data.utils import holidays_that_year
 
 def process_schedule_data(db_file, json_folder, staff_file):
     # Function to clean up the existing DB file
@@ -66,6 +66,12 @@ def process_schedule_data(db_file, json_folder, staff_file):
                 FOREIGN KEY (schedule_id) REFERENCES schedule(id),
                 FOREIGN KEY (doctor_id) REFERENCES doctors(id)
             );
+            
+            CREATE TABLE holidays (                
+                date TEXT,
+                description TEXT,
+                UNIQUE(date)
+            );
         """)
         conn.commit()
         return conn
@@ -78,6 +84,14 @@ def process_schedule_data(db_file, json_folder, staff_file):
             doctors = [(row[header.index('anst')], row[header.index('name')], row[header.index('diac')] == 'TRUE',
                         row[header.index('chrg')] == 'TRUE') for row in csv_reader]
             cursor.executemany("INSERT INTO doctors (id, name, cardiac, charge) VALUES (?, ?, ?, ?);", doctors)
+
+    def import_holidays(cursor):
+        for year in range(2018, datetime.now().year):
+            holidays = holidays_that_year(year)
+            for holiday, dates in holidays.items():
+                for date in dates:
+                    cursor.execute("INSERT INTO holidays (date, description) VALUES (?, ?);", (date, holiday))
+
 
     def process_json_files(cursor, json_folder):
         days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -192,6 +206,7 @@ def process_schedule_data(db_file, json_folder, staff_file):
                 insert_points(schedule_id)
                 insert_assignments(schedule_id, period_start)
 
+
         # Remember to commit the changes
         conn.commit()
 
@@ -200,6 +215,7 @@ def process_schedule_data(db_file, json_folder, staff_file):
     conn = create_database()
     cursor = conn.cursor()
     import_doctors(cursor)
+    import_holidays(cursor)
     process_json_files(cursor, json_folder)
 
     conn.close()

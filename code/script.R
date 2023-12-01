@@ -6,24 +6,24 @@ create_mainplot_with_marginals <- function(main_plot, x_marginal_plot, y_margina
   # Ensure that the marginal plots don't have any axes or strip text
   x_marginal_plot <- x_marginal_plot + theme(
     axis.title.x = element_blank(),
-    axis.text.x = element_blank(),
+    #axis.text.x = element_blank(),
     axis.ticks.x = element_blank(),
     plot.margin = margin(0,0,0,0)
   )
   
   y_marginal_plot <- y_marginal_plot + theme(
     axis.title.y = element_blank(),
-    axis.text.y = element_blank(),
+    #axis.text.y = element_blank(),
     axis.ticks.y = element_blank(),
     plot.margin = margin(0,0,0,0)
   )
   
   # Align the plots and assemble them
-  combined_plot <- main_plot + 
-    patchwork::plot_layout(widths = c(4, 1), heights = c(4, 1)) +
-    y_marginal_plot + 
-    x_marginal_plot +
-    patchwork::plot_spacer()
+  combined_plot <- x_marginal_plot +
+    patchwork::plot_layout(widths = c(4, 1), heights = c(1, 4)) +
+    patchwork::plot_spacer()+ 
+    main_plot + 
+    y_marginal_plot
   
   # Print the combined plot
   combined_plot
@@ -65,10 +65,14 @@ read_database <- function(db_file = 'database.sqlite') {
   
   assignments <- dbReadTable(con, "assignments") %>% 
     group_by(date) %>% mutate(
+      date = as.Date(date),
       n_working=n(),
       points = as.numeric(points)
       ) %>% 
     ungroup()
+  
+  holidays <- dbReadTable(con, "holidays") %>% 
+    mutate(date = as.Date(date))
 
   dbDisconnect(con)
 
@@ -76,15 +80,14 @@ read_database <- function(db_file = 'database.sqlite') {
     doctors = doctors,
     points = points,
     schedule = schedule,
-    assignments = assignments
+    assignments = assignments,
+    holidays = holidays
   ))
 }
 
 # Check if data is already loaded
-if (!exists("db")) {
-  print("Loading data")
-  db <- read_database()
-}
+print("Loading data")
+db <- read_database()
 
 
 db$schedule %>% 
@@ -124,45 +127,46 @@ db$schedule %>%
   print()
 
 # Calculate the means, merge back with the full data, and then plot
+cowplot::plot_grid(
 db$points %>%
   left_join(db$doctors, by = c("doctor_id" = "id")) %>%
   ggplot(aes(x = reorder(doctor_id, -total_points, FUN = mean), y = total_points, fill = roles)) +
   geom_boxplot() +
   xlab(NULL) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) # Rotate x labels for readability
-
-
+,
 db$points %>%
   left_join(db$doctors, by = c("doctor_id" = "id")) %>%
   ggplot(aes(x = reorder(doctor_id, -total_points, FUN = mean), y = total_points/days_working, fill = roles)) +
   geom_boxplot() +
   xlab(NULL) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) # Rotate x labels for readability
-
+,nrow=2)
 
 
 # Plot the cumulative points for each doctor over time 
-db$points %>% arrange(period_start) %>% 
+db$points %>% 
+  merge(db$schedule %>% select(id, period_start), by.x='schedule_id', by.y='id') %>%
+  arrange(period_start) %>% 
   group_by(doctor_id) %>% mutate(cumulative_points = cumsum(total_points)) %>%
   ungroup() %>%
   ggplot(aes(x = period_start, y = cumulative_points, group = doctor_id, color = doctor_id)) +
   geom_line() +
   labs(x = NULL, y = "Cumulative Total Points", color = "Doctor ID") 
 
-standard_workweek_days <- 5 # 5 days workweek
-db$points %>% arrange(period_start) %>% 
+db$points %>% 
+  merge(db$schedule %>% select(id, period_start), by.x='schedule_id', by.y='id') %>%
+  arrange(period_start) %>% 
   group_by(doctor_id) %>%
   mutate(
     cumulative_points = cumsum(total_points),
-    cumulative_workdays = cumsum(workdays),
-    points_per_week = (cumulative_points / cumulative_workdays) * standard_workweek_days # Normalize
+    cumulative_workdays = cumsum(days_working)
   ) %>%
   ungroup() %>%
-  ggplot(aes(x = period_start, y = points_per_week, group = doctor_id, color = doctor_id)) +
+  ggplot(aes(x = period_start, y = cumulative_points / cumulative_workdays, group = doctor_id, color = doctor_id)) +
   geom_line() +
     labs(
     x = "Period Start Date",
-    y = paste(standard_workweek_days,"x cumulative points / cumulative workdays"),
     title= "Normalized Points per Week",
     color = "Doctor ID"
   )
@@ -212,8 +216,9 @@ heatmap <- function(assignments){
     geom_tile(color = "black") +
     geom_text(aes(label = value), color = "white", size = 4) +
     viridis::scale_fill_viridis()+
-    guides(fill = guide_colourbar(barwidth = 0.5, barheight = 17, title='Count'))+
-    labs(x='',y='Point Position')
+    guides(fill = guide_colourbar(barwidth = 17, title='Count'))+
+    labs(x='',y='Point Position')+
+    theme(legend.position = 'bottom')
 
   # Plot for distribution of doctor_id (X-axis)
   x_dist_plot <- assignments %>% 
@@ -233,7 +238,35 @@ heatmap <- function(assignments){
   create_mainplot_with_marginals(heatmap_plot, x_dist_plot, y_dist_plot)
   
 }
-heatmap(db$assignments)
 heatmap(db$assignments %>% filter(n_working>2))
 heatmap(db$assignments %>% filter(n_working==2))
   
+
+plot_objective <- function(db_schedule){
+  # Reshape the data to long format
+  long_data <- db_schedule %>% 
+    pivot_longer(cols = c(target_value, objective_total, objective_equity, objective_cardiac_charge, objective_priority_charge), 
+                 names_to = "Objective", 
+                 values_to = "Value")
+  
+  # Create the facet plot
+  ggplot(long_data, aes(x = period_start, y = Value)) + 
+    geom_point() + 
+    facet_wrap(~ Objective, scales = "free_y") +
+    theme_minimal() +
+    labs(title = "Objective Analysis Over Time", x = "Period Start", y = "Value")
+}
+plot_objective(db$schedule)
+
+db$points %>% filter(mean_daily_pts>9.4) %>% 
+  arrange(-mean_daily_pts) 
+
+
+# Create the bar plot with reordered doctor_id
+db$assignments %>%
+  merge(db$holidays, by='date') %>%
+  ggplot(aes(x = doctor_id, fill = description)) +
+  geom_histogram(stat='count')+
+  xlab(NULL) 
+  
+
