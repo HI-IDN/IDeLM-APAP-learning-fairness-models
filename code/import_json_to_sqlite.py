@@ -92,7 +92,7 @@ def process_schedule_data(db_file, json_folder, staff_file):
             cursor.executemany("INSERT INTO doctors (id, name, cardiac, charge) VALUES (?, ?, ?, ?);", doctors)
 
     def import_holidays(cursor):
-        for year in range(2018, datetime.now().year):
+        for year in range(2018, datetime.now().year+1):
             holidays = custom_holidays(year)
             for date, holiday in holidays.items():
                 cursor.execute("INSERT INTO holidays (date, description) VALUES (?, ?);", (date, holiday))
