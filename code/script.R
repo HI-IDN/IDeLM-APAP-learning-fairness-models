@@ -171,10 +171,6 @@ db$points %>%
     color = "Doctor ID"
   )
 
-db$assignments %>% group_by(date) %>% 
-  summarise(n_working=n()) %>% 
-  ggplot(aes(n_working)) + geom_histogram()
-
 # Summarize the data
 summary_data <- db$assignments %>%
   group_by(doctor_id) %>%
@@ -258,15 +254,15 @@ plot_objective <- function(db_schedule){
 }
 plot_objective(db$schedule)
 
-db$points %>% filter(mean_daily_pts>9.4) %>% 
-  arrange(-mean_daily_pts) 
-
 
 # Create the bar plot with reordered doctor_id
-db$assignments %>%
-  merge(db$holidays, by='date') %>%
+db$assignments %>% filter(n_working==2) %>%
+  left_join(db$holidays, by='date') %>%
+  mutate(
+    weekday=lubridate::wday(date,label = TRUE, locale = "en_US"),
+    holiday = !(is.na(description)),
+    description = coalesce(description,weekday)
+    ) %>% 
   ggplot(aes(x = doctor_id, fill = description)) +
   geom_histogram(stat='count')+
   xlab(NULL) 
-  
-
