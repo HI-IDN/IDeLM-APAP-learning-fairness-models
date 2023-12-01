@@ -19,17 +19,17 @@ $(QUARTERLY_DATA)/%.json: $(QUARTERLY_DATA)/%.xls data/xls_to_json_converter.py 
 	python3 data/xls_to_json_converter.py $< -o $@ --simple
 
 # Split quarterly .json into weekly segments
-$(WEEKLY_CALL_DATA): data/quarterly_json_week_splitter.py $(QUARTER_JSON)
+$(WEEKLY_CALL_DATA): data/quarterly_json_week_splitter.py $(QUARTER_JSON) data/quarterly_json_week_splitter.py
 	mkdir $@.tmp
 	$(foreach q,$(QUARTER_JSON),python3 -m data.quarterly_json_week_splitter $(q) --outdir $@.tmp || exit 1;)
 	rm -rf $@ && mv $@.tmp $@
 
 # Derive unassigned weekly plans from the weekly call plans
-$(WEEKLY_UNASSIGNED_DATA)/%.json: $(WEEKLY_CALL_DATA)/%.json
+$(WEEKLY_UNASSIGNED_DATA)/%.json: $(WEEKLY_CALL_DATA)/%.json data/derive_shifts_from_schedule.py
 	python3 -m data.derive_shifts_from_schedule -i $< -o $@ -r $(WEEKLY_REQUEST_DATA)/$(notdir $@)
 
 # Generate the solved/assigned plans
-$(WEEKLY_ASSIGNED_DATA)/%.json: $(WEEKLY_UNASSIGNED_DATA)/%.json $(WEEKLY_REQUEST_DATA)/%.json models/schedule_optimizer.py
+$(WEEKLY_ASSIGNED_DATA)/%.json: $(WEEKLY_UNASSIGNED_DATA)/%.json $(WEEKLY_REQUEST_DATA)/%.json models/schedule_optimizer.py models/allocation_model.py
 	python3 -m models.schedule_optimizer $< $@ -r $(word 2,$^)
 
 quarterly:

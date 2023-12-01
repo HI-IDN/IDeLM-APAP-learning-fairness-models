@@ -92,10 +92,15 @@ class AllocationModel:
         """
 
         # Binary variables to capture specific doctor conditions
-        self.y = self.m.addVars(self.data.doctors, vtype=GRB.BINARY, name="DoctorCondition_y")
+        self.epsilon_values = [1, 0.5, 0.2]
+        self.y = {eps: self.m.addVars(self.data.doctors, vtype=GRB.BINARY, name=f"DoctorCondition_y_{eps}") for eps in
+                  self.epsilon_values}
         """
-        y[doctor]: 
-        1 if specific conditions (defined elsewhere in the code) are met for the doctor; 0 otherwise.
+        y[eps][doctor]: 
+        Binary variable indicating whether the doctor's total order deviates from the central value by more than
+        'eps' units. It is set to 1 if the deviation is more than 'eps' units, and 0 otherwise. 
+        This variable is used to track and enforce the desired level of order equity for each doctor
+        at different deviation thresholds (represented by 'eps').
         """
 
         # Binary variables to indicate if a doctor is in charge for a particular day
@@ -179,6 +184,8 @@ class AllocationModel:
         """
         # Weights for different objectives
         alpha = 1  # Weight for the equity objective
+        alpha_weights = {1: 1, 0.5: 0.5, 0.2: 0.2}  # Weight for the equity sub-objectives per epsilon range
+        assert set(alpha_weights.keys()) == set(self.epsilon_values)  # Sanity check
         beta = 0.01  # Weight for the "In Charge" and "Cardiac" objectives
         gamma = 0.001  # Weight to prioritize certain doctors for "In Charge" role on specific days
 
@@ -191,7 +198,12 @@ class AllocationModel:
         }
 
         # Linking the equity objective to the dummy variable
-        self.m.addConstr(self.obj_var['equity'] == sum(self.y[doctor] for doctor in self.data.doctors))
+        self.m.addConstr(
+            self.obj_var['equity'] == sum(
+                alpha_weights[eps] * sum(self.y[eps][doctor] for doctor in self.data.doctors)
+                for eps in alpha_weights
+            )
+        )
 
         # Linking the cardiac charge objective to the dummy variable
         self.m.addConstr(self.obj_var['cardiac_charge'] == self.max_w + self.max_z + self.max_wz)
@@ -266,20 +278,22 @@ class AllocationModel:
         M = len(self.data.days) * len(self.data.orders)
 
         # Constraints to ensure the mean order for each doctor is around the central_value.
-        # If a doctor's mean order is not within the range (central_value - 1, central_value + 1),
-        # the corresponding self.y[doctor] variable will be set to 1.
-        self.m.addConstrs(
-            (self.total_order[doctor] / self.data.working_doctors[doctor]['Weekdays'] - (self.central_value - 1)
-             >= -M * (1 - self.y[doctor])
-             for doctor in self.data.doctors if self.data.working_doctors[doctor]['Weekdays'] > 0),
-            name="lower_bound_order_constraint"
-        )
-        self.m.addConstrs(
-            ((self.central_value + 1) - self.total_order[doctor] / self.data.working_doctors[doctor][
-                'Weekdays'] >= -M * (1 - self.y[doctor])
-             for doctor in self.data.doctors if self.data.working_doctors[doctor]['Weekdays'] > 0),
-            name="upper_bound_order_constraint"
-        )
+        # If a doctor's mean order is not within the range (central_value - eps, central_value + eps),
+        # the corresponding self.y[eps][doctor] variable will be set to 1.
+        # Adding constraints for each epsilon range
+        for eps in self.epsilon_values:
+            self.m.addConstrs(
+                (self.total_order[doctor] / self.data.working_doctors[doctor]['Weekdays'] - (self.central_value - eps)
+                 >= -M * (1 - self.y[eps][doctor])
+                 for doctor in self.data.doctors if self.data.working_doctors[doctor]['Weekdays'] > 0),
+                name=f"lower_bound_order_constraint_{eps}"
+            )
+            self.m.addConstrs(
+                ((self.central_value + eps) - self.total_order[doctor] / self.data.working_doctors[doctor]['Weekdays']
+                 >= -M * (1 - self.y[eps][doctor])
+                 for doctor in self.data.doctors if self.data.working_doctors[doctor]['Weekdays'] > 0),
+                name=f"upper_bound_order_constraint_{eps}"
+            )
 
     def _add_cardiac_constraints(self):
         """

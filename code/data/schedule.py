@@ -483,8 +483,8 @@ class DoctorSchedule:
             row = [self.staff.get_name(doc), doc,
                    preassigned_points[doc] if preassigned_points[doc] > 0 else '',
                    points_per_doctor[doc] if points_per_doctor[doc] > 0 else '',
-                   points_per_doctor[doc] - self.solution['Target'] if points_per_doctor[doc] > 0
-                                                                       and self.solution['Target'] is not None else '',
+                   round(points_per_doctor[doc] - self.solution['Target'] * self.working_doctors[doc]['Weekdays'], 1) if
+                   points_per_doctor[doc] > 0 and self.solution['Target'] is not None else '',
                    charge[doc] if charge[doc] > 0 else '',
                    cardiac[doc] if cardiac[doc] > 0 else ''
                    ]
@@ -493,7 +493,10 @@ class DoctorSchedule:
 
         pre_points = pd.Series([preassigned_points[doc] for doc in self.doctors if preassigned_points[doc] > 0])
         post_points = pd.Series([points_per_doctor[doc] for doc in self.doctors if points_per_doctor[doc] > 0])
-        offset = (post_points - self.solution['Target']) if self.solution['Target'] is not None else pd.Series([])
+        weekdays = pd.Series(
+            [self.working_doctors[doc]['Weekdays'] for doc in self.doctors if points_per_doctor[doc] > 0])
+        avg_points = self.solution['Target'] * weekdays if self.solution['Target'] is not None else pd.Series([])
+        offset = post_points - avg_points
 
         # Calc and post points should match, but just in case...
         for doc in sorted(self.doctors):
@@ -519,20 +522,29 @@ class DoctorSchedule:
         output.append(separator)
 
         if self.solution['Target'] is not None:
-            row_format = "{:>10}{:>7}{:>7}"
-            output.append(row_format.format('Delta', 'Count', 'AbsSum'))
-            for i in range(3):
-                in_band = (offset.abs() == i)
-                output.append(row_format.format(f"{i}:", in_band.sum(), offset[in_band].abs().sum()))
-            in_band = (offset.abs() > i)
-            output.append(row_format.format(f"{i + 1}+:", in_band.sum(), offset[in_band].abs().sum()))
+            row_format = "{:>10}{:>7}"
+            output.append(row_format.format('Delta', 'Count'))
+
+            # Define the range boundaries
+            ranges = [0, 1, 2, 3]
+
+            for i in range(len(ranges) - 1):
+                in_band = (offset.abs() >= ranges[i]) & (offset.abs() < ranges[i + 1])
+                output.append(
+                    row_format.format(f"{ranges[i]}-{ranges[i + 1]}:", in_band.sum()))
+
+            # Handle values greater than the last range boundary
+            in_band = (offset.abs() >= ranges[-1])
+            output.append(row_format.format(f"{ranges[-1]}+:", in_band.sum()))
             output.append(separator)
+
             row_format = "{:>15}{:>7}"
             output.append(row_format.format('Objective', 'Value'))
             for obj_var, obj_val in self.solution['Objective'].items():
                 output.append(row_format.format(obj_var, round(obj_val, 2)))
+
             output.append(separator)
-            output.append(f'Target: {self.solution["Target"]} points per doctor.')
+            output.append(f'Target: {self.solution["Target"]:.2f} points per doctor per day.')
 
         output.append(f'Count: {len(self.doctors)} doctors.')
 
