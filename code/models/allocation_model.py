@@ -58,7 +58,7 @@ class AllocationModel:
         preassigned_points = {doctor: self.data.get_points_per_doctor(doctor, add_assigned=False) for doctor in
                               self.data.doctors}
         points = {doctor: [total_points[doctor], preassigned_points[doctor]] for doctor in sorted(self.data.doctors)}
-        target = int(self.central_value.X)
+        target = self.central_value.X
 
         # Objective values
         obj = {
