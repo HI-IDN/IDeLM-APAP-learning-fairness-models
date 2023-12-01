@@ -49,7 +49,7 @@ def main(args):
     model.print(logfile)
     model.save(args.output_filename)
     logging.info("Scheduling process completed successfully")
-    if os.path.exists(logfile):
+    if os.path.exists(logfile) and model.m.status == GRB.OPTIMAL:
         os.remove(logfile)
 
 
