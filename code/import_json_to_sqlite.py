@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 import argparse
 from data.utils import holidays_that_year, generate_dates, get_weekday_name
 from data.schedule import DoctorSchedule
+from gurobipy import GRB
 
 
 def process_schedule_data(db_file, json_folder, staff_file):
@@ -32,7 +33,10 @@ def process_schedule_data(db_file, json_folder, staff_file):
                 objective_total FLOAT,
                 objective_equity INTEGER,
                 objective_cardiac_charge INTEGER,
-                objective_priority_charge INTEGER
+                objective_priority_charge INTEGER,
+                num_constraints INTEGER, 
+                num_variables INTEGER, 
+                optimal BOOLEAN
             );
 
             CREATE TABLE doctors (
@@ -112,17 +116,21 @@ def process_schedule_data(db_file, json_folder, staff_file):
             objective_cardiac_charge = data['Solution']['Objective']['cardiac_charge']
             objective_priority_charge = data['Solution']['Objective']['priority_charge']
             objective_total = data['Solution']['Objective']['total']
+            num_constraints = data['Solution']['Params']['Constraints']
+            num_variables = data['Solution']['Params']['Variables']
+            optimal = data['Solution']['Params']['Status'] == GRB.OPTIMAL
 
             # Insert into schedule table
             cursor.execute("""
                                 INSERT INTO schedule (
                                     file_name, period_start, period_end, target_value, workdays,
-                                    objective_total, objective_equity, objective_cardiac_charge, objective_priority_charge
+                                    objective_total, objective_equity, objective_cardiac_charge, 
+                                    objective_priority_charge, num_constraints, num_variables, optimal
                                 )
-                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? ,?);
                             """, (file_name, period_start, period_end, target_value, workdays,
                                   objective_total, objective_equity, objective_cardiac_charge,
-                                  objective_priority_charge))
+                                  objective_priority_charge, num_constraints, num_variables, optimal))
 
             # Retrieve the last inserted schedule_id
             return cursor.lastrowid
@@ -191,7 +199,7 @@ def process_schedule_data(db_file, json_folder, staff_file):
                         """, (doctor, date, points, schedule_id, is_charge, is_cardiac, role))
 
         # Loop through each JSON file in the folder
-        for json_file_path in glob.glob(os.path.join(json_folder, '[0-9][0-9][0-9][0-9]-week[0-5][0-9].json')):
+        for json_file_path in sorted(glob.glob(os.path.join(json_folder, '[0-9][0-9][0-9][0-9]-week[0-5][0-9].json'))):
             with open(json_file_path, 'r') as file:
                 data = json.load(file)
                 file_name = os.path.basename(json_file_path)
