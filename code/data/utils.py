@@ -205,7 +205,7 @@ def holidays_that_year(year):
     return holidays
 
 
-def custom_holidays(input_date):
+def custom_holidays(year):
     """ Get the list of US holidays for the given year. """
     import datetime
 
@@ -213,10 +213,10 @@ def custom_holidays(input_date):
     special = read_csv('../data/special_holidays.csv')
     for date_str, holiday_name in special[1:]:
         date = datetime.datetime.strptime(date_str, '%Y-%m-%d').date()
-        if date.year == input_date.year:
+        if date.year == year:
             special_holidays[date] = holiday_name
 
-    holidays = holidays_that_year(input_date.year)
+    holidays = holidays_that_year(year)
     # convert to a dictionary of {date: holiday_name}
     holidays = {date: holiday_name for holiday_name, dates in holidays.items() for date in dates}
     # append any special holidays that are not already in the list
@@ -231,7 +231,7 @@ def is_workday(input_date):
     assert isinstance(input_date, datetime.date)
 
     # Check if the date is a public holiday in the USA
-    holidays = custom_holidays(input_date)
+    holidays = custom_holidays(input_date.year)
     if input_date in holidays:
         return False, holidays[input_date]
 

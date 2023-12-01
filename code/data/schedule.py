@@ -474,17 +474,21 @@ class DoctorSchedule:
         charge = {doc: sum([1 for c in self.solution['Charge'].values() if c == doc]) for doc in self.doctors}
         cardiac = {doc: sum([1 for c in self.solution['Cardiac'].values() if c == doc]) for doc in self.doctors}
 
-        row_format = "{:>10}{:>6}" + "{:>6}" * 5
-        header = ["Name", "ID", "Pt0", "Pt", "Delta", "Chrg", "Diac"]
+        row_format = "{:>10}{:>6}" + "{:>6}" * 7
+        header = ["Name", "ID", "Work", "AvgPt", "Pt0", "Pt", "Delta", "Chrg", "Diac"]
         header = row_format.format(*header)
         separator = '-' * len(header)
         output = [header, separator]
+        assigned = self.solution['Target'] is not None
 
         for doc in sorted(self.doctors):
             row = [self.staff.get_name(doc), doc,
+                   self.working_doctors[doc]['Weekdays'],
+                   round(points_per_doctor[doc] / self.working_doctors[doc]['Weekdays'], 2) if
+                   self.working_doctors[doc]['Weekdays'] > 0 and assigned else '',
                    preassigned_points[doc] if preassigned_points[doc] > 0 else '',
                    points_per_doctor[doc] if points_per_doctor[doc] > 0 else '',
-                   round(points_per_doctor[doc] - self.solution['Target'] * self.working_doctors[doc]['Weekdays'], 1) if
+                   round(points_per_doctor[doc] - self.solution['Target'] * self.working_doctors[doc]['Weekdays'], 2) if
                    points_per_doctor[doc] > 0 and self.solution['Target'] is not None else '',
                    charge[doc] if charge[doc] > 0 else '',
                    cardiac[doc] if cardiac[doc] > 0 else ''
@@ -492,12 +496,14 @@ class DoctorSchedule:
             output.append(row_format.format(*row))
         output.append(separator)
 
+
+
         pre_points = pd.Series([preassigned_points[doc] for doc in self.doctors if preassigned_points[doc] > 0])
         post_points = pd.Series([points_per_doctor[doc] for doc in self.doctors if points_per_doctor[doc] > 0])
         weekdays = pd.Series(
             [self.working_doctors[doc]['Weekdays'] for doc in self.doctors if points_per_doctor[doc] > 0])
-        avg_points = self.solution['Target'] * weekdays if self.solution['Target'] is not None else pd.Series([])
-        offset = post_points - avg_points if self.solution['Target'] is not None else pd.Series([])
+        avg_points = self.solution['Target'] * weekdays if assigned else pd.Series([])
+        offset = post_points - avg_points if assigned else pd.Series([])
 
         # Calc and post points should match, but just in case...
         for doc in sorted(self.doctors):
@@ -508,21 +514,26 @@ class DoctorSchedule:
         charge = pd.Series([charge[doc] for doc in self.doctors])
         cardiac = pd.Series([cardiac[doc] for doc in self.doctors])
 
-        row = ['Average', '', round(pre_points.mean(), 1), round(post_points.mean(), 1), round(offset.mean(), 1),
+        row = ['Average', '', round(weekdays.mean(), 1), round(avg_points.mean(), 1),
+               round(pre_points.mean(), 1), round(post_points.mean(), 1), round(offset.mean(), 1),
                round(charge.mean(), 1), round(cardiac.mean(), 1)]
         output.append(row_format.format(*row))
-        row = ['Median', '', round(pre_points.median(), 1), round(post_points.median(), 1), round(offset.median(), 1),
+        row = ['Median', '', round(weekdays.median(), 1), round(avg_points.median(), 1),
+               round(pre_points.median(), 1), round(post_points.median(), 1),
+               round(offset.median(), 1),
                round(charge.median(), 1), round(cardiac.median(), 1)]
         output.append(row_format.format(*row))
-        row = ['Min', '', round(pre_points.min(), 1), round(post_points.min(), 1), round(offset.min(), 1),
+        row = ['Min', '', round(weekdays.min(), 1), round(avg_points.min(), 1),
+               round(pre_points.min(), 1), round(post_points.min(), 1), round(offset.min(), 1),
                round(charge.min(), 1), round(cardiac.min(), 1)]
         output.append(row_format.format(*row))
-        row = ['Max', '', round(pre_points.max(), 1), round(post_points.max(), 1), round(offset.max(), 1),
+        row = ['Max', '', round(weekdays.max(), 1), round(avg_points.max(), 1),
+               round(pre_points.max(), 1), round(post_points.max(), 1), round(offset.max(), 1),
                round(charge.max(), 1), round(cardiac.max(), 1)]
         output.append(row_format.format(*row))
         output.append(separator)
 
-        if self.solution['Target'] is not None:
+        if assigned:
             row_format = "{:>10}{:>7}"
             output.append(row_format.format('Delta', 'Count'))
 

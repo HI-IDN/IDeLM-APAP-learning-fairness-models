@@ -5,7 +5,7 @@ import os  # OS module provides functions for interacting with the operating sys
 import csv  # CSV module is used to read/write CSV files
 from datetime import datetime, timedelta
 import argparse
-from data.utils import holidays_that_year, generate_dates, get_weekday_name
+from data.utils import custom_holidays, generate_dates, get_weekday_name
 from data.schedule import DoctorSchedule
 from gurobipy import GRB
 
@@ -93,10 +93,9 @@ def process_schedule_data(db_file, json_folder, staff_file):
 
     def import_holidays(cursor):
         for year in range(2018, datetime.now().year):
-            holidays = holidays_that_year(year)
-            for holiday, dates in holidays.items():
-                for date in dates:
-                    cursor.execute("INSERT INTO holidays (date, description) VALUES (?, ?);", (date, holiday))
+            holidays = custom_holidays(year)
+            for date, holiday in holidays.items():
+                cursor.execute("INSERT INTO holidays (date, description) VALUES (?, ?);", (date, holiday))
 
     def process_json_files(cursor, json_folder):
         # Function to parse date in ISO8601 format
