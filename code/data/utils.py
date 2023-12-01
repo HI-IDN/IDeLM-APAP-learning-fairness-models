@@ -259,3 +259,7 @@ def generate_dates(start, end):
         return [start]
 
     return [(start + dt.timedelta(days=i)) for i in range((end - start).days + 1)]
+
+def get_weekday_name(date):
+    """ Get the weekday name (e.g., 'Mon', 'Tue', 'Wed') for a given date."""
+    return date.strftime('%a')[:3]

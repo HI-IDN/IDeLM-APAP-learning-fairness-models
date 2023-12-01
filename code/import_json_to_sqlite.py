@@ -5,7 +5,9 @@ import os  # OS module provides functions for interacting with the operating sys
 import csv  # CSV module is used to read/write CSV files
 from datetime import datetime, timedelta
 import argparse
-from data.utils import holidays_that_year
+from data.utils import holidays_that_year, generate_dates, get_weekday_name
+from data.schedule import DoctorSchedule
+
 
 def process_schedule_data(db_file, json_folder, staff_file):
     # Function to clean up the existing DB file
@@ -92,11 +94,7 @@ def process_schedule_data(db_file, json_folder, staff_file):
                 for date in dates:
                     cursor.execute("INSERT INTO holidays (date, description) VALUES (?, ?);", (date, holiday))
 
-
     def process_json_files(cursor, json_folder):
-        days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-        special_roles = ["OnCall", "OnLate", "PostCall", "PostHoliday", "PostLate", "PreCall", "Admin"]
-
         # Function to parse date in ISO8601 format
         def parse_date(date_str):
             return datetime.fromisoformat(date_str).date()
@@ -157,7 +155,7 @@ def process_schedule_data(db_file, json_folder, staff_file):
                     """, (schedule_id, doctor, doctor_points_total[doctor], doctor_points_fixed[doctor],
                           doctor == doctor_cardiac, doctor == doctor_charge, days_working[doctor]))
 
-        def insert_assignments(schedule_id, period_start):
+        def insert_assignments(schedule_id, period_start, days):
 
             for i, day in enumerate(days):
                 date = period_start + timedelta(days=i)
@@ -168,7 +166,7 @@ def process_schedule_data(db_file, json_folder, staff_file):
 
                 # Pre-calculate roles for the day
                 roles_for_day = {}
-                for role in special_roles:
+                for role in DoctorSchedule.TURN_ORDER:
                     role_data = data[role][i]
                     if isinstance(role_data, list):  # If there are multiple doctors for the role (e.g. Admin)
                         for doctor in role_data:
@@ -184,7 +182,7 @@ def process_schedule_data(db_file, json_folder, staff_file):
 
                     is_charge = 1 if doctor == charge_doctors else 0
                     is_cardiac = 1 if doctor == cardiac_doctors else 0
-                    role = roles_for_day[doctor] if doctor in roles_for_day else 'Whine'
+                    role = roles_for_day[doctor]
 
                     # Insert into the database
                     cursor.execute("""
@@ -201,11 +199,11 @@ def process_schedule_data(db_file, json_folder, staff_file):
 
                 period_start = parse_date(data['Period']['start'])
                 period_end = parse_date(data['Period']['end'])
+                days = [get_weekday_name(date) for date in generate_dates(period_start, period_end)]
 
                 schedule_id = insert_schedule(period_start, period_end)
                 insert_points(schedule_id)
-                insert_assignments(schedule_id, period_start)
-
+                insert_assignments(schedule_id, period_start, days)
 
         # Remember to commit the changes
         conn.commit()

@@ -32,6 +32,7 @@ class DoctorSchedule:
         'PostHoliday',
         'PostLate',
         'PreCall',
+        'PreHoliday',
         'Unassigned',
         'OnLate',
         'OnCall',
@@ -496,7 +497,7 @@ class DoctorSchedule:
         weekdays = pd.Series(
             [self.working_doctors[doc]['Weekdays'] for doc in self.doctors if points_per_doctor[doc] > 0])
         avg_points = self.solution['Target'] * weekdays if self.solution['Target'] is not None else pd.Series([])
-        offset = post_points - avg_points
+        offset = post_points - avg_points if self.solution['Target'] is not None else pd.Series([])
 
         # Calc and post points should match, but just in case...
         for doc in sorted(self.doctors):

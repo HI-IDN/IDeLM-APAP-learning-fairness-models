@@ -22,9 +22,15 @@ class AllocationModel:
     def solve(self):
         """Optimize the model."""
         self.m.optimize()
-        self.solution = {'Params': {'Constraints': self.m.numConstrs, 'Variables': self.m.numVars}}
+        self.solution = {
+            'Params': {
+                'Constraints': self.m.numConstrs,
+                'Variables': self.m.numVars,
+                'Status': self.m.status
+            }
+        }
 
-        if self.m.status == GRB.OPTIMAL:
+        if self.m.status == GRB.OPTIMAL or (self.m.Status == GRB.Status.TIME_LIMIT and self.m.SolCount > 0):
             self.solution = self._get_solution()
             self.data.set_solution(self.solution)
             return True

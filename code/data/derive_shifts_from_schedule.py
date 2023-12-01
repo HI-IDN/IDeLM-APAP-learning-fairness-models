@@ -1,5 +1,5 @@
 from data.utils import (read_json, write_json, transpose_dict, are_dates_separated_by_delta, search_for_file,
-                        is_workday, generate_dates)
+                        is_workday, generate_dates, get_weekday_name)
 import argparse
 import re
 import os
@@ -20,7 +20,7 @@ class WeeklySchedule:
         week = {}
         self.dates = generate_dates(start_date, end_date)
         for date in self.dates:
-            name_of_day = self.get_weekday_name(date)
+            name_of_day = get_weekday_name(date)
             keys = [key for key in week_dict if key.startswith(name_of_day)]
             if is_holiday(date):
                 weekend.extend(keys)
@@ -54,18 +54,13 @@ class WeeklySchedule:
                 return next_day, day_values
         return None, None  # No prev weekday found
 
-    def get_weekday_name(self, date):
-        """ Get the weekday name (e.g., 'Mon', 'Tue', 'Wed') for a given date."""
-        # You might need to adjust the slicing based on your actual keys in 'Values'
-        return date.strftime('%a')[:3]
-
     def get_day_type(self, date):
         """Get the type of day for a given date."""
         return self.week.get(date)
 
     def get_values(self, date):
         """Get the values for a given date."""
-        name = self.get_weekday_name(date)
+        name = get_weekday_name(date)
         values = [(key, values) for key, values in self.values.items() if key.startswith(name)]
         if self.get_day_type(date) == WORKDAY:
             assert len(values) == 1, f"Multiple values found for {date}: {values}"
@@ -138,7 +133,7 @@ def is_holiday(date):
     """Check if the given date is a holiday in the USA."""
     workday, holiday = is_workday(date)
     if not workday:
-        if holiday != WEEKEND:
+        if holiday:
             print(f"Found a holiday {holiday} on {date} {date.strftime('%a')[:3]}.")
         return True
     else:
@@ -172,6 +167,7 @@ def generate_new_structure(current, before, after, start_date, end_date):
             post_call = None
             post_late = None
             post_holiday = None
+            pre_holiday = None
             pre_call = None
         else:
             # General case: weekday
@@ -181,8 +177,10 @@ def generate_new_structure(current, before, after, start_date, end_date):
             if not is_tomorrow:
                 next_weekend, _ = get_next_day_type(date, this_week, next_week, WEEKEND)
                 pre_call = next_weekend['AM']["Call"]["1"]
+                pre_holiday = next_weekend['AM']["Call"]["2"]
             else:
                 pre_call = next_weekday["Call"]["1"]
+                pre_holiday = None
 
             if not is_yesterday:
                 prev_weekend, _ = get_prev_day_type(date, this_week, prev_week, WEEKEND)
@@ -209,7 +207,7 @@ def generate_new_structure(current, before, after, start_date, end_date):
             if (admin is not None and doc in admin) or (doc not in (on_call, on_late))
         ]
 
-        weekday_name = this_week.get_weekday_name(date)
+        weekday_name = get_weekday_name(date)
         result[weekday_name] = {
             "OnCall": on_call,
             "OnLate": on_late,
@@ -218,6 +216,7 @@ def generate_new_structure(current, before, after, start_date, end_date):
                 on_call, on_late) else None,
             "PostLate": post_late if post_late not in offsite and post_late not in (on_call, on_late) else None,
             "PreCall": pre_call if pre_call not in offsite and pre_call not in (on_call, on_late) else None,
+            "PreHoliday": pre_holiday if pre_holiday not in offsite and pre_holiday not in (on_call, on_late) else None,
             "Admin": admin,
             "Offsite": offsite,
             "Day": day_type
